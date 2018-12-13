@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true">
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="toDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fromDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<field name="dim_1_3_Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@dim_1_3_Heading]]></fieldDescription>
+	</field>
+	<field name="month0Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@month0Heading]]></fieldDescription>
+	</field>
+	<field name="month1Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@month1Heading]]></fieldDescription>
+	</field>
+	<field name="month2Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@month2Heading]]></fieldDescription>
+	</field>
+	<field name="month3Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@month3Heading]]></fieldDescription>
+	</field>
+	<field name="month4Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@month4Heading]]></fieldDescription>
+	</field>
+	<field name="month5Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@month5Heading]]></fieldDescription>
+	</field>
+	<field name="month6Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@month6Heading]]></fieldDescription>
+	</field>
+	<field name="itemReference" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemReference]]></fieldDescription>
+	</field>
+	<field name="itemDecription" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemDecription]]></fieldDescription>
+	</field>
+	<field name="dimension1_3" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension1_3]]></fieldDescription>
+	</field>
+	<field name="dimension1_3Description" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension1_3Description]]></fieldDescription>
+	</field>
+	<field name="dimension2" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2]]></fieldDescription>
+	</field>
+	<field name="onhand" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@onhand]]></fieldDescription>
+	</field>
+	<field name="requiredMonth0" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@requiredMonth0]]></fieldDescription>
+	</field>
+	<field name="poMonth0" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@poMonth0]]></fieldDescription>
+	</field>
+	<field name="requiredMonth1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@requiredMonth1]]></fieldDescription>
+	</field>
+	<field name="poMonth1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@poMonth1]]></fieldDescription>
+	</field>
+	<field name="diffMonth1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@diffMonth1]]></fieldDescription>
+	</field>
+	<field name="requiredMonth2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@requiredMonth2]]></fieldDescription>
+	</field>
+	<field name="poMonth2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@poMonth2]]></fieldDescription>
+	</field>
+	<field name="diffMonth2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@diffMonth2]]></fieldDescription>
+	</field>
+	<field name="requiredMonth3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@requiredMonth3]]></fieldDescription>
+	</field>
+	<field name="poMonth3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@poMonth3]]></fieldDescription>
+	</field>
+	<field name="diffMonth3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@diffMonth3]]></fieldDescription>
+	</field>
+	<field name="requiredMonth4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@requiredMonth4]]></fieldDescription>
+	</field>
+	<field name="poMonth4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@poMonth4]]></fieldDescription>
+	</field>
+	<field name="diffMonth4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@diffMonth4]]></fieldDescription>
+	</field>
+	<field name="requiredMonth5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@requiredMonth5]]></fieldDescription>
+	</field>
+	<field name="poMonth5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@poMonth5]]></fieldDescription>
+	</field>
+	<field name="diffMonth5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@diffMonth5]]></fieldDescription>
+	</field>
+	<field name="requiredMonth6" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@requiredMonth6]]></fieldDescription>
+	</field>
+	<field name="poMonth6" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@poMonth6]]></fieldDescription>
+	</field>
+	<field name="diffMonth6" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@diffMonth6]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="57" splitType="Stretch">
+			<line>
+				<reportElement key="line" x="0" y="29" width="802" height="1"/>
+			</line>
+			<line>
+				<reportElement key="line" x="0" y="1" width="802" height="1"/>
+			</line>
+			<textField hyperlinkType="Reference">
+				<reportElement x="399" y="2" width="392" height="27"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="2" width="390" height="27"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gross Requirements With Phased PO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="739" y="44" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="43" width="55" height="12"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="425" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Req]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="238" y="32" width="93" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{month1Heading}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="237" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Req]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="614" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Req]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="43" width="25" height="12"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Size]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="614" y="32" width="93" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{month5Heading}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="331" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Req]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="81" y="43" width="59" height="12"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dim_1_3_Heading}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="487" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="708" y="44" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Req]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="708" y="32" width="93" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{month6Heading}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="140" y="33" width="34" height="22"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Current Stock]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="770" y="44" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="332" y="32" width="93" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{month2Heading}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="519" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Req]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="426" y="32" width="93" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{month3Heading}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="581" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="645" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="676" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="393" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="362" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="550" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="520" y="32" width="93" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{month4Heading}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="55" width="802" height="1"/>
+			</line>
+			<line>
+				<reportElement x="176" y="43" width="137" height="1"/>
+			</line>
+			<line>
+				<reportElement x="313" y="43" width="98" height="1"/>
+			</line>
+			<line>
+				<reportElement x="411" y="43" width="98" height="1"/>
+			</line>
+			<line>
+				<reportElement x="509" y="43" width="98" height="1"/>
+			</line>
+			<line>
+				<reportElement x="607" y="43" width="98" height="1"/>
+			</line>
+			<line>
+				<reportElement x="705" y="43" width="96" height="1"/>
+			</line>
+			<line>
+				<reportElement x="613" y="32" width="1" height="25"/>
+			</line>
+			<line>
+				<reportElement x="707" y="32" width="1" height="25"/>
+			</line>
+			<line>
+				<reportElement x="801" y="32" width="1" height="25"/>
+			</line>
+			<line>
+				<reportElement x="519" y="32" width="1" height="25"/>
+			</line>
+			<line>
+				<reportElement x="425" y="32" width="1" height="25"/>
+			</line>
+			<line>
+				<reportElement x="331" y="32" width="1" height="25"/>
+			</line>
+			<line>
+				<reportElement x="175" y="32" width="1" height="25"/>
+			</line>
+			<line>
+				<reportElement x="141" y="32" width="660" height="1"/>
+			</line>
+			<line>
+				<reportElement x="140" y="32" width="1" height="25"/>
+			</line>
+			<staticText>
+				<reportElement x="206" y="43" width="30" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Req]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="43" width="31" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="176" y="32" width="61" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{month0Heading}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="237" y="32" width="1" height="25"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="55" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemReference}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="0" width="59" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension1_3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="0" width="25" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="140" y="0" width="34" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{onhand}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="237" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{requiredMonth1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="268" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{poMonth1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="299" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{diffMonth1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="362" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{poMonth2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="393" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{diffMonth2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="331" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{requiredMonth2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="456" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{poMonth3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="487" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{diffMonth3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="425" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{requiredMonth3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="550" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{poMonth4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="581" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{diffMonth4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="519" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{requiredMonth4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="645" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{poMonth5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="676" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{diffMonth5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="614" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{requiredMonth5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="739" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{poMonth6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="770" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{diffMonth6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="708" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{requiredMonth6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="11" width="59" height="11"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension1_3Description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="11" width="80" height="11"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemDecription}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="331" y="0" width="1" height="23"/>
+			</line>
+			<line>
+				<reportElement x="175" y="0" width="1" height="23"/>
+			</line>
+			<line>
+				<reportElement x="425" y="0" width="1" height="23"/>
+			</line>
+			<line>
+				<reportElement x="519" y="0" width="1" height="23"/>
+			</line>
+			<line>
+				<reportElement x="613" y="0" width="1" height="23"/>
+			</line>
+			<line>
+				<reportElement x="707" y="0" width="1" height="23"/>
+			</line>
+			<line>
+				<reportElement x="801" y="0" width="1" height="23"/>
+			</line>
+			<line>
+				<reportElement x="140" y="0" width="1" height="23"/>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="206" y="0" width="30" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{requiredMonth0}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="237" y="0" width="1" height="23"/>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="175" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{poMonth0}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch">
+			<line>
+				<reportElement x="140" y="0" width="662" height="1"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="17" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="9" y="2" width="782" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="621" y="3" width="134" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="9" y="2" width="197" height="13"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="2" width="802" height="1"/>
+			</line>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="755" y="3" width="36" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

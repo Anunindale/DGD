@@ -1,0 +1,96 @@
+annotation.processing.enabled=false
+annotation.processing.enabled.in.editor=true
+annotation.processing.processor.options=-Aeclipselink.canonicalmodel.use_static_factory=false
+annotation.processing.processors.list=
+annotation.processing.run.all.processors=true
+annotation.processing.source.output=${build.generated.sources.dir}/ap-source-output
+build.classes.dir=${build.dir}/jar
+build.classes.excludes=**/*.java,**/*.form,**/.nbattrs
+build.dir=build
+build.ear.classes.dir=${build.dir}/jar
+build.generated.dir=${build.dir}/generated
+build.generated.sources.dir=${build.dir}/generated-sources
+build.test.classes.dir=${build.dir}/test/classes
+build.test.results.dir=${build.dir}/test/results
+debug.classpath=${javac.classpath}:${build.classes.dir}
+debug.test.classpath=\
+    ${run.test.classpath}
+dist.dir=dist
+dist.ear.jar=${dist.dir}/${jar.name}
+dist.jar=${dist.dir}/${jar.name}
+dist.javadoc.dir=${dist.dir}/javadoc
+endorsed.classpath=
+excludes=
+file.reference.datecalc-jdk-1.0.1-bundle.jar=../../../Downloads/ObjectLabDateCalc/datecalc-jdk-1.0.1-bundle.jar
+file.reference.EMCGenLib.jar=../EMCGenLib/dist/EMCGenLib.jar
+file.reference.EMCGenLib.jar-2=../EMCGenLib/dist/EMCGenLib.jar
+file.reference.EMCGenLibCore.jar=/home/asd_admin/Source/SVNMyDeck/activelibs/EMCGenLibCore.jar
+file.reference.EMCGenLibSys.jar=../EMCGenLibSys/dist/EMCGenLibSys.jar
+file.reference.EMCLicenseLib.jar=../../EMC Projects/JAR Files/EMCLicenseLib.jar
+file.reference.EMCLicenseLib.jar-1=/home/asd_admin/Source/SVNMyDeck/activelibs/EMCLicenseLib.jar
+file.reference.EMCModulesSys.jar=/home/asd_admin/Source/SVNMyDeck/activelibs/EMCModulesSys.jar
+file.reference.EMCServerSupport.jar=/home/asd_admin/Source/SVNMyDeck/activelibs/EMCServerSupport.jar
+file.reference.google-collections.jar=/home/asd_admin/Source/SVNMyDeck/activelibs/google-collections.jar
+file.reference.google-libphonenumber.jar=/home/asd_admin/Source/SVNMyDeck/activelibs/google-libphonenumber.jar
+file.reference.hibernate-core-4.1.9.Final.jar=/home/asd_admin/Source/SVNMyDeck/activelibs/hibernate-core-4.1.9.Final.jar
+file.reference.hibernate-entitymanager-4.1.9.Final.jar=/home/asd_admin/Source/SVNMyDeck/activelibs/hibernate-entitymanager-4.1.9.Final.jar
+includes=**
+j2ee.compile.on.save=false
+j2ee.deploy.on.save=false
+j2ee.platform=1.5
+j2ee.platform.classpath=${j2ee.server.home}/modules/javax.jms.jar:${j2ee.server.home}/modules/javax.faces.jar:${j2ee.server.home}/modules/javax.servlet-api.jar:${j2ee.server.home}/modules/javax.security.jacc.jar:${j2ee.server.home}/modules/javax.resource.jar:${j2ee.server.home}/modules/endorsed/webservices-api-osgi.jar:${j2ee.server.home}/modules/weld-osgi-bundle.jar:${j2ee.server.home}/modules/javax.ejb.jar:${j2ee.server.home}/modules/javax.mail.jar:${j2ee.server.home}/modules/javax.transaction.jar:${j2ee.server.home}/modules/javax.security.auth.message.jar:${j2ee.server.home}/modules/jaxb-osgi.jar:${j2ee.server.home}/modules/javax.management.j2ee.jar:${j2ee.server.home}/modules/javax.persistence.jar:${j2ee.server.middleware}/mq/lib/jaxm-api.jar:${j2ee.server.home}/modules/bean-validator.jar:${j2ee.server.home}/modules/javax.el-api.jar:${j2ee.server.home}/modules/endorsed/javax.annotation.jar:${j2ee.server.home}/modules/webservices-osgi.jar:${j2ee.server.home}/modules/javax.servlet.jsp-api.jar:${j2ee.server.home}/modules/javax.enterprise.deploy.jar:${j2ee.server.home}/modules/javax.servlet.jsp.jstl-api.jar:${j2ee.server.home}/modules/jersey-core.jar:${j2ee.server.home}/modules/endorsed/jaxb-api-osgi.jar:${j2ee.server.home}/modules/javax.servlet.jsp.jstl.jar
+j2ee.platform.embeddableejb.classpath=${j2ee.server.home}/lib/embedded/glassfish-embedded-static-shell.jar
+j2ee.platform.wscompile.classpath=${j2ee.server.home}/modules/webservices-osgi.jar
+j2ee.platform.wsgen.classpath=${j2ee.server.home}/modules/webservices-osgi.jar:${j2ee.server.home}/modules/endorsed/webservices-api-osgi.jar:${j2ee.server.home}/modules/jaxb-osgi.jar:${j2ee.server.home}/modules/endorsed/jaxb-api-osgi.jar:${j2ee.server.home}/modules/javax.ejb.jar
+j2ee.platform.wsimport.classpath=${j2ee.server.home}/modules/webservices-osgi.jar:${j2ee.server.home}/modules/endorsed/webservices-api-osgi.jar:${j2ee.server.home}/modules/jaxb-osgi.jar:${j2ee.server.home}/modules/endorsed/jaxb-api-osgi.jar:${j2ee.server.home}/modules/javax.ejb.jar
+j2ee.platform.wsit.classpath=
+j2ee.server.type=gfv3ee6
+jar.compress=false
+jar.name=EMCServerSys.jar
+jars.in.ejbjar=false
+javac.classpath=\
+    ${file.reference.EMCLicenseLib.jar-1}:\
+    ${file.reference.EMCModulesSys.jar}:\
+    ${file.reference.hibernate-core-4.1.9.Final.jar}:\
+    ${file.reference.EMCServerSupport.jar}:\
+    ${file.reference.hibernate-entitymanager-4.1.9.Final.jar}:\
+    ${file.reference.EMCGenLibCore.jar}:\
+    ${file.reference.EMCGenLibSys.jar}:\
+    ${file.reference.google-collections.jar}:\
+    ${file.reference.google-libphonenumber.jar}
+javac.debug=true
+javac.deprecation=false
+javac.processorpath=\
+    ${javac.classpath}:\
+    ${libs.eclipselink.classpath}:\
+    ${libs.eclipselinkmodelgen.classpath}
+javac.source=1.7
+javac.target=1.7
+javac.test.classpath=\
+    ${javac.classpath}:\
+    ${build.classes.dir}:\
+    ${libs.junit.classpath}
+javac.test.processorpath=${javac.test.classpath}
+javadoc.additionalparam=
+javadoc.author=false
+javadoc.encoding=
+javadoc.noindex=false
+javadoc.nonavbar=false
+javadoc.notree=false
+javadoc.preview=true
+javadoc.private=false
+javadoc.splitindex=true
+javadoc.use=true
+javadoc.version=false
+javadoc.windowtitle=
+meta.inf=${source.root}/conf
+meta.inf.excludes=sun-cmp-mappings.xml
+no.dependencies=true
+platform.active=default_platform
+resource.dir=setup
+run.test.classpath=\
+    ${javac.test.classpath}:\
+    ${build.test.classes.dir}
+source.root=src
+src.dir=${source.root}/java
+test.src.dir=test

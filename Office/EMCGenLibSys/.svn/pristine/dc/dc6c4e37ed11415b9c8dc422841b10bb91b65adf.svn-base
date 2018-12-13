@@ -1,0 +1,73 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package emc.methods.dangerousgoods;
+
+import emc.enums.modules.enumEMCModules;
+import emc.methods.EMCMethodEnum;
+
+/**
+ *
+ * @author rico
+ */
+public enum ServerDGMethods implements EMCMethodEnum {
+
+    //CRMInterest
+    //DGCargoCheckMaster
+    INSERT_DGCARGOCHECKMASTER(0, "INSERT_DGCARGOCHECKMASTER"),
+    UPDATE_DGCARGOCHECKMASTER(1, "UPDATE_DGCARGOCHECKMASTER"),
+    DELETE_DGCARGOCHECKMASTER(2, "DELETE_DGCARGOCHECKMASTER"),
+    GETNUMROWS_DGCARGOCHECKMASTER(3, "GETNUMROWS_DGCARGOCHECKMASTER"),
+    GETDATA_DGCARGOCHECKMASTER(4, "GETDATA_DGCARGOCHECKMASTER"),
+    VALIDATEFIELD_DGCARGOCHECKMASTER(5, "VALIDATEFIELD_DGCARGOCHECKMASTER"),
+    //DGCargoCheckLines
+    INSERT_DGCARGOCHECKLINES(20, "INSERT_DGCARGOCHECKLINES"),
+    UPDATE_DGCARGOCHECKLINES(21, "UPDATE_DGCARGOCHECKLINES"),
+    DELETE_DGCARGOCHECKLINES(22, "DELETE_DGCARGOCHECKLINES"),
+    GETNUMROWS_DGCARGOCHECKLINES(23, "GETNUMROWS_DGCARGOCHECKLINES"),
+    GETDATA_DGCARGOCHECKLINES(24, "GETDATA_DGCARGOCHECKLINES"),
+    VALIDATEFIELD_DGCARGOCHECKLINES(25, "VALIDATEFIELD_DGCARGOCHECKLINES");
+    //Enum variables
+    final int id;
+    final String label;
+
+    /** Creates a new instance of  ServerCRMMethods*/
+    ServerDGMethods(final int id, final String label) {
+        this.id = id;
+        this.label = label;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return label;
+    }
+
+    public static ServerDGMethods fromString(final String str) {
+        for (ServerDGMethods e : ServerDGMethods.values()) {
+            if (e.toString().equalsIgnoreCase(str)) {
+                return e;
+            }
+        }
+        return null;
+    }
+
+    public static ServerDGMethods fromId(final int id) {
+        for (ServerDGMethods e : ServerDGMethods.values()) {
+            if (e.id == id) {
+                return e;
+            }
+        }
+        return null;
+    }
+
+    public enumEMCModules getEMCModule() {
+        return enumEMCModules.DG;
+    }
+}
+

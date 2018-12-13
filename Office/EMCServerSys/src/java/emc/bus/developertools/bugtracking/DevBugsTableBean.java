@@ -1,0 +1,280 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.bus.developertools.bugtracking;
+
+import emc.bus.developertools.parameters.DevParametersLocal;
+import emc.entity.base.BaseDocuRefTable;
+import emc.entity.developertools.DevParameters;
+import emc.entity.developertools.bugtracking.DevBugsTable;
+import emc.enums.developertools.DevBugType;
+import emc.enums.emcquery.EMCQueryConditions;
+import emc.enums.enumQueryTypes;
+import emc.framework.EMCEntityBean;
+import emc.framework.EMCEntityBeanException;
+import emc.framework.EMCQuery;
+import emc.framework.EMCUserData;
+import emc.functions.Functions;
+import emc.server.mailmanager.EMCMailManagerLocal;
+import emc.tables.EMCTable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.mail.MessagingException;
+
+/**
+ *
+ * @author riaan
+ */
+@Stateless
+public class DevBugsTableBean extends EMCEntityBean implements DevBugsTableLocal {
+
+    @EJB
+    private DevParametersLocal paramBean;
+    @EJB
+    private EMCMailManagerLocal mailManager;
+
+    public DevBugsTableBean() {
+    }
+
+    @Override
+    public Object insert(Object iobject, EMCUserData userData) throws EMCEntityBeanException {
+        DevBugsTable bug = (DevBugsTable) iobject;
+        /*EMCQuery qu = new EMCQuery(enumQueryTypes.SELECT, DevBugsTable.class);
+        qu.addFieldAggregateFunction("bugNumber", "MAX");
+        List result = util.executeGeneralSelectQuery(qu, userData);
+        if (result != null && result.size() > 0 && result.get(0) != null) {
+            bug.setBugNumber((Integer) result.get(0) + 1);
+        } else {
+            bug.setBugNumber(1);
+        }*/
+
+        bug = (DevBugsTable) super.insert(bug, userData);
+        sendEmail(bug, userData);
+        return bug;
+    }
+
+    @Override
+    public Object update(Object uobject, EMCUserData userData) throws EMCEntityBeanException {
+        DevBugsTable bug = (DevBugsTable) super.update(uobject, userData);
+        sendEmail(bug, userData);
+        return bug;
+    }
+
+    @Override
+    public boolean doInsertValidation(EMCTable vobject, EMCUserData userData) {
+        boolean valid = super.doInsertValidation(vobject, userData);
+
+        if (valid) {
+            DevBugsTable record = (DevBugsTable) vobject;
+            if (record.getCompleted() != null) {
+                return validComplete(record, userData);
+            }
+
+        }
+        return valid;
+    }
+
+    @Override
+    public boolean doUpdateValidation(EMCTable vobject, EMCUserData userData) throws EMCEntityBeanException {
+        boolean valid = super.doUpdateValidation(vobject, userData);
+
+        if (valid) {
+            DevBugsTable record = (DevBugsTable) vobject;
+            if (record.getCompleted() != null) {
+                return validComplete(record, userData);
+            }
+        }
+        return valid;
+
+    }
+
+    private void sendEmail(DevBugsTable record, EMCUserData userData) throws EMCEntityBeanException {
+        if (!isBlank(record.getCompleted())) {
+            DevParameters param = paramBean.getParameters(userData);
+            List<String> recipients = new ArrayList<String>();
+            if (!isBlank(param.getCompletedBugMailAddress1())) {
+                recipients.add(param.getCompletedBugMailAddress1());
+            }
+
+            if (!isBlank(param.getCompletedBugMailAddress2())) {
+                recipients.add(param.getCompletedBugMailAddress2());
+            }
+
+            if (!isBlank(param.getCompletedBugMailAddress3())) {
+                recipients.add(param.getCompletedBugMailAddress3());
+            }
+
+            if (!isBlank(param.getCompletedBugMailAddress4())) {
+                recipients.add(param.getCompletedBugMailAddress4());
+            }
+
+            if (!isBlank(param.getCompletedBugMailAddress5())) {
+                recipients.add(param.getCompletedBugMailAddress5());
+            }
+
+            String docNote = null;
+            String[] attachmentFileName = null;
+            if (record.getHasAttachment()) {
+                EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, BaseDocuRefTable.class);
+                query.addAnd(
+                        "refTableName", record.getClass().getSimpleName());
+                query.addAnd(
+                        "refRecId", record.getRecordID());
+                BaseDocuRefTable doc = (BaseDocuRefTable) util.executeSingleResultQuery(query, userData);
+                if (doc != null) {
+                    if (!isBlank(doc.getNote())) {
+                        docNote = doc.getNote();
+                    }
+                    if (!isBlank(doc.getAttachmentFileName())) {
+                        attachmentFileName = new String[]{doc.getAttachmentFileName()};
+                    }
+                }
+            }
+            StringBuilder message = new StringBuilder();
+            message.append("To whom it may concern" + "\n");
+            message.append("\n");
+            message.append("Task No:    " + record.getBugNumber() + "\n");
+            message.append("Module:     " + record.getModuleId() + "\n");
+            message.append("Assigned:   " + record.getResponsible() + "\n");
+            message.append("Priority:   " + record.getPriority() + "\n");
+            message.append("Tested:     " + record.isTested() + "\n");
+            message.append("Time Taken: " + record.getTimeTaken() + "\n");
+            message.append("Billable:   " + record.isBillable() + "\n");
+            message.append("\n");
+            message.append(record.getBugId() + "\n");
+            if (!isBlank(docNote)) {
+                message.append("\n");
+                message.append(docNote);
+            }
+
+            message.append("\n");
+            message.append("\n");
+            message.append("EMC by ASD" + "\n");
+            try {
+
+                //Include first 40 characters, or substring up to the index of the first new-line character.
+                int lineSeperatorIndex = record.getBugId().indexOf(System.getProperty("line.separator"));
+                int subStringEnd = 0;
+                if (record.getBugId().length() > 40) {
+                    subStringEnd = (lineSeperatorIndex != - 1 && lineSeperatorIndex < 40) ? lineSeperatorIndex : 40;
+                } else {
+                    subStringEnd = record.getBugId().length() - 1;
+                }
+
+                mailManager.postMail(recipients.toArray(new String[recipients.size()]), null, null, "EMC Task Completed: " + record.getBugId().substring(0, subStringEnd), message.toString(), null,
+                        isBlank(param.getCompletedBugFromMailAddress()) ? "support@asd.co.za" : param.getCompletedBugFromMailAddress(), attachmentFileName, userData);
+            } catch (MessagingException ex) {
+                Logger.getLogger("emc").log(Level.WARNING, "Failed to send e-mail: " + ex.getMessage(), userData);
+            }
+
+        }
+    }
+
+    private boolean validComplete(DevBugsTable record, EMCUserData userData) {
+        boolean valid = Boolean.TRUE;
+        if (record.getCompleted() != null) {
+            if (!DevBugType.SUPPORT_CALL.toString().equalsIgnoreCase(record.getBugType())) {
+                if (record.isTested()) {
+                    if (isBlank(record.getEntityLog())) {
+                        Logger.getLogger("emc").log(Level.SEVERE, "No entity log specified, please complete.", userData);
+                        valid = false;
+                    }
+                    if (record.isTested()) {
+                        if (isBlank(record.getTestedBy())) {
+                            Logger.getLogger("emc").log(Level.SEVERE, "Tested By user is not specified, please complete.", userData);
+                            valid = false;
+                        }
+                        if (isBlank(record.getTestDescription())) {
+                            Logger.getLogger("emc").log(Level.SEVERE, "Test description is not specified, please complete.", userData);
+                            valid = false;
+                        }
+                    }
+
+                } else {
+                    Logger.getLogger("emc").log(Level.SEVERE, "Test tick has not been ticked.", userData);
+                    valid = false;
+                }
+
+                if (isBlank(record.getCoreUpdates())) {
+                    Logger.getLogger("emc").log(Level.SEVERE, "Core Updates not filled in.", userData);
+                    valid = false;
+                }
+                
+                if (isBlank(record.getPossibleAffected())) {
+                    Logger.getLogger("emc").log(Level.SEVERE, "Possible Affect not filled in.", userData);
+                    valid = false;
+                }
+                
+                if (isBlank(record.getPossibleAffectedData())) {
+                    Logger.getLogger("emc").log(Level.SEVERE, "Possible Affect Data not filled in.", userData);
+                    valid = false;
+                }
+                
+                if (isBlank(record.getEntityLog())) {
+                    Logger.getLogger("emc").log(Level.SEVERE, "Entity Log not filled in.", userData);
+                    valid = false;
+                }
+                
+                if (isBlank(record.getDocumentation())) {
+                    Logger.getLogger("emc").log(Level.SEVERE, "Documentation not filled in.", userData);
+                    valid = false;
+                }
+            }
+        } else {
+            Logger.getLogger("emc").log(Level.SEVERE, "No completion date is selected, please complete.", userData);
+            valid = false;
+        }
+        return valid;
+    }
+    
+    @Override
+    public boolean closeTasksFromDate(String client,Date from,Date to,EMCUserData userData)throws EMCEntityBeanException{
+      EMCQuery query = new EMCQuery(enumQueryTypes.UPDATE,DevBugsTable.class.getName());
+      //Functions.date2SQLString(new Date());
+      query.addSet("completed",Functions.date2SQLString(new Date()));
+      query.addSet("tested", Boolean.TRUE);
+      query.addSet("possibleAffected", "N/A");
+      query.addSet("possibleAffectedData", "N/A");
+      query.addSet("coreUpdates", "N/A");
+      query.addSet("testedBy", "N/A");
+      query.addSet("testDescription", "N/A");
+      query.addSet("entityLog", "N/A");
+      query.addSet("documentation", "N/A");
+      query.addAnd("client", client);
+      query.addAnd("createdDate", from,EMCQueryConditions.GREATER_THAN_EQ);
+      query.addAnd("createdDate", to,EMCQueryConditions.LESS_THAN_EQ);
+      util.executeUpdate(query, userData);
+      
+      
+      return true;  
+    }
+    @Override 
+    public boolean closeTasksFromNumber(String client,String taskNo, EMCUserData userData){
+        EMCQuery query = new EMCQuery(enumQueryTypes.UPDATE,DevBugsTable.class.getName());
+        query.addSet("completed",Functions.date2SQLString(new Date()));
+        query.addSet("tested", Boolean.TRUE);
+        query.addSet("possibleAffected", "N/A");
+        query.addSet("possibleAffectedData", "N/A");
+        query.addSet("coreUpdates", "N/A");
+        query.addSet("testedBy", "N/A");
+        query.addSet("testDescription", "N/A");
+        query.addSet("entityLog", "N/A");
+        query.addSet("documentation", "N/A");
+        
+        String arr[] =taskNo.split(",");
+      for (String task : arr) {
+       
+        task = task.trim();
+        query.addOr("bugNumber", task);
+        
+      }
+      util.executeUpdate(query, userData);
+      return true;  
+    }
+}

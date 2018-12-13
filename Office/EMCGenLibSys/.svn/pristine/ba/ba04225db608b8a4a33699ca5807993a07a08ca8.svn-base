@@ -1,0 +1,43 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.helpers.trec;
+
+/**
+ *
+ * @author stu
+ */
+public class TRECWebPhrasesHelper {
+    private String phrase;
+    private String phraseId;
+    private Boolean isActive;
+    
+    public TRECWebPhrasesHelper(){
+        
+    }
+
+    public String getPhrase() {
+        return phrase;
+    }
+
+    public void setPhrase(String phrase) {
+        this.phrase = phrase;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public String getPhraseId() {
+        return phraseId;
+    }
+
+    public void setPhraseId(String phraseId) {
+        this.phraseId = phraseId;
+    }   
+}

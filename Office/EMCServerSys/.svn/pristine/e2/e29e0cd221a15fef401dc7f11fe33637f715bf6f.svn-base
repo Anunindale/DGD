@@ -1,0 +1,874 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.reports.trec.customerselection;
+
+import emc.bus.trec.customerchemicals.TRECCustomerChemicalsLocal;
+import emc.reports.trec.treccard.*;
+import emc.bus.trec.parameters.TRECParametersLocal;
+import emc.bus.trec.phrases.TRECPhrasesLocal;
+import emc.entity.trec.TRECChemicals;
+import emc.entity.trec.TRECChemicalsSuper;
+import emc.entity.trec.TRECClasses;
+import emc.entity.trec.TRECColours;
+import emc.entity.trec.TRECCustomerChemicals;
+import emc.entity.trec.TRECForms;
+import emc.entity.trec.TRECOdours;
+import emc.entity.trec.TRECPhrases;
+import emc.entity.trec.TRECTrecCardsLines;
+import emc.enums.emcquery.EMCQueryBracketConditions;
+import emc.enums.enumQueryTypes;
+import emc.enums.trec.TRECSpecialPrintEnum;
+import emc.enums.trec.TRECTypeEnum;
+import emc.framework.EMCQuery;
+import emc.framework.EMCReportBean;
+import emc.framework.EMCUserData;
+import emc.functions.Functions;
+import emc.helpers.trec.TRECPhraseHelper;
+import java.io.File;
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author wikus
+ */
+@Stateless
+public class TRECProducedCardTemplateBean extends EMCReportBean implements TRECProducedCardTemplateLocal {
+
+    @EJB
+    private TRECParametersLocal paramBean;
+    @EJB
+    private TRECPhrasesLocal phrasesBean;
+    @EJB
+    private TRECCustomerChemicalsLocal chemicalBean;
+    private TRECTypeEnum type;
+
+    @Override
+    public List<Object> manipulateQueryResult(List<Object> queryResult, java.util.Map<java.lang.String, java.lang.Object> paramMap, EMCUserData userData) {
+        TRECTrecCardsLines line;
+        TRECProducedCardTemplateDS ds;
+        EMCQuery query;
+        Field f;
+        TRECChemicalsSuper chemical;
+        String hPhraseString = null;
+        String pPhraseString = null;
+        String qPhraseString = null;
+        String dPhraseString = null;
+        String sPhraseString = null;
+        String fPhraseString = null;
+        String aPhraseString = null;
+        String ePhraseString = null;
+
+        List<List<TRECPhraseHelper>> AllHelpers = null;
+
+        Object[] hPhrases = null;
+        Object[] pPhrases = null;
+        Object[] qPhrases = null;
+        Object[] dPhrases = null;
+        Object[] sPhrases = null;
+        Object[] fPhrases = null;
+        Object[] aPhrases = null;
+        Object[] ePhrases = null;
+
+        List dataList = new ArrayList();
+        List<String> hActivePhrases = null;
+        List<String> pActivePhrases = null;
+        List<String> qActivePhrases = null;
+        List<String> dActivePhrases = null;
+        List<String> sActivePhrases = null;
+        List<String> fActivePhrases = null;
+        List<String> aActivePhrases = null;
+        List<String> eActivePhrases = null;
+
+
+        List<Object[]> chemicalPhrasesList;
+        Object[] chemicalPhrases;
+
+
+
+
+        boolean printExpiryDate = paramBean.getParameterRecord(userData).isPrintExpiryDate();
+        Date expiryDate = null;
+        if (printExpiryDate) {
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.YEAR, 3);
+            expiryDate = cal.getTime();
+        }
+
+        for (Object o : queryResult) {
+            line = (TRECTrecCardsLines) o;
+
+//           
+            if (line.getCustomerChemical() != 0) {
+                query = new EMCQuery(enumQueryTypes.SELECT, TRECCustomerChemicals.class);
+                query.addAnd("recordID", line.getCustomerChemical());
+
+                chemical = (TRECCustomerChemicals) util.executeSingleResultQuery(query, userData);
+
+            } else {
+                query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+                query.addAnd("unNumber", line.getUnNumber());
+                query.addAnd("shippingName", line.getProperShipping());
+
+                chemical = (TRECChemicals) util.executeSingleResultQuery(query, userData);
+            }
+
+            if (chemical == null) {
+                Logger.getLogger("emc").log(Level.SEVERE, "Failed to get the chemical record.", userData);
+                return new ArrayList<Object>();
+            }
+
+
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+            query.addAnd("unNumber", line.getUnNumber());
+            query.addAnd("shippingName", line.getProperShipping());
+            TRECChemicals chem = (TRECChemicals) util.executeSingleResultQuery(query, userData);
+
+//           TRECCustomerChemicals customerChemocal = chemicalBean.fetchCustomerChemical(chemical.getRecordID(), userData);
+
+
+
+
+            /////////////////////////////////////////////////////////////////////////////////////////
+            //get Class
+            EMCQuery classQ = new EMCQuery(enumQueryTypes.SELECT, TRECClasses.class);
+            classQ.addAnd("classId", chemical.getClassId());
+            TRECClasses theClass = (TRECClasses) util.executeSingleResultQuery(classQ, userData);
+            Double qty = 0.0;
+            if (isBlank(line.getPackingGroup()) || line.getPackingGroup().equals("I")) {
+                if (util.compareDouble(chemical.getRisk1(), 0.0) == 0) {
+                    if (theClass != null) {
+                        qty = theClass.getPackGrp1Threshold();
+                    }
+                } else {
+                    qty = chemical.getRisk1();
+                }
+
+
+            } else if (line.getPackingGroup().equals("II")) {
+                if (util.compareDouble(chemical.getRisk2(), 0.0) == 0) {
+                    if (theClass != null) {
+                        qty = theClass.getPackGrp2Threshold();
+                    }
+                } else {
+                    qty = chemical.getRisk2();
+                }
+
+            } else if (line.getPackingGroup().equals("III")) {
+                if (util.compareDouble(chemical.getRisk3(), 0.0) == 0) {
+                    if (theClass != null) {
+                        qty = theClass.getPackGrp3Threshold();
+                    }
+                } else {
+                    qty = chemical.getRisk3();
+                }
+
+            }
+            if (qty < 0) {
+                qty = 0.0;
+            }
+            BigDecimal toRet = util.getBigDecimal(qty, 0);
+
+            /////////////////////////////////////////////////////////////////////////////////
+            //Get Chemical Phrases
+            query = new EMCQuery(enumQueryTypes.SELECT, chemical.getClass());
+            query.addAnd("recordID", chemical.getRecordID());
+            query.addFieldDecrypt("phrasesRefNum", "tr3ck3y");
+            query.addFieldDecrypt("hPhrases", "tr3ck3y");
+            query.addFieldDecrypt("pPhrases", "tr3ck3y");
+            query.addFieldDecrypt("qPhrases", "tr3ck3y");
+            query.addFieldDecrypt("dPhrases", "tr3ck3y");
+            query.addFieldDecrypt("sPhrases", "tr3ck3y");
+            query.addFieldDecrypt("fPhrases", "tr3ck3y");
+            query.addFieldDecrypt("aPhrases", "tr3ck3y");
+            query.addFieldDecrypt("ePhrases", "tr3ck3y");
+
+            chemicalPhrasesList = util.executeNativeQuery(query, userData);
+
+
+
+            if (chemicalPhrasesList != null && !chemicalPhrasesList.isEmpty()) {
+
+                Object[] result = (Object[]) chemicalPhrasesList.get(0);
+
+                if (result[0] == null) {
+                    chemical.setPhrasesRefNum(null);
+                } else if (result[0] instanceof String) {
+                    chemical.setPhrasesRefNum((String) result[0]);
+                } else {
+                    chemical.setPhrasesRefNum(new String((byte[]) result[0]));
+                }
+
+                if (result[1] == null) {
+                    chemical.sethPhrases(null);
+                } else if (result[1] instanceof String) {
+                    chemical.sethPhrases((String) result[1]);
+                } else {
+                    chemical.sethPhrases(new String((byte[]) result[1]));
+                }
+
+                if (result[2] == null) {
+                    chemical.setpPhrases(null);
+                } else if (result[2] instanceof String) {
+                    chemical.setpPhrases((String) result[2]);
+                } else {
+                    chemical.setpPhrases(new String((byte[]) result[2]));
+                }
+
+                if (result[3] == null) {
+                    chemical.setqPhrases(null);
+                } else if (result[3] instanceof String) {
+                    chemical.setqPhrases((String) result[3]);
+                } else {
+                    chemical.setqPhrases(new String((byte[]) result[3]));
+                }
+
+                if (result[4] == null) {
+                    chemical.setdPhrases(null);
+                } else if (result[4] instanceof String) {
+                    chemical.setdPhrases((String) result[4]);
+                } else {
+                    chemical.setdPhrases(new String((byte[]) result[4]));
+                }
+
+                if (result[5] == null) {
+                    chemical.setsPhrases(null);
+                } else if (result[5] instanceof String) {
+                    chemical.setsPhrases((String) result[5]);
+                } else {
+                    chemical.setsPhrases(new String((byte[]) result[5]));
+                }
+
+                if (result[6] == null) {
+                    chemical.setfPhrases(null);
+                } else if (result[6] instanceof String) {
+                    chemical.setfPhrases((String) result[6]);
+                } else {
+                    chemical.setfPhrases(new String((byte[]) result[6]));
+                }
+
+                if (result[7] == null) {
+                    chemical.setaPhrases(null);
+                } else if (result[7] instanceof String) {
+                    chemical.setaPhrases((String) result[7]);
+                } else {
+                    chemical.setaPhrases(new String((byte[]) result[7]));
+                }
+
+                if (result[8] == null) {
+                    chemical.setePhrases(null);
+                } else if (result[8] instanceof String) {
+                    chemical.setePhrases((String) result[8]);
+                } else {
+                    chemical.setePhrases(new String((byte[]) result[8]));
+                }
+
+                AllHelpers = new ArrayList<>();
+
+                List< TRECPhraseHelper> hPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.H.toString(), userData);
+                List<TRECPhraseHelper> phraseList = hPhraseHelpers;
+
+
+                if (phraseList == null || phraseList.isEmpty()) {
+                    Logger.getLogger("emc").log(Level.INFO, "There are no phrases of the selected type for the chemical.", userData);
+
+                } else {
+
+                    hActivePhrases = new ArrayList<>();
+                    type = TRECTypeEnum.H;
+
+                    try {
+                        switch (type) {
+                            case A:
+                                f = TRECChemicalsSuper.class.getDeclaredField("aPhrases");
+                                break;
+                            case D:
+                                f = TRECChemicalsSuper.class.getDeclaredField("dPhrases");
+                                break;
+                            case E:
+                                f = TRECChemicalsSuper.class.getDeclaredField("ePhrases");
+                                break;
+                            case F:
+                                f = TRECChemicalsSuper.class.getDeclaredField("fPhrases");
+                                break;
+                            case H:
+                                f = TRECChemicalsSuper.class.getDeclaredField("hPhrases");
+                                break;
+                            case P:
+                                f = TRECChemicalsSuper.class.getDeclaredField("pPhrases");
+                                break;
+                            case Q:
+                                f = TRECChemicalsSuper.class.getDeclaredField("qPhrases");
+                                break;
+                            case S:
+                                f = TRECChemicalsSuper.class.getDeclaredField("sPhrases");
+                                break;
+                            default:
+                                return null;
+                        }
+
+                        f.setAccessible(true);
+                        String activePhraseString = (String) f.get(chemical);
+
+                        if (!Functions.checkBlank(activePhraseString)) {
+
+                            String[] activeArray = activePhraseString.split(";");
+
+                            for (String active : activeArray) {
+                                hActivePhrases.add(active.trim());
+                            }
+                        }
+                    } catch (Exception ex) {
+                    }
+                }
+
+                List< TRECPhraseHelper> pPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.P.toString(), userData);
+                phraseList = pPhraseHelpers;
+
+                if (phraseList == null || phraseList.isEmpty()) {
+                    Logger.getLogger("emc").log(Level.INFO, "There are no phrases of the selected type for the chemical.", userData);
+
+                } else {
+
+                    pActivePhrases = new ArrayList<>();
+                    type = TRECTypeEnum.P;
+
+                    try {
+                        switch (type) {
+                            case A:
+                                f = TRECChemicalsSuper.class.getDeclaredField("aPhrases");
+                                break;
+                            case D:
+                                f = TRECChemicalsSuper.class.getDeclaredField("dPhrases");
+                                break;
+                            case E:
+                                f = TRECChemicalsSuper.class.getDeclaredField("ePhrases");
+                                break;
+                            case F:
+                                f = TRECChemicalsSuper.class.getDeclaredField("fPhrases");
+                                break;
+                            case H:
+                                f = TRECChemicalsSuper.class.getDeclaredField("hPhrases");
+                                break;
+                            case P:
+                                f = TRECChemicalsSuper.class.getDeclaredField("pPhrases");
+                                break;
+                            case Q:
+                                f = TRECChemicalsSuper.class.getDeclaredField("qPhrases");
+                                break;
+                            case S:
+                                f = TRECChemicalsSuper.class.getDeclaredField("sPhrases");
+                                break;
+                            default:
+                                return null;
+                        }
+
+                        f.setAccessible(true);
+                        String activePhraseString = (String) f.get(chemical);
+
+                        if (!Functions.checkBlank(activePhraseString)) {
+                            String[] activeArray = activePhraseString.split(";");
+
+                            for (String active : activeArray) {
+                                pActivePhrases.add(active.trim());
+                            }
+                        }
+                    } catch (Exception ex) {
+                    }
+                }
+                List< TRECPhraseHelper> qPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.Q.toString(), userData);
+                phraseList = qPhraseHelpers;
+
+                if (phraseList == null || phraseList.isEmpty()) {
+                    Logger.getLogger("emc").log(Level.INFO, "There are no phrases of the selected type for the chemical.", userData);
+
+                } else {
+
+                    qActivePhrases = new ArrayList<>();
+                    type = TRECTypeEnum.Q;
+
+                    try {
+                        switch (type) {
+                            case A:
+                                f = TRECChemicalsSuper.class.getDeclaredField("aPhrases");
+                                break;
+                            case D:
+                                f = TRECChemicalsSuper.class.getDeclaredField("dPhrases");
+                                break;
+                            case E:
+                                f = TRECChemicalsSuper.class.getDeclaredField("ePhrases");
+                                break;
+                            case F:
+                                f = TRECChemicalsSuper.class.getDeclaredField("fPhrases");
+                                break;
+                            case H:
+                                f = TRECChemicalsSuper.class.getDeclaredField("hPhrases");
+                                break;
+                            case P:
+                                f = TRECChemicalsSuper.class.getDeclaredField("pPhrases");
+                                break;
+                            case Q:
+                                f = TRECChemicalsSuper.class.getDeclaredField("qPhrases");
+                                break;
+                            case S:
+                                f = TRECChemicalsSuper.class.getDeclaredField("sPhrases");
+                                break;
+                            default:
+                                return null;
+                        }
+
+                        f.setAccessible(true);
+                        String activePhraseString = (String) f.get(chemical);
+
+                        if (!Functions.checkBlank(activePhraseString)) {
+                            String[] activeArray = activePhraseString.split(";");
+
+                            for (String active : activeArray) {
+                                qActivePhrases.add(active.trim());
+                            }
+                        }
+                    } catch (Exception ex) {
+                    }
+                }
+
+
+                List< TRECPhraseHelper> dPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.D.toString(), userData);
+                phraseList = qPhraseHelpers;
+
+                if (phraseList == null || phraseList.isEmpty()) {
+                    Logger.getLogger("emc").log(Level.INFO, "There are no phrases of the selected type for the chemical.", userData);
+
+                } else {
+
+                    dActivePhrases = new ArrayList<>();
+                    type = TRECTypeEnum.D;
+
+                    try {
+                        switch (type) {
+                            case A:
+                                f = TRECChemicalsSuper.class.getDeclaredField("aPhrases");
+                                break;
+                            case D:
+                                f = TRECChemicalsSuper.class.getDeclaredField("dPhrases");
+                                break;
+                            case E:
+                                f = TRECChemicalsSuper.class.getDeclaredField("ePhrases");
+                                break;
+                            case F:
+                                f = TRECChemicalsSuper.class.getDeclaredField("fPhrases");
+                                break;
+                            case H:
+                                f = TRECChemicalsSuper.class.getDeclaredField("hPhrases");
+                                break;
+                            case P:
+                                f = TRECChemicalsSuper.class.getDeclaredField("pPhrases");
+                                break;
+                            case Q:
+                                f = TRECChemicalsSuper.class.getDeclaredField("qPhrases");
+                                break;
+                            case S:
+                                f = TRECChemicalsSuper.class.getDeclaredField("sPhrases");
+                                break;
+                            default:
+                                return null;
+                        }
+
+                        f.setAccessible(true);
+                        String activePhraseString = (String) f.get(chemical);
+
+                        if (!Functions.checkBlank(activePhraseString)) {
+                            String[] activeArray = activePhraseString.split(";");
+
+                            for (String active : activeArray) {
+                                dActivePhrases.add(active.trim());
+                            }
+                        }
+                    } catch (Exception ex) {
+                    }
+                }
+
+
+                List< TRECPhraseHelper> shPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.S.toString(), userData);
+                shPhraseHelpers = qPhraseHelpers;
+
+                if (phraseList == null || phraseList.isEmpty()) {
+                    Logger.getLogger("emc").log(Level.INFO, "There are no phrases of the selected type for the chemical.", userData);
+
+                } else {
+
+                    sActivePhrases = new ArrayList<>();
+                    type = TRECTypeEnum.S;
+
+                    try {
+                        switch (type) {
+                            case A:
+                                f = TRECChemicalsSuper.class.getDeclaredField("aPhrases");
+                                break;
+                            case D:
+                                f = TRECChemicalsSuper.class.getDeclaredField("dPhrases");
+                                break;
+                            case E:
+                                f = TRECChemicalsSuper.class.getDeclaredField("ePhrases");
+                                break;
+                            case F:
+                                f = TRECChemicalsSuper.class.getDeclaredField("fPhrases");
+                                break;
+                            case H:
+                                f = TRECChemicalsSuper.class.getDeclaredField("hPhrases");
+                                break;
+                            case P:
+                                f = TRECChemicalsSuper.class.getDeclaredField("pPhrases");
+                                break;
+                            case Q:
+                                f = TRECChemicalsSuper.class.getDeclaredField("qPhrases");
+                                break;
+                            case S:
+                                f = TRECChemicalsSuper.class.getDeclaredField("sPhrases");
+                                break;
+                            default:
+                                return null;
+                        }
+
+                        f.setAccessible(true);
+                        String activePhraseString = (String) f.get(chemical);
+
+                        if (!Functions.checkBlank(activePhraseString)) {
+                            String[] activeArray = activePhraseString.split(";");
+
+                            for (String active : activeArray) {
+                                sActivePhrases.add(active.trim());
+                            }
+                        }
+                    } catch (Exception ex) {
+                    }
+                }
+
+
+                List< TRECPhraseHelper> fPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.F.toString(), userData);
+
+                shPhraseHelpers = fPhraseHelpers;
+
+                if (phraseList == null || phraseList.isEmpty()) {
+                    Logger.getLogger("emc").log(Level.INFO, "There are no phrases of the selected type for the chemical.", userData);
+
+                } else {
+
+                    fActivePhrases = new ArrayList<>();
+                    type = TRECTypeEnum.F;
+
+                    try {
+                        switch (type) {
+                            case A:
+                                f = TRECChemicalsSuper.class.getDeclaredField("aPhrases");
+                                break;
+                            case D:
+                                f = TRECChemicalsSuper.class.getDeclaredField("dPhrases");
+                                break;
+                            case E:
+                                f = TRECChemicalsSuper.class.getDeclaredField("ePhrases");
+                                break;
+                            case F:
+                                f = TRECChemicalsSuper.class.getDeclaredField("fPhrases");
+                                break;
+                            case H:
+                                f = TRECChemicalsSuper.class.getDeclaredField("hPhrases");
+                                break;
+                            case P:
+                                f = TRECChemicalsSuper.class.getDeclaredField("pPhrases");
+                                break;
+                            case Q:
+                                f = TRECChemicalsSuper.class.getDeclaredField("qPhrases");
+                                break;
+                            case S:
+                                f = TRECChemicalsSuper.class.getDeclaredField("sPhrases");
+                                break;
+                            default:
+                                return null;
+                        }
+
+                        f.setAccessible(true);
+                        String activePhraseString = (String) f.get(chemical);
+
+                        if (!Functions.checkBlank(activePhraseString)) {
+                            String[] activeArray = activePhraseString.split(";");
+
+                            for (String active : activeArray) {
+                                fActivePhrases.add(active.trim());
+                            }
+                        }
+                    } catch (Exception ex) {
+                    }
+                }
+
+
+                List< TRECPhraseHelper> aPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.A.toString(), userData);
+                shPhraseHelpers = aPhraseHelpers;
+
+                if (phraseList == null || phraseList.isEmpty()) {
+                    Logger.getLogger("emc").log(Level.INFO, "There are no phrases of the selected type for the chemical.", userData);
+
+                } else {
+
+                    aActivePhrases = new ArrayList<>();
+                    type = TRECTypeEnum.A;
+
+                    try {
+                        switch (type) {
+                            case A:
+                                f = TRECChemicalsSuper.class.getDeclaredField("aPhrases");
+                                break;
+                            case D:
+                                f = TRECChemicalsSuper.class.getDeclaredField("dPhrases");
+                                break;
+                            case E:
+                                f = TRECChemicalsSuper.class.getDeclaredField("ePhrases");
+                                break;
+                            case F:
+                                f = TRECChemicalsSuper.class.getDeclaredField("fPhrases");
+                                break;
+                            case H:
+                                f = TRECChemicalsSuper.class.getDeclaredField("hPhrases");
+                                break;
+                            case P:
+                                f = TRECChemicalsSuper.class.getDeclaredField("pPhrases");
+                                break;
+                            case Q:
+                                f = TRECChemicalsSuper.class.getDeclaredField("qPhrases");
+                                break;
+                            case S:
+                                f = TRECChemicalsSuper.class.getDeclaredField("sPhrases");
+                                break;
+                            default:
+                                return null;
+                        }
+
+                        f.setAccessible(true);
+                        String activePhraseString = (String) f.get(chemical);
+
+                        if (!Functions.checkBlank(activePhraseString)) {
+                            String[] activeArray = activePhraseString.split(";");
+
+                            for (String active : activeArray) {
+                                aActivePhrases.add(active.trim());
+                            }
+                        }
+                    } catch (Exception ex) {
+                    }
+                }
+                List< TRECPhraseHelper> ePhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.E.toString(), userData);
+                shPhraseHelpers = ePhraseHelpers;
+
+                if (phraseList == null || phraseList.isEmpty()) {
+                    Logger.getLogger("emc").log(Level.INFO, "There are no phrases of the selected type for the chemical.", userData);
+
+                } else {
+
+                    eActivePhrases = new ArrayList<>();
+                    type = TRECTypeEnum.E;
+
+                    try {
+                        switch (type) {
+                            case A:
+                                f = TRECChemicalsSuper.class.getDeclaredField("aPhrases");
+                                break;
+                            case D:
+                                f = TRECChemicalsSuper.class.getDeclaredField("dPhrases");
+                                break;
+                            case E:
+                                f = TRECChemicalsSuper.class.getDeclaredField("ePhrases");
+                                break;
+                            case F:
+                                f = TRECChemicalsSuper.class.getDeclaredField("fPhrases");
+                                break;
+                            case H:
+                                f = TRECChemicalsSuper.class.getDeclaredField("hPhrases");
+                                break;
+                            case P:
+                                f = TRECChemicalsSuper.class.getDeclaredField("pPhrases");
+                                break;
+                            case Q:
+                                f = TRECChemicalsSuper.class.getDeclaredField("qPhrases");
+                                break;
+                            case S:
+                                f = TRECChemicalsSuper.class.getDeclaredField("sPhrases");
+                                break;
+                            default:
+                                return null;
+                        }
+
+                        f.setAccessible(true);
+                        String activePhraseString = (String) f.get(chemical);
+
+                        if (!Functions.checkBlank(activePhraseString)) {
+                            String[] activeArray = activePhraseString.split(";");
+
+                            for (String active : activeArray) {
+                                eActivePhrases.add(active.trim());
+                            }
+                        }
+                    } catch (Exception ex) {
+                    }
+                }
+
+                populateDS(hActivePhrases, hPhraseHelpers, dataList, "POTENTIAL HAZARD", line, chemical, chem, userData);
+                populateDS(pActivePhrases, pPhraseHelpers, dataList, "PERSONAL PROTECTIVE EQUIPMENT", line, chemical, chem, userData);
+                populateDS(qActivePhrases, qPhraseHelpers, dataList, "DRIVER INTERVENTION EQUIPMENT", line, chemical, chem, userData);
+                populateDS(dActivePhrases, dPhraseHelpers, dataList, "DRIVER FIRST ACTIONS", line, chemical, chem, userData);
+                populateDS(sActivePhrases, shPhraseHelpers, dataList, "DRIVER SPECIAL/ADDITIONAL ACTIONS", line, chemical, chem, userData);
+                populateDS(fActivePhrases, fPhraseHelpers, dataList, "DRIVER ACTIONS IN CASE OF FIRE", line, chemical, chem, userData);
+                populateDS(aActivePhrases, aPhraseHelpers, dataList, "FIRST AID", line, chemical, chem, userData);
+                populateDS(eActivePhrases, ePhraseHelpers, dataList, "SPECIAL INFORMATION FOR EMERGENCY SERVICES", line, chemical, chem, userData);
+
+            }
+
+
+        }
+        return dataList;
+    }
+
+    private void populateDS(List<String> activePhrases, List<TRECPhraseHelper> phrseList, List<TRECProducedCardTemplateDS> dataList, String heading, TRECTrecCardsLines line, TRECChemicalsSuper chemical, TRECChemicals chem, EMCUserData userData) {
+        int start = dataList.size();
+        boolean addDS = false;
+
+        for (Object phraseHelper : phrseList) {
+            TRECPhraseHelper helper = (TRECPhraseHelper) phraseHelper;
+            if (activePhrases.contains(helper.getPhraseId())){
+                helper.setTicked(true);
+            }
+            
+            
+            TRECProducedCardTemplateDS ds = null;
+                if (helper.isTicked()) {
+                    for (int i = start; i < dataList.size(); i++) {
+                        TRECProducedCardTemplateDS ds1 = (TRECProducedCardTemplateDS) dataList.get(i);
+                        if (isBlank(ds1.getPhrases())) {
+                            ds = ds1;
+                            addDS = false;
+                            break;
+                        }
+                    }
+
+                    if (ds == null) {
+                        addDS = true;
+                        ds = new TRECProducedCardTemplateDS();
+                    }
+
+                    ds.setPrintPhrases(true);
+                    ds.setPhrases(helper.getPhraseDescription());
+
+                } else {
+                    for (int i = start; i < dataList.size(); i++) {
+                        TRECProducedCardTemplateDS ds1 = (TRECProducedCardTemplateDS) dataList.get(i);
+                        if (isBlank(ds1.getPhrasesNonMondatory())) {
+                            addDS = false;
+                            ds = ds1;
+                            break;
+                        }
+                    }
+
+                    if (ds == null) {
+                        addDS = true;
+                        ds = new TRECProducedCardTemplateDS();
+                    }
+
+                    ds.setPrintPhrasesNonMondatory(true);
+                    ds.setPhrasesNonMondatory(helper.getPhraseDescription());
+
+
+                }
+                ds.setAddInfoHeading2(heading);
+                ds.setUNNumber(line.getUnNumber());
+                ds.setPreparedBy(line.getPreparedBy());
+                ds.setPackingGroup(line.getPackingGroup());
+                ds.setAppearance(getAppearanceString(line.getForm(), line.getColour(), line.getOdour(), userData));
+                ds.setEmergencyPhoneNumber(line.getEmergencyNumber());
+                ds.setAdditionalInfo(isBlank(line.getAdditionalInfo()) ? "" : line.getAdditionalInfo().replaceAll("\n", "<br />"));
+                //set additional shipping name on additional info
+                if (!isBlank(chemical.getAddShippingName())) {
+                    ds.setAdditionalInfo(isBlank(ds.getAdditionalInfo()) == true ? "" + chemical.getAddShippingName() : ds.getAdditionalInfo() + "<br />" + chemical.getAddShippingName());
+                }
+                ds.setErgNumber(chemical.getErg());
+                ds.setChemicalClass(chemical.getClassId());
+                if (isBlank(line.getPreferredShipName())) {
+                    ds.setProperShippingName(chemical.getShippingName());
+                } else {
+                    ds.setProperShippingName(line.getPreferredShipName());
+                }
+                ds.setSubsudiaryRisk(chemical.getSubsidairyRisk());
+
+                // Additinal info 
+                if (!isBlank(line.getTradingName())) {
+                    ds.setAddInfoHeading1("TRADE NAME : " + line.getTradingName() + " <br/>");
+
+                }
+                if (!isBlank(chem) && !isBlank(chem.getAddShippingName())) {
+                    if (!isBlank(ds.getAddInfoHeading1())) {
+                        ds.setAddInfoHeading1(ds.getAddInfoHeading1() + chem.getAddShippingName() + " <br/>");
+                    } else {
+                        ds.setAddInfoHeading1(chem.getAddShippingName() + " <br/>");
+                    }
+
+                }
+                if (!isBlank(line.getAdditionalInfo())) {
+                    if (!isBlank(ds.getAddInfoHeading1())) {
+                        ds.setAddInfoHeading1(ds.getAddInfoHeading1() + line.getAdditionalInfo() + " <br/>");
+                    } else {
+                        ds.setAddInfoHeading1(line.getAdditionalInfo() + " <br/>");
+                    }
+
+                }
+                //Date Printed
+                ds.setDatePrinted(Functions.nowDateString("dd-MM-yyyy"));
+                //Reference Number
+                ds.setReferenceNumber(chemical.getChemicalId() + "-" + chemical.getUnNumber() + "-" + chemical.getRecordID());
+
+                if (addDS) {
+                    dataList.add(ds);
+                }
+        }
+
+    }
+
+    private String getAppearanceString(String form, String colour, String odour, EMCUserData userData) {
+        EMCQuery query;
+        String appearance = "";
+        if (!isBlank(form)) {
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECForms.class.getName());
+            query.addAnd("formId", form);
+            TRECForms formRec = (TRECForms) util.executeSingleResultQuery(query, userData);
+            if (formRec != null) {
+                appearance += formRec.getDescription() + (isBlank(colour) && isBlank(odour) ? "" : ";  ");
+            }
+        }
+        if (!isBlank(colour)) {
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECColours.class.getName());
+            query.addAnd("colourId", colour);
+            TRECColours colourRec = (TRECColours) util.executeSingleResultQuery(query, userData);
+            if (colourRec != null) {
+                appearance += colourRec.getDescription() + (isBlank(odour) ? "" : ";  ");
+            }
+        }
+        if (!isBlank(odour)) {
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECOdours.class.getName());
+            query.addAnd("odourId", odour);
+            TRECOdours odourRec = (TRECOdours) util.executeSingleResultQuery(query, userData);
+            if (odourRec != null) {
+                appearance += odourRec.getDescription();
+            }
+        }
+        if (isBlank(appearance)) {
+            appearance = "Not Specified";
+        }
+        return appearance;
+    }
+}

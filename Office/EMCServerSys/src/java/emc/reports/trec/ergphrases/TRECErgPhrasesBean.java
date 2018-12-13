@@ -1,0 +1,220 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.reports.trec.ergphrases;
+
+import emc.bus.trec.parameters.TRECParametersLocal;
+import emc.bus.trec.phrases.TRECPhrasesLocal;
+import emc.entity.trec.TRECPhrases;
+import emc.enums.emcquery.EMCQueryFieldTypes;
+import emc.framework.EMCQuery;
+import emc.framework.EMCReportBean;
+import emc.framework.EMCUserData;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author Chris
+ */
+@Stateless
+public class TRECErgPhrasesBean extends EMCReportBean implements TRECErgPhrasesLocal {
+
+    @EJB
+    private TRECParametersLocal paramBean;
+    @EJB
+    private TRECPhrasesLocal phrasesBean;
+
+    @Override
+    public List<Object> executeQuery(EMCQuery query, EMCUserData userData) {
+        EMCUserData copyUD = userData.copyUserData();
+        copyUD.setUserData(0, query);
+
+        List<String> whereList = query.getWhereFields();
+        List<String> ergNumbers = new ArrayList<>();
+        if (whereList != null) {
+            for (String where : whereList) {
+                if (where.contains("ergNumber")) {
+                    int endIndex = 0;
+                    int startIndex = where.indexOf("\'", endIndex + 1);
+
+                    while (startIndex != -1) {
+                        endIndex = where.indexOf("\'", startIndex + 1);
+
+                        String erg = where.substring(startIndex + 1, endIndex);
+                        ergNumbers.add(erg.replaceAll("%", ""));
+
+                        startIndex = where.indexOf("\'", endIndex + 1);
+                    }
+                }
+            }
+        }
+
+        userData.setUserData(5, ergNumbers);
+
+        return new ArrayList<>(phrasesBean.getDataInRange(TRECPhrases.class, copyUD, 0, Integer.MAX_VALUE));
+
+
+//        return super.executeQuery(query, userData);
+    }
+
+    @Override
+    public List<Object> manipulateQueryResult(List<Object> queryResult, java.util.Map<java.lang.String, java.lang.Object> paramMap, EMCUserData userData) {
+        TRECPhrases line;
+        TRECErgPhrasesDS ds;
+        EMCQuery query;
+        String phraseString = null;
+        boolean printPhrase = false;
+        List dataList = new ArrayList();
+
+        Map<String, List> phrasesMap = new TreeMap<String, List>();
+        Map<String, Map<String, List>> ergMap = new TreeMap<String, Map<String, List>>();
+        String level;
+
+        String outcome;
+        List<String> ergNumbers = (List<String>) userData.getUserData(5);
+
+        for (Object o : queryResult) {
+            String[] ergArray;
+            line = (TRECPhrases) o;
+            if (isBlank(line.getErgNumber())) {
+                String ergPhrase = "No ERG";
+                ergArray = ergPhrase.split(";");
+
+            } else {
+                ergArray = line.getErgNumber().split(";");
+            }
+            // fetch from and put lines to maps
+            for (String erg : ergArray) {
+                if (ergNumbers.isEmpty() || ergNumbers.contains(erg.trim())) {
+                    Map<String, List> selectedMap = ergMap.get(erg.trim());
+                    if (selectedMap == null) {
+                        selectedMap = new TreeMap<>();
+                    }
+
+                    List<TRECPhrases> phraseLst = selectedMap.get(line.getTypeId());
+                    if (phraseLst == null) {
+                        phraseLst = new ArrayList<>();
+                    }
+                    phraseLst.add(line);
+                    selectedMap.put(line.getTypeId(), phraseLst);
+                    ergMap.put(erg.trim(), selectedMap);
+                }
+            }
+
+        }
+
+        for (String ergKey : ergMap.keySet()) {
+            Map<String, List> ergSelMap = ergMap.get(ergKey);
+            String phraseKey = ergKey;
+            for (int i = 0; i < 9; i++) {
+                switch (i) {
+                    case 0:
+                        phraseKey = "H";
+                        break;
+                    case 1:
+                        phraseKey = "P";
+                        break;
+                    case 2:
+                        phraseKey = "Q";
+                        break;
+                    case 3:
+                        phraseKey = "D";
+                        break;
+                    case 4:
+                        phraseKey = "S";
+                        break;
+                    case 5:
+                        phraseKey = "F";
+                        break;
+                    case 6:
+                        phraseKey = "A";
+                        break;
+                    case 7:
+                        phraseKey = "E";
+                        break;
+                    case 8:
+                        phraseKey = "No ERG";
+                        break;
+                }
+
+                List<TRECPhrases> phrasesList = ergSelMap.get(phraseKey);
+                if (phrasesList != null) {
+
+                    for (TRECPhrases phrase : phrasesList) {
+                        ds = new TRECErgPhrasesDS();
+                        ds.setErgNumber(ergKey);
+
+
+                        switch (phraseKey) {
+                            case "H":
+                                ds.setChemicalSection("H : Hazards /Danger");
+                                ds.setChemicalSectionHeading("ERG - Potential Hazards");
+                                break;
+                            case "P":
+                                ds.setChemicalSection("P : Personal Protective Equipment");
+                                ds.setChemicalSectionHeading("Standard Table C1");
+                                break;
+                            case "Q":
+                                ds.setChemicalSection("Q : Driver Intervenion Equipment");
+                                ds.setChemicalSectionHeading("Standard Table C2");
+                                break;
+                            case "D":
+                                ds.setChemicalSection("D : Driver first action");
+                                ds.setChemicalSectionHeading("Standard Table D1 And ERG Public Safety");
+                                break;
+                            case "S":
+                                ds.setChemicalSection("S : Driver special action");
+                                ds.setChemicalSectionHeading("ERG Emergency Response Spill Or Leak");
+                                break;
+                            case "F":
+                                ds.setChemicalSection("F : Driver action in case of fire");
+                                ds.setChemicalSectionHeading("ERG Emergency Response Fire");
+                                break;
+                            case "A":
+                                ds.setChemicalSection("A : First Aid");
+                                ds.setChemicalSectionHeading("ERG Emergency Response First Aid");
+                                break;
+                            case "E":
+                                ds.setChemicalSection("E : Special Information for emergency services");
+                              //  ds.setChemicalSectionHeading("");
+                                break;
+
+                            default:
+                                ds.setChemicalSection(phraseKey);
+                               // ds.setChemicalSectionHeading("");
+                                break;
+                        }
+                        ds.setPhraseId(phrase.getPhraseId());
+                        ds.setPhrases(phrase.getPhrase());
+                        if (phrase.isStandardPhrases()) {
+                            ds.setPrintS("Y");
+                        } else {
+                            ds.setPrintS("N");
+                        }
+
+                        if (phrase.isAddedPhrases()) {
+                            ds.setPrintA("Y");
+                        } else {
+                            ds.setPrintA("N");
+                        }
+
+                        if (phrase.isClassSpecific()) {
+                            ds.setPrintC("Y");
+                        } else {
+                            ds.setPrintC("N");
+                        }
+                        dataList.add(ds);
+                    }
+                }
+            }
+        }
+
+        return dataList;
+    }
+}

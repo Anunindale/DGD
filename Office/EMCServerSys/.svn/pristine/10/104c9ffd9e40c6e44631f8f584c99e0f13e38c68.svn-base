@@ -1,0 +1,12 @@
+package emc.bus.debtors.basket;
+
+import emc.framework.EMCEntityBean;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @Author stuart
+ */
+@Stateless
+public class DebtorsBasketLinesBean extends EMCEntityBean implements DebtorsBasketLinesLocal {
+}

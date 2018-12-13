@@ -1,0 +1,224 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.bus.trec.treccards;
+
+import emc.entity.trec.TRECTrecCardsLines;
+import emc.entity.trec.TRECTrecCardsMaster;
+import emc.enums.enumQueryTypes;
+import emc.framework.EMCEntityBean;
+import emc.framework.EMCEntityBeanException;
+import emc.framework.EMCQuery;
+import emc.framework.EMCUserData;
+import emc.functions.xml.EMCXMLHandler;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+
+/**
+ *
+ * @author wikus
+ */
+@Stateless
+public class TRECTrecCardsMasterBean extends EMCEntityBean implements TRECTrecCardsMasterLocal {
+
+    @EJB
+    private TRECTrecCardsMasterLocal thisBean;
+    @EJB
+    private TRECTrecCardsLinesLocal linesBean;
+
+    public List<String> exportTRECData(EMCUserData userData) {
+        //Fetch Master
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECTrecCardsMaster.class);
+        List<TRECTrecCardsMaster> trecMaster = util.executeGeneralSelectQuery(query, userData);
+
+        //Prepare To Fetch Lines
+        query = new EMCQuery(enumQueryTypes.SELECT, TRECTrecCardsLines.class);
+        List<TRECTrecCardsLines> trecLines;
+
+        //Fields used for reflection
+        Field[] masterFields = TRECTrecCardsMaster.class.getDeclaredFields();
+        Field[] lineFields = TRECTrecCardsLines.class.getDeclaredFields();
+        int fieldCount;
+
+        //List to return
+        List<String> dataHolderList = new ArrayList<String>();
+        StringBuilder dataHolder = null;
+        Object data;
+
+        //For Special Chars
+        EMCXMLHandler xml = new EMCXMLHandler();
+
+        for (TRECTrecCardsMaster master : trecMaster) {
+            //Do Master
+            dataHolder = new StringBuilder("<M>");
+            try {
+                fieldCount = 0;
+                for (Field f : masterFields) {
+                    fieldCount++;
+                    f.setAccessible(true);
+                    data = f.get(master);
+                    if (data == null) {
+                        data = "";
+                    }
+                    dataHolder.append(xml.replaceNewLines(data.toString()));
+                    if (fieldCount != masterFields.length) {
+                        dataHolder.append("~");
+                    }
+                }
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger("emc").log(Level.SEVERE, "Failed to backup master record: Master Id - " + master.getMasterId(), userData);
+                continue;
+            }
+            dataHolder.append("\n");
+            dataHolderList.add(dataHolder.toString());
+            //Do Lines
+            query.removeAnd("masterId");
+            query.addAnd("masterId", master.getMasterId());
+            trecLines = util.executeGeneralSelectQuery(query, userData);
+            for (TRECTrecCardsLines line : trecLines) {
+                dataHolder = new StringBuilder("<L>");
+                try {
+                    fieldCount = 0;
+                    for (Field f : lineFields) {
+                        fieldCount++;
+                        f.setAccessible(true);
+                        data = f.get(line);
+                        if (data == null) {
+                            data = "";
+                        }
+                        dataHolder.append(xml.replaceNewLines(data.toString()));
+                        if (fieldCount != lineFields.length) {
+                            dataHolder.append("~");
+                        }
+                    }
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger("emc").log(Level.SEVERE, "Failed to backup lines record: Master Id - " + master.getMasterId() + "  Line Id - " + line.getLineId(), userData);
+                    continue;
+                }
+                dataHolder.append("\n");
+                dataHolderList.add(dataHolder.toString());
+            }
+
+        }
+        return dataHolderList;
+    }
+
+    public boolean importTRECData(List<String> dataHolderList, boolean override, EMCUserData userData) {
+        //Clear TREC Tables if override
+        if (override) {
+            thisBean.deleteCurrentTRECDate(userData);
+        }
+
+        //EMC Entities
+        TRECTrecCardsMaster master = null;
+        TRECTrecCardsLines lines = null;
+
+        //Fields used for reflection
+        Field[] masterFields = TRECTrecCardsMaster.class.getDeclaredFields();
+        Field[] lineFields = TRECTrecCardsLines.class.getDeclaredFields();
+        int fieldCount;
+
+        //Data from file
+        String type;
+        String[] dataHolder;
+
+        //For Special Chars
+        EMCXMLHandler xml = new EMCXMLHandler();
+
+        for (String s : dataHolderList) {
+            //Get Data From String
+            type = s.substring(0, 3);
+            s = s.replace(type, "");
+            dataHolder = s.split("~");
+
+            fieldCount = 0;
+            if (type.equals("<M>")) {
+                //For Master Records
+                if (dataHolder.length < 4) {
+                    master = new TRECTrecCardsMaster();
+                    try {
+                        for (Field f : masterFields) {
+                            if (!"customerId".equalsIgnoreCase(f.getName())) {
+                                f.setAccessible(true);
+                                f.set(master, xml.reinstateNewLines(dataHolder[fieldCount]));
+                                fieldCount++;
+                            }
+                        }
+                        thisBean.insertMasterRecord(master, userData);
+                    } catch (Exception ex) {
+                        Logger.getLogger("emc").log(Level.SEVERE, "Failed to restore master record: Master Id - " + master.getMasterId(), userData);
+                        ex.printStackTrace();
+                        continue;
+                    }
+                } else {
+                    master = new TRECTrecCardsMaster();
+                    try {
+                        for (Field f : masterFields) {
+                            f.setAccessible(true);
+                            f.set(master, xml.reinstateNewLines(dataHolder[fieldCount]));
+                            fieldCount++;
+                        }
+                        thisBean.insertMasterRecord(master, userData);
+                    } catch (Exception ex) {
+                        Logger.getLogger("emc").log(Level.SEVERE, "Failed to restore master record: Master Id - " + master.getMasterId(), userData);
+                        ex.printStackTrace();
+                        continue;
+                    }
+                }
+            } else if (type.equals("<L>")) {
+                //For Lines Records
+                lines = new TRECTrecCardsLines();
+//                
+                try {
+                    for (Field f : lineFields) {
+                            if ("customerChemical".equalsIgnoreCase(f.getName()) || "approved".equalsIgnoreCase(f.getName()) || "approvedDate".equalsIgnoreCase(f.getName()) || "approvedBy".equalsIgnoreCase(f.getName()) || "preferredShipName".equalsIgnoreCase(f.getName())) {
+                            // do nothing skip
+                            } else {
+                                f.setAccessible(true);
+                                String value = xml.reinstateNewLines(dataHolder[fieldCount]);
+                                if (f.getType().getName().equals(int.class.getName())) {
+                                    f.set(lines, Integer.parseInt(value));
+                                }
+                                if (f.getType().getName().equals(String.class.getName())) {
+                                    f.set(lines, value);
+                                }
+                                fieldCount++;
+                            }
+                    }
+                    thisBean.insertLinesRecord(lines, userData);
+                } catch (Exception ex) {
+                    Logger.getLogger("emc").log(Level.SEVERE, "Failed to restore line record: Master Id - " + master.getMasterId() + "  Line Id - " + lines.getLineId(), userData);
+                    ex.printStackTrace();
+                    continue;
+                }
+            }
+        }
+        return true;
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void deleteCurrentTRECDate(EMCUserData userData) {
+        EMCQuery query = new EMCQuery(enumQueryTypes.DELETE, TRECTrecCardsLines.class);
+        util.executeUpdate(query, userData);
+        query = new EMCQuery(enumQueryTypes.DELETE, TRECTrecCardsMaster.class);
+        util.executeUpdate(query, userData);
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void insertMasterRecord(TRECTrecCardsMaster master, EMCUserData userData) throws EMCEntityBeanException {
+        this.insert(master, userData);
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void insertLinesRecord(TRECTrecCardsLines lines, EMCUserData userData) throws EMCEntityBeanException {
+        linesBean.insert(lines, userData);
+    }
+}

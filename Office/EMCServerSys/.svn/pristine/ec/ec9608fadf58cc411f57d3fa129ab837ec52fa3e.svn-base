@@ -1,0 +1,23 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.bus.trec.web;
+
+import emc.framework.EMCEntityBeanLocalInterface;
+import emc.framework.EMCUserData;
+import java.util.List;
+import javax.ejb.Local;
+
+/**
+ *
+ * @author stu
+ */
+@Local
+public interface TRECWebPrinterLogicBeanLocal extends EMCEntityBeanLocalInterface {
+    public boolean updateBasketLinesPrintQty(String invoiceId, int printQty, EMCUserData userData);
+
+    public java.util.List getPhrasesString(emc.framework.EMCUserData userData);
+
+    public java.lang.String getTrecCardDataset(java.lang.String invoiceId, java.lang.String redLine, java.lang.String blackLine, emc.framework.EMCUserData userData);
+}

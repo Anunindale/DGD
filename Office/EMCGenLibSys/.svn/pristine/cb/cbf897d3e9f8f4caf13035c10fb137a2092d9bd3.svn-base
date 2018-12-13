@@ -1,0 +1,76 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.entity.trec;
+
+import emc.datatypes.EMCDataType;
+import emc.datatypes.sop.customers.foreignkeys.CustomerIdFKNotMandatory;
+import emc.datatypes.systemwide.EmergencyNumber;
+import emc.datatypes.trec.treccards.EmergencyNumberMandatory;
+import emc.datatypes.trec.treccards.MasterId;
+import emc.datatypes.trec.treccards.TrecCompanyName;
+import emc.entity.sop.SOPCustomers;
+import emc.framework.EMCEntityClass;
+import java.util.HashMap;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+/**
+ *
+ * @author wikus
+ */
+@Entity
+@Table(name = "TRECTrecCardsMaster", uniqueConstraints = {@UniqueConstraint(columnNames = {"masterId", "companyId"})})
+public class TRECTrecCardsMaster extends EMCEntityClass {
+
+    private String masterId;
+    private String trecCompanyName;
+    private String emergencyNumber;
+    private String customerId;
+
+    public String getEmergencyNumber() {
+        return emergencyNumber;
+    }
+
+    public void setEmergencyNumber(String emergencyNumber) {
+        this.emergencyNumber = emergencyNumber;
+    }
+
+    public String getTrecCompanyName() {
+        return trecCompanyName;
+    }
+
+    public void setTrecCompanyName(String trecCompanyName) {
+        this.trecCompanyName = trecCompanyName;
+    }
+
+    public String getMasterId() {
+        return masterId;
+    }
+
+    public void setMasterId(String masterId) {
+        this.masterId = masterId;
+    }
+    
+     public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    @Override
+    protected HashMap<String, EMCDataType> buildFieldList() {
+        HashMap<String, EMCDataType> toBuild = super.buildFieldList();
+        toBuild.put("masterId", new MasterId());
+        toBuild.put("trecCompanyName", new TrecCompanyName());
+        toBuild.put("emergencyNumber", new EmergencyNumberMandatory());
+        toBuild.put("customerId", new CustomerIdFKNotMandatory());
+        return toBuild;
+    }
+
+   
+}

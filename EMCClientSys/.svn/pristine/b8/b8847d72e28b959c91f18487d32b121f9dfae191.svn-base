@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Academic_History" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3602a4f0-cb94-40cd-a98b-ed2c5ad9b107">
+	<property name="ireport.zoom" value="1.6105100000000043"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logoPath" class="java.lang.String"/>
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<field name="ergNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@ergNumber]]></fieldDescription>
+	</field>
+	<field name="chemicalSection" class="java.lang.String">
+		<fieldDescription><![CDATA[@chemicalSection]]></fieldDescription>
+	</field>
+	<field name="chemicalSectionHeading" class="java.lang.String">
+		<fieldDescription><![CDATA[@chemicalSectionHeading]]></fieldDescription>
+	</field>
+	<field name="phrases" class="java.lang.String">
+		<fieldDescription><![CDATA[@phrases]]></fieldDescription>
+	</field>
+	<field name="printA" class="java.lang.String">
+		<fieldDescription><![CDATA[@printA]]></fieldDescription>
+	</field>
+	<field name="printC" class="java.lang.String">
+		<fieldDescription><![CDATA[@printC]]></fieldDescription>
+	</field>
+	<field name="printS" class="java.lang.String">
+		<fieldDescription><![CDATA[@printS]]></fieldDescription>
+	</field>
+	<field name="phraseId" class="java.lang.String">
+		<fieldDescription><![CDATA[@phraseId]]></fieldDescription>
+	</field>
+	<group name="ErgGroup" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{ergNumber}]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<staticText>
+					<reportElement uuid="bb6a7b70-e449-4108-ad28-725281833df2" x="11" y="6" width="31" height="14"/>
+					<textElement textAlignment="Left">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[ERG]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="9870507d-7339-43c3-b9f1-3f28a8fb08b8" x="42" y="6" width="186" height="14"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ergNumber}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="PhraseSectionGroup" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{chemicalSection}]]></groupExpression>
+		<groupHeader>
+			<band height="54">
+				<staticText>
+					<reportElement uuid="bb6a7b70-e449-4108-ad28-725281833df2" x="40" y="10" width="49" height="13"/>
+					<textElement textAlignment="Left">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Section]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="9870507d-7339-43c3-b9f1-3f28a8fb08b8" x="88" y="10" width="276" height="13" isPrintWhenDetailOverflows="true"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{chemicalSection}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="a94813e3-09a8-4d3a-a049-a8d52e61d311" x="40" y="24" width="505" height="1"/>
+				</line>
+				<staticText>
+					<reportElement uuid="bb6a7b70-e449-4108-ad28-725281833df2" x="41" y="34" width="151" height="18"/>
+					<textElement textAlignment="Left">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Phrase]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="bb6a7b70-e449-4108-ad28-725281833df2" x="501" y="34" width="15" height="18"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[C]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="bb6a7b70-e449-4108-ad28-725281833df2" x="518" y="34" width="15" height="18"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[S]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="bb6a7b70-e449-4108-ad28-725281833df2" x="534" y="34" width="15" height="18"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[A]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="9870507d-7339-43c3-b9f1-3f28a8fb08b8" x="308" y="10" width="237" height="13"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{chemicalSectionHeading}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="47" splitType="Stretch">
+			<line>
+				<reportElement uuid="afe2f3c1-2c3a-4dc1-9bd7-ed8ced4c73d8" x="10" y="37" width="532" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="99645306-ae90-4a2f-b444-269338f0f209" x="10" y="10" width="242" height="27"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TREC ERG PHRASES]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="54aa9826-68bb-4640-8427-6474069b2519" x="10" y="10" width="532" height="1"/>
+			</line>
+			<textField hyperlinkType="Reference">
+				<reportElement uuid="8677c18a-a45a-4409-83bc-166e04b57a5c" x="252" y="9" width="296" height="27"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement uuid="92da5e65-e208-4b1b-9403-3881d313c58a" x="501" y="1" width="15" height="14"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{printC}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="cffb47d8-705f-407f-9174-97b33d8e5880" x="79" y="1" width="418" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{phrases}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="92da5e65-e208-4b1b-9403-3881d313c58a" x="518" y="1" width="15" height="14"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{printS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="92da5e65-e208-4b1b-9403-3881d313c58a" x="534" y="1" width="15" height="14"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{printA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="92da5e65-e208-4b1b-9403-3881d313c58a" x="42" y="1" width="34" height="14"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{phraseId}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<line>
+				<reportElement uuid="70b05d69-5fa9-4ae2-a671-c2d92a6d54e7" x="17" y="3" width="521" height="1"/>
+			</line>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement uuid="74cdc6ef-c944-47f9-927e-3c902e722fd3" key="textField" x="380" y="5" width="134" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e5580cb5-54e2-426b-8354-5c0ba90ea490" key="staticText" x="27" y="5" width="186" height="19"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement uuid="6af94258-fdc7-4ea7-9679-c9459cb98b70" key="textField" x="27" y="5" width="524" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement uuid="22713cfe-e265-43ba-9d4e-9148d142cb9c" key="textField" x="515" y="5" width="36" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

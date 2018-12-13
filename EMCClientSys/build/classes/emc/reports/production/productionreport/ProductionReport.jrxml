@@ -1,0 +1,1339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="toDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fromDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="wcGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[@wcGroup]]></fieldDescription>
+	</field>
+	<field name="workCenter" class="java.lang.String">
+		<fieldDescription><![CDATA[@workCenter]]></fieldDescription>
+	</field>
+	<field name="productionTarget" class="java.lang.Double">
+		<fieldDescription><![CDATA[@productionTarget]]></fieldDescription>
+	</field>
+	<field name="revisedTarget" class="java.lang.Double">
+		<fieldDescription><![CDATA[@revisedTarget]]></fieldDescription>
+	</field>
+	<field name="newDockets" class="java.lang.Double">
+		<fieldDescription><![CDATA[@newDockets]]></fieldDescription>
+	</field>
+	<field name="unCutDocketBal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@unCutDocketBal]]></fieldDescription>
+	</field>
+	<field name="cut1Days" class="java.lang.Double">
+		<fieldDescription><![CDATA[@cut1Days]]></fieldDescription>
+	</field>
+	<field name="unitsCut" class="java.lang.Double">
+		<fieldDescription><![CDATA[@unitsCut]]></fieldDescription>
+	</field>
+	<field name="cut2Days" class="java.lang.Double">
+		<fieldDescription><![CDATA[@cut2Days]]></fieldDescription>
+	</field>
+	<field name="cutSOHBal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@cutSOHBal]]></fieldDescription>
+	</field>
+	<field name="cut2SOHDays" class="java.lang.Double">
+		<fieldDescription><![CDATA[@cut2SOHDays]]></fieldDescription>
+	</field>
+	<field name="bolReceived" class="java.lang.Double">
+		<fieldDescription><![CDATA[@bolReceived]]></fieldDescription>
+	</field>
+	<field name="sentToMachineFloor" class="java.lang.Double">
+		<fieldDescription><![CDATA[@sentToMachineFloor]]></fieldDescription>
+	</field>
+	<field name="bolBal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@bolBal]]></fieldDescription>
+	</field>
+	<field name="bolDays" class="java.lang.Double">
+		<fieldDescription><![CDATA[@bolDays]]></fieldDescription>
+	</field>
+	<field name="actualMachined" class="java.lang.Double">
+		<fieldDescription><![CDATA[@actualMachined]]></fieldDescription>
+	</field>
+	<field name="itlBal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@itlBal]]></fieldDescription>
+	</field>
+	<field name="cageStock" class="java.lang.Double">
+		<fieldDescription><![CDATA[@cageStock]]></fieldDescription>
+	</field>
+	<field name="toLineDaysTarget" class="java.lang.Double">
+		<fieldDescription><![CDATA[@toLineDaysTarget]]></fieldDescription>
+	</field>
+	<field name="toLineDays" class="java.lang.Double">
+		<fieldDescription><![CDATA[@toLineDays]]></fieldDescription>
+	</field>
+	<field name="cuttingPerf" class="java.lang.Double">
+		<fieldDescription><![CDATA[@cuttingPerf]]></fieldDescription>
+	</field>
+	<field name="machiningPerf" class="java.lang.Double">
+		<fieldDescription><![CDATA[@machiningPerf]]></fieldDescription>
+	</field>
+	<field name="wcTotalproductionTarget" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalproductionTarget]]></fieldDescription>
+	</field>
+	<field name="wcTotalrevisedTarget" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalrevisedTarget]]></fieldDescription>
+	</field>
+	<field name="wcTotalnewDockets" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalnewDockets]]></fieldDescription>
+	</field>
+	<field name="wcTotalunCutDocketBal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalunCutDocketBal]]></fieldDescription>
+	</field>
+	<field name="wcTotalcut1Days" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalcut1Days]]></fieldDescription>
+	</field>
+	<field name="wcTotalunitsCut" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalunitsCut]]></fieldDescription>
+	</field>
+	<field name="wcTotalcut2Days" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalcut2Days]]></fieldDescription>
+	</field>
+	<field name="wcTotalcutSOHBal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalcutSOHBal]]></fieldDescription>
+	</field>
+	<field name="wcTotalcut2SOHDays" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalcut2SOHDays]]></fieldDescription>
+	</field>
+	<field name="wcTotalbolReceived" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalbolReceived]]></fieldDescription>
+	</field>
+	<field name="wcTotalsentToMachineFloor" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalsentToMachineFloor]]></fieldDescription>
+	</field>
+	<field name="wcTotalbolBal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalbolBal]]></fieldDescription>
+	</field>
+	<field name="wcTotalbolDays" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalbolDays]]></fieldDescription>
+	</field>
+	<field name="wcTotalactualMachined" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalactualMachined]]></fieldDescription>
+	</field>
+	<field name="wcTotalitlBal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalitlBal]]></fieldDescription>
+	</field>
+	<field name="wcTotalcageStock" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalcageStock]]></fieldDescription>
+	</field>
+	<field name="wcTotalToLineDaysTarget" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalToLineDaysTarget]]></fieldDescription>
+	</field>
+	<field name="wcTotalToLineDays" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalToLineDays]]></fieldDescription>
+	</field>
+	<field name="wcTotalcuttingPerf" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalcuttingPerf]]></fieldDescription>
+	</field>
+	<field name="wcTotalmachiningPerf" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcTotalmachiningPerf]]></fieldDescription>
+	</field>
+	<field name="grandTotalproductionTarget" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalproductionTarget]]></fieldDescription>
+	</field>
+	<field name="grandTotalrevisedTarget" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalrevisedTarget]]></fieldDescription>
+	</field>
+	<field name="grandTotalnewDockets" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalnewDockets]]></fieldDescription>
+	</field>
+	<field name="grandTotalunCutDocketBal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalunCutDocketBal]]></fieldDescription>
+	</field>
+	<field name="grandTotalcut1Days" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalcut1Days]]></fieldDescription>
+	</field>
+	<field name="grandTotalunitsCut" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalunitsCut]]></fieldDescription>
+	</field>
+	<field name="grandTotalcut2Days" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalcut2Days]]></fieldDescription>
+	</field>
+	<field name="grandTotalcutSOHBal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalcutSOHBal]]></fieldDescription>
+	</field>
+	<field name="grandTotalcut2SOHDays" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalcut2SOHDays]]></fieldDescription>
+	</field>
+	<field name="grandTotalbolReceived" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalbolReceived]]></fieldDescription>
+	</field>
+	<field name="grandTotalsentToMachineFloor" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalsentToMachineFloor]]></fieldDescription>
+	</field>
+	<field name="grandTotalbolBal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalbolBal]]></fieldDescription>
+	</field>
+	<field name="grandTotalbolDays" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalbolDays]]></fieldDescription>
+	</field>
+	<field name="grandTotalactualMachined" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalactualMachined]]></fieldDescription>
+	</field>
+	<field name="grandTotalitlBal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalitlBal]]></fieldDescription>
+	</field>
+	<field name="grandTotalcageStock" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalcageStock]]></fieldDescription>
+	</field>
+	<field name="grandTotalToLineDaysTarget" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalToLineDaysTarget]]></fieldDescription>
+	</field>
+	<field name="grandTotalToLineDays" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalToLineDays]]></fieldDescription>
+	</field>
+	<field name="grandTotalcuttingPerf" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalcuttingPerf]]></fieldDescription>
+	</field>
+	<field name="grandTotalmachiningPerf" class="java.lang.Double">
+		<fieldDescription><![CDATA[@grandTotalmachiningPerf]]></fieldDescription>
+	</field>
+	<variable name="rowCounter" class="java.lang.Integer">
+		<variableExpression><![CDATA[new Integer($V{rowCounter}.intValue() + 1)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Integer(0)]]></initialValueExpression>
+	</variable>
+	<group name="WorkCenterGroup">
+		<groupExpression><![CDATA[$F{wcGroup}]]></groupExpression>
+		<groupFooter>
+			<band height="21" splitType="Stretch">
+				<line>
+					<reportElement x="1" y="19" width="800" height="1"/>
+				</line>
+				<line>
+					<reportElement x="404" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="309" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="561" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="494" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="111" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="635" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="269" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="736" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="451" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="242" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="335" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="197" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="534" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="59" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="378" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="677" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="768" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="156" y="0" width="1" height="21"/>
+				</line>
+				<staticText>
+					<reportElement x="2" y="0" width="57" height="20"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<textField pattern="###0">
+					<reportElement x="60" y="0" width="50" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalproductionTarget}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="112" y="0" width="43" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalrevisedTarget}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="158" y="0" width="38" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalnewDockets}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.0">
+					<reportElement x="243" y="0" width="25" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalcut1Days}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="270" y="0" width="38" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalunitsCut}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.0">
+					<reportElement x="310" y="0" width="24" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalcut2Days}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="336" y="0" width="41" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalcutSOHBal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.0">
+					<reportElement x="379" y="0" width="24" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalcut2SOHDays}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="405" y="0" width="45" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalbolReceived}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="452" y="0" width="41" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalsentToMachineFloor}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="495" y="0" width="38" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalbolBal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.0">
+					<reportElement x="535" y="0" width="25" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalbolDays}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="590" y="0" width="44" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalactualMachined}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="636" y="0" width="40" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalitlBal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.0">
+					<reportElement x="678" y="0" width="28" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalToLineDaysTarget}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement x="737" y="0" width="30" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalcuttingPerf}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement x="769" y="0" width="30" height="19"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalmachiningPerf}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="198" y="0" width="43" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalunCutDocketBal}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="1" y="0" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="800" y="0" width="1" height="20"/>
+				</line>
+				<line>
+					<reportElement x="708" y="0" width="1" height="21"/>
+				</line>
+				<textField pattern="###0.0">
+					<reportElement x="709" y="0" width="25" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcTotalToLineDays}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="590" y="0" width="1" height="21"/>
+				</line>
+				<textField pattern="###0.0">
+					<reportElement x="563" y="0" width="25" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[new Double($F{wcTotalcut1Days}.doubleValue() +  $F{wcTotalcut2SOHDays}.doubleValue() + $F{wcTotalbolDays}.doubleValue())]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="19" y="3" width="377" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Production Report]]></text>
+			</staticText>
+			<textField hyperlinkType="Reference">
+				<reportElement x="396" y="3" width="388" height="25"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="27" width="802" height="1"/>
+			</line>
+			<line>
+				<reportElement key="line" x="0" y="2" width="802" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="19" y="31" width="75" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[From Date:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="264" y="31" width="80" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{toDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="205" y="31" width="59" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To Date:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="94" y="31" width="80" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fromDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="68" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="22" width="34" height="45"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[WCG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="38" y="22" width="21" height="45"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[WC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="22" width="50" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prod Target]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="22" width="43" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Revised Target]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="156" y="22" width="42" height="45"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[New Dockets]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="22" width="43" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Uncut]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="22" width="26" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="1" width="113" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUT 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="22" width="38" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Units Cut]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="22" width="26" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="22" width="41" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[On Hold Bal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="22" width="27" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="269" y="1" width="136" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUT 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="404" y="22" width="46" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ReceivedB.O.L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="452" y="22" width="41" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sent To Floor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="495" y="22" width="39" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B.O.L Bal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="404" y="1" width="158" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BACK OF LINE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="535" y="22" width="26" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="590" y="22" width="45" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Actual Mach]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="636" y="22" width="41" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[In Line Bal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="590" y="1" width="146" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IN THE LINE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="678" y="22" width="30" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Targ Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="737" y="22" width="30" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cut]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="769" y="22" width="30" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mach]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="737" y="1" width="64" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PERF %]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="67" width="800" height="1"/>
+			</line>
+			<line>
+				<reportElement x="36" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="59" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="111" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="156" y="2" width="1" height="66"/>
+			</line>
+			<line>
+				<reportElement x="197" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="242" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="269" y="2" width="1" height="66"/>
+			</line>
+			<line>
+				<reportElement x="309" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="335" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="378" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="404" y="2" width="1" height="66"/>
+			</line>
+			<line>
+				<reportElement x="451" y="22" width="1" height="45"/>
+			</line>
+			<line>
+				<reportElement x="494" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="534" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="561" y="2" width="1" height="66"/>
+			</line>
+			<line>
+				<reportElement x="635" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="677" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="736" y="2" width="1" height="66"/>
+			</line>
+			<line>
+				<reportElement x="768" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="1" y="21" width="800" height="1"/>
+			</line>
+			<line>
+				<reportElement x="2" y="1" width="798" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="1" width="1" height="66"/>
+			</line>
+			<line>
+				<reportElement x="800" y="1" width="1" height="66"/>
+			</line>
+			<staticText>
+				<reportElement x="709" y="22" width="27" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Days]]></text>
+			</staticText>
+			<line>
+				<reportElement x="708" y="22" width="1" height="46"/>
+			</line>
+			<line>
+				<reportElement x="590" y="1" width="1" height="66"/>
+			</line>
+			<staticText>
+				<reportElement x="562" y="22" width="26" height="45"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To Line Days]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="0" width="33" height="20"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{wcGroup}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="60" y="0" width="50" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{productionTarget}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="112" y="0" width="43" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{revisedTarget}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="157" y="0" width="39" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{newDockets}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="243" y="0" width="25" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{cut1Days}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="270" y="0" width="38" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{unitsCut}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="336" y="0" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{cutSOHBal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="379" y="0" width="24" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{cut2SOHDays}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="405" y="0" width="45" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{bolReceived}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="452" y="0" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{sentToMachineFloor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="495" y="0" width="38" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{bolBal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="535" y="0" width="25" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{bolDays}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="590" y="0" width="44" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{actualMachined}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="636" y="0" width="40" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{itlBal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="678" y="0" width="28" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{toLineDaysTarget}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="737" y="0" width="30" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{cuttingPerf}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="769" y="0" width="30" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{machiningPerf}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="768" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="736" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="635" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="677" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="36" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="59" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="111" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="156" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="197" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="242" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="269" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="309" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="335" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="378" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="404" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="451" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="494" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="534" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="561" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="38" y="0" width="21" height="20"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{workCenter}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="310" y="0" width="24" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{cut2Days}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="198" y="0" width="43" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{unCutDocketBal}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="800" y="0" width="1" height="21"/>
+			</line>
+			<textField pattern="###0.0">
+				<reportElement x="709" y="0" width="25" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{toLineDays}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="19" width="800" height="1"/>
+			</line>
+			<line>
+				<reportElement x="590" y="-61" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="708" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="590" y="0" width="1" height="21"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField pattern="###0.0">
+				<reportElement x="563" y="0" width="25" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[new Double($F{cut1Days}.doubleValue() + $F{cut2SOHDays}.doubleValue() + $F{bolDays}.doubleValue())]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="23" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean($V{rowCounter}.intValue() >= $P{numRows}.intValue())]]></printWhenExpression>
+			<textField pattern="###0.0">
+				<reportElement x="535" y="0" width="25" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalbolDays}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="336" y="0" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalcutSOHBal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="243" y="0" width="25" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalcut1Days}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="158" y="0" width="38" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalnewDockets}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="310" y="0" width="24" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalcut2Days}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="0" width="57" height="20"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grand]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="60" y="0" width="50" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalproductionTarget}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="198" y="0" width="43" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalunCutDocketBal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="379" y="0" width="24" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalcut2SOHDays}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="769" y="0" width="30" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalmachiningPerf}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="405" y="0" width="45" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalbolReceived}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="590" y="0" width="44" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalactualMachined}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="270" y="0" width="38" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalunitsCut}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="737" y="0" width="30" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalcuttingPerf}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="636" y="0" width="40" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalitlBal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="452" y="0" width="41" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalsentToMachineFloor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="678" y="0" width="28" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalToLineDaysTarget}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="404" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="309" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="561" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="494" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="111" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="635" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="269" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="736" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="451" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="242" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="335" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="197" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="534" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="59" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="378" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="677" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="768" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="156" y="0" width="1" height="21"/>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="495" y="0" width="38" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalbolBal}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="0" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="800" y="-1" width="1" height="21"/>
+			</line>
+			<line>
+				<reportElement x="2" y="20" width="799" height="1"/>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="112" y="0" width="43" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalrevisedTarget}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="708" y="0" width="1" height="21"/>
+			</line>
+			<textField pattern="###0.0">
+				<reportElement x="709" y="0" width="25" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{grandTotalToLineDays}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="590" y="0" width="1" height="21"/>
+			</line>
+			<textField pattern="###0.0">
+				<reportElement x="563" y="0" width="25" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[new Double($F{grandTotalcut1Days}.doubleValue() + $F{grandTotalcut2SOHDays}.doubleValue() + $F{grandTotalbolDays}.doubleValue())]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="19" y="3" width="765" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="613" y="3" width="134" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="19" y="3" width="186" height="19"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="19" y="3" width="765" height="1"/>
+			</line>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="748" y="3" width="36" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

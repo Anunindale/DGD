@@ -1,0 +1,369 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.entity.pop;
+
+import emc.datatypes.EMCDataType;
+import emc.datatypes.pop.purchaseordermaster.Cancelled;
+import emc.datatypes.systemwide.Comments;
+import emc.entity.pop.purchaseordersuperclass.POPPurchaseOrderMasterSuper;
+import emc.enums.emcquery.EMCQueryConditions;
+import emc.enums.enumQueryTypes;
+import emc.enums.pop.purchaseorders.PurchaseOrderCancelledStatus;
+import emc.framework.EMCQuery;
+import java.io.Serializable;
+import java.util.HashMap;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+/**
+ *
+ * @author riaan
+ */
+@Entity
+@Table(name = "POPPurchaseOrderMaster", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"purchaseOrderId", "companyId"})})
+public class POPPurchaseOrderMaster extends POPPurchaseOrderMasterSuper implements Serializable {
+
+    private boolean cancelled;
+    private String cancelledStatus; //For cancelled orders, indicate whether partially or fully cancelled.
+    //Ninian Specific Fields
+    private String agentCode;
+    private String deliveryAddress;
+    private String retailer;
+    private String softex;
+    private String otherSoftex;
+    private String existingDesign;
+    private String designBulkOrder;
+    private String widthPlain;
+    private String widthPrint;
+    private String weightPlain;
+    private String weightPrint;
+    private String labDyes;
+    private String strikeOff;
+    private String correspondenceReference;
+    private String colourBlocked;
+    private String deliverWithOrder;
+    private String matchOrder;
+    private String replacementOrder;
+    private String replacementReason;
+    private String printAfterDelivery;
+    private String typeOfPrint;
+    private String processAfterDelivery;
+    private String typeOfProcess;
+    private String cuttingReceived;
+    private String EXStock;
+    private String additionalLabInfo;
+    private String coloursBlocked;
+    private String endUser;
+    private String previousOrder;
+    private String consignment;
+    private String productionAWOPickingList;
+    //Ninian Spesific Fields
+
+    /**
+     * Creates a new instance of POPPurchaseOrderMaster
+     */
+    public POPPurchaseOrderMaster() {
+        this.setEmcLabel("Purchase Order Master");
+        this.setDataSource(false);
+    }
+
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
+    }
+
+    //Ninian Spesific Fields
+    public String getEXStock() {
+        return EXStock;
+    }
+
+    public void setEXStock(String EXStock) {
+        this.EXStock = EXStock;
+    }
+
+    public String getAdditionalLabInfo() {
+        return additionalLabInfo;
+    }
+
+    public void setAdditionalLabInfo(String additionalLabInfo) {
+        this.additionalLabInfo = additionalLabInfo;
+    }
+
+    public String getAgentCode() {
+        return agentCode;
+    }
+
+    public void setAgentCode(String agentCode) {
+        this.agentCode = agentCode;
+    }
+
+    public String getColourBlocked() {
+        return colourBlocked;
+    }
+
+    public void setColourBlocked(String colourBlocked) {
+        this.colourBlocked = colourBlocked;
+    }
+
+    public String getColoursBlocked() {
+        return coloursBlocked;
+    }
+
+    public void setColoursBlocked(String coloursBlocked) {
+        this.coloursBlocked = coloursBlocked;
+    }
+
+    public String getCorrespondenceReference() {
+        return correspondenceReference;
+    }
+
+    public void setCorrespondenceReference(String correspondenceReference) {
+        this.correspondenceReference = correspondenceReference;
+    }
+
+    public String getCuttingReceived() {
+        return cuttingReceived;
+    }
+
+    public void setCuttingReceived(String cuttingReceived) {
+        this.cuttingReceived = cuttingReceived;
+    }
+
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    public String getDeliverWithOrder() {
+        return deliverWithOrder;
+    }
+
+    public void setDeliverWithOrder(String deliverWithOrder) {
+        this.deliverWithOrder = deliverWithOrder;
+    }
+
+    public String getDesignBulkOrder() {
+        return designBulkOrder;
+    }
+
+    public void setDesignBulkOrder(String designBulkOrder) {
+        this.designBulkOrder = designBulkOrder;
+    }
+
+    public String getExistingDesign() {
+        return existingDesign;
+    }
+
+    public void setExistingDesign(String existingDesign) {
+        this.existingDesign = existingDesign;
+    }
+
+    public String getLabDyes() {
+        return labDyes;
+    }
+
+    public void setLabDyes(String labDyes) {
+        this.labDyes = labDyes;
+    }
+
+    public String getMatchOrder() {
+        return matchOrder;
+    }
+
+    public void setMatchOrder(String matchOrder) {
+        this.matchOrder = matchOrder;
+    }
+
+    public String getOtherSoftex() {
+        return otherSoftex;
+    }
+
+    public void setOtherSoftex(String otherSoftex) {
+        this.otherSoftex = otherSoftex;
+    }
+
+    public String getPrintAfterDelivery() {
+        return printAfterDelivery;
+    }
+
+    public void setPrintAfterDelivery(String printAfterDelivery) {
+        this.printAfterDelivery = printAfterDelivery;
+    }
+
+    public String getProcessAfterDelivery() {
+        return processAfterDelivery;
+    }
+
+    public void setProcessAfterDelivery(String processAfterDelivery) {
+        this.processAfterDelivery = processAfterDelivery;
+    }
+
+    public String getReplacementOrder() {
+        return replacementOrder;
+    }
+
+    public void setReplacementOrder(String replacementOrder) {
+        this.replacementOrder = replacementOrder;
+    }
+
+    public String getReplacementReason() {
+        return replacementReason;
+    }
+
+    public void setReplacementReason(String replacementReason) {
+        this.replacementReason = replacementReason;
+    }
+
+    public String getRetailer() {
+        return retailer;
+    }
+
+    public void setRetailer(String retailer) {
+        this.retailer = retailer;
+    }
+
+    public String getSoftex() {
+        return softex;
+    }
+
+    public void setSoftex(String softex) {
+        this.softex = softex;
+    }
+
+    public String getStrikeOff() {
+        return strikeOff;
+    }
+
+    public void setStrikeOff(String strikeOff) {
+        this.strikeOff = strikeOff;
+    }
+
+    public String getTypeOfPrint() {
+        return typeOfPrint;
+    }
+
+    public void setTypeOfPrint(String typeOfPrint) {
+        this.typeOfPrint = typeOfPrint;
+    }
+
+    public String getTypeOfProcess() {
+        return typeOfProcess;
+    }
+
+    public void setTypeOfProcess(String typeOfProcess) {
+        this.typeOfProcess = typeOfProcess;
+    }
+
+    public String getWeightPlain() {
+        return weightPlain;
+    }
+
+    public void setWeightPlain(String weightPlain) {
+        this.weightPlain = weightPlain;
+    }
+
+    public String getWeightPrint() {
+        return weightPrint;
+    }
+
+    public void setWeightPrint(String weightPrint) {
+        this.weightPrint = weightPrint;
+    }
+
+    public String getWidthPlain() {
+        return widthPlain;
+    }
+
+    public void setWidthPlain(String widthPlain) {
+        this.widthPlain = widthPlain;
+    }
+
+    public String getWidthPrint() {
+        return widthPrint;
+    }
+
+    public void setWidthPrint(String widthPrint) {
+        this.widthPrint = widthPrint;
+    }
+
+    public String getEndUser() {
+        return endUser;
+    }
+
+    public void setEndUser(String endUser) {
+        this.endUser = endUser;
+    }
+
+    public String getPreviousOrder() {
+        return previousOrder;
+    }
+
+    public void setPreviousOrder(String previousOrder) {
+        this.previousOrder = previousOrder;
+    }
+
+    public String getConsignment() {
+        return consignment;
+    }
+
+    public void setConsignment(String consignment) {
+        this.consignment = consignment;
+    }
+    //Ninian Spesific Fields
+
+    @Override
+    public HashMap buildFieldList() {
+        HashMap<String, EMCDataType> toBuild = super.buildFieldList();
+
+        toBuild.put("cancelled", new Cancelled());
+        toBuild.put("additionalLabInfo", new Comments());
+
+        return toBuild;
+    }
+
+    @Override
+    public EMCQuery getQuery() {
+        EMCQuery query = super.getQuery();
+        //Select all uncancelled, unreceived (from superclass query) orders.
+        query.openAndConditionBracket();
+        query.addAnd("cancelledStatus", PurchaseOrderCancelledStatus.PARTIALLY_CANCELLED.toString());
+        query.addOr("cancelledStatus", null);
+        query.closeConditionBracket();
+        return query;
+    }
+
+    @Override
+    public EMCQuery buildLookupQuery() {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, POPPurchaseOrderMaster.class.getName());
+
+        query.addOrderBy("purchaseOrderId");
+
+        return query;
+    }
+
+    public String getCancelledStatus() {
+        return cancelledStatus;
+    }
+
+    public void setCancelledStatus(String cancelledStatus) {
+        this.cancelledStatus = cancelledStatus;
+    }
+
+    public String getProductionAWOPickingList() {
+        return productionAWOPickingList;
+    }
+
+    public void setProductionAWOPickingList(String productionAWOPickingList) {
+        this.productionAWOPickingList = productionAWOPickingList;
+    }
+}

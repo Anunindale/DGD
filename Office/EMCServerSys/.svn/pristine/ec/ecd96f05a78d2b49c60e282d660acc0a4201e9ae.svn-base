@@ -1,0 +1,214 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.reports.trec.placard;
+
+import emc.reports.trec.treccard.*;
+import emc.bus.trec.parameters.TRECParametersLocal;
+import emc.entity.trec.TRECChemicals;
+import emc.entity.trec.TRECChemicalsSuper;
+import emc.entity.trec.TRECClasses;
+import emc.entity.trec.TRECColours;
+import emc.entity.trec.TRECCustomerChemicals;
+import emc.entity.trec.TRECForms;
+import emc.entity.trec.TRECOdours;
+import emc.entity.trec.TRECPhrases;
+import emc.entity.trec.TRECTrecCardsLines;
+import emc.enums.emcquery.EMCQueryBracketConditions;
+import emc.enums.enumQueryTypes;
+import emc.enums.trec.TRECSpecialPrintEnum;
+import emc.framework.EMCDebug;
+import emc.framework.EMCQuery;
+import emc.framework.EMCReportBean;
+import emc.framework.EMCUserData;
+import emc.functions.Functions;
+import java.io.File;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author wikus
+ */
+@Stateless
+public class TRECPlacardBean extends EMCReportBean implements TRECPlacardLocal {
+
+    @EJB
+    private TRECParametersLocal paramBean;
+
+    @Override
+    public List<Object> manipulateQueryResult(List<Object> queryResult, java.util.Map<java.lang.String, java.lang.Object> paramMap, EMCUserData userData) {
+        TRECChemicals line;
+        TRECPlacardDS ds;
+        
+
+        List dataList = new ArrayList();
+        String filePath= "";
+        
+        
+        String fileName = "diamonds";
+        String path = System.getProperty("java.class.path");//appPath.toString();
+        String[] pathSplit = path.split(":");
+        path = pathSplit[pathSplit.length - 1];
+
+        File appPath = new File(path);
+        try {
+            appPath = appPath.getCanonicalFile().getParentFile();
+        } catch (IOException e) {
+            if (EMCDebug.getDebug()) {
+                System.out.println("Failed to get the path for servername");
+            }
+        }
+
+        path = appPath.getPath();
+
+        filePath = path + File.separator + fileName;
+
+        //Windows seems to append an ';' at the end of the app path.  This is a hack to enable this code to work on Windows.
+        filePath = filePath.replaceAll(";", "");
+        boolean p = new File(filePath).exists();
+        String fp = "";
+        if (p) {
+            fp = filePath;
+        } else {
+            //Logger.getLogger("emc").log(Level.SEVERE, "Hazardous Class Diamonds File does not exist.", this.getUserData());
+        }      
+       
+        String Operator = (String) paramMap.get("operatorTel");
+        String Specialist = (String) paramMap.get("SpecialistTel");
+
+
+        String seperator = File.separator;
+        if (!isBlank(fp)) {
+            if (fp.contains("/")) {
+                seperator = "/";
+            } else if (filePath.contains("\\")) {
+                seperator = "\\";
+            }
+        }
+
+
+
+
+        for (Object o : queryResult) {
+            line = (TRECChemicals) o;
+
+            ds = new TRECPlacardDS();
+         
+            if(line.getUnNumber().equalsIgnoreCase("MIXED LOAD")){
+                ds.setPrintMixedLoad(true);
+                ds.setUNNumber("MIXED");
+                ds.setUNNumber1("LOAD");
+            }else{
+                ds.setUNNumber(line.getUnNumber());
+                ds.setPrintMixedLoad(false); 
+            }
+
+            if (!isBlank(Operator)) {
+                if (Operator.contains("/")) {
+                    String ops[] = Operator.split("/");
+                    if (!isBlank(ops[0])) {
+                        ds.setOperatorTel1((String) ops[0]);
+                    }
+                    if (!isBlank(ops[1])) {
+                        ds.setOperatorTel2((String) ops[1]);
+                        ds.setPrintOperatorTel2(true);
+                    } else {
+                        ds.setPrintOperatorTel2(false);
+                    }
+                }else{
+                     ds.setOperatorTel1(Operator);
+                     ds.setPrintOperatorTel2(false);
+                }
+            }
+
+            if (!isBlank(Specialist)) {
+                if (Operator.contains("/")) {
+                    String spec[] = Operator.split("/");
+                    if (!isBlank(spec[0])) {
+                        ds.setSpecialistTel1((String) spec[0]);
+                    }
+                    if (!isBlank(spec[1])) {
+                        ds.setSpecialistTel2((String) spec[1]);
+                        ds.setPrintSpecialistTel2(true);
+                    } else {
+                        ds.setPrintSpecialistTel2(false);
+                    }
+                }else{
+                     ds.setSpecialistTel1(Specialist);
+                     ds.setPrintSpecialistTel2(false);
+                }
+            }
+
+            //Chemical
+//            if (line.getCustomerChemical() != 0) {
+//                query = new EMCQuery(enumQueryTypes.SELECT, TRECCustomerChemicals.class);
+//                query.addAnd("recordID", line.getCustomerChemical());
+//
+//                chemical = (TRECCustomerChemicals) util.executeSingleResultQuery(query, userData);
+//
+//            } else {
+//                query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+//                query.addAnd("unNumber", line.getUnNumber());
+//                query.addAnd("shippingName", line.getProperShipping());
+//
+//                chemical = (TRECChemicals) util.executeSingleResultQuery(query, userData);
+//            }
+
+            
+
+
+            
+
+            ds.setClassPicPath(isBlank(filePath) ? null : fp + seperator + line.getClassId() + ".png");
+            
+            String subRisk = line.getSubsidairyRisk();
+            String risk1 = null;
+            String risk2 = null;
+
+            if (!isBlank(subRisk)) {
+                if (subRisk.contains(";")) {
+                    subRisk = subRisk.substring(subRisk.indexOf(";") + 1);
+                }
+
+                subRisk = subRisk.replaceAll("and", "AND");
+                String[] riskArray = subRisk.split("AND");
+
+                if (riskArray.length > 0) {
+                    risk1 = riskArray[0].trim();
+                }
+
+                if (riskArray.length > 1) {
+                    risk2 = riskArray[1].trim();
+                }
+
+                if (!isBlank(risk1)) {
+                    ds.setHazardPic1Path(fp + seperator + risk1 + ".png");
+                    ds.setPrintHazardPicPath1(true);
+                }else{
+                     ds.setPrintHazardPicPath1(false);
+                }
+                if (!isBlank(risk2)) {
+                    ds.setHazardPic2Path(fp + seperator + risk2 + ".png");
+                    ds.setPrintHazardPicPath2(true);
+                }else{
+                    ds.setPrintHazardPicPath2(false);
+                }
+            }
+            
+//           
+            dataList.add(ds);
+        }
+
+        return dataList;
+    }
+}

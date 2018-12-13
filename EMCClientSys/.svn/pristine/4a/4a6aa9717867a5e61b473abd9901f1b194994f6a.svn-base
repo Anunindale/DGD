@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="78c40ced-4ef0-44c9-997f-9bfb10636778">
+	<property name="ireport.zoom" value="0.5644739300537776"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<field name="UNNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@UNNumber]]></fieldDescription>
+	</field>
+	<field name="UNNumber1" class="java.lang.String">
+		<fieldDescription><![CDATA[@UNNumber1]]></fieldDescription>
+	</field>
+	<field name="operatorTel1" class="java.lang.String">
+		<fieldDescription><![CDATA[@operatorTel1]]></fieldDescription>
+	</field>
+	<field name="operatorTel2" class="java.lang.String">
+		<fieldDescription><![CDATA[@operatorTel2]]></fieldDescription>
+	</field>
+	<field name="classPicPath" class="java.lang.String">
+		<fieldDescription><![CDATA[@classPicPath]]></fieldDescription>
+	</field>
+	<field name="specialistTel1" class="java.lang.String">
+		<fieldDescription><![CDATA[@specialistTel1]]></fieldDescription>
+	</field>
+	<field name="specialistTel2" class="java.lang.String">
+		<fieldDescription><![CDATA[@specialistTel2]]></fieldDescription>
+	</field>
+	<field name="printOperatorTel2" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printOperatorTel2]]></fieldDescription>
+	</field>
+	<field name="printSpecialistTel2" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printSpecialistTel2]]></fieldDescription>
+	</field>
+	<field name="hazardPic1Path" class="java.lang.String">
+		<fieldDescription><![CDATA[@hazardPic1Path]]></fieldDescription>
+	</field>
+	<field name="hazardPic2Path" class="java.lang.String">
+		<fieldDescription><![CDATA[@hazardPic2Path]]></fieldDescription>
+	</field>
+	<field name="printHazardPicPath1" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printHazardPicPath1]]></fieldDescription>
+	</field>
+	<field name="printHazardPicPath2" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printHazardPicPath2]]></fieldDescription>
+	</field>
+	<field name="printMixedLoad" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printMixedLoad]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="388" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="982e9037-b777-4999-9b76-c9fbb14cf24a" positionType="Float" mode="Opaque" x="24" y="17" width="294" height="357" forecolor="#FF6500" backcolor="#FF6500"/>
+			</rectangle>
+			<line>
+				<reportElement uuid="98cfd94f-453b-4524-bd1f-c0f77ff4d616" x="775" y="13" width="1" height="361" isPrintInFirstWholeBand="true"/>
+				<graphicElement>
+					<pen lineWidth="4.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="98cfd94f-453b-4524-bd1f-c0f77ff4d616" x="319" y="13" width="1" height="361" isPrintInFirstWholeBand="true"/>
+				<graphicElement>
+					<pen lineWidth="4.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="98cfd94f-453b-4524-bd1f-c0f77ff4d616" x="24" y="13" width="1" height="361" isPrintInFirstWholeBand="true"/>
+				<graphicElement>
+					<pen lineWidth="4.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="80c9a4ed-a0ea-4c12-bab7-d39f9e215873" x="22" y="13" width="752" height="2"/>
+				<graphicElement>
+					<pen lineWidth="4.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="80c9a4ed-a0ea-4c12-bab7-d39f9e215873" x="26" y="372" width="752" height="2"/>
+				<graphicElement>
+					<pen lineWidth="4.0"/>
+				</graphicElement>
+			</line>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement uuid="27c4f2e0-1267-46eb-b19f-50a926d12745" positionType="Float" x="330" y="17" width="444" height="352"/>
+				<imageExpression><![CDATA[$F{classPicPath}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement uuid="80c9a4ed-a0ea-4c12-bab7-d39f9e215873" x="23" y="118" width="296" height="2"/>
+				<graphicElement>
+					<pen lineWidth="4.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="80c9a4ed-a0ea-4c12-bab7-d39f9e215873" x="25" y="247" width="294" height="2"/>
+				<graphicElement>
+					<pen lineWidth="4.0"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="2b1ab644-c837-423b-aa38-79849897f74b" positionType="Float" x="26" y="16" width="293" height="102">
+					<printWhenExpression><![CDATA[!$F{printMixedLoad}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="80" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2b1ab644-c837-423b-aa38-79849897f74b" positionType="Float" x="25" y="138" width="293" height="109">
+					<printWhenExpression><![CDATA[!$F{printOperatorTel2}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="44" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{operatorTel1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2b1ab644-c837-423b-aa38-79849897f74b" positionType="Float" x="26" y="272" width="293" height="97">
+					<printWhenExpression><![CDATA[!$F{printSpecialistTel2}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="44" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{specialistTel1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2b1ab644-c837-423b-aa38-79849897f74b" positionType="Float" x="26" y="137" width="293" height="55">
+					<printWhenExpression><![CDATA[$F{printOperatorTel2}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="40" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{operatorTel1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2b1ab644-c837-423b-aa38-79849897f74b" positionType="Float" x="26" y="192" width="293" height="55">
+					<printWhenExpression><![CDATA[$F{printOperatorTel2}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="40" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{operatorTel2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2b1ab644-c837-423b-aa38-79849897f74b" positionType="Float" x="27" y="262" width="292" height="55">
+					<printWhenExpression><![CDATA[$F{printSpecialistTel2}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="40" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{specialistTel1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2b1ab644-c837-423b-aa38-79849897f74b" positionType="Float" x="28" y="318" width="292" height="51">
+					<printWhenExpression><![CDATA[$F{printSpecialistTel2}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="40" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{specialistTel2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ddd92dc4-8277-47ce-8b81-1574ea287ab5" mode="Opaque" x="26" y="15" width="106" height="12" forecolor="#FF6500" backcolor="#000000"/>
+				<textElement/>
+				<text><![CDATA[UN NUMBER:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ddd92dc4-8277-47ce-8b81-1574ea287ab5" mode="Opaque" x="26" y="120" width="106" height="12" forecolor="#FF6500" backcolor="#000000"/>
+				<textElement/>
+				<text><![CDATA[OPERATOR ADVICE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ddd92dc4-8277-47ce-8b81-1574ea287ab5" mode="Opaque" x="25" y="249" width="107" height="12" forecolor="#FF6500" backcolor="#000000"/>
+				<textElement/>
+				<text><![CDATA[SPECIALIST ADVICE:]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement uuid="cfc2f9fd-fabe-445d-9e00-d6bbf1ec8574" positionType="Float" x="674" y="20" width="100" height="91">
+					<printWhenExpression><![CDATA[$F{printHazardPicPath2}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$F{hazardPic2Path}]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement uuid="cfc2f9fd-fabe-445d-9e00-d6bbf1ec8574" positionType="Float" x="323" y="20" width="100" height="91">
+					<printWhenExpression><![CDATA[$F{printHazardPicPath1}]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$F{hazardPic1Path}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="2b1ab644-c837-423b-aa38-79849897f74b" positionType="Float" x="24" y="20" width="293" height="53">
+					<printWhenExpression><![CDATA[$F{printMixedLoad}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="44" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2b1ab644-c837-423b-aa38-79849897f74b" positionType="Float" x="24" y="66" width="293" height="53">
+					<printWhenExpression><![CDATA[$F{printMixedLoad}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="44" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNNumber1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

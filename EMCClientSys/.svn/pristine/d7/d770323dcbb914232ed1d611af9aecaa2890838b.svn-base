@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+    <field name="subjectId" class="java.lang.String">
+        <fieldDescription><![CDATA[@subjectId]]>
+        </fieldDescription>
+    </field>
+    <field name="componentId" class="java.lang.String">
+        <fieldDescription><![CDATA[@componentId]]>
+        </fieldDescription>
+    </field>
+    <field name="measurementId" class="java.lang.String">
+        <fieldDescription><![CDATA[@measurementId]]>
+        </fieldDescription>
+    </field>
+    <field name="disciplineId" class="java.lang.String">
+        <fieldDescription><![CDATA[@disciplineId]]>
+        </fieldDescription>
+    </field>
+    <field name="levelId" class="java.lang.String">
+        <fieldDescription><![CDATA[@levelId]]>
+        </fieldDescription>
+    </field>
+    <field name="positionId" class="java.lang.String">
+        <fieldDescription><![CDATA[@positionId]]>
+        </fieldDescription>
+    </field>
+    <field name="gender" class="java.lang.String">
+        <fieldDescription><![CDATA[@gender]]>
+        </fieldDescription>
+    </field>
+    <field name="measurement" class="java.math.BigDecimal">
+        <fieldDescription><![CDATA[@measurement]]>
+        </fieldDescription>
+    </field>
+    <field name="lowerLimit" class="java.math.BigDecimal">
+        <fieldDescription><![CDATA[@lowerLimit]]>
+        </fieldDescription>
+    </field>
+    <field name="upperLimit" class="java.math.BigDecimal">
+        <fieldDescription><![CDATA[@upperLimit]]>
+        </fieldDescription>
+    </field>
+    <field name="medicalAidReportHeading" class="java.lang.String">
+        <fieldDescription><![CDATA[@medicalAidReportHeading]]>
+        </fieldDescription>
+    </field>
+    <field name="medicalAidReportIdealOutcome" class="java.lang.String">
+        <fieldDescription><![CDATA[@medicalAidReportIdealOutcome]]>
+        </fieldDescription>
+    </field>
+    <field name="medicalAidReportDescription" class="java.lang.String">
+        <fieldDescription><![CDATA[@medicalAidReportDescription]]>
+        </fieldDescription>
+    </field>
+    <field name="medicalAidReportSortCode" class="java.lang.Integer">
+        <fieldDescription><![CDATA[@medicalAidReportSortCode]]>
+        </fieldDescription>
+    </field>
+    <field name="goal" class="java.lang.String">
+        <fieldDescription><![CDATA[@goal]]>
+        </fieldDescription>
+    </field>
+    <background>
+        <band/>
+    </background>
+    <title>
+        <band height="79"/>
+    </title>
+    <pageHeader>
+        <band height="35"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="61"/>
+    </columnHeader>
+    <detail>
+        <band height="125"/>
+    </detail>
+    <columnFooter>
+        <band height="45"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="54"/>
+    </pageFooter>
+    <summary>
+        <band height="42"/>
+    </summary>
+</jasperReport>

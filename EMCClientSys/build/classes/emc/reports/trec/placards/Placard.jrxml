@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TREC" printOrder="Horizontal" pageWidth="595" pageHeight="882" columnWidth="545" leftMargin="25" rightMargin="25" topMargin="0" bottomMargin="0" uuid="0c6d4e39-d7b2-4321-b834-ef6d5e5fc5ce">
+	<property name="ireport.zoom" value="1.2100000000000009"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="123"/>
+	<style name="html" isDefault="true" markup="html"/>
+	<subDataset name="dataset1" uuid="97aedd91-75e0-4919-81c3-87210a1ff12e"/>
+	<field name="UNNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@UNNumber]]></fieldDescription>
+	</field>
+	<field name="ChemicalClass" class="java.lang.String">
+		<fieldDescription><![CDATA[@chemicalClass]]></fieldDescription>
+	</field>
+	<field name="SubsudiaryRisk" class="java.lang.String">
+		<fieldDescription><![CDATA[@subsudiaryRisk]]></fieldDescription>
+	</field>
+	<field name="PackingGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[@packingGroup]]></fieldDescription>
+	</field>
+	<field name="ERGNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@ergNumber]]></fieldDescription>
+	</field>
+	<field name="ProperShippingName" class="java.lang.String">
+		<fieldDescription><![CDATA[@properShippingName]]></fieldDescription>
+	</field>
+	<field name="Appearance" class="java.lang.String">
+		<fieldDescription><![CDATA[@appearance]]></fieldDescription>
+	</field>
+	<field name="Danger" class="java.lang.String">
+		<fieldDescription><![CDATA[@danger]]></fieldDescription>
+	</field>
+	<field name="PersonalProtectiveEquipment" class="java.lang.String">
+		<fieldDescription><![CDATA[@personalProtectiveEquipment]]></fieldDescription>
+	</field>
+	<field name="EmergencyResponseEquipment" class="java.lang.String">
+		<fieldDescription><![CDATA[@emergencyResponseEquipment]]></fieldDescription>
+	</field>
+	<field name="DriverFirstAction" class="java.lang.String">
+		<fieldDescription><![CDATA[@driverFirstAction]]></fieldDescription>
+	</field>
+	<field name="DriverAdditionalAction" class="java.lang.String">
+		<fieldDescription><![CDATA[@driverAdditionalAction]]></fieldDescription>
+	</field>
+	<field name="DriverFireAction" class="java.lang.String">
+		<fieldDescription><![CDATA[@driverFireAction]]></fieldDescription>
+	</field>
+	<field name="FirstAid" class="java.lang.String">
+		<fieldDescription><![CDATA[@firstAid]]></fieldDescription>
+	</field>
+	<field name="InfoForEmergencyServices" class="java.lang.String">
+		<fieldDescription><![CDATA[@infoForEmergencyServices]]></fieldDescription>
+	</field>
+	<field name="AdditionalInfo" class="java.lang.String">
+		<fieldDescription><![CDATA[@additionalInfo]]></fieldDescription>
+	</field>
+	<field name="TradeName" class="java.lang.String">
+		<fieldDescription><![CDATA[@tradeName]]></fieldDescription>
+	</field>
+	<field name="EmergencyPhoneNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@emergencyPhoneNumber]]></fieldDescription>
+	</field>
+	<field name="PreparedBy" class="java.lang.String">
+		<fieldDescription><![CDATA[@preparedBy]]></fieldDescription>
+	</field>
+	<field name="DatePrinted" class="java.lang.String">
+		<fieldDescription><![CDATA[@datePrinted]]></fieldDescription>
+	</field>
+	<field name="ReferenceNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@referenceNumber]]></fieldDescription>
+	</field>
+	<field name="PrintRedLines" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printRedLines]]></fieldDescription>
+	</field>
+	<field name="expiryDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@expiryDate]]></fieldDescription>
+	</field>
+	<field name="exemptQuantity" class="java.lang.String">
+		<fieldDescription><![CDATA[@exemptQuantity]]></fieldDescription>
+	</field>
+	<field name="classPicPath" class="java.lang.String">
+		<fieldDescription><![CDATA[@classPicPath]]></fieldDescription>
+	</field>
+	<field name="printHazardZone" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printHazardZone]]></fieldDescription>
+	</field>
+	<field name="hazardPic1Path" class="java.lang.String">
+		<fieldDescription><![CDATA[@hazardPic1Path]]></fieldDescription>
+	</field>
+	<field name="hazardPic2Path" class="java.lang.String">
+		<fieldDescription><![CDATA[@hazardPic2Path]]></fieldDescription>
+	</field>
+	<field name="addInfoHeading1" class="java.lang.String">
+		<fieldDescription><![CDATA[@addInfoHeading1]]></fieldDescription>
+	</field>
+	<field name="addInfoHeading2" class="java.lang.String">
+		<fieldDescription><![CDATA[@addInfoHeading2]]></fieldDescription>
+	</field>
+	<field name="addInfoHeading3" class="java.lang.String">
+		<fieldDescription><![CDATA[@addInfoHeading3]]></fieldDescription>
+	</field>
+	<field name="shippingName" class="java.lang.String">
+		<fieldDescription><![CDATA[@shippingName]]></fieldDescription>
+	</field>
+	<field name="print1" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@print1]]></fieldDescription>
+	</field>
+	<field name="print2" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@print2]]></fieldDescription>
+	</field>
+	<field name="print3" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@print3]]></fieldDescription>
+	</field>
+	<field name="additionalInfoB" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@additionalInfoB]]></fieldDescription>
+	</field>
+	<field name="shippingNameB" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@shippingNameB]]></fieldDescription>
+	</field>
+	<field name="tradeNameB" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@tradeNameB]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="882" splitType="Immediate">
+			<rectangle>
+				<reportElement uuid="982e9037-b777-4999-9b76-c9fbb14cf24a" positionType="Float" x="314" y="169" width="86" height="102" forecolor="#FFC800" backcolor="#FFC800">
+					<printWhenExpression><![CDATA[$F{printHazardZone}]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement uuid="7fac4442-fa7a-4db5-aefe-079c2cf76bf8" positionType="Float" x="405" y="175" width="100" height="91"/>
+				<imageExpression><![CDATA[$F{classPicPath}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement uuid="c7d1aa4d-992b-4d99-9494-70870519de13" positionType="Float" x="311" y="167" width="197" height="1">
+					<printWhenExpression><![CDATA[$F{printHazardZone}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="21406e2e-931a-4286-989a-1076d6dada7f" positionType="Float" x="311" y="272" width="197" height="1">
+					<printWhenExpression><![CDATA[$F{printHazardZone}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="7fd928fd-ae42-43d2-9cfb-97dbe2696b0a" positionType="Float" x="507" y="167" width="1" height="105">
+					<printWhenExpression><![CDATA[$F{printHazardZone}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="5e182c50-81cf-43dd-beae-14ae7b2a4f81" positionType="Float" x="400" y="169" width="1" height="103">
+					<printWhenExpression><![CDATA[$F{printHazardZone}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="959b4a2d-ec09-41ab-a4bf-82b8841b8627" positionType="Float" x="312" y="168" width="1" height="103" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{printHazardZone}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="582eecb8-8e73-4481-974a-563387c6885b" positionType="Float" x="312" y="200" width="89" height="1">
+					<printWhenExpression><![CDATA[$F{printHazardZone}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="baf35ee5-6256-47ca-8db1-66b1559d5528" positionType="Float" x="312" y="235" width="89" height="1">
+					<printWhenExpression><![CDATA[$F{printHazardZone}]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="2b1ab644-c837-423b-aa38-79849897f74b" positionType="Float" x="316" y="170" width="82" height="27">
+					<printWhenExpression><![CDATA[$F{printHazardZone}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNNumber}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="1558ec10-6a62-49a2-ac12-f8a5f0a28cbf" positionType="Float" x="314" y="236" width="86" height="35">
+					<printWhenExpression><![CDATA[$F{printHazardZone}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" isItalic="false" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EmergencyPhoneNumber}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<lastPageFooter>
+		<band/>
+	</lastPageFooter>
+	<summary>
+		<band/>
+	</summary>
+	<noData>
+		<band/>
+	</noData>
+</jasperReport>

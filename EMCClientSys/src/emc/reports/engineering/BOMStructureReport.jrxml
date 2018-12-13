@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/emcmsg/emc.reports.engineering.bomstructure.BOMStructureReportDS]]>
+	</queryString>
+	<field name="bomId" class="java.lang.String">
+		<fieldDescription><![CDATA[@bomId]]></fieldDescription>
+	</field>
+	<field name="bomDesc" class="java.lang.String">
+		<fieldDescription><![CDATA[@bomDesc]]></fieldDescription>
+	</field>
+	<field name="bomType" class="java.lang.String">
+		<fieldDescription><![CDATA[@bomType]]></fieldDescription>
+	</field>
+	<field name="effectiveDateFrom" class="java.lang.String">
+		<fieldDescription><![CDATA[@effectiveDateFrom]]></fieldDescription>
+	</field>
+	<field name="effectiveDateTo" class="java.lang.String">
+		<fieldDescription><![CDATA[@effectiveDateTo]]></fieldDescription>
+	</field>
+	<field name="design" class="java.lang.String">
+		<fieldDescription><![CDATA[@design]]></fieldDescription>
+	</field>
+	<field name="lineGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[@lineGroup]]></fieldDescription>
+	</field>
+	<field name="pDimension2" class="java.lang.String">
+		<fieldDescription><![CDATA[@pDimension2]]></fieldDescription>
+	</field>
+	<field name="pDimension1" class="java.lang.String">
+		<fieldDescription><![CDATA[@pDimension1]]></fieldDescription>
+	</field>
+	<field name="pDimension3" class="java.lang.String">
+		<fieldDescription><![CDATA[@pDimension3]]></fieldDescription>
+	</field>
+	<field name="cDimension2" class="java.lang.String">
+		<fieldDescription><![CDATA[@cDimension2]]></fieldDescription>
+	</field>
+	<field name="cDimension1" class="java.lang.String">
+		<fieldDescription><![CDATA[@cDimension1]]></fieldDescription>
+	</field>
+	<field name="cDimension3" class="java.lang.String">
+		<fieldDescription><![CDATA[@cDimension3]]></fieldDescription>
+	</field>
+	<field name="itemId" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemReference]]></fieldDescription>
+	</field>
+	<field name="itemDesc" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemDesc]]></fieldDescription>
+	</field>
+	<field name="itemUOM" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemUOM]]></fieldDescription>
+	</field>
+	<field name="quantity" class="java.lang.String">
+		<fieldDescription><![CDATA[@quantity]]></fieldDescription>
+	</field>
+	<field name="operation" class="java.lang.String">
+		<fieldDescription><![CDATA[@operation]]></fieldDescription>
+	</field>
+	<field name="bomNum" class="java.lang.Integer">
+		<fieldDescription><![CDATA[@bomNum]]></fieldDescription>
+	</field>
+	<field name="pattern" class="java.lang.String">
+		<fieldDescription><![CDATA[@pattern]]></fieldDescription>
+	</field>
+	<field name="marker" class="java.lang.String">
+		<fieldDescription><![CDATA[@markerNo]]></fieldDescription>
+	</field>
+	<field name="manfacturing" class="java.lang.String">
+		<fieldDescription><![CDATA[@manufacturingNo]]></fieldDescription>
+	</field>
+	<field name="itemBomId" class="java.lang.String">
+		<fieldDescription><![CDATA[@bomId]]></fieldDescription>
+	</field>
+	<field name="itemBomDesc" class="java.lang.String">
+		<fieldDescription><![CDATA[@bomDesc]]></fieldDescription>
+	</field>
+	<field name="itemBomType" class="java.lang.String">
+		<fieldDescription><![CDATA[@bomType]]></fieldDescription>
+	</field>
+	<field name="itemDesign" class="java.lang.String">
+		<fieldDescription><![CDATA[@design]]></fieldDescription>
+	</field>
+	<field name="itemPattern" class="java.lang.String">
+		<fieldDescription><![CDATA[@pattern]]></fieldDescription>
+	</field>
+	<field name="itemMarker" class="java.lang.String">
+		<fieldDescription><![CDATA[@markerNo]]></fieldDescription>
+	</field>
+	<field name="itemManfacturing" class="java.lang.String">
+		<fieldDescription><![CDATA[@manufacturingNo]]></fieldDescription>
+	</field>
+	<field name="mainBom" class="java.lang.String">
+		<fieldDescription><![CDATA[@mainBom]]></fieldDescription>
+	</field>
+	<group name="BOMGroup">
+		<groupExpression><![CDATA[$F{bomNum}]]></groupExpression>
+		<groupHeader>
+			<band height="60" splitType="Stretch">
+				<staticText>
+					<reportElement x="425" y="4" width="63" height="17"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Design]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="152" y="4" width="214" height="17"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="19" y="22" width="132" height="13"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{bomId}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="425" y="22" width="63" height="13"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{design}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="366" y="4" width="59" height="17"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Type]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="152" y="22" width="214" height="13"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{bomDesc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="19" y="4" width="132" height="17"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[BOM]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="366" y="22" width="59" height="13"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{bomType}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="1" y="21" width="802" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="558" y="40" width="26" height="18" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[UOM]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="166" y="40" width="65" height="18" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[P.Size]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="397" y="40" width="50" height="18" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[C.Config]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="231" y="40" width="73" height="18" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Item]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="506" y="40" width="52" height="18" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[C.Size]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="304" y="40" width="93" height="18" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<line>
+					<reportElement x="1" y="58" width="802" height="1" printWhenGroupChanges="BOMGroup"/>
+				</line>
+				<staticText>
+					<reportElement x="682" y="31" width="50" height="27" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Effective From]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="67" y="40" width="44" height="18" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[P.Config]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="584" y="40" width="43" height="18" printWhenGroupChanges="BOMGroup"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Qty]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="740" y="31" width="57" height="27" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Effective To]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="13" y="40" width="54" height="18" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Group]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="111" y="40" width="55" height="18" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[P.Color]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="447" y="40" width="59" height="18" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[C.Color]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="627" y="40" width="55" height="18" printWhenGroupChanges="BOMGroup"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Operation]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="488" y="4" width="63" height="17"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pattern]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="551" y="4" width="63" height="17"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Marker No]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="614" y="4" width="63" height="17"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Manufact No]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="488" y="22" width="63" height="13"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pattern}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="551" y="22" width="63" height="13"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{marker}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="614" y="22" width="63" height="13"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{manfacturing}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="subBOMGroup">
+		<groupExpression><![CDATA[$F{itemBomId}]]></groupExpression>
+		<groupHeader>
+			<band height="12" splitType="Stretch">
+				<printWhenExpression><![CDATA[Boolean.valueOf($F{mainBom}.equalsIgnoreCase("yes"))]]></printWhenExpression>
+				<textField>
+					<reportElement x="488" y="1" width="63" height="11"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{itemPattern}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="145" y="1" width="215" height="11"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{itemBomDesc}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="13" y="1" width="132" height="11"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{itemBomId}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="551" y="1" width="63" height="11"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{itemMarker}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="425" y="1" width="63" height="11"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{itemDesign}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="360" y="1" width="65" height="11"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{itemBomType}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="614" y="1" width="63" height="11"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{itemManfacturing}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band splitType="Stretch"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="28" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="27" width="802" height="1"/>
+			</line>
+			<textField hyperlinkType="Reference">
+				<reportElement x="402" y="2" width="383" height="25"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="802" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="19" y="2" width="383" height="25"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bill Of Materials - Structure]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<printWhenExpression><![CDATA[Boolean.valueOf($F{itemBomId}.isEmpty())]]></printWhenExpression>
+			<textField>
+				<reportElement x="13" y="0" width="54" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{lineGroup}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="0" width="44" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pDimension1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="166" y="0" width="65" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pDimension2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="55" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pDimension3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="231" y="0" width="73" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="0" width="93" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemDesc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="558" y="0" width="26" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemUOM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="506" y="0" width="52" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cDimension2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="447" y="0" width="59" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cDimension3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="397" y="0" width="50" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cDimension1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="627" y="0" width="55" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{operation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="584" y="0" width="43" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="740" y="0" width="57" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{effectiveDateTo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="682" y="0" width="50" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{effectiveDateFrom}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="19" y="2" width="761" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="744" y="2" width="36" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="609" y="2" width="134" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="19" y="2" width="186" height="19"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="19" y="1" width="761" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

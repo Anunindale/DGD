@@ -1,0 +1,44 @@
+/*
+ * BaseLicenceLocal.java
+ *
+ * Created on 24 October 2007, 09:32
+ *
+ * To change this template, choose Tools | Template Manager
+ * and open the template in the editor.
+ */
+package emc.bus.base;
+
+import emc.framework.EMCEntityBeanLocalInterface;
+import emc.framework.EMCUserData;
+import javax.ejb.Local;
+
+/**
+ *
+ * @author rico
+ */
+@Local
+public interface BaseLicenceLocal extends EMCEntityBeanLocalInterface {
+
+    public emc.entity.base.BaseLicenceTable find(EMCUserData userData);
+
+    public emc.entity.base.BaseLicenceTable findDefaultCompany();
+
+    /**
+     * Returns a unique identifier for the system executing this method.
+     * @param userData User data.
+     * @return A unique identifier for the system executing this method.
+     */
+    public String getSystemID(EMCUserData userData);
+
+    /**
+     * Validates an authorization key.
+     * @param key Key to validate.
+     * @param userData User data.
+     * @return A boolean indicating whether the given key is valid.
+     */
+    public boolean validateAuthKey(String key, EMCUserData userData);
+
+    public java.util.List getActiveModuleList(emc.framework.EMCUserData userData);
+
+   
+}

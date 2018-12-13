@@ -1,0 +1,190 @@
+/* 
+ * Usertable.java
+ *
+ * Created on 03 August 2007, 01:56
+ *
+ * To change this template, choose Tools | Template Manager
+ * and open the template in the editor.
+ */
+package emc.entity.base;
+
+import emc.datatypes.base.users.PrintReportsToPDF;
+import emc.datatypes.base.users.UserId;
+import emc.datatypes.base.users.UserName;
+import emc.datatypes.base.users.UserPassword;
+import emc.datatypes.base.users.userCompany;
+import emc.datatypes.systemwide.EmailAddress;
+import emc.framework.EMCEntityClass;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+/**
+ * Entity class Usertable
+ * 
+ * @author Marius-Gert Coetzee
+ * @since       1.0
+ * @version     %I%, %G%
+ */
+@Entity
+@Table(name = "BaseUsers", uniqueConstraints = {@UniqueConstraint(columnNames = {"userId", "companyId"})})
+public class Usertable extends EMCEntityClass implements Serializable {
+
+    @Column(name = "userId", nullable = false)
+    private String userId;
+    @Column(name = "userName")
+    private String userName;
+    @Column(name = "userPassword")
+    private String userPassword;
+    @Column(name = "userCompany")
+    private String userCompany;
+    @Column(name = "userEmail")
+    private String userEmail;
+    //Prefrences
+    private boolean promptUpdate = true;
+    private boolean promptDelete = true;
+    private boolean showPersonalSpaceOnOpen = true;
+    private boolean writeLog = false;
+    private String logFileName;
+    private boolean printReportsToPDF;
+    private boolean showImagesOnForm = true;
+    private boolean allowAutoUpdate = false;
+
+    public String getLogFileName() {
+        return logFileName;
+    }
+
+    public void setLogFileName(String logFileName) {
+        this.logFileName = logFileName;
+    }
+
+    public boolean isPrintReportsToPDF() {
+        return printReportsToPDF;
+    }
+
+    public void setPrintReportsToPDF(boolean printReportsToPDF) {
+        this.printReportsToPDF = printReportsToPDF;
+    }
+
+    public boolean isPromptDelete() {
+        return promptDelete;
+    }
+
+    public void setPromptDelete(boolean promptDelete) {
+        this.promptDelete = promptDelete;
+    }
+
+    public boolean isPromptUpdate() {
+        return promptUpdate;
+    }
+
+    public void setPromptUpdate(boolean promptUpdate) {
+        this.promptUpdate = promptUpdate;
+    }
+
+    public boolean isShowPersonalSpaceOnOpen() {
+        return showPersonalSpaceOnOpen;
+    }
+
+    public void setShowPersonalSpaceOnOpen(boolean showPersonalSpaceOnOpen) {
+        this.showPersonalSpaceOnOpen = showPersonalSpaceOnOpen;
+    }
+
+    public String getUserCompany() {
+        return userCompany;
+    }
+
+    public void setUserCompany(String userCompany) {
+        this.userCompany = userCompany;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public boolean isWriteLog() {
+        return writeLog;
+    }
+
+    public void setWriteLog(boolean writeLog) {
+        this.writeLog = writeLog;
+    }
+
+    public boolean isShowImagesOnForm() {
+        return showImagesOnForm;
+    }
+
+    public void setShowImagesOnForm(boolean showImagesOnForm) {
+        this.showImagesOnForm = showImagesOnForm;
+    }
+
+    @Override
+    public HashMap buildFieldList() {
+        HashMap toBuild = super.buildFieldList();
+
+        toBuild.put("userId", new UserId());
+        toBuild.put("userCompany", new userCompany());
+        toBuild.put("userEmail", new EmailAddress());
+        toBuild.put("userName", new UserName());
+        toBuild.put("userPassword", new UserPassword());
+        toBuild.put("printReportsToPDF", new PrintReportsToPDF());
+
+        return toBuild;
+    }
+
+    @Override
+    public List<String> buildDefaultLookupFieldList() {
+        List<String> fields = super.buildDefaultLookupFieldList();
+
+        fields.add("userId");
+        fields.add("userName");
+
+        return fields;
+    }
+
+    /**
+     * @return the allowAutoUpdate
+     */
+    public boolean isAllowAutoUpdate() {
+        return allowAutoUpdate;
+    }
+
+    /**
+     * @param allowAutoUpdate the allowAutoUpdate to set
+     */
+    public void setAllowAutoUpdate(boolean allowAutoUpdate) {
+        this.allowAutoUpdate = allowAutoUpdate;
+    }
+}

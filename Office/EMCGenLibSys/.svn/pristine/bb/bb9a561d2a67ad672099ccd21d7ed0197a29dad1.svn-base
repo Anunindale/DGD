@@ -1,0 +1,216 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.enums.base.reporttools;
+
+import emc.entity.base.BaseEmployeeTable;
+import emc.entity.base.BasePostalCodes;
+import emc.entity.base.Usertable;
+import emc.entity.base.dblog.BaseDBLog;
+import emc.entity.developertools.bugtracking.DevBugsTable;
+import emc.entity.inventory.InventoryItemMaster;
+import emc.entity.inventory.dimensions.InventoryItemDimensionCombinations;
+import emc.entity.base.journals.BaseJournalDefinitionTable;
+import emc.entity.debtors.DebtorsBasketMaster;
+import emc.entity.debtors.DebtorsCreditNoteMaster;
+import emc.entity.debtors.DebtorsCustomerInvoiceLines;
+import emc.entity.debtors.DebtorsCustomerInvoiceMaster;
+import emc.entity.debtors.DebtorsTransactions;
+import emc.entity.debtors.journals.DebtorsJournalMaster;
+import emc.entity.hr.HRDiciplaneryActions;
+import emc.entity.inventory.consolidatedpickinglist.InventoryConsolidatedPLLines;
+import emc.entity.inventory.dimensions.InventoryDimension1;
+import emc.entity.inventory.journals.InventoryJournalLines;
+import emc.entity.inventory.journals.InventoryJournalMaster;
+import emc.entity.inventory.transactions.InventorySummary;
+import emc.entity.inventory.transactions.InventoryTransactions;
+import emc.entity.pop.POPPurchaseOrderMaster;
+import emc.entity.inventory.picking.InventoryPickingListLines;
+import emc.entity.inventory.picking.InventoryPickingListMaster;
+import emc.entity.pop.cancelledpurchaseorders.POPCancelledPurchaseOrderLines;
+import emc.entity.pop.posting.POPPurchasePostLines;
+import emc.entity.sop.SOPCustomers;
+import emc.entity.sop.SOPPriceAuditTrail;
+import emc.entity.sop.SOPSalesOrderMaster;
+import emc.entity.trec.TRECTrecCardsLines;
+import emc.reporttools.ReportEnumInterface;
+import emc.entity.gl.GLChartOfAccounts;
+import emc.entity.gl.journals.GLJournalMaster;
+import emc.entity.inventory.InventoryBatchConsolidationMaster;
+import emc.entity.pop.journals.POPSupplierReceivedJournalLines;
+import emc.entity.sop.SOPSalesRepCommission;
+import emc.entity.trec.TRECCargoCheckMaster;
+import emc.entity.trec.TRECPhrases;
+
+/**
+ *
+ * @author riaan
+ */
+public enum EnumReports implements ReportEnumInterface {
+
+    //DIRECTIONS
+    //FROM_CLIENT(-1, "FROM_CLIENT", null, null),
+    //FROM_SERVER(-2, "FROM_SERVER", null, null),
+    //Base
+    BASE_POSTALCODES(0, "BASE_POSTALCODES", BasePostalCodes.class.getName(), null),
+    BASE_USERLIST(1, "BASE_USERLIST", Usertable.class.getName(), null),
+    BASE_PERMISSION_INFO(2, "BASE_PERMISSION_INFO", Usertable.class.getName(), null),
+    BASE_USER_PERMISSIONS(3, "BASE_USER_PERMISSIONS", Usertable.class.getName(), "userId"),
+    BASE_DB_LOG_GENERIC(4, "BASE_DB_LOG_GENERIC", BaseDBLog.class.getName(), null),
+    PRINT_RECORDS_PER_TABLE(5, "PRINT_RECORDS_PER_TABLE", BaseEmployeeTable.class.getName(), null),
+    BASE_TASKSHEETS_REPORT(6, "BASE_TASKSHEETS_REPORT", DevBugsTable.class.getName(), null),
+    //Inventory
+    INVENTORY_ITEMLIST(200, "INVENTORY_ITEMLIST", InventoryItemMaster.class.getName(), null),
+    INVENTORY_ONHAND(201, "INVENTORY_ONHAND", InventorySummary.class.getName(), null),
+    INVENTORY_STOCK_JOURNALS(202, "INVENTORY_STOCK_JOURNALS", InventoryJournalMaster.class.getName(), "journalNumber"),
+    INVENTORY_PICKING_LIST(203, "INVENTORY_PICKING_LIST", InventoryPickingListLines.class.getName(), null),
+    INVENTORY_BELOW_MINIMUM(204, "INVENTORY_BELOW_MINIMUM", InventoryItemDimensionCombinations.class.getName(), null),
+    INVENTORY_STOCK_VALUATION(205, "INVENTORY_STOCK_VALUATION", InventorySummary.class.getName(), null),
+    INVENTORY_PICKING_LIST_SUMMARY_SUMMARY(206, "INVENTORY_PICKING_LIST_SUMMARY_SUMMARY", InventoryPickingListLines.class.getName(), null),
+    INVENTORY_PICKING_LIST_SUMMARY(207, "INVENTORY_PICKING_LIST_SUMMARY_SUMMARY", InventoryPickingListLines.class.getName(), null),
+    INVENTORY_STOCK_BY_LOCATION(208, "INVENTORY_STOCK_BY_LOCATION", InventorySummary.class.getName(), null),
+    INVENTORY_MOVEMENT_JOURNAL_SUMMARY(209, "INVENTORY_MOVEMENT_JOURNAL_SUMMARY", InventoryJournalLines.class.getName(), null),
+    INVENTORY_QC_STOCK(210, "INVENTORY_QC_STOCK", InventorySummary.class.getName(), null),
+    INVENTORY_MOVEMENT_JOURNAL_DETAIL(211, "INVENTORY_MOVEMENT_JOURNAL_DETAIL", InventoryJournalLines.class.getName(), null),
+    INVENTORY_AGEING(212, "INVENTORY_AGEING", InventoryItemMaster.class.getName(), null),
+    INVENTORY_ITEM_DIMENSIONS(213, "INVENTORY_ITEM_DIMENSIONS", InventoryItemDimensionCombinations.class.getName(), "recordID"),
+    INVENTORY_STOCK_TAKE_VARIANCE(214, "INVENTORY_STOCK_TAKE_VARIANCE", BaseJournalDefinitionTable.class.getName(), null),
+    INVENTORY_STOCK_TAKE(215, "INVENTORY_STOCK_TAKE", BaseJournalDefinitionTable.class.getName(), null),
+    INVENTORY_STOCK_TAKE_RECOUNt(216, "INVENTORY_STOCK_TAKE_RECOUNt", BaseJournalDefinitionTable.class.getName(), null),
+    INVENTORY_AGEING_DETAIL(219, "INVENTORY_AGEING_DETAIL", InventoryItemMaster.class.getName(), null),
+    INVENTORY_STOCK_USAGE(220, "INVENTORY_STOCK_USAGE", InventoryItemDimensionCombinations.class.getName(), null),
+    INVENTORY_DIMENSION1(221, "INVENTORY_DIMENSION1", InventoryDimension1.class.getName(), null),
+    INVENTORY_CONSOLIDATED_PICKING_LIST(222, "INVENTORY_CONSOLIDATED_PICKING_LIST", InventoryConsolidatedPLLines.class.getName(), null),
+    INVENTORY_DELIVERY_INSTRUCTIONS(223, "INVENTORY_DELIVERY_INSTRUCTIONS", InventoryPickingListMaster.class.getName(), null),
+    INVENTORY_OPEN_DISPATCH_ORDERS(224, "INVENTORY_OPEN_DISPATCH_ORDERS", InventoryPickingListMaster.class.getName(), null),
+    INVENTORY_WITH_NO_DEMAND(225, "INVENTORY_WITH_NO_DEMAND", InventoryItemMaster.class.getName(), null),
+    INVENTORY_CAGE_ANALYSIS(226, "INVENTORY_CAGE_ANALYSIS", InventoryItemDimensionCombinations.class.getName(), null),
+    INVENTORY_STOCK_TAKE_VARIANCE_BY_WAREHOUSE(227, "INVENTORY_STOCK_TAKE_VARIANCE_BY_WAREHOUSE", BaseJournalDefinitionTable.class.getName(), null),
+    INVENTORY_FACTORY_SHOP_REPORT(228, "INVENTORY_FACTORY_SHOP_REPORT", InventoryItemMaster.class.getName(), null),
+    INVENTORY_AGEING_FULL_DETAIL(229, "INVENTORY_AGEING_FULL_DETAIL", InventoryItemMaster.class.getName(), null),
+    INVENTORY_BATCH_CONSOLIDATION_PICKING_LIST(230, "INVENTORY_BATCH_CONSOLIDATION_PICKING_LIST", InventoryBatchConsolidationMaster.class.getName(), null),
+    INVENTORY_WAREHOUSE_LOCATION_TRANSFER(231, "INVENTORY_WAREHOUSE_LOCATION_TRANSFER", InventoryJournalMaster.class.getName(), null),
+    //POP
+    POP_OUTSTANDINGPO(600, "POP_OUTSTANDINGPO", POPPurchaseOrderMaster.class.getName(), "recordID"),
+    //Main column here is used to prevent duplicates in join query
+    POP_GOODSRECEIVED(601, "POP_GOODSRECEIVED", InventoryTransactions.class.getName(), "recordID"),
+    PURCHASE_ORDER(602, "PURCHASE_ORDER", null, null),
+    RECEIVING_LIST(603, "RECEIVING_LIST", null, null),
+    GOODS_RECEIVED_NOTE(604, "GOODS_RECEIVED_NOTE", null, null),
+    BLANKET_ORDER(605, "BLANKET_ORDER", null, null),
+    CANCELLED_PO(606, "CANCELLED_PO", POPCancelledPurchaseOrderLines.class.getName(), null),
+    SERVICES_RECEIVED(607, "SERVICES_RECEIVED", POPSupplierReceivedJournalLines.class.getName(), null),
+    GOODS_RECEIVE_REPORT(612, "GOODS_RECEIVE_REPORT", POPSupplierReceivedJournalLines.class.getName(), null),
+    //Labels
+    POP_LABELS(606, "POP_LABELS", null, null),
+    POP_CRATE_LABELS(610, "POP_CRATE_LABELS", POPPurchasePostLines.class.getName(), null),
+    POP_FG_BOX_LABELS(611, "POP_FG_BOX_LABELS", POPPurchasePostLines.class.getName(), null),
+    POP_PRICE_VARIANCE(607, "POP_PRICE_VARIANCE", POPPurchaseOrderMaster.class.getName(), "purchaseOrderId"),
+    POP_GOODSRETURNED(608, "POP_GOODSRETURNED", InventoryTransactions.class.getName(), "recordID"),
+    POP_MILL_PURCHASE(609, "POP_MILL_PURCHASE", POPPurchaseOrderMaster.class.getName(), null),
+    //Developer Tools
+    DEV_TOOLS_BUG_LIST(1600, "DEV_TOOLS_BUG_LIST", DevBugsTable.class.getName(), null),
+    DEV_TOOLS_TIME_SHEET(1601, "DEV_TOOLS_TIME_SHEET", DevBugsTable.class.getName(), null),
+    DEV_REQUIREMENTS_SHEET(1602, "DEV_REQUIREMENTS_SHEET", DevBugsTable.class.getName(), null),
+    DEV_DEVELOPMENT_SUMMARY(1603, "DEV_DEVELOPMENT_SUMMARY", DevBugsTable.class.getName(), null),
+    DEV_TOOLS_BUG_LIST_NO_TIMESHEET(1604, "DEV_TOOLS_BUG_LIST_NO_TIMESHEET", DevBugsTable.class.getName(), null),
+    //TREC
+    TREC_REPORT(1800, "TREC_REPORT", TRECTrecCardsLines.class.getName(), null),
+    TREC_LOW_HAZARD_REPORT(1801, "TREC_LOW_HAZARD_REPORT", TRECTrecCardsLines.class.getName(), null),
+    PRINT_CARGO_CHECK_REPORT(5200, "PRINT_CARGO_CHECK_REPORT", TRECCargoCheckMaster.class.getName(), null),
+    PRINT_ERG_PHRASES_REPORT(52200, "PRINT_ERG_PHRASES_REPORT", TRECPhrases.class.getName(), null),
+    TREC_TEMPLATE_REPORT(1802, "TREC_TEMPLATE_REPORT", TRECTrecCardsLines.class.getName(), null),
+    //Debtors
+    DEBTORS_CUSTOMER_AGING_SUMMARY(2400, "DEBTORS_CUSTOMER_AGING_SUMMARY", SOPCustomers.class.getName(), "customerId"),
+    DEBTORS_CUSTOMER_AGING_DETAILED(2401, "DEBTORS_CUSTOMER_AGING_DETAILED", SOPCustomers.class.getName(), "customerId"),
+    DEBTORS_CUSTOMER_STATEMENT(2402, "DEBTORS_CUSTOMER_STATEMENT", SOPCustomers.class.getName(), "customerId"),
+    DEBTORS_CUSTOMER_INVOICE(2403, "DEBTORS_CUSTOMER_INVOICE", DebtorsCustomerInvoiceMaster.class.getName(), "invCNNumber"),
+    DEBTORS_CREDIT_NOTE(2412, "DEBTORS_CREDIT NOTE", DebtorsCreditNoteMaster.class.getName(), "invCNNumber"),
+    DEBTORS_TRANSACTION_TOTALS(2404, "DEBTORS_TRANSACTION_TOTALS", DebtorsTransactions.class.getName(), null),
+    DEBTORS_BALANCE_REPORT(2405, "DEBTORS_BALANCE_REPORT", DebtorsTransactions.class.getName(), null),
+    DEBTORS_JOURNAL_REPORT(2406, "DEBTORS_JOURNAL_REPORT", DebtorsJournalMaster.class.getName(), null),
+    DEBTORS_ROYALTY_REPORT(2407, "DEBTORS_ROYALTY_REPORT", DebtorsCustomerInvoiceLines.class.getName(), null),
+    DEBTORS_JOURNAL_TRANSACTION_TOTALS(2407, "DEBTORS_JOURNAL_TRANSACTION_TOTALS", DebtorsTransactions.class.getName(), null),
+    DEBTORS_DELIVERY_NOTE(2408, "DEBTORS_DELIVERY_NOTE", DebtorsCustomerInvoiceMaster.class.getName(), "invCNNumber"),
+    DEBTORS_AGE_ANALYIS_BY_REP(2409, "DEBTORS_AGE_ANALYIS_BY_REP", BaseEmployeeTable.class.getName(), "employeeNumber"),
+    DEBTORS_INVOICE_REGISTER(2410, "DEBTORS_INVOICE_REGISTER", DebtorsCustomerInvoiceMaster.class.getName(), null),
+    DEBTORS_INVOICE_REGISTER_DETAIL(2411, "DEBTORS_INVOICE_REGISTER_DETAIL", DebtorsCustomerInvoiceMaster.class.getName(), null),
+    DEBTORS_CN_FINISHED_GOODS_INSTRUCTIONS(1030, "DEBTORS_CN_FINISHED_GOODS_INSTRUCTIONS", DebtorsCreditNoteMaster.class.getName(), null),
+    DEBTORS_CN_FINISHED_GOODS_BOX_LABELS(1032, "DEBTORS_CN_FINISHED_GOODS_BOX_LABELS", DebtorsCreditNoteMaster.class.getName(), null),
+    //SOP
+    SOP_OUTSTANDING_ORDERS(2600, "SOP_OUTSTANDING_ORDERS", SOPSalesOrderMaster.class.getName(), null),
+    SOP_OVERDUE_ORDERS(2601, "SOP_OVERDUE_ORDERS", SOPSalesOrderMaster.class.getName(), null),
+    SOP_CONTROL_SHEET(2602, "SOP_CONTROL_SHEET", SOPSalesOrderMaster.class.getName(), null),
+    SOP_SALES_ORDERS(2603, "SOP_SALES_ORDERS", SOPSalesOrderMaster.class.getName(), null),
+    SOP_DETAILED_COMMISSION(2604, "SOP_DETAILED_COMMISSION", DebtorsTransactions.class.getName(), null),
+    SOP_COMMISSION_SUMMARY(2605, "SOP_COMMISSION_SUMMARY", DebtorsTransactions.class.getName(), null),
+    SOP_COMMISSION(2606, "SOP_COMMISSION", DebtorsTransactions.class.getName(), null),
+    SOP_OPEN_SALES_ORDERS(2607, "SOP_OPEN_SALES_ORDERS", SOPSalesOrderMaster.class.getName(), null),
+    SOP_STOCK_AVAILABLE_FOR_SALE(2608, "SOP_STOCK_AVAILABLE_FOR_SALE", InventorySummary.class.getName(), null),
+    SOP_CUSTOMER_LABLES(2610, "SOP_CUSTOMER_LABLES", SOPCustomers.class.getName(), null),
+    SOP_PRICE_AUDIT_TRAIL_PRICE_CHANGE(2611, "SOP_PRICE_AUDIT_TRAIL_PRICE_CHANGE", SOPPriceAuditTrail.class.getName(), null),
+    SOP_PRICE_AUDIT_TRAIL_APPROVAL(2612, "SOP_PRICE_AUDIT_TRAIL_APPROVAL", SOPPriceAuditTrail.class.getName(), null),
+    SOP_ORDER_SCHEDULE(2613, "SOP_ORDER_SCHEDULE", SOPSalesOrderMaster.class.getName(), null),
+    SOP_ORDER_SCHEDULE_BY_ITEM(2613, "SOP_ORDER_SCHEDULE_BY_ITEM", SOPSalesOrderMaster.class.getName(), null),
+    SOP_ROLLING_SALES(2614, "SOP_ROLLING_SALES", InventoryItemMaster.class.getName(), null),
+    PRINT_SOPCUSTOMER_BY_SALES_REP_REPORT(2616, "PRINT_SOPCUSTOMER_BY_SALES_REP_REPORT", SOPSalesRepCommission.class.getName(), null),
+    //HR
+    HR_DISCIPLINARY_ACTION(3000, "HR_DISCIPLINARY_ACTION", HRDiciplaneryActions.class.getName(), null),
+    HR_EMPLOYMENT_SUMMARY(3001, "HR_EMPLOYMENT_SUMMARY", BaseEmployeeTable.class.getName(), null),
+    //GL
+    GL_CHART_OF_ACCOUNTS(3200, "GL CHART OF ACCOUNTS", GLChartOfAccounts.class.getName(), null),
+    GL_JOURNAL_REPORT(3201, "GL_JOURNAL_REPORT", GLJournalMaster.class.getName(), null),
+    
+    PRINTINTSRUCTIONREPORT(3221, "PRINTINSTRUCTIONREPORT",DebtorsBasketMaster.class.getName(), null );
+    //Enum variables
+    final int id;
+    final String label;
+    final String mainEntityClass;
+    final String mainEntityClassMainField;
+
+    /**
+     * Creates a new instance of EnumReports
+     */
+    EnumReports(final int id, final String label, String mainEntityClass, String mainEntityClassMainField) {
+        this.id = id;
+        this.label = label;
+        this.mainEntityClass = mainEntityClass;
+        this.mainEntityClassMainField = mainEntityClassMainField;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return label;
+    }
+
+    public String getMainEntityClass() {
+        return this.mainEntityClass;
+    }
+
+    public String getMainEntityClassMainField() {
+        return this.mainEntityClassMainField;
+    }
+
+    public static EnumReports fromString(final String str) {
+        for (EnumReports e : EnumReports.values()) {
+            if (e.toString().equalsIgnoreCase(str)) {
+                return e;
+            }
+        }
+        return null;
+    }
+
+    public static EnumReports fromId(final int id) {
+        for (EnumReports e : EnumReports.values()) {
+            if (e.id == id) {
+                return e;
+            }
+        }
+        return null;
+    }
+}

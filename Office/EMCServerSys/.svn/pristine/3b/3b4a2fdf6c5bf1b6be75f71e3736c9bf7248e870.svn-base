@@ -1,0 +1,436 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.bus.trec.web;
+
+import emc.bus.debtors.basket.DebtorsBasketLinesLocal;
+import emc.commands.EMCCommands;
+import emc.datatypes.EMCDataType;
+import emc.entity.debtors.DebtorsBasketLines;
+import emc.entity.debtors.DebtorsBasketMaster;
+import emc.entity.debtors.DebtorsCustomerInvoiceLines;
+import emc.entity.debtors.DebtorsCustomerInvoiceMaster;
+import emc.entity.trec.TRECPhrases;
+import emc.entity.trec.TRECTrecCardsLines;
+import emc.enums.base.reporttools.EnumReports;
+import emc.enums.enumPersistOptions;
+import emc.enums.enumQueryTypes;
+import emc.enums.modules.enumEMCModules;
+import emc.framework.EMCBusinessBean;
+import emc.framework.EMCCommandClass;
+import emc.framework.EMCEntityBeanException;
+import emc.framework.EMCQuery;
+import emc.framework.EMCUserData;
+import emc.methods.trec.ServerTRECMethods;
+import emc.reports.trec.treccard.TRECTrecCardDS;
+import emc.reports.trec.treccard.TRECTrecCardLocal;
+import emc.reporttools.EMCReportConfig;
+import emc.tables.EMCTable;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.swing.tree.DefaultMutableTreeNode;
+
+/**
+ *
+ * @author stu
+ */
+@Stateless
+public class TRECWebPrinterLogicBean extends EMCBusinessBean implements TRECWebPrinterLogicBeanLocal {
+
+    @EJB
+    private DebtorsBasketLinesLocal basketLinesBean;
+    @EJB
+    private TRECTrecCardLocal trecCardBean;
+    private TRECTrecWebPrinterDataHelper helper;
+
+    @Override
+    public boolean updateBasketLinesPrintQty(String invoiceId, int printQty, EMCUserData userData) {
+        //update printQty on basket lines
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, DebtorsBasketLines.class);
+        query.addTableAnd(DebtorsBasketMaster.class.getName(), "basketId", DebtorsBasketLines.class.getName(), "basketId");
+        query.addTableAnd(TRECTrecCardsLines.class.getName(), "trecCardLink", DebtorsBasketLines.class.getName(), "recordID");
+        query.addAnd("invoiceId", invoiceId, DebtorsBasketMaster.class.getName());
+        DebtorsBasketLines line = (DebtorsBasketLines) util.executeSingleResultQuery(query, userData);
+        //update print qty from parameter
+        line.setPrintQty(printQty);
+        //update line
+        try {
+            basketLinesBean.update(line, userData);
+            return true;
+        } catch (EMCEntityBeanException ex) {
+            Logger.getLogger(TRECWebOrderProcessLogicBean.class.getName()).log(Level.SEVERE, "Failed to connect to server try again later", ex);
+        }
+
+        return false;
+
+    }
+
+    @Override
+    public List getPhrasesString(EMCUserData userData) {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.addField("phraseId");//0 as PhraseID
+        query.addCustomField("CONCAT(parentClass,typeId,sortNumber)", false);//1 as PhraseCode
+        query.addFieldDecrypt("phrase", "tr3ck3y");//2 as Phrase
+        query.addField("typeId");//3 as typeId
+        query.addOrderBy("phraseId");
+
+        List phrasesListByte = new ArrayList();
+        List phrasesListString = new ArrayList();
+        Object[] newObj = new Object[4];
+        phrasesListByte = util.executeNativeQuery(query, userData);
+        for (Object o : phrasesListByte) {
+            Object[] obj = (Object[]) o;
+            //convert phrase byte to string
+            String str = new String((byte[]) obj[2], StandardCharsets.UTF_8);
+
+            newObj[0] = obj[0];
+            newObj[1] = obj[1];
+            newObj[2] = str;
+            newObj[3] = obj[3];
+
+            phrasesListString.add(newObj);
+        }
+
+        return phrasesListString;
+    }
+
+    /**
+     *
+     * @param invoiceId
+     * @param redLine
+     * @param blackLine
+     * @return
+     */
+    @Override
+    public String getTrecCardDataset(String invoiceId, String redLine, String blackLine, EMCUserData userData) {
+
+        Boolean printLines = Boolean.parseBoolean(redLine);
+
+        Map<String, Object> parametersMap = new HashMap<String, Object>();
+        parametersMap.put("printLines", printLines);
+        parametersMap.put("boldExpDate", true);
+        parametersMap.put("clasPicPath", null);
+        parametersMap.put("printHazardZone", null);
+        parametersMap.put("hazardPic1Path", null);
+        parametersMap.put("hazardPic2Path", null);
+
+        //get record id and master id
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, DebtorsBasketMaster.class);
+        query.addTableAnd(DebtorsBasketLines.class.getName(), "basketId", DebtorsBasketMaster.class.getName(), "basketId");
+        query.addTableAnd(TRECTrecCardsLines.class.getName(), "trecCardLink", DebtorsBasketLines.class.getName(), "recordID");
+        query.addAnd("invoiceId", invoiceId, DebtorsBasketMaster.class.getName());
+        query.addField("masterId", TRECTrecCardsLines.class.getName());//0
+        query.addField("recordID", TRECTrecCardsLines.class.getName());//1
+        query.addField("form", TRECTrecCardsLines.class.getName());//2
+        query.addField("colour", TRECTrecCardsLines.class.getName());//3
+        query.addField("odour", TRECTrecCardsLines.class.getName());//4
+
+        Object[] results;
+        results = (Object[]) util.executeSingleResultQuery(query, userData);
+
+        helper = new TRECTrecWebPrinterDataHelper();
+
+        if (results != null && results.length > 0) {
+            helper.setMasterId((String) results[0]);
+            helper.setRecordId( Long.toString((long)results[1]));
+            helper.setForm((String) results[2]);
+            helper.setColour((String) results[3]);
+            helper.setOdour((String) results[4]);
+        } else {
+            //throw exception
+        }
+
+        EMCReportConfig config = new EMCReportConfig(EnumReports.TREC_REPORT, EnumReports.FROM_CLIENT, "Custom", parametersMap);
+
+        query = new EMCQuery(enumQueryTypes.SELECT, TRECTrecCardsLines.class);
+        query.addAnd("masterId", helper.getMasterId());
+        query.addAnd("recordID", helper.getRecordId());
+
+
+        List toSend = new ArrayList();
+        toSend.add(query);
+        toSend.add(query);
+        try {
+            toSend = trecCardBean.getReportResult(toSend, config, userData);
+            if (toSend != null && toSend.size() > 0) {
+                TRECTrecCardDS dataSetDS = new TRECTrecCardDS();
+                dataSetDS = (TRECTrecCardDS) toSend.get(0);
+                String dataString = buildDataString(dataSetDS, redLine, invoiceId, blackLine);
+                return dataString;
+            }
+        } catch (Exception e) {
+            System.out.println("exception " + e);
+        }
+
+
+        return null;
+
+    }
+
+    private String buildDataString(TRECTrecCardDS dataSetDS, String redLine, String invoiceId, String blackLine) {
+        StringBuilder dataSet = null;
+        dataSet.append("<dataSet>");
+
+        if (redLine.equalsIgnoreCase("yes")) {
+            dataSet.append("<table><id>1</id><font /><fsize /><bold /><redline>12,40</redline><blackline /><string /></table>");
+
+        }
+
+        //table info
+        dataSet.append("to <string> ").append(dataSetDS.getUNNumber()).append(" /n</string>");
+        dataSet.append("<block>yes</block> <blockpos /> <blockwidth>60</blockwidth> </table> <table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string>Class</string> <block>yes</block> <blockpos /> <blockwidth>110</blockwidth> </table> <table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> ");
+        dataSet.append(dataSetDS.getChemicalClass());
+        dataSet.append("/n</string> <block>yes</block> <blockpos /> <blockwidth>60</blockwidth> </table> <table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string>Subsidiary risk</string> <block>yes</block> <blockpos /> <blockwidth>110</blockwidth> </table> <table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> ");
+        dataSet.append(dataSetDS.getSubsudiaryRisk());
+        dataSet.append("/n</string> <block>yes</block> <blockpos /> <blockwidth>60</blockwidth> </table> <table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string>Packing Group</string> <block>yes</block> <blockpos /> <blockwidth>110</blockwidth> </table> <table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> ");
+        dataSet.append(dataSetDS.getPackingGroup());
+        dataSet.append("/n </string> <block>yes</block> <blockpos /> <blockwidth>60</blockwidth> </table> <table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string>ERG No.</string> <block>yes</block> <blockpos /> <blockwidth>110</blockwidth> </table> <table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string>");
+        dataSet.append(dataSetDS.getErgNumber());
+        dataSet.append("/n</string> <block>yes</block> <blockpos /> <blockwidth>60</blockwidth> </table>");
+
+        //Heading
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>14</fsize> <bold>Yes</bold> <redline /> <blackline /> <string>TRANSPORT EMERGENCY CARD - Road Transport /n</string> </table>");
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string>In accordance with SANS 10232-4 /n</string> </table>");
+
+        //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+
+        //shipping name
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>PROPER SHIPPING NAME /n</string> </table>");
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold></bold> <redline /> <blackline /> <string>");
+        dataSet.append(dataSetDS.getProperShippingName());
+        dataSet.append("/n</string> </table>");
+
+        //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+
+        //appearance
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>APPEARANCE/n</string> </table>");
+        if (dataSetDS.getChemicalClass().equals("S")) { //??????????????????????????????????????????????????????????????????? TREC TYPE
+            dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold></bold> <redline /> <blackline /> <string>");
+            dataSet.append(dataSetDS.getAppearance());
+            dataSet.append("/n</string> </table>");
+        } else {
+            dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold></bold> <redline /> <blackline /> <string>");
+            dataSet.append(helper.getForm());
+            dataSet.append("; ");
+            dataSet.append(helper.getColour());
+            dataSet.append("; ");
+            dataSet.append(helper.getOdour());
+            dataSet.append("; ");
+            if ((dataSet.substring(dataSet.length() - 2, 2).equals("; "))) {
+                String dataSetCopy = dataSet.substring(0, dataSet.length() - 2);
+                dataSet.setLength(0);
+                dataSet.append(dataSetCopy);
+            } else {
+                dataSet.append("Not Specified");
+            }
+
+            dataSet.append(" /n</string> </table>");
+        }
+
+        //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+
+        //danger
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>DANGER/n</string> </table>");
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold></bold> <redline /> <blackline /> <string>");
+        //create phrases string
+        String hPhrases = dataSetDS.getDanger().replace("&#9679", "/n"); 
+        dataSet.append(hPhrases);
+        dataSet.append("</string></table>");
+
+        //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        
+        //personal equipment        
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>PERSONAL PROTECTIVE EQUIPMENT/n</string> </table>");
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold></bold> <redline /> <blackline /> <string>");
+        String pPhrases = dataSetDS.getPersonalProtectiveEquipment().replace("&#9679", "/n"); 
+        dataSet.append("</string></table>");
+        
+        //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        
+        //emergency equipment
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>EMERGENCY RESPONSE EQUIPMENT/n</string> </table>");
+        String qPhrases = dataSetDS.getEmergencyResponseEquipment().replace("&#9679", "/n"); 
+        dataSet.append("</string></table>");
+        
+        //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        
+        //BLACK line
+        if(blackLine.equalsIgnoreCase("yes")){
+            dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline>5</blackline> <string></string> </table>");
+            dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        }
+        
+        //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        
+        //drivers first actions
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>DRIVER FIRST ACTIONS - Only if it can be carried out without personal risk/n</string> </table>");
+        String dPhrases = dataSetDS.getDriverFirstAction().replace("&#9679", "/n"); 
+        dataSet.append("</string></table>");
+        
+        //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        
+        //drivers special actions
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>DRIVER SPECIAL/ADDITIONAL ACTIONS - Only if it can be carried out without personal risk /n</string> </table>");
+        String sPhrases = dataSetDS.getDriverAdditionalAction().replace("&#9679", "/n"); 
+        dataSet.append("</string></table>");
+        
+        //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+                
+        //drivers fire actions
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>DRIVER ACTIONS IN CASE OF FIRE - Only if it can be carried out without personal risk /n</string> </table>");
+        String fPhrases = dataSetDS.getDriverFireAction().replace("&#9679", "/n"); 
+        dataSet.append("</string></table>");
+        
+         //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+                
+         //BLACK line
+        if(blackLine.equalsIgnoreCase("yes")){
+            dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline>5</blackline> <string></string> </table>");
+            dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        }
+        
+        //first aid
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>FIRST AID/n</string> </table>");
+        String aPhrases = dataSetDS.getFirstAid().replace("&#9679", "/n"); 
+        dataSet.append("</string></table>");
+        
+         //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        
+          //BLACK line
+        if(blackLine.equalsIgnoreCase("yes")){
+            dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline>5</blackline> <string></string> </table>");
+            dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        }
+        
+        //special info for emergency services
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>SPECIAL INFORMATION FOR EMERGENCY SERVICES/n</string> </table>");
+        String ePhrases = dataSetDS.getInfoForEmergencyServices().replace("&#9679", "/n"); 
+        dataSet.append("</string></table>");
+        
+         //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        
+          //BLACK line
+        if(blackLine.equalsIgnoreCase("yes")){
+            dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline>5</blackline> <string></string> </table>");
+            dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        }
+        
+        //additional information
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>ADDITIONAL INFORMATION/n</string> </table>");
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold></bold> <redline /> <blackline /> <string>");
+        dataSet.append(dataSetDS.getAdditionalInfo());
+        dataSet.append(" /n</string> </table>");
+        
+         //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        
+        if(!dataSetDS.getTradeName().isEmpty()){
+            
+        }
+        
+        //trade name
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>TRADE NAME /n</string> </table>");
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold></bold> <redline /> <blackline /> <string>");
+        dataSet.append(dataSetDS.getTradeName());
+        dataSet.append(" /n</string></table>");
+         //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        
+        //emeregency telephone
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>EMERGENCY TELEPHONE NUMBERS </string> </table>");
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold></bold> <redline /> <blackline /> <string>");
+        dataSet.append(dataSetDS.getEmergencyPhoneNumber());
+        dataSet.append("/n </string> </table>");
+         //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        
+        //prepared by
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold>yes</bold> <redline /> <blackline /> <string>PREPARED BY ");
+        dataSet.append(dataSetDS.getPreparedBy());
+        dataSet.append(" /n</string> </table>");
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold></bold> <redline /> <blackline /> <string>from the best knowledge currently available; no guarantee is provided\t\t Date: ");
+        dataSet.append(dataSetDS.getDatePrinted()); //???????????????????????????????/ created date?
+        dataSet.append(" /nthat the information is sufficient or correct under all circumstances. \t        Reference: ");
+        dataSet.append(dataSetDS.getChemicalClass());//????????????????????????????? chemical id
+        dataSet.append("-");
+        dataSet.append(dataSetDS.getUNNumber());
+        dataSet.append("-");
+        //phrasesRefNum????????????????????????????
+        dataSet.append("</string> </table>");
+        
+         //blank line
+        dataSet.append("<table> <id>0</id> <font>Arial</font> <fsize>10</fsize> <bold /> <redline /> <blackline /> <string> /n </string> </table>");
+        
+        //trec data ref commented out?????
+        
+        
+        
+        dataSet.append("</dataSet>");
+        
+
+
+
+        return dataSet.toString();
+    }
+
+    @Override
+    public Collection getDataInRange(Class type, EMCUserData emcud, int i, int i1) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Object insert(Object o, EMCUserData emcud) throws EMCEntityBeanException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Object delete(Object o, EMCUserData emcud) throws EMCEntityBeanException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String getNumRows(Class type, EMCUserData emcud) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Object update(Object o, EMCUserData emcud) throws EMCEntityBeanException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Object validateField(String string, Object o, EMCUserData emcud) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public DefaultMutableTreeNode testRelations(enumPersistOptions po, EMCTable emct, EMCUserData emcud) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean populateNumberSequenceField(Object o, String string, EMCDataType emcdt, EMCUserData emcud) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+}

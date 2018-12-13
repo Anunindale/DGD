@@ -1,0 +1,297 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.forms.sop.display.customers.resources;
+
+import emc.app.components.dialogs.EMCDialogFactory;
+import emc.app.components.emctable.emcDataRelationManagerUpdate;
+import emc.app.components.emctable.emcGenericDataSourceUpdate;
+import emc.app.util.utilFunctions;
+import emc.app.wsmanager.EMCWSManager;
+import emc.entity.debtors.DebtorsPostDatedPayment;
+import emc.entity.debtors.DebtorsTransactions;
+import emc.entity.sop.SOPCustomers;
+import emc.entity.sop.SOPDiscountSetup;
+import emc.entity.sop.SOPParameters;
+import emc.entity.sop.SOPPriceArangements;
+import emc.entity.sop.SOPSalesOrderMaster;
+import emc.entity.sop.SOPSalesRepCommission;
+import emc.enums.emcquery.EMCQueryBracketConditions;
+import emc.enums.emcquery.EMCQueryConditions;
+import emc.enums.enumQueryTypes;
+import emc.enums.sop.commission.SOPCommissionTypes;
+import emc.enums.sop.discountsetup.CustomerSelectionType;
+import emc.enums.sop.pricearangement.PricingCustomerType;
+import emc.enums.sop.salesorders.SalesOrderStatus;
+import emc.framework.EMCCommandClass;
+import emc.framework.EMCQuery;
+import emc.framework.EMCUserData;
+import emc.functions.Functions;
+import emc.methods.sop.ServerSOPMethods;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import javax.swing.JOptionPane;
+
+/**
+ * @description : Data relation manager for the customer form.
+ *
+ * @date        : 10 Jun 2010
+ *
+ * @author      : Riaan Nel
+ *
+ * @version     : 1.0
+ */
+public class CustomerDRM extends emcDataRelationManagerUpdate {
+
+    /** Creates a new instance of CustomerDRM */
+    public CustomerDRM(emcGenericDataSourceUpdate tableDataSource, EMCUserData userData) {
+        super(tableDataSource, userData);
+    }
+
+    @Override
+    public EMCUserData generateRelatedFormUserData(EMCUserData formUserData, int Index) {
+        formUserData = super.generateRelatedFormUserData(formUserData, Index);
+
+        switch (Index) {
+            //Customer balance form
+            case 1:
+                formUserData.setUserData(3, this.getLastFieldValueAt("customerId"));
+                formUserData.setUserData(4, this.getLastFieldValueAt("customerName"));
+                formUserData.setUserData(5, this.getLastFieldValueAt("creaditLimit"));
+                break;
+
+            //Open Sales Orders
+            case 2:
+                EMCQuery salesOrderQuery = new EMCQuery(enumQueryTypes.SELECT, SOPSalesOrderMaster.class);
+                salesOrderQuery.addAnd("customerNo", this.getLastFieldValueAt("customerId"));
+                salesOrderQuery.addAnd("salsesOrderStatus", SalesOrderStatus.INVOICED.toString(), EMCQueryConditions.NOT);
+
+                formUserData.setUserData(0, salesOrderQuery);
+                //Indicate that Sales Order Form should not be editable.
+                formUserData.setUserData(3, false);
+
+                break;
+
+            //All Sales Orders
+            case 3:
+                salesOrderQuery = new EMCQuery(enumQueryTypes.SELECT, SOPSalesOrderMaster.class);
+                salesOrderQuery.addAnd("customerNo", this.getLastFieldValueAt("customerId"));
+
+                formUserData.setUserData(0, salesOrderQuery);
+                //Indicate that Sales Order Form should not be editable.
+                formUserData.setUserData(3, false);
+
+                break;
+
+            //Transactions
+            case 4:
+                EMCQuery transactionQuery = new EMCQuery(enumQueryTypes.SELECT, DebtorsTransactions.class);
+                transactionQuery.addAnd("customerId", this.getLastFieldValueAt("customerId"));
+                transactionQuery.addAnd("balance", 0, EMCQueryConditions.NOT);
+
+                formUserData.setUserData(0, transactionQuery);
+                //Show allocate and deallocate buttons.
+                formUserData.setUserData(2, true);
+
+                break;
+            //Price Arangement
+            case 6:
+                EMCQuery priceQuery = new EMCQuery(enumQueryTypes.SELECT, SOPPriceArangements.class);
+                priceQuery.addAnd("customerId", this.getLastFieldValueAt("customerId"));
+                priceQuery.addAnd("toDate", Functions.nowDate(), EMCQueryConditions.GREATER_THAN_EQ);
+                priceQuery.addOrderBy("customerType");
+                priceQuery.addOrderBy("customerId");
+                priceQuery.addOrderBy("priceGroup");
+                priceQuery.addOrderBy("itemId");
+                priceQuery.addOrderBy("dimension1SortCode");
+                priceQuery.addOrderBy("dimension3SortCode");
+                priceQuery.addOrderBy("dimension2SortCode");
+                priceQuery.addOrderBy("fromDate");
+                priceQuery.addOrderBy("toDate");
+                priceQuery.addOrderBy("quantity");
+                ArrayList udList = new ArrayList();
+                udList.add(0, priceQuery);
+                udList.add(1, "");
+                udList.add(2, this.getLastFieldValueAt("customerName"));
+                udList.add(3, this.getLastFieldValueAt("customerId"));
+                formUserData.setUserData(udList);
+                break;
+            case 7:
+                priceQuery = new EMCQuery(enumQueryTypes.SELECT, SOPPriceArangements.class);
+                priceQuery.openConditionBracket(EMCQueryBracketConditions.NONE);
+                //Customer Id
+                priceQuery.addAnd("customerId", this.getLastFieldValueAt("customerId"));
+                //Price group.  Only include this if it has a value.
+                if (!Functions.checkBlank(this.getLastFieldValueAt("priceGroup"))) {
+                    priceQuery.addOr("priceGroup", this.getLastFieldValueAt("priceGroup"));
+                }
+                //All
+                priceQuery.addOr("customerType", PricingCustomerType.ALL.toString());
+                priceQuery.closeConditionBracket();
+                priceQuery.addAnd("toDate", Functions.nowDate(), EMCQueryConditions.GREATER_THAN_EQ);
+                priceQuery.addOrderBy("customerType");
+                priceQuery.addOrderBy("customerId");
+                priceQuery.addOrderBy("priceGroup");
+                priceQuery.addOrderBy("itemId");
+                priceQuery.addOrderBy("dimension1SortCode");
+                priceQuery.addOrderBy("dimension3SortCode");
+                priceQuery.addOrderBy("dimension2SortCode");
+                priceQuery.addOrderBy("fromDate");
+                priceQuery.addOrderBy("toDate");
+                priceQuery.addOrderBy("quantity");
+
+                udList = new ArrayList();
+                udList.add(0, priceQuery);
+                formUserData.setUserData(udList);
+                break;
+            case 8:
+                //Post Dated Payments
+                EMCQuery postDatedPaymentQuery = new EMCQuery(enumQueryTypes.SELECT, DebtorsPostDatedPayment.class);
+                postDatedPaymentQuery.addAnd("customer", this.getLastFieldValueAt("customerId"));
+                postDatedPaymentQuery.addAnd("processed", false);
+
+                formUserData.setUserData(0, postDatedPaymentQuery);
+
+                break;
+            case 9:
+                //Customer discounts
+                EMCQuery discountQuery = new EMCQuery(enumQueryTypes.SELECT, SOPDiscountSetup.class);
+                discountQuery.addAnd("customerId", this.getLastFieldValueAt("customerId"));
+                formUserData.setUserData(0, discountQuery);
+                break;
+            case 10:
+                //All applicable discounts
+                discountQuery = new EMCQuery(enumQueryTypes.SELECT, SOPDiscountSetup.class);
+                discountQuery.openConditionBracket(EMCQueryBracketConditions.NONE);
+                discountQuery.addAnd("customerId", this.getLastFieldValueAt("customerId"));
+                //Discount group.  Only include this if it has a value.
+                if (!Functions.checkBlank(this.getLastFieldValueAt("discountGroup"))) {
+                    discountQuery.addOr("customerDiscGroup", this.getLastFieldValueAt("discountGroup"));
+                }
+                //All
+                discountQuery.addOr("customerSelectType", CustomerSelectionType.ALL.toString());
+                discountQuery.closeConditionBracket();
+
+                formUserData.setUserData(0, discountQuery);
+                break;
+            //Rep Enquiry
+            case 11:
+                EMCQuery repEnquiryQuery = buildRepEnquiryQuery();
+
+                if (repEnquiryQuery != null) {
+                    formUserData.setUserData(0, repEnquiryQuery);
+                    //Indicates that rep commission form is opened from customer form.
+                    //Used for logic on rep commission form.
+                    formUserData.setUserData(2, true);
+                }
+                break;
+            default:
+                break;
+        }
+
+        return formUserData;
+    }
+
+    private EMCQuery buildRepEnquiryQuery() {
+        EMCUserData userData = getUserData();
+        EMCCommandClass cmd = new EMCCommandClass(ServerSOPMethods.GET_SOPPARAMETER);
+        List paramHolder = new ArrayList();
+        paramHolder = EMCWSManager.executeGenericWS(cmd, paramHolder, userData);
+        if (paramHolder.size() > 1) {
+            SOPParameters param = (SOPParameters) paramHolder.get(1);
+
+            EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, SOPSalesRepCommission.class);
+
+            if (SOPCommissionTypes.fromString((String) this.getLastFieldValueAt("repService")) == SOPCommissionTypes.MULTIPLE) {
+                //Check commission setup.
+                query.openConditionBracket(EMCQueryBracketConditions.NONE);
+
+                boolean foundCommissionSetup = false;
+                String customerClassName = SOPCustomers.class.getName();
+
+                if (!Functions.checkBlank(param.getCustomerItemField1())) {
+                    foundCommissionSetup = true;
+                    if (Functions.checkObjectsEqual(param.getCustomerItemTable1(), customerClassName)) {
+                        query.addAnd("customerItemField1", this.getLastFieldValueAt(param.getCustomerItemField1()));
+                    }
+                }
+
+                if (!Functions.checkBlank(param.getCustomerItemField2())) {
+                    foundCommissionSetup = true;
+                    if (Functions.checkObjectsEqual(param.getCustomerItemTable2(), customerClassName)) {
+                        query.addAnd("customerItemField2", this.getLastFieldValueAt(param.getCustomerItemField2()));
+                    }
+                }
+
+                if (!Functions.checkBlank(param.getCustomerItemField3())) {
+                    foundCommissionSetup = true;
+                    if (Functions.checkObjectsEqual(param.getCustomerItemTable3(), customerClassName)) {
+                        query.addAnd("customerItemField3", this.getLastFieldValueAt(param.getCustomerItemField3()));
+                    }
+                }
+
+                if (!Functions.checkBlank(param.getCustomerItemField4())) {
+                    foundCommissionSetup = true;
+                    if (Functions.checkObjectsEqual(param.getCustomerItemTable4(), customerClassName)) {
+                        query.addAnd("customerItemField4", this.getLastFieldValueAt(param.getCustomerItemField4()));
+                    }
+                }
+
+                if (!Functions.checkBlank(param.getCustomerItemField5())) {
+                    foundCommissionSetup = true;
+                    if (Functions.checkObjectsEqual(param.getCustomerItemTable5(), customerClassName)) {
+                        query.addAnd("customerItemField5", this.getLastFieldValueAt(param.getCustomerItemField5()));
+                    }
+                }
+
+                if (!Functions.checkBlank(param.getCustomerItemField6())) {
+                    foundCommissionSetup = true;
+                    if (Functions.checkObjectsEqual(param.getCustomerItemTable6(), customerClassName)) {
+                        query.addAnd("customerItemField6", this.getLastFieldValueAt(param.getCustomerItemField6()));
+                    }
+                }
+
+                if (!foundCommissionSetup) {
+                    utilFunctions.logMessage(Level.SEVERE, "No commission fields set up.  Cannot open Rep Enquiry.", userData);
+                    return null;
+                }
+                query.closeConditionBracket();
+            } else {
+                //Only use the rep specified on the customer.
+                query.addAnd("repId", this.getLastFieldValueAt("salesRep"));
+            }
+            return query;
+        } else {
+            utilFunctions.logMessage(Level.SEVERE, "Failed to retrieve SOP Parameters.  Cannot open Rep Enquiry.", userData);
+            return null;
+        }
+    }
+
+    @Override
+    public void updatePersist(int rowIndex) {
+        if ((Long) getLastFieldValueAt("recordID") == 0 && Functions.checkBlank(getLastFieldValueAt("invoiceToCustomer"))) {
+            if (EMCDialogFactory.createQuestionDialog(null, "Use Customer as Invoice Customer?", "Do you want to use this customer as its own invoice-to customer?") == JOptionPane.YES_OPTION) {
+                //Indicate that customer should be its own invoice to customer.  Checked on the server.
+                getUserData().setUserData(3, true);
+            } else {
+                //Don't save, user must specify an invoice to customer.
+            }
+        } else {
+            //Clear flag, just in case it was set previously.
+            getUserData().setUserData(3, null);
+        }
+
+        if ((Long) getLastFieldValueAt("recordID") != 0) {
+            if (EMCDialogFactory.createQuestionDialog(null, "Update Debtors?", "Do you want to update existing credit notes and invoices as well?") == JOptionPane.YES_OPTION) {
+                //Indicate that invoices and credit notes should be updated
+                getUserData().setUserData(4, true);
+            } else {
+                getUserData().setUserData(4, false);
+            }
+        }
+
+        super.updatePersist(rowIndex);
+    }
+}

@@ -1,0 +1,44 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.entity.trec;
+
+import emc.framework.EMCEntityClass;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+/**
+ *
+ * @author wikus
+ */
+@Entity
+@Table(name = "TRECParameters", uniqueConstraints = {@UniqueConstraint(columnNames = {"companyId"})})
+public class TRECParameters extends EMCEntityClass {
+
+    private boolean printExpiryDate;
+    private String printHazZone;
+
+    public boolean isPrintExpiryDate() {
+        return printExpiryDate;
+    }
+
+    public void setPrintExpiryDate(boolean printExpiryDate) {
+        this.printExpiryDate = printExpiryDate;
+    }
+
+    /**
+     * @return the printHazZone
+     */
+    public String getPrintHazZone() {
+        return printHazZone;
+    }
+
+    /**
+     * @param printHazZone the printHazZone to set
+     */
+    public void setPrintHazZone(String printHazZone) {
+        this.printHazZone = printHazZone;
+    }
+}

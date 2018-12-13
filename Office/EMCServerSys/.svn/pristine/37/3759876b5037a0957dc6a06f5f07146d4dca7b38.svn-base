@@ -1,0 +1,388 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.reports.trec.customerselection;
+
+import emc.reports.trec.treccard.*;
+import emc.bus.trec.parameters.TRECParametersLocal;
+import emc.bus.trec.phrases.TRECPhrasesLocal;
+import emc.entity.trec.TRECChemicals;
+import emc.entity.trec.TRECChemicalsSuper;
+import emc.entity.trec.TRECClasses;
+import emc.entity.trec.TRECColours;
+import emc.entity.trec.TRECCustomerChemicals;
+import emc.entity.trec.TRECForms;
+import emc.entity.trec.TRECOdours;
+import emc.entity.trec.TRECPhrases;
+import emc.entity.trec.TRECTrecCardsLines;
+import emc.enums.emcquery.EMCQueryBracketConditions;
+import emc.enums.enumQueryTypes;
+import emc.enums.trec.TRECSpecialPrintEnum;
+import emc.enums.trec.TRECTypeEnum;
+import emc.framework.EMCQuery;
+import emc.framework.EMCReportBean;
+import emc.framework.EMCUserData;
+import emc.functions.Functions;
+import emc.helpers.trec.TRECPhraseHelper;
+import java.io.File;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author wikus
+ */
+@Stateless
+public class TRECProducedCardTemplateBean extends EMCReportBean implements TRECProducedCardTemplateLocal {
+
+    @EJB
+    private TRECParametersLocal paramBean;
+    @EJB
+    private TRECPhrasesLocal phrasesBean;
+
+    @Override
+    public List<Object> manipulateQueryResult(List<Object> queryResult, java.util.Map<java.lang.String, java.lang.Object> paramMap, EMCUserData userData) {
+        TRECTrecCardsLines line;
+        TRECProducedCardTemplateDS ds;
+        EMCQuery query;
+        TRECChemicalsSuper chemical;
+        String hPhraseString = null;
+        String pPhraseString = null;
+        String qPhraseString = null;
+        String dPhraseString = null;
+        String sPhraseString = null;
+        String fPhraseString = null;
+        String aPhraseString = null;
+        String ePhraseString = null;
+
+        List<List<TRECPhraseHelper>> AllHelpers = new ArrayList<>();
+
+        Object[] hPhrases = null;
+        Object[] pPhrases = null;
+        Object[] qPhrases = null;
+        Object[] dPhrases = null;
+        Object[] sPhrases = null;
+        Object[] fPhrases = null;
+        Object[] aPhrases = null;
+        Object[] ePhrases = null;
+
+        List dataList = new ArrayList();
+
+
+        List<Object[]> chemicalPhrasesList;
+        Object[] chemicalPhrases;
+
+
+
+
+        boolean printExpiryDate = paramBean.getParameterRecord(userData).isPrintExpiryDate();
+        Date expiryDate = null;
+        if (printExpiryDate) {
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.YEAR, 3);
+            expiryDate = cal.getTime();
+        }
+
+        for (Object o : queryResult) {
+            line = (TRECTrecCardsLines) o;
+
+//           
+            if (line.getCustomerChemical() != 0) {
+                query = new EMCQuery(enumQueryTypes.SELECT, TRECCustomerChemicals.class);
+                query.addAnd("recordID", line.getCustomerChemical());
+
+                chemical = (TRECCustomerChemicals) util.executeSingleResultQuery(query, userData);
+
+            } else {
+                query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+                query.addAnd("unNumber", line.getUnNumber());
+                query.addAnd("shippingName", line.getProperShipping());
+
+                chemical = (TRECChemicals) util.executeSingleResultQuery(query, userData);
+            }
+
+            if (chemical == null) {
+                Logger.getLogger("emc").log(Level.SEVERE, "Failed to get the chemical record.", userData);
+                return new ArrayList<Object>();
+            }
+
+
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+            query.addAnd("unNumber", line.getUnNumber());
+            query.addAnd("shippingName", line.getProperShipping());
+            TRECChemicals chem = (TRECChemicals) util.executeSingleResultQuery(query, userData);
+
+
+
+
+
+
+            /////////////////////////////////////////////////////////////////////////////////////////
+            //get Class
+            EMCQuery classQ = new EMCQuery(enumQueryTypes.SELECT, TRECClasses.class);
+            classQ.addAnd("classId", chemical.getClassId());
+            TRECClasses theClass = (TRECClasses) util.executeSingleResultQuery(classQ, userData);
+            Double qty = 0.0;
+            if (isBlank(line.getPackingGroup()) || line.getPackingGroup().equals("I")) {
+                if (util.compareDouble(chemical.getRisk1(), 0.0) == 0) {
+                    if (theClass != null) {
+                        qty = theClass.getPackGrp1Threshold();
+                    }
+                } else {
+                    qty = chemical.getRisk1();
+                }
+
+
+            } else if (line.getPackingGroup().equals("II")) {
+                if (util.compareDouble(chemical.getRisk2(), 0.0) == 0) {
+                    if (theClass != null) {
+                        qty = theClass.getPackGrp2Threshold();
+                    }
+                } else {
+                    qty = chemical.getRisk2();
+                }
+
+            } else if (line.getPackingGroup().equals("III")) {
+                if (util.compareDouble(chemical.getRisk3(), 0.0) == 0) {
+                    if (theClass != null) {
+                        qty = theClass.getPackGrp3Threshold();
+                    }
+                } else {
+                    qty = chemical.getRisk3();
+                }
+
+            }
+            if (qty < 0) {
+                qty = 0.0;
+            }
+            BigDecimal toRet = util.getBigDecimal(qty, 0);
+
+            /////////////////////////////////////////////////////////////////////////////////
+            //Get Chemical Phrases
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+            query.addAnd("unNumber", line.getUnNumber());
+            query.addAnd("shippingName", line.getProperShipping());
+            query.addFieldDecrypt("hPhrases", "tr3ck3y");
+            query.addFieldDecrypt("pPhrases", "tr3ck3y");
+            query.addFieldDecrypt("qPhrases", "tr3ck3y");
+            query.addFieldDecrypt("dPhrases", "tr3ck3y");
+            query.addFieldDecrypt("sPhrases", "tr3ck3y");
+            query.addFieldDecrypt("fPhrases", "tr3ck3y");
+            query.addFieldDecrypt("aPhrases", "tr3ck3y");
+            query.addFieldDecrypt("ePhrases", "tr3ck3y");
+
+            chemicalPhrasesList = util.executeNativeQuery(query, userData);
+
+
+
+            if (chemicalPhrasesList != null && !chemicalPhrasesList.isEmpty()) {
+
+                List< TRECPhraseHelper> hPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.H.toString(), userData);
+                List< TRECPhraseHelper> pPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.P.toString(), userData);
+                List< TRECPhraseHelper> qPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.Q.toString(), userData);
+                List< TRECPhraseHelper> dPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.D.toString(), userData);
+                List< TRECPhraseHelper> shPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.S.toString(), userData);
+                List< TRECPhraseHelper> fPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.F.toString(), userData);
+                List< TRECPhraseHelper> aPhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.A.toString(), userData);
+                List< TRECPhraseHelper> ePhraseHelpers = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.E.toString(), userData);
+
+
+                AllHelpers.add(hPhraseHelpers);
+                AllHelpers.add(pPhraseHelpers);
+                AllHelpers.add(qPhraseHelpers);
+                AllHelpers.add(dPhraseHelpers);
+                AllHelpers.add(shPhraseHelpers);
+                AllHelpers.add(fPhraseHelpers);
+                AllHelpers.add(aPhraseHelpers);
+                AllHelpers.add(ePhraseHelpers);
+
+                for (List helperList : AllHelpers) {
+                    for (Object phraseHelper : helperList) {
+                        TRECPhraseHelper helper = (TRECPhraseHelper) phraseHelper;
+
+                        ds = new TRECProducedCardTemplateDS();
+                        if (helper.isMandatory()) {
+                            ds.setPrintPhrases(true);
+                            ds.setPhrases(helper.getPhraseDescription());
+                        } else {
+                            ds.setPrintPhrasesNonMondatory(true);
+                            ds.setPhrasesNonMondatory(helper.getPhraseDescription());
+                        }
+
+
+                        String heading = "";
+
+                        if (hPhraseHelpers.contains(helper)) {
+                            heading = "POTENTIAL HAZARD (DANGER)";
+                            ds.setAddInfoHeading2(heading);
+                        }
+                        if (pPhraseHelpers.contains(helper)) {
+                            heading = "PERSONAL PROTECTIVE EQUIPMENT";
+                            ds.setAddInfoHeading2(heading);
+                        }
+                        if (qPhraseHelpers.contains(helper)) {
+                            heading = "DRIVER INTERVENTION EQUIPMENT";
+                            ds.setAddInfoHeading2(heading);
+                        }
+                        if (dPhraseHelpers.contains(helper)) {
+                            heading = "DRIVER FIRST ACTIONS";
+                            ds.setAddInfoHeading2(heading);
+                        }
+                        if (shPhraseHelpers.contains(helper)) {
+                            heading = "DRIVER SPECIAL/ADDITIONAL ACTIONS";
+                            ds.setAddInfoHeading2(heading);
+                        }
+                        if (fPhraseHelpers.contains(helper)) {
+                            heading = "DRIVER ACTIONS IN CASE OF FIRE";
+                            ds.setAddInfoHeading2(heading);
+                        }
+                        if (aPhraseHelpers.contains(helper)) {
+                            heading = "SPECIAL INFORMATION FOR EMERGENCY SERVICES ";
+                            ds.setAddInfoHeading2(heading);
+                        }
+                        if (ePhraseHelpers.contains(helper)) {
+                            heading = "FIRST AID";
+                            ds.setAddInfoHeading2(heading);
+                        }
+
+
+                        ds.setUNNumber(line.getUnNumber());
+                        ds.setPreparedBy(line.getPreparedBy());
+                        ds.setPackingGroup(line.getPackingGroup());
+                        ds.setAppearance(getAppearanceString(line.getForm(), line.getColour(), line.getOdour(), userData));
+                        ds.setEmergencyPhoneNumber(line.getEmergencyNumber());
+                        ds.setAdditionalInfo(isBlank(line.getAdditionalInfo()) ? "" : line.getAdditionalInfo().replaceAll("\n", "<br />"));
+
+//            if (printExpiryDate) {
+//                ds.setAdditionalInfo((isBlank(ds.getAdditionalInfo()) ? "" : ds.getAdditionalInfo() + "<br /><br />") + (printExpiryDateBold ? "<b>" : "") + "Expiry Date: " + Functions.date2String(expiryDate, "yyyy-MM-dd") + (printExpiryDateBold ? "</b>" : ""));
+//            }
+                        //Chemical
+
+                        //set additional shipping name on additional info
+                        if (!isBlank(chemical.getAddShippingName())) {
+                            ds.setAdditionalInfo(isBlank(ds.getAdditionalInfo()) == true ? "" + chemical.getAddShippingName() : ds.getAdditionalInfo() + "<br />" + chemical.getAddShippingName());
+                        }
+                        ds.setErgNumber(chemical.getErg());
+                        ds.setChemicalClass(chemical.getClassId());
+                        if (isBlank(line.getPreferredShipName())) {
+                            ds.setProperShippingName(chemical.getShippingName());
+                        } else {
+                            ds.setProperShippingName(line.getPreferredShipName());
+                        }
+                        ds.setSubsudiaryRisk(chemical.getSubsidairyRisk());
+
+                        // Additinal info 
+                        if (!isBlank(line.getTradingName())) {
+                            ds.setAddInfoHeading1("TRADE NAME : " + line.getTradingName() + " <br/>");
+
+                        }
+                        if (!isBlank(chem) && !isBlank(chem.getAddShippingName())) {
+                            if (!isBlank(ds.getAddInfoHeading1())) {
+                                ds.setAddInfoHeading1(ds.getAddInfoHeading1() + chem.getAddShippingName() + " <br/>");
+                            } else {
+                                ds.setAddInfoHeading1(chem.getAddShippingName() + " <br/>");
+                            }
+
+                        }
+                        if (!isBlank(line.getAdditionalInfo())) {
+                            if (!isBlank(ds.getAddInfoHeading1())) {
+                                ds.setAddInfoHeading1(ds.getAddInfoHeading1() + line.getAdditionalInfo() + " <br/>");
+                            } else {
+                                ds.setAddInfoHeading1(line.getAdditionalInfo() + " <br/>");
+                            }
+
+                        }
+
+
+                        //Date Printed
+                        ds.setDatePrinted(Functions.nowDateString("dd-MM-yyyy"));
+                        //Reference Number
+                        ds.setReferenceNumber(chemical.getChemicalId() + "-" + chemical.getUnNumber() + "-" + chemical.getRecordID());
+
+                        dataList.add(ds);
+
+
+
+
+
+                    }
+                }
+
+
+
+            }
+
+
+        }
+        return dataList;
+    }
+
+//    private List buildPhrases(String phraseString, TRECChemicalsSuper chemical, EMCUserData userData) throws IndexOutOfBoundsException {
+//       
+//        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+//        query.openConditionBracket(EMCQueryBracketConditions.NONE);
+//        String[] phraseArray = phraseString.split(";");
+//        for (String phrase : phraseArray) {
+//            query.addOr("phraseId", phrase.trim());
+//        }
+//        query.closeConditionBracket();
+//        query.addFieldDecrypt("phrase", "tr3ck3y");//0
+//        query.addField("parentClass");//1
+//        query.addField("classSpecific");//2
+//        query.addField("addedPhrases");//3
+//        query.addField("standardPhrases");//4
+//
+//        List phrasesList = util.executeNativeQuery(query, userData);
+//
+//        Object[] phrase = null;
+//
+//        StringBuilder phrasesString = new StringBuilder();
+//
+//        for (Object o : phrasesList) {
+//            phrase = (Object[]) o;
+//
+//        }
+//
+//        return phrase;
+//    }
+    private String getAppearanceString(String form, String colour, String odour, EMCUserData userData) {
+        EMCQuery query;
+        String appearance = "";
+        if (!isBlank(form)) {
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECForms.class.getName());
+            query.addAnd("formId", form);
+            TRECForms formRec = (TRECForms) util.executeSingleResultQuery(query, userData);
+            if (formRec != null) {
+                appearance += formRec.getDescription() + (isBlank(colour) && isBlank(odour) ? "" : ";  ");
+            }
+        }
+        if (!isBlank(colour)) {
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECColours.class.getName());
+            query.addAnd("colourId", colour);
+            TRECColours colourRec = (TRECColours) util.executeSingleResultQuery(query, userData);
+            if (colourRec != null) {
+                appearance += colourRec.getDescription() + (isBlank(odour) ? "" : ";  ");
+            }
+        }
+        if (!isBlank(odour)) {
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECOdours.class.getName());
+            query.addAnd("odourId", odour);
+            TRECOdours odourRec = (TRECOdours) util.executeSingleResultQuery(query, userData);
+            if (odourRec != null) {
+                appearance += odourRec.getDescription();
+            }
+        }
+        if (isBlank(appearance)) {
+            appearance = "Not Specified";
+        }
+        return appearance;
+    }
+}

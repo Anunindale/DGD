@@ -1,0 +1,227 @@
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.entity.trec;
+
+import emc.datatypes.EMCDataType;
+import emc.datatypes.systemwide.EmergencyNumber;
+import emc.datatypes.trec.chemicals.foreignkey.UNNumberFK;
+import emc.datatypes.trec.colours.foreignkey.ColourIdFK;
+import emc.datatypes.trec.forms.foreignkey.FormIdFK;
+import emc.datatypes.trec.odour.foreignkey.OdourIdFK;
+import emc.datatypes.trec.preferredshipname.PrefShippingNameFK;
+import emc.datatypes.trec.treccards.AdditionalInfo;
+import emc.datatypes.trec.treccards.ChemicalID;
+import emc.datatypes.trec.treccards.LineId;
+import emc.datatypes.trec.treccards.OwnRef;
+import emc.datatypes.trec.treccards.PreparedBy;
+import emc.datatypes.trec.treccards.ShippingNameFK;
+import emc.datatypes.trec.treccards.ShippingNameFKM;
+import emc.datatypes.trec.treccards.TradingName;
+import emc.datatypes.trec.treccards.foreignkey.MasterIdFK;
+import emc.framework.EMCEntityClass;
+import java.util.Date;
+import java.util.HashMap;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+/**
+ *
+ * @author wikus
+ */
+@Entity
+@Table(name = "TRECTrecCardsLines")
+public class TRECTrecCardsLines extends EMCEntityClass {
+
+    private String masterId;
+    private String lineId;
+    private String unNumber;
+    private String preparedBy;
+    private String tradingName;
+    private String form;
+    private String colour;
+    private String odour;
+    private String emergencyNumber;
+    @Column(length = 2000)
+    private String additionalInfo;
+    private String packingGroup;
+    private String properShipping;
+    private long customerChemical;
+    private boolean approved;
+    @Temporal(TemporalType.DATE)
+    private Date approvedDate;
+    private String approvedBy;
+    private String preferredShipName;
+    private String ownReference;
+
+    public String getProperShipping() {
+        return properShipping;
+    }
+
+    public void setProperShipping(String properShipping) {
+        this.properShipping = properShipping;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    public String getEmergencyNumber() {
+        return emergencyNumber;
+    }
+
+    public void setEmergencyNumber(String emergencyNumber) {
+        this.emergencyNumber = emergencyNumber;
+    }
+
+    public String getForm() {
+        return form;
+    }
+
+    public void setForm(String form) {
+        this.form = form;
+    }
+
+    public String getOdour() {
+        return odour;
+    }
+
+    public void setOdour(String odour) {
+        this.odour = odour;
+    }
+
+    public String getPreparedBy() {
+        return preparedBy;
+    }
+
+    public void setPreparedBy(String preparedBy) {
+        this.preparedBy = preparedBy;
+    }
+
+    public String getTradingName() {
+        return tradingName;
+    }
+
+    public void setTradingName(String tradingName) {
+        this.tradingName = tradingName;
+    }
+
+    public String getUnNumber() {
+        return unNumber;
+    }
+
+    public void setUnNumber(String unNumber) {
+        this.unNumber = unNumber;
+    }
+
+    public String getPackingGroup() {
+        return packingGroup;
+    }
+
+    public void setPackingGroup(String packingGroup) {
+        this.packingGroup = packingGroup;
+    }
+
+    public String getMasterId() {
+        return masterId;
+    }
+
+    public void setMasterId(String masterId) {
+        this.masterId = masterId;
+    }
+
+    public String getLineId() {
+        return lineId;
+    }
+
+    public void setLineId(String lineId) {
+        this.lineId = lineId;
+    }
+
+    public long getCustomerChemical() {
+        return customerChemical;
+    }
+
+    public void setCustomerChemical(long customerChemical) {
+        this.customerChemical = customerChemical;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    public Date getApprovedDate() {
+        return approvedDate;
+    }
+
+    public void setApprovedDate(Date approvedDate) {
+        this.approvedDate = approvedDate;
+    }
+
+    public String getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(String approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public String getPreferredShipName() {
+        return preferredShipName;
+    }
+
+    public void setPreferredShipName(String preferredShipName) {
+        this.preferredShipName = preferredShipName;
+    }
+
+    public String getOwnReference() {
+        return ownReference;
+    }
+
+    public void setOwnReference(String ownReference) {
+        this.ownReference = ownReference;
+    }
+    
+    
+
+    @Override
+    protected HashMap<String, EMCDataType> buildFieldList() {
+        HashMap<String, EMCDataType> toBuild = super.buildFieldList();
+        toBuild.put("masterId", new MasterIdFK());
+        toBuild.put("unNumber", new UNNumberFK());
+        toBuild.put("preparedBy", new PreparedBy());
+        toBuild.put("tradingName", new TradingName());
+        toBuild.put("form", new FormIdFK());
+        toBuild.put("colour", new ColourIdFK());
+        toBuild.put("odour", new OdourIdFK());
+        toBuild.put("emergencyNumber", new EmergencyNumber());
+        toBuild.put("additionalInfo", new AdditionalInfo());
+        toBuild.put("properShipping", new ShippingNameFKM());
+        toBuild.put("lineId", new LineId());
+        toBuild.put("customerChemical", new ChemicalID());
+        toBuild.put("preferredShipName", new PrefShippingNameFK());
+        toBuild.put("ownReference", new OwnRef());
+        return toBuild;
+    }
+}

@@ -1,0 +1,587 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.forms.debtors.display.parameters;
+
+import emc.app.components.EMCFormComboBox;
+import emc.app.components.EMCMapFormComboBox;
+import emc.app.components.documents.EMCDoubleFormDocument;
+import emc.app.components.documents.EMCIntegerFormDocument;
+import emc.app.components.documents.EMCStringFormDocument;
+import emc.app.components.emcJLabel;
+import emc.app.components.emcJPanel;
+import emc.app.components.emcJTabbedPane;
+import emc.app.components.emcJTextArea;
+import emc.app.components.emcJTextField;
+import emc.app.components.emcSetGridBagConstraints;
+import emc.app.components.emctable.ParameterDRM;
+import emc.app.components.emctable.emcGenericDataSourceUpdate;
+import emc.app.components.emctable.emcYesNoComponent;
+import emc.app.components.formlookup.EMCLookupFormComponent;
+import emc.app.components.lookup.factory.EMCDimensionLookupFactory;
+import emc.app.components.lookup.factory.EMCItemLookupFactory;
+import emc.app.components.lookup.popup.EMCLookupPopup;
+import emc.app.scrollabledesktop.BaseInternalFrame;
+import emc.app.wsmanager.EMCWSManager;
+import emc.entity.base.journals.BaseJournalDefinitionTable;
+import emc.entity.creditors.CreditorsSettlementDiscountTerms;
+import emc.entity.creditors.CreditorsTermsOfPayment;
+import emc.entity.debtors.datasource.DebtorsParametersDS;
+import emc.entity.inventory.InventoryItemMaster;
+import emc.entity.inventory.InventoryWarehouse;
+import emc.entity.pop.POPDeliveryModes;
+import emc.entity.pop.POPPriceGroup;
+import emc.entity.sop.SOPCustomerGroup;
+import emc.enums.base.journals.Modules;
+import emc.enums.debtors.parameters.DebtorsAgingMode;
+import emc.enums.debtors.parameters.DebtorsAgingPeriod;
+import emc.enums.enumQueryTypes;
+import emc.enums.inventory.inventorytables.InventoryItemTypes;
+import emc.enums.modules.enumEMCModules;
+import emc.enums.sop.SalesDeliveryRules;
+import emc.framework.EMCCommandClass;
+import emc.framework.EMCQuery;
+import emc.framework.EMCUserData;
+import emc.menus.creditors.menuitems.display.SettlementDiscountTerms;
+import emc.menus.creditors.menuitems.display.TermsOfPayment;
+import emc.menus.debtors.menuitems.display.DebtorsJournalDefinitions;
+import emc.menus.debtors.menuitems.display.DebtorsMarketingGroup;
+import emc.menus.debtors.menuitems.display.DebtorsParameters;
+import emc.menus.gl.menuitems.display.GLVATCode;
+import emc.menus.inventory.menuitems.display.ItemMaster;
+import emc.menus.inventory.menuitems.display.Warehouse;
+import emc.menus.pop.menuitems.display.DeliveryModes;
+import emc.menus.pop.menuitems.display.PriceGroups;
+import emc.menus.sop.menuitems.display.SOPCustomerGroupMenu;
+import emc.methods.debtors.ServerDebtorsMethods;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+/**
+ * @description This form is used to set up Debtors parameters.
+ *
+ * @version 1.0 6 April 2010
+ *
+ * @author Riaan Nel
+ */
+public class ParametersForm extends BaseInternalFrame {
+
+    private ParameterDRM drm;
+    //Parameters tab
+    private emcJLabel lblJournalDefinition;
+    private EMCLookupFormComponent lkpPostDatedPaymentJournalDef;
+    //Ageing tab
+    private emcJLabel lblCurrentBinName;
+    private emcJLabel lblBin1Name;
+    private emcJLabel lblBin2Name;
+    private emcJLabel lblBin3Name;
+    private emcJLabel lblBin4Name;
+    private emcJLabel lblBin5Name;
+    private emcJLabel lblBin6Name;
+    private emcJTextField txtCurrentBinName = new emcJTextField();
+    private emcJTextField txtBin1Name = new emcJTextField();
+    private emcJTextField txtBin2Name = new emcJTextField();
+    private emcJTextField txtBin3Name = new emcJTextField();
+    private emcJTextField txtBin4Name = new emcJTextField();
+    private emcJTextField txtBin5Name = new emcJTextField();
+    private emcJTextField txtBin6Name = new emcJTextField();
+    private emcJLabel lblAgingPeriod;
+    private emcJLabel lblAgingMode;
+    private EMCFormComboBox cmbAgingPeriod;
+    private EMCFormComboBox cmbAgingMode;
+    //Handling charge tab
+    private emcJLabel lblHandlingChargeItem;
+    private EMCLookupFormComponent lkpHandlingChargeItem;
+    private emcJLabel lblHandlingChargePercentage;
+    private emcJTextField txtHandlingChargePercentage = new emcJTextField();
+    //Credit Check tab
+    private emcJLabel lblCheckBalance;
+    private emcJLabel lblCheckTerms;
+    private emcJLabel lblCheckOnSalesOrderSave;
+    private emcJLabel lblCheckOnPickingListCreate;
+    private emcJLabel lblCheckOnInvoicePost;
+    private emcJLabel lblRecheckInvoice;
+    private emcJLabel lblCreditCheckIncludeVAT;
+    private emcYesNoComponent ysnCheckBalance;
+    private emcYesNoComponent ysnCheckTerms;
+    private emcYesNoComponent ysnCheckOnSalesOrderSave;
+    private emcYesNoComponent ysnCheckOnPickingListCreate;
+    private emcYesNoComponent ysnCheckOnInvoicePost;
+    private emcYesNoComponent ysnRecheckInvoice;
+    private emcYesNoComponent ysnCreditCheckIncludeVAT;
+    //Invoice tab
+    private emcJLabel lblPrintPricesOnDeliveryNote;
+    private emcYesNoComponent ysnPrintPricesOnDeliveryNotes;
+    //Delivery tab
+    private emcJLabel lblDeliveryChargeItem;
+    private EMCLookupFormComponent lkpDeliveryChargeItem;
+    //Web Customers tab
+    private emcJLabel lblMarketingGroup;
+    private EMCLookupFormComponent lkpMarketingGroup;
+    private emcJLabel lblPriceGroup;
+    private EMCLookupFormComponent lkpPriceGroup;
+    private emcJLabel lblDeliveryMethod;
+    private EMCLookupFormComponent lkpDeliveryMethod;
+    private emcJLabel lblDeliveryRules;
+    private EMCFormComboBox cbDeliveryRules;
+    private emcJLabel lblSettlementDiscount;
+    private EMCLookupFormComponent lkpSettlementDiscount;
+    private emcJLabel lblOrderWarehouse;
+    private EMCLookupFormComponent lkpOrderWarehouse;
+    private emcJLabel lblVatCode;
+    private EMCLookupFormComponent lkpVatCode;
+    private emcJLabel lblTermsOfPayment;
+    private EMCLookupFormComponent lkpTermsOfPayment;
+    private emcJLabel lblCustomerGroup;
+    private EMCLookupFormComponent lkpCustomerGroup;
+    private emcJLabel lblDefaultItem;
+    private EMCLookupFormComponent lkpDefaultItem;
+    // adding to customer tab by chris
+    private emcJLabel lblCreditCustRating;
+    private EMCLookupFormComponent lkpCreditcustRating;
+    private emcJLabel lblCreditJournalDef;
+    private EMCLookupFormComponent lkpCreditJournalDef;
+    private emcJLabel lblDebitJournalDef;
+    private EMCLookupFormComponent lkpDebitJournalDef;
+    //Royalty tab
+    private emcJLabel lblRoyaltyField1;
+    private EMCMapFormComboBox cmbRoyaltyField1;
+    private emcJLabel lblRoyaltyField2;
+    private EMCMapFormComboBox cmbRoyaltyField2;
+    private emcJLabel lblRoyaltyField3;
+    private EMCMapFormComboBox cmbRoyaltyField3;
+    //Discount tab
+    private emcJLabel lblDiscountToleranceDays;
+    private emcJTextField txtDiscountToleranceDays = new emcJTextField();
+    //Credit Note Tab
+    private emcJLabel lblDefaultReturnWarehouse;
+    private EMCLookupFormComponent lkpDefaultReturnWarehouse;
+    private emcJLabel lblDefaultReturnLocation;
+    private EMCLookupFormComponent lkpDefaultReturnLocation;
+
+    /**
+     * Creates a new instance of ParametersForm.
+     */
+    public ParametersForm(EMCUserData userData) {
+        super("Parameters", true, true, true, true, userData);
+        this.setBounds(20, 20, 600, 450);
+
+        drm = new ParameterDRM(new emcGenericDataSourceUpdate(enumEMCModules.DEBTORS.getId(), new DebtorsParametersDS(), userData), userData);
+
+        this.setDataManager(drm);
+
+        drm.setTheForm(this);
+        drm.setFormTextId1("companyId");
+        drm.setFormTextId2("createdBy");
+
+        setupLookups(userData);
+        setupLabels();
+        setupTextFields();
+        setupComboBoxes(userData);
+        setupYesNoComponents();
+        setupFrame();
+    }
+
+    /**
+     * Sets up lookups.
+     */
+    private void setupLookups(EMCUserData userData) {
+        this.lkpPostDatedPaymentJournalDef = new EMCLookupFormComponent(new DebtorsJournalDefinitions(), drm, "postDatedPaymentJournalDef");
+        this.lkpPostDatedPaymentJournalDef.setPopup(new EMCLookupPopup(new BaseJournalDefinitionTable(), "journalDefinitionId", userData));
+        this.lkpPostDatedPaymentJournalDef.getTheQuery().addAnd("journalModule", Modules.DEBTORS.toString());
+
+        this.lkpHandlingChargeItem = EMCItemLookupFactory.createItemFormLookup(userData, drm, "handlingChargeItemRef");
+        //Only show service items
+        this.lkpHandlingChargeItem.getTheQuery().addAnd("itemType", InventoryItemTypes.SERVICE.toString());
+
+        this.lkpDeliveryChargeItem = EMCItemLookupFactory.createItemFormLookup(userData, drm, "deliveryChargeItemRef");
+        //Only show service items
+        this.lkpDeliveryChargeItem.getTheQuery().addAnd("itemType", InventoryItemTypes.SERVICE.toString());
+
+        this.lkpDefaultReturnWarehouse = EMCDimensionLookupFactory.createWarehouseFormLookup(drm, "defaultReturnWarehouse", userData);
+        this.lkpDefaultReturnLocation = EMCDimensionLookupFactory.createLocationFormLookup(drm, "defaultReturnLocation", userData);
+
+        //web customers
+        this.lkpMarketingGroup = new EMCLookupFormComponent(new DebtorsMarketingGroup(), drm, "marketingGroup");
+        lkpMarketingGroup.setPopup(new EMCLookupPopup(new emc.entity.debtors.DebtorsMarketingGroup(), "marketingGroup", userData));
+
+        this.lkpPriceGroup = new EMCLookupFormComponent(new PriceGroups(), drm, "priceGroup");
+        lkpPriceGroup.setPopup(new EMCLookupPopup(new POPPriceGroup(), "priceGroupId", userData));
+
+        this.lkpDeliveryMethod = new EMCLookupFormComponent(new DeliveryModes(), drm, "deliveryMethod");
+        lkpDeliveryMethod.setPopup(new EMCLookupPopup(new POPDeliveryModes(), "deliveryModeId", userData));
+
+        this.cbDeliveryRules = new EMCFormComboBox(SalesDeliveryRules.values(), drm, "deliveryRules");
+
+        this.lkpSettlementDiscount = new EMCLookupFormComponent(new SettlementDiscountTerms(), drm, "settlementDiscount");
+        lkpSettlementDiscount.setPopup(new EMCLookupPopup(new CreditorsSettlementDiscountTerms(), "settlementDiscountTermId", userData));
+
+        this.lkpOrderWarehouse = new EMCLookupFormComponent(new Warehouse(), drm, "orderWarehouse");
+        lkpOrderWarehouse.setPopup(new EMCLookupPopup(new InventoryWarehouse(), "warehouseId", userData));
+
+        this.lkpVatCode = new EMCLookupFormComponent(new GLVATCode(), drm, "vatCode");
+        lkpVatCode.setPopup(new EMCLookupPopup(new emc.entity.gl.GLVATCode(), "vatId", userData));
+
+        this.lkpTermsOfPayment = new EMCLookupFormComponent(new TermsOfPayment(), drm, "termsOfPayment");
+        lkpTermsOfPayment.setPopup(new EMCLookupPopup(new CreditorsTermsOfPayment(), "termsOfPaymentId", userData));
+
+        this.lkpCustomerGroup = new EMCLookupFormComponent(new SOPCustomerGroupMenu(), drm, "customerGroup");
+        lkpCustomerGroup.setPopup(new EMCLookupPopup(new SOPCustomerGroup(), "customerGroup", userData));
+
+        this.lkpDefaultItem = EMCItemLookupFactory.createItemFormLookup(userData, drm, "defaultItemRef");
+
+        this.lkpCreditcustRating = new EMCLookupFormComponent(new DebtorsParameters(), drm, "creditRating");
+        lkpCreditcustRating.setPopup(new EMCLookupPopup(new emc.entity.debtors.DebtorsCreditRating(), "creditRating", userData)); 
+        
+        this.lkpCreditJournalDef = new EMCLookupFormComponent(new DebtorsParameters(), drm, "creditJournalDef");
+        lkpCreditJournalDef.setPopup(new EMCLookupPopup(new emc.entity.base.journals.BaseJournalDefinitionTable(), "journalDefinitionId", userData)); 
+  
+        this.lkpDebitJournalDef = new EMCLookupFormComponent(new DebtorsParameters(), drm, "debitJournalDef");
+        lkpDebitJournalDef.setPopup(new EMCLookupPopup(new emc.entity.base.journals.BaseJournalDefinitionTable(), "journalDefinitionId", userData)); 
+       // EMCQuery qu = new EMCQuery(enumQueryTypes.SELECT, BaseJournalDefinitionTable.class);
+       // qu.addAnd("journalModule", "Debtors",Modules.DEBTORS.toString());//find enum JDeFModule.DEBTORS.ToString();
+       // lkpDebitJournalDef.setTheQuery(qu);
+                                         
+    
+    }  
+
+    /**
+     * Sets up labels.
+     */
+    private void setupLabels() {
+        this.lblJournalDefinition = new emcJLabel(drm.getColumnName("postDatedPaymentJournalDef"));
+        this.lblCurrentBinName = new emcJLabel(drm.getColumnName("agingCurrentBinName"));
+        this.lblBin1Name = new emcJLabel(drm.getColumnName("agingBin1Name"));
+        this.lblBin2Name = new emcJLabel(drm.getColumnName("agingBin2Name"));
+        this.lblBin3Name = new emcJLabel(drm.getColumnName("agingBin3Name"));
+        this.lblBin4Name = new emcJLabel(drm.getColumnName("agingBin4Name"));
+        this.lblBin5Name = new emcJLabel(drm.getColumnName("agingBin5Name"));
+        this.lblBin6Name = new emcJLabel(drm.getColumnName("agingBin6Name"));
+        this.lblAgingMode = new emcJLabel(drm.getColumnName("debtorsAgingMode"));
+        this.lblAgingPeriod = new emcJLabel(drm.getColumnName("debtorsAgingPeriod"));
+        this.lblHandlingChargePercentage = new emcJLabel(drm.getColumnName("handlingChargePercentage"));
+        this.lblHandlingChargeItem = new emcJLabel(drm.getColumnName("handlingChargeItem"));
+
+        this.lblCheckBalance = new emcJLabel(drm.getColumnName("checkBalance"));
+        this.lblCheckTerms = new emcJLabel(drm.getColumnName("checkTerms"));
+        this.lblCheckOnSalesOrderSave = new emcJLabel(drm.getColumnName("checkOnSalesOrderSave"));
+        this.lblCheckOnPickingListCreate = new emcJLabel(drm.getColumnName("checkOnPickingListCreate"));
+        this.lblCheckOnInvoicePost = new emcJLabel(drm.getColumnName("checkOnInvoicePost"));
+        this.lblRecheckInvoice = new emcJLabel(drm.getColumnName("recheckInvoice"));
+        this.lblCreditCheckIncludeVAT = new emcJLabel(drm.getColumnName("creditCheckIncludeVAT"));
+
+        this.lblPrintPricesOnDeliveryNote = new emcJLabel(drm.getColumnName("printPricesOnDeliveryNote"));
+        this.lblDeliveryChargeItem = new emcJLabel(drm.getColumnName("deliveryChargeItem"));
+
+        this.lblMarketingGroup = new emcJLabel(drm.getColumnName("marketingGroup"));
+        this.lblPriceGroup = new emcJLabel(drm.getColumnName("priceGroup"));
+        this.lblDeliveryMethod = new emcJLabel(drm.getColumnName("deliveryMethod"));
+        this.lblDeliveryRules = new emcJLabel(drm.getColumnName("deliveryRules"));
+        this.lblSettlementDiscount = new emcJLabel(drm.getColumnName("settlementDiscount"));
+        this.lblOrderWarehouse = new emcJLabel(drm.getColumnName("orderWarehouse"));
+        this.lblVatCode = new emcJLabel(drm.getColumnName("vatCode"));
+        this.lblTermsOfPayment = new emcJLabel(drm.getColumnName("termsOfPayment"));
+        this.lblCustomerGroup = new emcJLabel(drm.getColumnName("customerGroup"));
+
+        this.lblRoyaltyField1 = new emcJLabel(drm.getColumnName("royaltyField1"));
+        this.lblRoyaltyField2 = new emcJLabel(drm.getColumnName("royaltyField2"));
+        this.lblRoyaltyField3 = new emcJLabel(drm.getColumnName("royaltyField3"));
+
+        this.lblDiscountToleranceDays = new emcJLabel(drm.getColumnName("discountToleranceDays"));
+
+        this.lblDefaultReturnWarehouse = new emcJLabel(drm.getColumnName("defaultReturnWarehouse"));
+        this.lblDefaultReturnLocation = new emcJLabel(drm.getColumnName("defaultReturnLocation"));
+
+        this.lblDefaultItem = new emcJLabel(drm.getColumnName("defaultItem"));
+        this.lblCreditCustRating = new emcJLabel("Credit Customer Rating:");
+        this.lblCreditJournalDef = new emcJLabel("Credit Journal Def:");
+        this.lblDebitJournalDef = new emcJLabel("Debit Journal Def:");
+    }
+
+    /**
+     * Sets up text fields.
+     */
+    private void setupTextFields() {
+        this.txtCurrentBinName.setDocument(new EMCStringFormDocument(drm, "agingCurrentBinName"));
+        this.txtBin1Name.setDocument(new EMCStringFormDocument(drm, "agingBin1Name"));
+        this.txtBin2Name.setDocument(new EMCStringFormDocument(drm, "agingBin2Name"));
+        this.txtBin3Name.setDocument(new EMCStringFormDocument(drm, "agingBin3Name"));
+        this.txtBin4Name.setDocument(new EMCStringFormDocument(drm, "agingBin4Name"));
+        this.txtBin5Name.setDocument(new EMCStringFormDocument(drm, "agingBin5Name"));
+        this.txtBin6Name.setDocument(new EMCStringFormDocument(drm, "agingBin6Name"));
+
+        this.txtHandlingChargePercentage.setDocument(new EMCDoubleFormDocument(drm, "handlingChargePercentage"));
+
+        this.txtDiscountToleranceDays.setDocument(new EMCIntegerFormDocument(drm, "discountToleranceDays"));
+    }
+
+    /**
+     * Sets up combo boxes.
+     */
+    private void setupComboBoxes(EMCUserData userData) {
+        this.cmbAgingMode = new EMCFormComboBox(DebtorsAgingMode.values(), drm, "debtorsAgingMode");
+        this.cmbAgingPeriod = new EMCFormComboBox(DebtorsAgingPeriod.values(), drm, "debtorsAgingPeriod");
+
+        //Get all item master fields
+        try {
+            InventoryItemMaster itemMasterInstance = new InventoryItemMaster();
+            Field[] fields = itemMasterInstance.getClass().getDeclaredFields();
+
+            final Map<String, String> fieldsMap = new HashMap<String, String>();
+
+            for (Field field : fields) {
+                fieldsMap.put(field.getName(), itemMasterInstance.getDisplayLabelForField(field.getName(), userData));
+            }
+
+            //Blank field
+            fieldsMap.put(" ", " ");
+
+            Map<String, String> sortedFieldsMap = new TreeMap<String, String>(new Comparator<String>() {
+                public int compare(String o1, String o2) {
+                    //Compare values, not keys.
+                    return fieldsMap.get(o1).compareTo(fieldsMap.get(o2));
+                }
+            });
+
+            //Copy data from fields map to sorted map.
+            for (String key : fieldsMap.keySet()) {
+                sortedFieldsMap.put(key, fieldsMap.get(key));
+            }
+
+            this.cmbRoyaltyField1 = new EMCMapFormComboBox(drm, "royaltyField1", sortedFieldsMap);
+            this.cmbRoyaltyField2 = new EMCMapFormComboBox(drm, "royaltyField2", sortedFieldsMap);
+            this.cmbRoyaltyField3 = new EMCMapFormComboBox(drm, "royaltyField3", sortedFieldsMap);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Sets up yes/no components.
+     */
+    private void setupYesNoComponents() {
+        this.ysnCheckBalance = new emcYesNoComponent(drm, "checkBalance");
+        this.ysnCheckOnInvoicePost = new emcYesNoComponent(drm, "checkOnInvoicePost");
+        this.ysnCheckOnPickingListCreate = new emcYesNoComponent(drm, "checkOnPickingListCreate");
+        this.ysnCheckOnSalesOrderSave = new emcYesNoComponent(drm, "checkOnSalesOrderSave");
+        this.ysnCheckTerms = new emcYesNoComponent(drm, "checkTerms");
+        this.ysnRecheckInvoice = new emcYesNoComponent(drm, "recheckInvoice");
+        this.ysnCreditCheckIncludeVAT = new emcYesNoComponent(drm, "creditCheckIncludeVAT");
+
+        this.ysnPrintPricesOnDeliveryNotes = new emcYesNoComponent(drm, "printPricesOnDeliveryNote");
+    }
+
+    /**
+     * Sets up the frame.
+     */
+    private void setupFrame() {
+        emcJTabbedPane tabs = createTabs();
+        tabs.setRelationManager(drm);
+        emcJPanel pnlMain = new emcJPanel();
+        pnlMain.setLayout(new BorderLayout());
+        pnlMain.add(tabs, BorderLayout.CENTER);
+
+        this.setLayout(new BorderLayout());
+
+        this.add(pnlMain, BorderLayout.CENTER);
+    }
+
+    /**
+     * Creates the tabbed pane containing the components on the form.
+     */
+    private emcJTabbedPane createTabs() {
+        emcJTabbedPane tabs = new emcJTabbedPane();
+
+        tabs.add("Parameters", createParametersTab());
+        tabs.add("Ageing", createAgingTab());
+        tabs.add("Credit Check", createCreditCheckTab());
+        tabs.add("Credit Note", createCreditNoteTab());
+        tabs.add("Handling Charge", createHandlingChargeTab());
+        tabs.add("Delivery", createDeliveryTab());
+        tabs.add("Discount", createDiscountTab());
+        tabs.add("Reporting", createReportingTab());
+        tabs.add("Royalty", createRoyaltyTab());
+        tabs.add("Web Customers", webCustomersTab());
+
+        return tabs;
+    }
+
+    /**
+     * Creates the parameters tab.
+     */
+    private emcJPanel createParametersTab() {
+        EMCLookupFormComponent lkpTermsOfPayment = new EMCLookupFormComponent(new TermsOfPayment(), drm, "cashTermsCode");
+        lkpTermsOfPayment.setPopup(new EMCLookupPopup(new CreditorsTermsOfPayment(), "termsOfPaymentId", drm.getUserData()));
+
+        Component[][] components = new Component[][]{
+            {lblJournalDefinition, lkpPostDatedPaymentJournalDef},
+            {new emcJLabel("Cash Terms Of Payment"), lkpTermsOfPayment}
+        };
+
+        return emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+    }
+
+    /**
+     * Creates the aging tab.
+     */
+    private emcJPanel createAgingTab() {
+        Component[][] components = new Component[][]{
+            {lblAgingMode, cmbAgingMode},
+            {lblAgingPeriod, cmbAgingPeriod},
+            {lblCurrentBinName, txtCurrentBinName},
+            {lblBin1Name, txtBin1Name},
+            {lblBin2Name, txtBin2Name},
+            {lblBin3Name, txtBin3Name},
+            {lblBin4Name, txtBin4Name},
+            {lblBin5Name, txtBin5Name},
+            {lblBin6Name, txtBin6Name}
+        };
+
+        return emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+    }
+
+    /**
+     * Creates the handling charge tab.
+     */
+    private emcJPanel createHandlingChargeTab() {
+        Component[][] components = new Component[][]{
+            {lblHandlingChargeItem, lkpHandlingChargeItem},
+            {lblHandlingChargePercentage, txtHandlingChargePercentage}
+        };
+
+        return emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+    }
+
+    /**
+     * Creates the Credit Note tab.
+     */
+    private emcJPanel createCreditNoteTab() {
+        Component[][] components = new Component[][]{
+            {lblDefaultReturnWarehouse, lkpDefaultReturnWarehouse},
+            {lblDefaultReturnLocation, lkpDefaultReturnLocation}
+        };
+
+        return emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+    }
+
+    /**
+     * Creates the Credit Check tab.
+     */
+    private emcJPanel createCreditCheckTab() {
+        Component[][] components = new Component[][]{
+            {lblCheckBalance, ysnCheckBalance},
+            {lblCheckTerms, ysnCheckTerms},
+            {lblCheckOnSalesOrderSave, ysnCheckOnSalesOrderSave},
+            {lblCheckOnPickingListCreate, ysnCheckOnPickingListCreate},
+            {lblCheckOnInvoicePost, ysnCheckOnInvoicePost},
+            {lblRecheckInvoice, ysnRecheckInvoice},
+            {lblCreditCheckIncludeVAT, ysnCreditCheckIncludeVAT}
+        };
+
+        return emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+    }
+
+    /**
+     * Creates the Reporting tab.
+     */
+    private emcJPanel createReportingTab() {
+        emcJTextArea txareportFooterCaption = new emcJTextArea(new EMCStringFormDocument(drm, "reportFooterCaption"));
+        Component[][] comp = {
+            {lblPrintPricesOnDeliveryNote, ysnPrintPricesOnDeliveryNotes},
+            {txareportFooterCaption, new emcJLabel("Report Footer Caption")}
+        };
+        return emcSetGridBagConstraints.createSimplePanel(comp, GridBagConstraints.NONE, true);
+    }
+
+    /**
+     * Creates the delivery tab.
+     */
+    private emcJPanel createDeliveryTab() {
+        Component[][] components = {
+            {lblDeliveryChargeItem, lkpDeliveryChargeItem}
+        };
+        return emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+    }
+
+    /**
+     * Creates the delivery tab.
+     */
+    private emcJPanel webCustomersTab() {
+        Component[][] components = {
+            {lblCustomerGroup, lkpCustomerGroup},
+            {lblMarketingGroup, lkpMarketingGroup},
+            {lblTermsOfPayment, lkpTermsOfPayment},
+            {lblSettlementDiscount, lkpSettlementDiscount},
+            {lblPriceGroup, lkpPriceGroup},
+            {lblOrderWarehouse, lkpOrderWarehouse},
+            {lblDeliveryMethod, lkpDeliveryMethod},
+            {lblDeliveryRules, cbDeliveryRules},
+            {lblVatCode, lkpVatCode},
+            {lblDefaultItem, lkpDefaultItem},
+            {lblCreditCustRating, lkpCreditcustRating},
+            {lblCreditJournalDef,lkpCreditJournalDef},
+            {lblDebitJournalDef,lkpDebitJournalDef}};
+
+        return emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+    }
+
+    /**
+     * Creates the discount tab.
+     */
+    private emcJPanel createDiscountTab() {
+        Component[][] components = {
+            {lblDiscountToleranceDays, txtDiscountToleranceDays}
+        };
+        return emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+    }
+
+    /**
+     * Creates the Royalty tab.
+     */
+    private emcJPanel createRoyaltyTab() {
+        //Check whether royalties have been set up.  If so, disable these fields.
+        if (!allowRoyaltyFieldChanges()) {
+            cmbRoyaltyField1.setEnabled(false);
+            cmbRoyaltyField2.setEnabled(false);
+            cmbRoyaltyField3.setEnabled(false);
+        }
+
+        Component[][] components = new Component[][]{
+            {lblRoyaltyField1, cmbRoyaltyField1},
+            {lblRoyaltyField2, cmbRoyaltyField2},
+            {lblRoyaltyField3, cmbRoyaltyField3}
+        };
+
+        return emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+    }
+
+    /**
+     * This method check whether royalties have been set up in EMC.
+     *
+     * @return A boolean indicating whether the royalty setup fields may be
+     * changed.
+     */
+    private boolean allowRoyaltyFieldChanges() {
+        EMCCommandClass cmd = new EMCCommandClass(ServerDebtorsMethods.CHECK_ROYALTY_SETUP_EXISTS);
+
+        List toSend = new ArrayList();
+
+        toSend = EMCWSManager.executeGenericWS(cmd, toSend, getUserData());
+
+        if (toSend != null && toSend.size() > 1 && toSend.get(1) == Boolean.TRUE) {
+            //Royalties have been set up
+            return false;
+        } else {
+            return true;
+        }
+    }
+}

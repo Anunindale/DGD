@@ -1,0 +1,2395 @@
+************************************************************************
+
+EMC, VERSION DESCRIPTION DOC FOR CVS
+
+************************************************************************
+
+
+This Document Keeps a log of the various changes in the EMC GlobalUsers
+
+project software as it is booked into CVS
+
+
+
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Date: 09/10/2007  
+
+
+
+Version: GLobalUsers v 0.0.1
+
+
+
+NOTE: 
+
+
+
+Added functionality:
+
+- Login Screen and Login Bean
+
+
+
+Changes:
+
+- None
+
+
+
+Updates:
+
+- 
+
+
+
+Known issues: 
+
+- 
+
+
+
+
+
+Tested: 
+
+- Tested on Ubuntu client server and windows clients
+
+
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Date: 11/10/2007  
+
+
+
+Version: GLobalUsers v 0.0.2
+
+
+
+NOTE: 
+
+
+
+Added functionality:
+
+- uses the EMCFramework as base for the entity class
+
+
+
+Changes:
+
+- None
+
+
+
+Updates:
+
+- 
+
+
+
+Known issues: 
+
+- 
+
+
+
+
+
+Tested: 
+
+- Tested on localhost
+
+
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Date: 17/10/2007  
+
+
+
+Version: GLobalUsers v 0.0.3
+
+
+
+NOTE: 
+
+
+
+Added functionality:
+
+- added some user table business logic
+
+
+
+Changes:
+
+- None
+
+
+
+Updates:
+
+- 
+
+
+
+Known issues: 
+
+- 
+
+
+
+
+
+Tested: 
+
+- Tested on localhost
+
+
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Date: 25/10/2007  
+
+
+
+Version: GLobalUsers v 0.0.4
+
+
+
+NOTE: 
+
+
+
+Added functionality:
+
+- added licence enity, bean and ws
+
+
+
+Changes:
+
+- None
+
+
+
+Updates:
+
+- 
+
+
+
+Known issues: 
+
+- 
+
+
+
+
+
+Tested: 
+
+- Tested on localhost
+
+
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Date: 29/10/2007  
+
+
+
+Version: GLobalUsers v 0.0.5
+
+
+
+NOTE: 
+
+
+
+Added functionality:
+
+- added insert and update to userbean
+
+
+
+Changes:
+
+- None
+
+
+
+Updates:
+
+- 
+
+
+
+Known issues: 
+
+- 
+
+
+
+
+
+Tested: 
+
+- Tested on localhost
+
+
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Date: 06/11/2007  
+
+
+
+Version: GLobalUsers v 0.0.6
+
+
+
+NOTE: 
+
+
+
+Added functionality:
+
+- added delete to userbean
+
+
+
+Changes:
+
+- None
+
+
+
+Updates:
+
+- 
+
+
+
+Known issues: 
+
+- 
+
+
+
+
+
+Tested: 
+
+- Tested on localhost
+
+
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Date: 22/11/2007  
+
+
+
+Version: GLobalUsers v 0.0.7
+
+
+
+NOTE: 
+
+
+
+Added functionality:
+
+- added password updates
+
+
+
+Changes:
+
+- None
+
+
+
+Updates:
+
+- 
+
+
+
+Known issues: 
+
+- 
+
+
+
+
+
+Tested: 
+
+- Tested on localhost
+
+
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Date: 29/11/2007  
+
+
+
+Version: GLobalUsers v 0.0.8
+
+
+
+NOTE: 
+
+
+
+Added functionality:
+
+- added license table updates
+
+
+
+Changes:
+
+- None
+
+
+
+Updates:
+
+- 
+
+
+
+Known issues: 
+
+- 
+
+
+
+
+
+Tested: 
+
+- Tested on localhost
+
+
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Date: 05/12/2007  
+
+
+
+Version: GLobalUsers v 0.0.9
+
+
+
+NOTE: 
+
+
+
+Added functionality:
+
+- added company base table
+
+
+
+Changes:
+
+- None
+
+
+
+Updates:
+
+- 
+
+
+
+Known issues: 
+
+- 
+
+
+
+
+
+Tested: 
+
+- Tested on localhost
+
+
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Date: 05/12/2007  
+
+
+
+Version: GLobalUsers v 0.0.10
+
+
+
+NOTE: 
+
+
+
+Added functionality:
+
+- restructure of packages, old code to be found in EMCDevelopment
+
+
+
+Changes:
+
+- None
+
+
+
+Updates:
+
+- 
+
+
+
+Known issues: 
+
+- 
+
+
+
+
+
+Tested: 
+
+- Tested on localhost
+
+
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Date: 07/12/2007  
+
+Version: GLobalUsers v 0.0.11
+
+NOTE: 
+
+Added functionality:
+
+- online users done, company web services added updated existing web services
+
+Changes:
+
+- None
+
+Updates:
+
+- 
+
+Known issues: 
+
+- 
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 07/12/2007  
+
+Version: GLobalUsers v 0.0.12
+
+NOTE: 
+
+Added functionality:
+
+- Web services updated for company and license tables
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+- 
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 12/12/2007  
+
+Version: GLobalUsers v 0.0.13
+
+NOTE: 
+
+Added functionality:
+
+- employee table,bean and ws added
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+- 
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 19/12/2007  
+
+Version: GLobalUsers v 0.0.14
+
+NOTE: 
+
+Added functionality:
+
+- updates to ws to return data to client
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+- 
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 5.5.1
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 07/01/2008  
+
+Version: GLobalUsers v 0.0.15
+
+NOTE: 
+
+Added functionality:
+
+- update to super emcEntityBean, added skills and ratings
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+- 
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 10/01/2008  
+
+Version: GLobalUsers v 0.0.16
+
+NOTE: 
+
+Added functionality:
+- ws now take userdata as input on super Entity bean
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+- 
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 10/01/2008  
+
+Version: GLobalUsers v 0.0.17
+
+NOTE: 
+
+Added functionality:
+- ws added for workflow setup tables 
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+- 
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 11/01/2008  
+
+Version: GLobalUsers v 0.0.18
+
+NOTE: 
+
+Added functionality:
+- Added: message logging module
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+- 
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 11/01/2008  
+
+Version: GLobalUsers v 0.0.19
+
+NOTE: 
+
+Added functionality:
+- Added: employee skills
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+- seems unstable with message logger, tested logger
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 16/01/2008  
+
+Version: EMCServer v 0.0.20
+
+NOTE: 
+
+Added functionality:
+- Added: activities
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+- seems unstable with message logger, tested logger
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 21/01/2008  
+
+Version: EMCServer v 0.0.21
+
+NOTE: 
+
+Added functionality:
+- Updates to enity classes 
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+- seems unstable with message logger, tested logger - fixed
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 24/01/2008  
+
+Version: EMCServer v 0.0.22
+
+NOTE: 
+
+Added functionality:
+- Updates to enity classes and Field validation included
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 28/01/2008  
+
+Version: EMCServer v 0.0.23
+
+NOTE: 
+
+Added functionality:
+- Field validation added to WS
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 28/01/2008  
+
+Version: EMCServer v 0.0.24
+
+NOTE: 
+
+Added functionality:
+- Copy and paste issue on field validation on WorkFlow
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 29/01/2008  
+
+Version: EMCServer v 0.0.25
+
+NOTE: 
+
+Added functionality:
+- added WF Act lookup for number of activities
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 30/01/2008  
+
+Version: EMCServer v 0.0.26
+
+NOTE: 
+
+Added functionality:
+- added WF copy and Job create
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 29/01/2008  
+
+Version: EMCServer v 0.0.25
+
+NOTE: 
+
+Added functionality:
+- added WF Act lookup for number of activities
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 30/01/2008  
+
+Version: EMCServer v 0.0.27
+
+NOTE: 
+
+Added functionality:
+- added Validation code for Basic module
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 30/01/2008  
+
+Version: EMCServer v 0.0.28
+
+NOTE: 
+
+Added functionality:
+- added Activity generation code
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 04/02/2008  
+
+Version: EMCServer v 0.0.29
+
+NOTE: 
+
+Added functionality:
+- added docuref table and ws
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 12/02/2008  
+
+Version: EMCServer v 0.0.30
+
+NOTE: 
+
+Added functionality:
+- added docuref table and ws
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 14/02/2008  
+
+Version: EMCServer v 0.0.31
+
+NOTE: 
+
+Added functionality:
+- added docuref table and ws
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 20/02/2008  
+
+Version: EMCServer v 0.0.32
+
+NOTE: 
+
+Added functionality:
+- added docuref table and ws
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 22/02/2008  
+
+Version: EMCServer v 0.0.33
+
+NOTE: 
+
+Added functionality:
+- added docuref table and ws
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 6/03/2008  
+
+Version: EMCServer v 0.0.34
+
+NOTE: 
+
+Added functionality:
+- added docuref table and ws
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 11/03/2008  
+
+Version: EMCServer v 0.0.35
+
+NOTE: 
+
+Added functionality:
+- Added validation to BaseEmployeeBean to ensure that forenames and surname are mandatory.
+- Added functionality to prevent users from deleting employee or company records.
+- Added functionality to BaseEmployeeBean to retrieve birthdays.
+- Added functionality to BaseEmployeeBean to retrieve an employee's surname using their employee number.
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 14/03/2008  
+
+Version: EMCServer v 0.0.36
+
+NOTE: 
+
+Added functionality:
+- Added a bean, entiy class, remote interface and webservice for Departments.
+- Added a bean, entity class, remote interface and webservice for Employee Types.
+- Added validation to WFEmployeeSkillBean and WFActGroupEmpBean.
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 03/04/2008  
+
+Version: EMCServer v 0.0.38
+
+NOTE: MAJOR UPDATE IN THE SERVER CLIENT INTERFACE. STILL INCOMPLETE, PARTS
+OF THE SYSTEM USES OLD STUFF
+
+Added functionality:
+- Command mapper, single ws interface and entity classes ported now implements
+entityInterface from GenLib.
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 07/04/2008  
+
+Version: EMCServer v 0.0.39
+
+NOTE: MAJOR UPDATE IN THE SERVER CLIENT INTERFACE. STILL INCOMPLETE, PARTS
+OF THE SYSTEM USES OLD STUFF
+
+Added functionality:
+- Command mapper, single ws interface and entity classes ported now implements
+entityInterface from GenLib.
+
+Changes:
+- None
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 07/04/2008  
+
+Version: EMCServer v 0.0.40
+
+NOTE: MAJOR UPDATE IN THE SERVER CLIENT INTERFACE. STILL INCOMPLETE, PARTS
+OF THE SYSTEM USES OLD STUFF
+
+Added functionality:
+- Local interfaces for base module beans
+
+Changes:
+- None
+
+Updates:
+- Updated base module to use GenericWSClient
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 10/04/2008  
+
+Version: EMCServer v 0.0.41
+
+NOTE: MAJOR UPDATE IN THE SERVER CLIENT INTERFACE. STILL INCOMPLETE, PARTS
+OF THE SYSTEM USES OLD STUFF
+
+Added functionality:
+- Added Creditors and General Ledger modules.
+- Created beans, entity classes and local interfaces for some tables of the above modules
+
+Changes:
+- None
+
+Updates:
+- Updated base module to use GenericWSClient
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 11/04/2008  
+
+Version: EMCServer v 0.0.42
+
+Added functionality:
+- Added support tables to GL and Creditors modules
+
+Changes:
+- None
+
+Updates:
+- None
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 15/04/2008  
+
+Version: EMCServer v 0.0.43
+
+Added functionality:
+- Added Inventory module
+- Added support tables to Creditors module
+
+Changes:
+- None
+
+Updates:
+- Updated command manager to include Inventory module
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 16/04/2008  
+
+Version: EMCServer v 0.0.44
+
+Added functionality:
+- Enity Bean update to start transaction feedback
+
+Changes:
+- None
+
+Updates:
+- Updated command manager to include Inventory module
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 18/04/2008  
+
+Version: EMCServer v 0.0.45
+
+Added functionality:
+- Bev version 0.0.58, updates to the act bean and the eval workflow
+
+Changes:
+- None
+
+Updates:
+- Updated command manager to include Inventory module
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 23/04/2008  
+
+Version: EMCServer v 0.0.46
+
+Added functionality:
+- Bev version 0.0.59, more updates to the act bean and the eval workflow + 
+entity super class modified to assist in system table requests from client
+
+Changes:
+- None
+
+Updates:
+- Updated command manager to include Inventory module
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 23/04/2008  
+
+Version: EMCServer v 0.0.47
+
+Added functionality:
+- Added inventory module
+- Added units of measure table to base module
+
+Changes:
+- None
+
+Updates:
+- Updated command manager to include Inventory module and units of measure table
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 05/05/2008  
+
+Version: EMCServer v 0.0.48
+
+Added functionality:
+- Added system tables table to base module
+
+Changes:
+- None
+
+Updates:
+- Updated command manager to include system tables table
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 12/05/2008  
+
+Version: EMCServer v 0.0.49
+
+Added functionality:
+- None
+
+Changes:
+- None
+
+Updates:
+- Updated EMCServerUtility and added validation and business logic to various WF business beans
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 13/05/2008  
+
+Version: EMCServer v 0.0.50
+NOTE: Version runs with 0.0.64 on client send to bev for testing
+Added functionality:
+- None
+
+Changes:
+- None
+
+Updates:
+- Updated EMCServerUtility and added validation and business logic to various WF business beans
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 15/05/2008  
+
+Version: EMCServer v 0.0.51
+Added functionality:
+- Added BaseFilePaths table.
+- Added functionality to Work Flow activities to retrieve activities that need to be closed
+
+Changes:
+- Fixed spellings mistakes on some WF tables.
+
+Updates:
+- Updated activity bean.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 15/05/2008  
+
+Version: EMCServer v 0.0.52
+NOTE released to BEV as executable 0.1.2 
+
+Added functionality:
+- Added BaseFilePaths table.
+- Added functionality to Work Flow activities to retrieve activities that need to be closed
+
+Changes:
+- Fixed spellings mistakes on some WF tables.
+
+Updates:
+- Updated activity bean.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 16/05/2008  
+
+Version: EMCServer v 0.0.53
+Added functionality:
+- Added Work Study Module
+
+Changes:
+- none
+
+Updates:
+- Updated EMCCommandManager to include Work Study.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 20/05/2008  
+
+Version: EMCServer v 0.0.54
+Added functionality:
+- Added Operation Master and Lines tables to Work Study Module.
+
+Changes:
+- none
+
+Updates:
+- none
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 20/05/2008  
+
+Version: EMCServer v 0.0.55 0.1.5 send to Bev
+Added functionality:
+- 
+
+Changes:
+- none
+
+Updates:
+- WF logic updated on copy of documents.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 23/05/2008  
+
+Version: EMCServer v 0.0.56
+Added functionality:
+- 
+
+Changes:
+- Fixed validation on number of companies and users.
+
+Updates:
+- Added Operations, Styles and Garment Types to Work Study Module.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 23/05/2008  
+
+Version 0.1.11 to Bev
+Version: EMCServer v 0.0.57
+Added functionality:
+- 
+
+Changes:
+- Fixed validation on number of companies and users.
+
+Updates:
+- Added Operations, Styles and Garment Types to Work Study Module.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 27/05/2008  
+
+Version: EMCServer v 0.0.58
+
+Added functionality:
+- 
+
+Changes:
+- Fixed bug on user table insert validation.
+
+Updates:
+- Added validations to various Work study Tables.
+- Added description field to Work Study Timing types.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 27/05/2008  
+
+Version: EMCServer v 0.0.59
+version 0.1.15 to Bev
+Added functionality:
+- 
+
+Changes:
+- Fixed bug on user table insert validation.
+
+Updates:
+- Added validations to various Work study Tables.
+- Added description field to Work Study Timing types.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 30/05/2008  
+
+Version: EMCServer v 0.0.60
+Added functionality:
+- 
+
+Changes:
+- Changed unique constraint on Work Study Timings table to include type.
+
+Updates:
+- Added validations to various Work study Tables.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 03/06/2008  
+
+Version: EMCServer v 0.0.61
+Added functionality:
+- 
+
+Changes:
+- Fixed validation bugs on Work Study Operation Master.
+
+Updates:
+- Added validations to Work Study Operation Lines.
+- Added val field to Work Study Study Style Lines.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 05/06/2008  
+version 0.1.32 to Bev
+Version: EMCServer v 0.0.62
+Added functionality:
+- Report tools.
+- Print Operation report
+
+Changes:
+- 
+
+Updates:
+- Operation Master calc of subtotals on Operations.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 11/06/2008  
+version 0.1.39 to Bev
+Version: EMCServer v 0.0.63
+Added functionality:
+- Print Styles report
+
+Changes:
+- 
+
+Updates:
+- Operation Master calc of subtotals on Operations.
+- WorkStudy Import updates
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 12/06/2008  
+Version: EMCServer v 0.0.64
+Added functionality:
+- Subtotal calculations on Styles.
+
+Changes:
+- 
+
+Updates:
+- Minor updates to Work Study beans.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 18/06/2008  
+Version: EMCServer v 0.0.65
+
+VERSION 0.1.53 TO NINIAN 
+
+Added functionality:
+- 
+
+Changes:
+- 
+
+Updates:
+- Report styles gets values from beans
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 25/06/2008  
+Version: EMCServer v 0.0.66
+
+
+Added functionality:
+- Intoroduced EMC Table
+
+Changes:
+- 
+
+Updates:
+- Report on operations updated
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 01/07/2008  
+Version: EMCServer v 0.0.67
+
+
+Added functionality:
+- Added Developer Tools to server
+
+Changes:
+- 
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 02/07/2008  
+Version: EMCServer v 0.0.68
+
+
+Added functionality:
+- Moved enity employees to Genlib as well as EMCEnityClass
+
+Changes:
+- 
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 03/07/2008  
+Version: EMCServer v 0.0.69
+
+
+Added functionality:
+- Added Purchase Orders to Creditors module.
+
+Changes:
+- 
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 03/07/2008  
+Version: EMCServer v 0.0.70
+
+Version 0.1.65 for download
+Added functionality:
+- 
+
+Changes:
+- 
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 10/07/2008  
+Version: EMCServer v 0.0.71
+
+Added functionality:
+- Added Item Dimension Combinations, Warehouse, Location, ItemBatch,ItemSerial,
+  Pallet, Dimensions, Barcode and Dimension Group Setup tables to InventoryModule.
+
+Changes:
+- Moved GL, Creditors and WorkStudy Modules to GenLib.
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 15/07/2008  
+Version: EMCServer v 0.0.72
+
+Added functionality:
+- Added functionality to Inventory to generate Dimension combinations for a items
+- Added functionality to Inventory Dimension beans to update dimension combinations
+- Added manual line calculations to Work Study
+- Added functionality to copy Styles in Work Study
+
+Changes:
+- Moved Inventory logic to new bean
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 21/07/2008  
+Version: EMCServer v 0.0.73
+UPLOADED VERSION 0.1.81
+Added functionality:
+- 
+
+Changes:
+- Moved Inventory logic to new bean
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 04/08/2008  
+Version: EMCServer v 0.0.75
+To NINIAN v_0.1.105
+Added functionality:
+- 
+
+Changes:
+- Removed OnlineUsersWS and added commands to replace OnlineUsersWS.
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 19/09/2008  
+Version: EMCServer v 0.0.76
+To NINIAN v_0.1.116
+Added functionality:
+- 
+
+Changes:
+- 
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 26/08/2008  
+Version: EMCServer v 0.0.77
+
+Added functionality:
+- 
+
+Changes:
+- Added exception thrown to update, delete and insert on EMCEntityBean
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 29/08/2008  
+Version: EMCServer v 0.0.78
+
+Added functionality:
+- Added journals to Inventory Module
+
+Changes:
+- 
+
+Updates:
+- Fixed various bugs relating to field validations
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 10/09/2008  
+Version: EMCServer v 0.0.79
+
+Added functionality:
+- Added received journals to Creditors module.
+
+Changes:
+- Integrated system table changes.
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 17/09/2008  
+Version: EMCServer v 0.0.80
+
+Added functionality:
+- 
+
+Changes:
+- Changed, moved and added business beans related to dimensions.
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 29/09/2008  
+Version: EMCServer v 0.0.81
+
+Added functionality:
+- 
+
+Changes:
+- Added delete actions and update actions
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 02/10/2008  
+Version: EMCServer v 0.0.82
+Version 0.9.12 to Ninian
+
+Added functionality:
+- 
+
+Changes:
+- 
+
+Updates:
+- 
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 07/10/2008  
+Version: EMCServer v 0.0.83
+
+Added functionality:
+- Added beans for purchase order posting.
+- Added method to post purchase orders.
+
+Changes:
+- 
+
+Updates:
+- Updated Purchase Order field validation.
+
+Known issues: 
+-
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 28/10/2008  
+Version: EMCServer v 0.0.84
+
+Added functionality:
+- Updated purchase order posting.
+- Added purchase order receiving.
+- Updated supplier received journals.
+
+Changes:
+- 
+
+Updates:
+- 
+
+Known issues: 
+- Purchase orders sometimes fail to get data in range.
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 31/10/2008  
+Version: EMCServer v 0.0.85
+
+Added functionality:
+- Updated inventory journals.
+
+Changes:
+- 
+
+Updates:
+- 
+
+Known issues: 
+- Purchase orders sometimes fail to get data in range.
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 04/11/2008  
+Version: EMCServer v 0.0.86
+Version 0.9.61 to Ninian
+
+Added functionality:
+- 
+
+Changes:
+- 
+
+Updates:
+- 
+
+Known issues: 
+- 
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 11/11/2008  
+Version: EMCServer v 0.0.87
+Version 0.9.87 to Ninian
+
+Added functionality:
+- 
+
+Changes:
+- 
+
+Updates:
+- 
+
+Known issues: 
+- 
+
+Tested: 
+
+- Tested on localhost
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Date: 20/01/2009  
+Version 0.9.187 to Ninian
+
+
+Corresponding Software: Glassfish V2 ur1b03 and Netbeans 6.0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

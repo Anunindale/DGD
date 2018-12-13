@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="569"/>
+	<property name="ireport.y" value="37"/>
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="currentBinName" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="bin1Name" class="java.lang.String"/>
+	<parameter name="bin2Name" class="java.lang.String"/>
+	<parameter name="bin3Name" class="java.lang.String"/>
+	<parameter name="bin4Name" class="java.lang.String"/>
+	<parameter name="bin5Name" class="java.lang.String"/>
+	<parameter name="bin6Name" class="java.lang.String"/>
+	<parameter name="internalAgeing" class="java.lang.Boolean"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="customerId" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerId]]></fieldDescription>
+	</field>
+	<field name="customerName" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerName]]></fieldDescription>
+	</field>
+	<field name="creditLimit" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@creditLimit]]></fieldDescription>
+	</field>
+	<field name="paymentTerms" class="java.lang.String">
+		<fieldDescription><![CDATA[@paymentTerms]]></fieldDescription>
+	</field>
+	<field name="totalOutstanding" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@totalOutstanding]]></fieldDescription>
+	</field>
+	<field name="currentBinAmount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@currentBinAmount]]></fieldDescription>
+	</field>
+	<field name="bin1Amount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@bin1Amount]]></fieldDescription>
+	</field>
+	<field name="bin2Amount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@bin2Amount]]></fieldDescription>
+	</field>
+	<field name="bin3Amount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@bin3Amount]]></fieldDescription>
+	</field>
+	<field name="bin4Amount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@bin4Amount]]></fieldDescription>
+	</field>
+	<field name="bin5Amount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@bin5Amount]]></fieldDescription>
+	</field>
+	<field name="bin6Amount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@bin6Amount]]></fieldDescription>
+	</field>
+	<field name="totalOverdue" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@totalOverdue]]></fieldDescription>
+	</field>
+	<field name="unallocatedCredit" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@unallocatedCredit]]></fieldDescription>
+	</field>
+	<field name="showUnallocatedCredits" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@showUnallocatedCredits]]></fieldDescription>
+	</field>
+	<field name="atDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@atDate]]></fieldDescription>
+	</field>
+	<field name="agingMode" class="java.lang.String">
+		<fieldDescription><![CDATA[@agingMode]]></fieldDescription>
+	</field>
+	<variable name="totalOutstanding" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalOutstanding}.add($F{totalOutstanding})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalUnallocatedCredit" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalUnallocatedCredit}.add($F{unallocatedCredit})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalCurrentBin" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalCurrentBin}.add($F{currentBinAmount})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalBin1" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalBin1}.add($F{bin1Amount})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalBin2" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalBin2}.add($F{bin2Amount})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalBin3" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalBin3}.add($F{bin3Amount})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalBin4" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalBin4}.add($F{bin4Amount})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalBin5" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalBin5}.add($F{bin5Amount})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalBin6" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalBin6}.add($F{bin6Amount})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<group name="reportgroup" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[new Integer(1)]]></groupExpression>
+		<groupHeader>
+			<band height="16">
+				<textField isBlankWhenNull="true">
+					<reportElement x="542" y="0" width="50" height="15"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{bin4Name}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="344" y="0" width="50" height="15"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{currentBinName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="233" y="0" width="47" height="15" forecolor="#010101" backcolor="#FEFEFE"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Terms]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="19" y="0" width="60" height="15" forecolor="#010101" backcolor="#FEFEFE"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Customer]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="13" width="801" height="1"/>
+				</line>
+				<line>
+					<reportElement x="0" y="0" width="801" height="1"/>
+				</line>
+				<textField isBlankWhenNull="true">
+					<reportElement x="492" y="0" width="50" height="15"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{bin3Name}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="640" y="0" width="50" height="15"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{bin6Name}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="590" y="0" width="48" height="15"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{bin5Name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="161" y="0" width="62" height="15" forecolor="#010101" backcolor="#FEFEFE"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Credit Limit]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="693" y="0" width="83" height="15" forecolor="#010101" backcolor="#FEFEFE">
+						<printWhenExpression><![CDATA[$F{showUnallocatedCredits}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Unalloc. Credit]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="279" y="0" width="65" height="15" forecolor="#010101" backcolor="#FEFEFE">
+						<printWhenExpression><![CDATA[new Boolean($F{totalOutstanding} != null)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Balance]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="394" y="0" width="50" height="15"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{bin1Name}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="442" y="0" width="50" height="15"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{bin2Name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="19">
+				<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement key="textField" x="693" y="1" width="83" height="15">
+						<printWhenExpression><![CDATA[$F{showUnallocatedCredits}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalUnallocatedCredit}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement key="textField" x="640" y="1" width="50" height="15">
+						<printWhenExpression><![CDATA[new Boolean($P{bin6Name} != null && !"".equals($P{bin6Name}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalBin6}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement key="textField" x="279" y="1" width="65" height="15"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalOutstanding}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement key="textField" x="344" y="1" width="50" height="15">
+						<printWhenExpression><![CDATA[new Boolean($P{currentBinName} != null)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalCurrentBin}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement key="textField" x="542" y="1" width="50" height="15">
+						<printWhenExpression><![CDATA[new Boolean($P{bin4Name} != null && !"".equals($P{bin4Name}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalBin4}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement key="textField" x="492" y="1" width="50" height="15">
+						<printWhenExpression><![CDATA[new Boolean($P{bin3Name} != null && !"".equals($P{bin3Name}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalBin3}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement key="textField" x="442" y="1" width="50" height="15">
+						<printWhenExpression><![CDATA[new Boolean($P{bin2Name} != null && !"".equals($P{bin2Name}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalBin2}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement key="textField" x="394" y="1" width="50" height="15">
+						<printWhenExpression><![CDATA[new Boolean($P{bin1Name} != null && !"".equals($P{bin1Name}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalBin1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="220" y="1" width="60" height="15" forecolor="#010101" backcolor="#FEFEFE"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Totals:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement key="textField" x="590" y="1" width="48" height="15">
+						<printWhenExpression><![CDATA[new Boolean($P{bin5Name} != null && !"".equals($P{bin5Name}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalBin5}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<line>
+				<reportElement key="line" x="0" y="8" width="802" height="1"/>
+			</line>
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="-1" y="35" width="802" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="20" y="0" width="380" height="35"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Debtors Age Analysis - Summary
+                ]]></text>
+			</staticText>
+			<textField hyperlinkType="Reference">
+				<reportElement x="400" y="0" width="380" height="36"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="20" y="44" width="72" height="15" forecolor="#010101" backcolor="#FEFEFE"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[At Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="94" y="44" width="100" height="15"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{atDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="20" y="59" width="72" height="15" forecolor="#010101" backcolor="#FEFEFE"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ageing Mode:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="94" y="59" width="100" height="15"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{agingMode}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="194" y="44" width="57" height="15" forecolor="#010101" backcolor="#FEFEFE">
+					<printWhenExpression><![CDATA[$P{internalAgeing}]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[(Internal)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField pattern="###0;-###0" isBlankWhenNull="false">
+				<reportElement key="textField" x="19" y="0" width="46" height="13"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{customerId}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="344" y="0" width="50" height="13">
+					<printWhenExpression><![CDATA[new Boolean($P{currentBinName} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{currentBinAmount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0;-###0" isBlankWhenNull="false">
+				<reportElement key="textField" x="65" y="0" width="96" height="13"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{customerName}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="233" y="0" width="47" height="13"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{paymentTerms}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="279" y="0" width="65" height="13"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{totalOutstanding}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="394" y="0" width="50" height="13">
+					<printWhenExpression><![CDATA[new Boolean($P{bin1Name} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{bin1Amount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="442" y="0" width="50" height="13">
+					<printWhenExpression><![CDATA[new Boolean($P{bin2Name} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{bin2Amount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="492" y="0" width="50" height="13">
+					<printWhenExpression><![CDATA[new Boolean($P{bin3Name} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{bin3Amount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="542" y="0" width="50" height="13">
+					<printWhenExpression><![CDATA[new Boolean($P{bin4Name} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{bin4Amount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="590" y="0" width="48" height="13">
+					<printWhenExpression><![CDATA[new Boolean($P{bin5Name} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{bin5Amount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="161" y="0" width="62" height="13"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{creditLimit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="693" y="0" width="83" height="13">
+					<printWhenExpression><![CDATA[$F{showUnallocatedCredits}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{unallocatedCredit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="640" y="0" width="50" height="13">
+					<printWhenExpression><![CDATA[new Boolean($P{bin6Name} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{bin6Amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="36" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="580" y="4" width="188" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="19" y="3" width="186" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD
+                ]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="768" y="4" width="17" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line" x="19" y="2" width="767" height="1"/>
+			</line>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="19" y="4" width="766" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

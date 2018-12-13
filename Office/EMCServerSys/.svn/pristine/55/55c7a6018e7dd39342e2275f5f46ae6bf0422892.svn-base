@@ -1,0 +1,48 @@
+package emc.bus.base.onlineusers;
+
+import emc.entity.base.datasource.EMCSession;
+import emc.enums.enumLogTypes;
+import emc.framework.EMCLogRecord;
+import emc.framework.EMCUserData;
+import java.util.List;
+import javax.ejb.Local;
+
+/**
+ * This is the business interface for OnlineUsers enterprise bean.
+ */
+@Local
+public interface OnlineUsersLocal {
+
+    public EMCSession getSession(long emcSessionNumber);
+
+    public List<emc.entity.base.datasource.EMCSession> getSessions();
+
+    public void closeSession(long sessionNumber);
+
+    public void addMessage(enumLogTypes level, String message, EMCUserData userData);
+
+    public java.util.List<EMCLogRecord> getMessages(emc.framework.EMCUserData userData);
+
+
+    public void setAdminMessageForUser(long userSessionNumber, java.lang.String adminMessage, emc.framework.EMCUserData userData);
+
+    public void setAdminMessageForAllUsers(java.lang.String adminMessage, emc.framework.EMCUserData userData);
+
+    public void killSession(long userSessionNumber, emc.framework.EMCUserData userData);
+
+    public void killAllSessions(emc.framework.EMCUserData userData);
+
+    public void addWebsiteUserMessageList(emc.framework.EMCUserData webUserData);
+
+    public void removeWebsiteUserMessageList(emc.framework.EMCUserData webUserData);
+
+    public void addMessageOnlySession(emc.framework.EMCUserData userData);
+
+    public void removeMessageOnlyUser(emc.framework.EMCUserData userData);
+
+    public emc.framework.EMCCommandClass checkIn(java.lang.String clientName, emc.framework.EMCUserData userData);
+
+    public void updateNumberOfUsers(emc.framework.EMCUserData userData);
+
+    public long getEMCSessionNumber(java.lang.String userName, java.lang.String clientName, emc.framework.EMCUserData userData);
+}

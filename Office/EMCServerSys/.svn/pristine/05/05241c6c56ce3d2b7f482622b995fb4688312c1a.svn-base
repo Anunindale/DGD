@@ -1,0 +1,215 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.reports.trec.customerselection;
+
+import emc.reports.trec.treccard.*;
+
+/**
+ *
+ * @author wikus
+ */
+public class TRECProducedCardTemplateDS {
+    private String UNNumber;
+    private String chemicalClass;
+    private String subsudiaryRisk;
+    private String packingGroup;
+    private String ergNumber;
+    private String properShippingName;
+    private String appearance;
+    private String phrases;
+    private String phrasesNonMondatory;
+  
+    private String additionalInfo;
+    private String tradeName;
+    private String emergencyPhoneNumber;
+    private String preparedBy;
+    private String datePrinted;
+    private String referenceNumber;
+   
+    private String addInfoHeading1;
+    private String addInfoHeading2;
+    private String shippingName;
+    private boolean printHeadings;
+    
+    boolean print1 = false;
+
+    
+   
+
+    
+
+    public String getUNNumber() {
+        return UNNumber;
+    }
+
+    public void setUNNumber(String UNNumber) {
+        this.UNNumber = UNNumber;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public String getAppearance() {
+        return appearance;
+    }
+
+    public void setAppearance(String appearance) {
+        this.appearance = appearance;
+    }
+
+    public String getChemicalClass() {
+        return chemicalClass;
+    }
+
+    public void setChemicalClass(String chemicalClass) {
+        this.chemicalClass = chemicalClass;
+    }
+
+    
+
+    public String getDatePrinted() {
+        return datePrinted;
+    }
+
+    public void setDatePrinted(String datePrinted) {
+        this.datePrinted = datePrinted;
+    }
+
+    
+
+    public String getEmergencyPhoneNumber() {
+        return emergencyPhoneNumber;
+    }
+
+    public void setEmergencyPhoneNumber(String emergencyPhoneNumber) {
+        this.emergencyPhoneNumber = emergencyPhoneNumber;
+    }
+
+    public String getErgNumber() {
+        return ergNumber;
+    }
+
+    public void setErgNumber(String ergNumber) {
+        this.ergNumber = ergNumber;
+    }
+
+    public String getPackingGroup() {
+        return packingGroup;
+    }
+
+    public void setPackingGroup(String packingGroup) {
+        this.packingGroup = packingGroup;
+    }
+ public String getPreparedBy() {
+        return preparedBy;
+    }
+
+    public void setPreparedBy(String preparedBy) {
+        this.preparedBy = preparedBy;
+    }
+
+    public String getProperShippingName() {
+        return properShippingName;
+    }
+
+    public void setProperShippingName(String properShippingName) {
+        this.properShippingName = properShippingName;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
+    }
+
+    public String getSubsudiaryRisk() {
+        return subsudiaryRisk;
+    }
+
+    public void setSubsudiaryRisk(String subsudiaryRisk) {
+        this.subsudiaryRisk = subsudiaryRisk;
+    }
+
+    public String getTradeName() {
+        return tradeName;
+    }
+
+    public void setTradeName(String tradeName) {
+        this.tradeName = tradeName;
+    }
+
+    
+
+    public String getAddInfoHeading1() {
+        return addInfoHeading1;
+    }
+
+    public void setAddInfoHeading1(String addInfoHeading1) {
+        this.addInfoHeading1 = addInfoHeading1;
+    }
+
+    
+
+    public String getShippingName() {
+        return shippingName;
+    }
+
+    public void setShippingName(String shippingName) {
+        this.shippingName = shippingName;
+    }
+
+    public boolean isPrint1() {
+        return print1;
+    }
+
+    public void setPrint1(boolean print1) {
+        this.print1 = print1;
+    }
+
+    public String getPhrases() {
+        return phrases;
+    }
+
+    public void setPhrases(String phrases) {
+        this.phrases = phrases;
+    }
+
+    public String getPhrasesNonMondatory() {
+        return phrasesNonMondatory;
+    }
+
+    public void setPhrasesNonMondatory(String phrasesNonMondatory) {
+        this.phrasesNonMondatory = phrasesNonMondatory;
+    }
+
+    public String getAddInfoHeading2() {
+        return addInfoHeading2;
+    }
+
+    public void setAddInfoHeading2(String addInfoHeading2) {
+        this.addInfoHeading2 = addInfoHeading2;
+    }
+
+    public boolean isPrintHeadings() {
+        return printHeadings;
+    }
+
+    public void setPrintHeadings(boolean printHeadings) {
+        this.printHeadings = printHeadings;
+    }
+
+ 
+
+    
+    
+    
+}

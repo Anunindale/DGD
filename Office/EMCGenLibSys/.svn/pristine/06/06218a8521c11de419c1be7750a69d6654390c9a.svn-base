@@ -1,0 +1,8 @@
+compile.on.save=true
+do.depend=false
+do.jar=true
+file.reference.j2ee.jar=/home/asd_admin/Source/SVNMyDeck/Office/EMCGenLibCore/dist/lib/j2ee.jar
+file.reference.jpa.jar=/home/asd_admin/Source/SVNMyDeck/Office/EMCGenLibCore/dist/lib/jpa.jar
+javac.debug=true
+javadoc.preview=true
+user.properties.file=/home/asd_admin/.netbeans/7.2.1/build.properties

@@ -1,0 +1,78 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.entity.pop;
+
+import emc.datatypes.pop.discountgroups.DiscountGroupId;
+import emc.datatypes.systemwide.Description;
+import emc.framework.EMCEntityClass;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+/**
+ *
+ * @author riaan
+ */
+@Entity
+@Table(name = "POPDiscountGroup", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"discountGroupId", "companyId"})})
+public class POPDiscountGroup extends EMCEntityClass implements Serializable {
+
+    private String discountGroupId;
+    private String description;
+    private BigDecimal discountPercentage = BigDecimal.ZERO;
+
+    /**
+     * Creates a new instance of POPDiscountGroup
+     */
+    public POPDiscountGroup() {
+    }
+
+    public String getDiscountGroupId() {
+        return discountGroupId;
+    }
+
+    public void setDiscountGroupId(String discountGroupId) {
+        this.discountGroupId = discountGroupId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public HashMap buildFieldList() {
+        HashMap toBuild = super.buildFieldList();
+
+        toBuild.put("discountGroupId", new DiscountGroupId());
+        toBuild.put("description", new Description());
+
+        return toBuild;
+    }
+
+    @Override
+    protected List<String> buildDefaultLookupFieldList() {
+        List<String> toBuild = super.buildDefaultLookupFieldList();
+        toBuild.add("discountGroupId");
+        toBuild.add("description");
+        return toBuild;
+    }
+
+    public BigDecimal getDiscountPercentage() {
+        return discountPercentage;
+    }
+
+    public void setDiscountPercentage(BigDecimal discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
+}

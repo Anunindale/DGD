@@ -1,0 +1,89 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.bus.debtors.basket;
+
+import emc.bus.debtors.journals.DebtorsJournalMasterLocal;
+import emc.entity.base.webportal.BaseWebPortalUsers;
+import emc.entity.debtors.DebtorsBasketLines;
+import emc.entity.debtors.DebtorsBasketMaster;
+import emc.enums.debtors.basket.BasketStatus;
+import emc.enums.emcquery.EMCQueryBracketConditions;
+import emc.enums.enumQueryTypes;
+import emc.framework.EMCEntityBean;
+import emc.framework.EMCEntityBeanException;
+import emc.framework.EMCQuery;
+import emc.framework.EMCUserData;
+import emc.tables.EMCTable;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author asd_admin
+ */
+@Stateless
+public class DebtorsBasketMasterBean extends EMCEntityBean implements DebtorsBasketMasterLocal {
+    @EJB
+    private DebtorsBasketLinesLocal linesBean;
+    public DebtorsBasketMasterBean() {
+    }
+
+
+    private boolean checkDebtorsBasketMasterInvoiced(DebtorsBasketMaster basketMaster, EMCUserData userData) {
+        return BasketStatus.fromString(basketMaster.getStatus()) == BasketStatus.INVOICED;
+    }
+
+    @Override
+    public boolean invoiceDebtorsBasketMaster(DebtorsBasketMaster basketMaster, EMCUserData userData) throws EMCEntityBeanException {
+        if (!checkDebtorsBasketMasterInvoiced(basketMaster, userData)) {
+            basketMaster.setStatus(BasketStatus.INVOICED.toString());
+            update(basketMaster, userData);
+            return true;
+        }
+        else {
+            throw new EMCEntityBeanException("Basket already invoiced");
+        }
+
+    }
+    @Override
+   public boolean ReleaseTrec(String val, EMCUserData userData)  {
+       
+        if (!isBlank(val)){
+            EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, DebtorsBasketLines.class);
+            query.addTableAnd(DebtorsBasketMaster.class.getName(), "basketId", DebtorsBasketLines.class.getName(), "basketId");
+            query.openConditionBracket(EMCQueryBracketConditions.AND);
+            query.addOr("invoiceId", val,DebtorsBasketMaster.class.getName());
+            query.addOr("basketId", val,DebtorsBasketMaster.class.getName());
+            query.closeConditionBracket();
+           
+      
+            List<DebtorsBasketLines> basket = util.executeGeneralSelectQuery(query, userData);
+            if (basket!=null){
+                for(DebtorsBasketLines baksetLine :basket){
+                    baksetLine.setPrintQty(0);
+                    try {
+                        linesBean.update(baksetLine, userData);
+                       
+                    } catch (EMCEntityBeanException ex) {
+                        Logger.getLogger(DebtorsBasketMasterBean.class.getName()).log(Level.SEVERE, "Failed to update", ex);
+                         
+                    }
+                }
+               
+            }
+            
+       
+        }
+        else {
+            Logger.getLogger("emc").log(Level.SEVERE, "No Basket found for the invoice",userData);
+           
+        }
+        return true;
+    
+    }
+     }  

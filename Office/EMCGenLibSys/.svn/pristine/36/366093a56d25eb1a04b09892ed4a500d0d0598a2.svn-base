@@ -1,0 +1,62 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.entity.trec;
+
+import emc.datatypes.EMCDataType;
+import emc.datatypes.trec.erg.ErgDescription;
+import emc.datatypes.trec.erg.ErgNumber;
+import emc.framework.EMCEntityClass;
+import java.util.HashMap;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+/**
+ *
+ * @author stu
+ */
+@Entity
+@Table(name = "TRECErgMaster", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"erg"})})
+public class TRECErgMaster extends EMCEntityClass {
+    private String erg;
+    private String description;
+
+    public String getErg() {
+        return erg;
+    }
+
+    public void setErg(String erg) {
+        this.erg = erg;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    
+     @Override
+    protected HashMap<String, EMCDataType> buildFieldList() {
+        HashMap<String, EMCDataType> toBuild = super.buildFieldList();
+        toBuild.put("erg", new ErgNumber());
+        toBuild.put("description", new ErgDescription());
+        return toBuild;
+    }
+     
+     @Override
+    protected List<String> buildDefaultLookupFieldList() {
+        List<String> toBuild = super.buildDefaultLookupFieldList();
+        toBuild.add("erg");
+        toBuild.add("description");
+        return toBuild;
+    }
+}
+
+

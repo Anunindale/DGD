@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true">
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="toDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fromDate" class="java.lang.String" isForPrompting="false"/>
+	<field name="salesRep" class="java.lang.String">
+		<fieldDescription><![CDATA[@salesRep]]></fieldDescription>
+	</field>
+	<field name="salesRepName" class="java.lang.String">
+		<fieldDescription><![CDATA[@salesRepName]]></fieldDescription>
+	</field>
+	<field name="customerItemHeader1" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerItemHeader1]]></fieldDescription>
+	</field>
+	<field name="customerItemHeader2" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerItemHeader2]]></fieldDescription>
+	</field>
+	<field name="customerId" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerId]]></fieldDescription>
+	</field>
+	<field name="customerName" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerName]]></fieldDescription>
+	</field>
+	<field name="customerItemField1" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerItemField1]]></fieldDescription>
+	</field>
+	<field name="customerItemField2" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerItemField2]]></fieldDescription>
+	</field>
+	<field name="invoiceNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@invoiceNo]]></fieldDescription>
+	</field>
+	<field name="salesOrderNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@salesOrderNo]]></fieldDescription>
+	</field>
+	<field name="customerOrderNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerOrderNo]]></fieldDescription>
+	</field>
+	<field name="value" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@value]]></fieldDescription>
+	</field>
+	<field name="commissionPerc" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@commissionPerc]]></fieldDescription>
+	</field>
+	<field name="commissionValue" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@commissionValue]]></fieldDescription>
+	</field>
+	<variable name="totalCommissionValue" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalCommissionValue}.add($F{commissionValue})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="totalValue" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalValue}.add($F{value})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0d)]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<textField hyperlinkType="Reference">
+				<reportElement x="284" y="1" width="254" height="27"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<line>
+				<reportElement key="line" x="0" y="1" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="28" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="20" y="2" width="264" height="26"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Commission By Brand]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="28" width="79" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{customerItemHeader1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="263" y="28" width="85" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comm Amount]]></text>
+			</staticText>
+			<line>
+				<reportElement x="20" y="41" width="518" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="99" y="28" width="79" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{customerItemHeader2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="95" y="6" width="80" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fromDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="6" width="75" height="12"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[From Date:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="6" width="80" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{toDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="175" y="6" width="59" height="12"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="28" width="85" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sales Amount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="2" width="79" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{customerItemField1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="2" width="79" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{customerItemField2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="263" y="2" width="85" height="13"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{commissionValue}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="178" y="2" width="85" height="13"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{value}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="17" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() >= $P{numRows}.intValue())]]></printWhenExpression>
+			<line>
+				<reportElement x="20" y="1" width="518" height="1"/>
+			</line>
+			<textField pattern="###0.00">
+				<reportElement x="263" y="2" width="85" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalCommissionValue}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="99" y="2" width="79" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField pattern="###0.00">
+				<reportElement x="178" y="2" width="85" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalValue}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="20" y="3" width="518" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="20" y="3" width="126" height="14"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD
+
+                ]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="346" y="4" width="156" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line" x="20" y="2" width="518" height="1"/>
+			</line>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="501" y="4" width="36" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

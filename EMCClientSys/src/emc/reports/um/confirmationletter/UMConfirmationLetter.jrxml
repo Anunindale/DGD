@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ConfirmationLetter" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="logoPath" class="java.lang.String"/>
+	<field name="studentNameSurname" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentNameSurname]]></fieldDescription>
+	</field>
+	<field name="studentIDNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentIDNumber]]></fieldDescription>
+	</field>
+	<field name="studentNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentNumber]]></fieldDescription>
+	</field>
+	<field name="studentCourse" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentCourse]]></fieldDescription>
+	</field>
+	<field name="academicYear" class="java.lang.String">
+		<fieldDescription><![CDATA[@academicYear]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="802">
+			<staticText>
+				<reportElement x="0" y="0" width="147" height="14"/>
+				<textElement markup="html">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>CENTURION</b>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="14" width="147" height="12"/>
+				<textElement markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Bankstraat 1023 Bank Ave ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="26" width="147" height="12"/>
+				<textElement markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CENTURION 0157 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="38" width="147" height="12"/>
+				<textElement markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Posbus / PO Box 10200 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="50" width="147" height="12"/>
+				<textElement markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CENTURION 0046 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="62" width="147" height="12"/>
+				<textElement markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[<b>Tel:</b> 012 663-6333 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="74" width="147" height="12"/>
+				<textElement markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[<b>Faks / Fax:</b> 012 663-6404]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="86" width="147" height="12"/>
+				<textElement markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[<b>Web:</b> www.ca.ac.za]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="98" width="147" height="12"/>
+				<textElement markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[<b>E-pos/mail:</b> info@ca2000.co.za ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="86" width="145" height="12"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[<b>E-pos/mail:</b>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="38" width="145" height="12"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[KLERKSDORP 2576]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="0" width="145" height="14"/>
+				<textElement textAlignment="Right" markup="html">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>KLERKSDORP</b>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="74" width="145" height="12"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[<b>Web:</b> www.ca.ac.za]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="98" width="145" height="12"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[caontvangs@koshkom.co.za
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="14" width="145" height="12"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Chris Hani Weg 37 Chris Hani Rd]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="50" width="145" height="12"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[<b>Tel:</b> 018 464 4222]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="62" width="145" height="12"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[<b>Faks / Fax:</b> 018 464 4200]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="26" width="145" height="12"/>
+				<textElement textAlignment="Right" markup="html">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Posbus / PO Box 5638]]></text>
+			</staticText>
+			<image hAlign="Center">
+				<reportElement x="147" y="0" width="263" height="120"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{logoPath}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement key="line" x="0" y="120" width="555" height="1"/>
+			</line>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="506" y="792" width="36" height="10" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="15" y="792" width="126" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD
+
+
+                ]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="350" y="792" width="156" height="10" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="761" width="527" height="12"/>
+				<textElement textAlignment="Center">
+					<font fontName="sansserif" size="8"/>
+				</textElement>
+				<text><![CDATA[(Edms) Bpk / (Pty) Ltd Reg No: 1999/024870/07 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="776" width="527" height="12" forecolor="#0004FF"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIREKTEURE / DIRECTORS: Dr JF Potgieter; Me GD Rantseli; Mnr DN Sibeko; Mnr TJ Schoeman; Me W Uys ]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="15" y="792" width="527" height="10" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line" x="0" y="791" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="15" y="707" width="527" height="50"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Geregistreer by die Departement van Onderwys as 'n inrigting vir private hoër onderwys kragtens die Wet op Hoër Onderwys, No. 101 van 1997. Registrasiesertifikaat no 2001/HE07/003. Voorlopig geregistreer by die Department van Onderwys, tot 31 Desember 2014, as ’n private verdere onderwys- en opleidingskollege kragtens die Wet op Verdere Onderwys en Opleiding, 2006. Regisitrasie no. 2008/FE07/057. Registered with the Department of Education as a private higher education institution under the Higher Education Act, No. 101 of 1997. Registration Certificate no. 2001/HE07/003. Provisionally registered with the Department of Education, until 31 December 2014, as a private further education and training college under the Further Education and Training Colleges Act, 2006. Registration no. 2008/FE07/057. ]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line" x="0" y="706" width="555" height="1"/>
+			</line>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="442" y="124" width="100" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="180" width="527" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TO WHOM IT MAY CONCERN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="244" width="527" height="14"/>
+				<textElement/>
+				<text><![CDATA[With this confitmation that:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="15" y="306" width="527" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentNameSurname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="325" width="527" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["ID Number : " + $F{studentIDNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="344" width="527" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Student Number : " + $F{studentNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="470" width="527" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentCourse}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="408" width="527" height="14"/>
+				<textElement/>
+				<text><![CDATA[is registered in the programm:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="15" y="534" width="527" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["for the academic year " + $F{academicYear}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="634" width="527" height="14"/>
+				<textElement/>
+				<text><![CDATA[Yours sincerely]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="677" width="527" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MS W UYS ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="15" y="676" width="132" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="15" y="691" width="527" height="14"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ACADEMIC DIRECTOR ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>

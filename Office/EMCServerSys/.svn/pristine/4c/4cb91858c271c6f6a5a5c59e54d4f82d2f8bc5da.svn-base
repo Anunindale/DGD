@@ -1,0 +1,186 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.reports.trec.ergphrases;
+
+import emc.bus.trec.parameters.TRECParametersLocal;
+import emc.bus.trec.phrases.TRECPhrasesLocal;
+import emc.entity.trec.TRECPhrases;
+import emc.framework.EMCQuery;
+import emc.framework.EMCReportBean;
+import emc.framework.EMCUserData;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author Chris
+ */
+@Stateless
+public class TRECErgPhrasesBean extends EMCReportBean implements TRECErgPhrasesLocal {
+
+    @EJB
+    private TRECParametersLocal paramBean;
+    @EJB
+    private TRECPhrasesLocal phrasesBean;
+
+    @Override
+    public List<Object> executeQuery(EMCQuery query, EMCUserData userData) {
+        EMCUserData copyUD = userData.copyUserData();
+        copyUD.setUserData(0, query);
+
+        return new ArrayList<>(phrasesBean.getDataInRange(TRECPhrases.class, copyUD, 0, Integer.MAX_VALUE));
+
+
+//        return super.executeQuery(query, userData);
+    }
+
+    @Override
+    public List<Object> manipulateQueryResult(List<Object> queryResult, java.util.Map<java.lang.String, java.lang.Object> paramMap, EMCUserData userData) {
+        TRECPhrases line;
+        TRECErgPhrasesDS ds;
+        EMCQuery query;
+        String phraseString = null;
+        boolean printPhrase = false;
+        List dataList = new ArrayList();
+
+        Map<String, List> phrasesMap = new TreeMap<String, List>();
+        Map<String, Map<String, List>> ergMap = new TreeMap<String, Map<String, List>>();
+        String level;
+
+        String outcome;
+
+        for (Object o : queryResult) {
+            String[] ergArray;
+            line = (TRECPhrases) o;
+            if (isBlank(line.getErgNumber())) {
+                String ergPhrase = "No ERG";
+                ergArray = ergPhrase.split(";");
+
+            } else {
+                ergArray = line.getErgNumber().split(";");
+            }
+            // fetch from and put lines to maps
+            for (String erg : ergArray) {
+                Map<String, List> selectedMap = ergMap.get(erg);
+                if (selectedMap == null) {
+                    selectedMap = new TreeMap<>();
+                }
+
+                List<TRECPhrases> phraseLst = selectedMap.get(line.getTypeId());
+                if (phraseLst == null) {
+                    phraseLst = new ArrayList<>();
+                }
+                phraseLst.add(line);
+                selectedMap.put(line.getTypeId(), phraseLst);
+                ergMap.put(erg, selectedMap);
+            }
+
+        }
+
+        for (String ergKey : ergMap.keySet()) {
+            Map<String, List> ergSelMap = ergMap.get(ergKey);
+            String phraseKey = ergKey;
+            for (int i = 0; i < 9; i++){
+                switch (i){
+                    case 0:
+                       phraseKey = "H";
+                        break;
+                    case 1:
+                       phraseKey = "P";
+                        break;
+                    case 2:
+                       phraseKey = "Q";
+                        break;
+                    case 3:
+                       phraseKey = "D";
+                        break;
+                    case 4:
+                       phraseKey = "S";
+                        break;
+                    case 5:
+                       phraseKey = "F";
+                        break;
+                    case 6:
+                       phraseKey = "A";
+                        break;
+                    case 7:
+                       phraseKey = "E";
+                        break;
+                    case 8:
+                       phraseKey = "No ERG";
+                        break;
+                }
+            
+                List<TRECPhrases> phrasesList = ergSelMap.get(phraseKey);
+                if(phrasesList !=null){
+
+                for (TRECPhrases phrase : phrasesList) {
+                    ds = new TRECErgPhrasesDS();
+                    ds.setErgNumber(ergKey);
+
+
+                    switch (phraseKey) {
+                        case "H":
+                            ds.setChemicalSection("Hazards /Danger");
+
+                            break;
+                        case "P":
+                            ds.setChemicalSection("Personal Protective Equipment");
+                            break;
+                        case "Q":
+                            ds.setChemicalSection("Driver Intervenion Equipment");
+                            break;
+                        case "D":
+                            ds.setChemicalSection("Driver first action");
+                            break;
+                        case "S":
+                            ds.setChemicalSection("Driver special action");
+                            break;
+                        case "F":
+                            ds.setChemicalSection("Driver action in case of fire");
+                            break;
+                        case "A":
+                            ds.setChemicalSection("First Aid");
+                            break;
+                        case "E":
+                            ds.setChemicalSection("Special Information for emergency services");
+                            break;
+
+                        default:
+                          ds.setChemicalSection(phraseKey);
+                            break;
+                    }
+                            ds.setPhraseId(phrase.getPhraseId());
+                            ds.setPhrases(phrase.getPhrase());
+                            if (phrase.isStandardPhrases()) {
+                                ds.setPrintS("Y");
+                            } else {
+                                ds.setPrintS("N");
+                            }
+                            
+                            if (phrase.isAddedPhrases()) {
+                                ds.setPrintA("Y");
+                            } else {
+                                ds.setPrintA("N");
+                            }
+                            
+                            if (phrase.isClassSpecific()) {
+                                ds.setPrintC("Y");
+                            } else {
+                                ds.setPrintC("N");
+                            }
+                            dataList.add(ds);
+                    }
+            }
+                }
+            }
+
+            return dataList;
+        }
+    }

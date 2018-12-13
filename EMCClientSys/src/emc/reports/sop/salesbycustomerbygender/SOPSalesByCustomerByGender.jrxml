@@ -1,0 +1,1007 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SOPSalesByCustomerByGenderReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true">
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<field name="customerId" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerId]]></fieldDescription>
+	</field>
+	<field name="customerName" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerName]]></fieldDescription>
+	</field>
+	<field name="genderId" class="java.lang.String">
+		<fieldDescription><![CDATA[@genderId]]></fieldDescription>
+	</field>
+	<field name="genderDescription" class="java.lang.String">
+		<fieldDescription><![CDATA[@genderDescription]]></fieldDescription>
+	</field>
+	<field name="month1Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@month1Heading]]></fieldDescription>
+	</field>
+	<field name="month2Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@month2Heading]]></fieldDescription>
+	</field>
+	<field name="month3Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@month3Heading]]></fieldDescription>
+	</field>
+	<field name="itemReference" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemReference]]></fieldDescription>
+	</field>
+	<field name="itemDescription" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemDescription]]></fieldDescription>
+	</field>
+	<field name="dimension1" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension1]]></fieldDescription>
+	</field>
+	<field name="dimension2" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2]]></fieldDescription>
+	</field>
+	<field name="supplierRef" class="java.lang.String">
+		<fieldDescription><![CDATA[@supplierRef]]></fieldDescription>
+	</field>
+	<field name="currentStock" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@currentStock]]></fieldDescription>
+	</field>
+	<field name="projected1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@projected1]]></fieldDescription>
+	</field>
+	<field name="ordersReceived1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@ordersReceived1]]></fieldDescription>
+	</field>
+	<field name="ordersDelivered1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@ordersDelivered1]]></fieldDescription>
+	</field>
+	<field name="projected2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@projected2]]></fieldDescription>
+	</field>
+	<field name="ordersReceived2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@ordersReceived2]]></fieldDescription>
+	</field>
+	<field name="ordersDelivered2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@ordersDelivered2]]></fieldDescription>
+	</field>
+	<field name="projected3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@projected3]]></fieldDescription>
+	</field>
+	<field name="ordersReceived3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@ordersReceived3]]></fieldDescription>
+	</field>
+	<field name="ordersDelivered3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@ordersDelivered3]]></fieldDescription>
+	</field>
+	<field name="inPacking" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@inPacking]]></fieldDescription>
+	</field>
+	<variable name="monthCover" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{projected1}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $F{currentStock}.divide($F{projected1}, 2, RoundingMode.HALF_UP)]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="genderTotalCurrentStock" class="java.math.BigDecimal" resetType="Group" resetGroup="GenderGroup">
+		<variableExpression><![CDATA[$V{genderTotalCurrentStock}.add($F{currentStock})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="genderTotalProjected1" class="java.math.BigDecimal" resetType="Group" resetGroup="GenderGroup">
+		<variableExpression><![CDATA[$V{genderTotalProjected1}.add($F{projected1})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="genderTotalOrdersReceived1" class="java.math.BigDecimal" resetType="Group" resetGroup="GenderGroup">
+		<variableExpression><![CDATA[$V{genderTotalOrdersReceived1}.add($F{ordersReceived1})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="genderTotalOrdersDelivered1" class="java.math.BigDecimal" resetType="Group" resetGroup="GenderGroup">
+		<variableExpression><![CDATA[$V{genderTotalOrdersDelivered1}.add($F{ordersDelivered1})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="genderTotalProjected2" class="java.math.BigDecimal" resetType="Group" resetGroup="GenderGroup">
+		<variableExpression><![CDATA[$V{genderTotalProjected2}.add($F{projected2})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="genderTotalOrdersReceived2" class="java.math.BigDecimal" resetType="Group" resetGroup="GenderGroup">
+		<variableExpression><![CDATA[$V{genderTotalOrdersReceived2}.add($F{ordersReceived2})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="genderTotalOrdersDelivered2" class="java.math.BigDecimal" resetType="Group" resetGroup="GenderGroup">
+		<variableExpression><![CDATA[$V{genderTotalOrdersDelivered2}.add($F{ordersDelivered2})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="genderTotalProjected3" class="java.math.BigDecimal" resetType="Group" resetGroup="GenderGroup">
+		<variableExpression><![CDATA[$V{genderTotalProjected3}.add($F{projected3})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="genderTotalOrdersReceived3" class="java.math.BigDecimal" resetType="Group" resetGroup="GenderGroup">
+		<variableExpression><![CDATA[$V{genderTotalOrdersReceived3}.add($F{ordersReceived3})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="genderTotalOrdersDelivered3" class="java.math.BigDecimal" resetType="Group" resetGroup="GenderGroup">
+		<variableExpression><![CDATA[$V{genderTotalOrdersDelivered3}.add($F{ordersDelivered3})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="genderTotalMonthCover" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{genderTotalProjected1}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{genderTotalCurrentStock}.divide($V{genderTotalProjected1}, 2, RoundingMode.HALF_UP)]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="genderTotalInPacking" class="java.math.BigDecimal" resetType="Group" resetGroup="GenderGroup">
+		<variableExpression><![CDATA[$V{genderTotalInPacking}.add($F{inPacking})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="customerTotalCurrentStock" class="java.math.BigDecimal" resetType="Group" resetGroup="CustomerGroup">
+		<variableExpression><![CDATA[$V{customerTotalCurrentStock}.add($F{currentStock})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="customerTotalProjected1" class="java.math.BigDecimal" resetType="Group" resetGroup="CustomerGroup">
+		<variableExpression><![CDATA[$V{customerTotalProjected1}.add($F{projected1})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="customerTotalOrdersReceived1" class="java.math.BigDecimal" resetType="Group" resetGroup="CustomerGroup">
+		<variableExpression><![CDATA[$V{customerTotalOrdersReceived1}.add($F{ordersReceived1})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="customerTotalOrdersDelivered1" class="java.math.BigDecimal" resetType="Group" resetGroup="CustomerGroup">
+		<variableExpression><![CDATA[$V{customerTotalOrdersDelivered1}.add($F{ordersDelivered1})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="customerTotalProjected2" class="java.math.BigDecimal" resetType="Group" resetGroup="CustomerGroup">
+		<variableExpression><![CDATA[$V{customerTotalProjected2}.add($F{projected2})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="customerTotalOrdersReceived2" class="java.math.BigDecimal" resetType="Group" resetGroup="CustomerGroup">
+		<variableExpression><![CDATA[$V{customerTotalOrdersReceived2}.add($F{ordersReceived2})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="customerTotalOrdersDelivered2" class="java.math.BigDecimal" resetType="Group" resetGroup="CustomerGroup">
+		<variableExpression><![CDATA[$V{customerTotalOrdersDelivered2}.add($F{ordersDelivered2})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="customerTotalProjected3" class="java.math.BigDecimal" resetType="Group" resetGroup="CustomerGroup">
+		<variableExpression><![CDATA[$V{customerTotalProjected3}.add($F{projected3})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="customerTotalOrdersReceived3" class="java.math.BigDecimal" resetType="Group" resetGroup="CustomerGroup">
+		<variableExpression><![CDATA[$V{customerTotalOrdersReceived3}.add($F{ordersReceived3})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="customerTotalOrdersDelivered3" class="java.math.BigDecimal" resetType="Group" resetGroup="CustomerGroup">
+		<variableExpression><![CDATA[$V{customerTotalOrdersDelivered3}.add($F{ordersDelivered3})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="customerTotalMonthCover" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{customerTotalProjected1}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{customerTotalCurrentStock}.divide($V{customerTotalProjected1}, 2, RoundingMode.HALF_UP)]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="customerTotalInPacking" class="java.math.BigDecimal" resetType="Group" resetGroup="CustomerGroup">
+		<variableExpression><![CDATA[$V{customerTotalInPacking}.add($F{inPacking})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<group name="CustomerGroup" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{customerId}]]></groupExpression>
+		<groupHeader>
+			<band height="17">
+				<staticText>
+					<reportElement x="20" y="1" width="61" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Customer:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="81" y="1" width="100" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerId}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="186" y="1" width="69" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Name:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="255" y="1" width="283" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="44">
+				<line>
+					<reportElement x="589" y="0" width="1" height="12"/>
+				</line>
+				<textField>
+					<reportElement x="413" y="0" width="42" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{customerTotalOrdersDelivered1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="590" y="0" width="42" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{customerTotalProjected3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="546" y="0" width="41" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{customerTotalOrdersDelivered2}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="677" y="0" width="1" height="12"/>
+				</line>
+				<textField>
+					<reportElement x="324" y="0" width="43" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{customerTotalProjected1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="368" y="0" width="1" height="12"/>
+				</line>
+				<textField>
+					<reportElement x="502" y="0" width="42" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{customerTotalOrdersReceived2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="634" y="0" width="42" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{customerTotalOrdersReceived3}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="323" y="0" width="1" height="12"/>
+				</line>
+				<textField>
+					<reportElement x="6" y="0" width="276" height="12"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Total for " + $F{customerId}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="5" y="12" width="789" height="1"/>
+				</line>
+				<line>
+					<reportElement x="412" y="0" width="1" height="12"/>
+				</line>
+				<textField>
+					<reportElement x="369" y="0" width="42" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{customerTotalOrdersReceived1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="456" y="0" width="1" height="12"/>
+				</line>
+				<textField>
+					<reportElement x="457" y="0" width="43" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{customerTotalProjected2}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="501" y="0" width="1" height="12"/>
+				</line>
+				<line>
+					<reportElement x="545" y="0" width="1" height="12"/>
+				</line>
+				<line>
+					<reportElement x="633" y="0" width="1" height="12"/>
+				</line>
+				<textField>
+					<reportElement x="678" y="0" width="42" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{customerTotalOrdersDelivered3}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="757" y="0" width="1" height="12"/>
+				</line>
+				<textField>
+					<reportElement x="758" y="0" width="34" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{customerTotalInPacking}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="794" y="0" width="1" height="13"/>
+				</line>
+				<line>
+					<reportElement x="4" y="0" width="1" height="13"/>
+				</line>
+				<textField>
+					<reportElement x="722" y="0" width="34" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{customerTotalMonthCover}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="721" y="0" width="1" height="12"/>
+				</line>
+				<textField>
+					<reportElement x="283" y="0" width="38" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{customerTotalCurrentStock}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="282" y="0" width="1" height="12"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="GenderGroup" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{genderId}]]></groupExpression>
+		<groupHeader>
+			<band height="67">
+				<textField>
+					<reportElement x="255" y="11" width="283" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{genderDescription}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="81" y="11" width="100" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{genderId}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="186" y="11" width="69" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="11" width="61" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Gender:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="6" y="29" width="40" height="37"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Item]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="49" y="29" width="108" height="37"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="283" y="29" width="38" height="37"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Current Stock]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="324" y="44" width="43" height="22"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Forecast]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="369" y="44" width="42" height="22"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Orders Received]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="413" y="44" width="42" height="22"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Orders Delivered]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="546" y="44" width="42" height="22"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Orders Delivered]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="457" y="44" width="43" height="22"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Forecast]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="502" y="44" width="42" height="22"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Orders Received]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="678" y="44" width="42" height="22"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Orders Delivered]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="590" y="44" width="42" height="22"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Forecast]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="634" y="44" width="42" height="22"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Orders Received]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="758" y="29" width="34" height="37"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[In Packing]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="324" y="29" width="132" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{month1Heading}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="457" y="29" width="132" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{month2Heading}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="590" y="29" width="131" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{month3Heading}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="5" y="66" width="789" height="1"/>
+				</line>
+				<line>
+					<reportElement x="324" y="44" width="397" height="1"/>
+				</line>
+				<line>
+					<reportElement x="5" y="28" width="789" height="1"/>
+				</line>
+				<line>
+					<reportElement x="794" y="28" width="1" height="39"/>
+				</line>
+				<line>
+					<reportElement x="4" y="28" width="1" height="39"/>
+				</line>
+				<line>
+					<reportElement x="282" y="29" width="1" height="37"/>
+				</line>
+				<line>
+					<reportElement x="323" y="29" width="1" height="37"/>
+				</line>
+				<line>
+					<reportElement x="368" y="45" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="412" y="45" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="456" y="29" width="1" height="37"/>
+				</line>
+				<line>
+					<reportElement x="501" y="45" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="545" y="45" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="589" y="29" width="1" height="37"/>
+				</line>
+				<line>
+					<reportElement x="633" y="45" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="677" y="45" width="1" height="21"/>
+				</line>
+				<line>
+					<reportElement x="721" y="29" width="1" height="37"/>
+				</line>
+				<line>
+					<reportElement x="757" y="29" width="1" height="37"/>
+				</line>
+				<staticText>
+					<reportElement x="722" y="29" width="34" height="37"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Month Cover]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="160" y="29" width="41" height="37"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Config]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="233" y="29" width="49" height="37"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Customer Reference]]></text>
+				</staticText>
+				<line>
+					<reportElement x="231" y="28" width="1" height="38"/>
+				</line>
+				<line>
+					<reportElement x="158" y="29" width="1" height="37"/>
+				</line>
+				<line>
+					<reportElement x="47" y="28" width="1" height="38"/>
+				</line>
+				<staticText>
+					<reportElement x="204" y="29" width="27" height="37"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Size]]></text>
+				</staticText>
+				<line>
+					<reportElement x="202" y="29" width="1" height="38"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="14">
+				<textField>
+					<reportElement x="590" y="1" width="42" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{genderTotalProjected3}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="545" y="0" width="1" height="13"/>
+				</line>
+				<textField>
+					<reportElement x="502" y="1" width="42" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{genderTotalOrdersReceived2}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="677" y="0" width="1" height="13"/>
+				</line>
+				<line>
+					<reportElement x="501" y="0" width="1" height="13"/>
+				</line>
+				<line>
+					<reportElement x="412" y="0" width="1" height="13"/>
+				</line>
+				<line>
+					<reportElement x="589" y="0" width="1" height="13"/>
+				</line>
+				<textField>
+					<reportElement x="324" y="1" width="43" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{genderTotalProjected1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="456" y="0" width="1" height="13"/>
+				</line>
+				<textField>
+					<reportElement x="634" y="1" width="42" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{genderTotalOrdersReceived3}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="323" y="0" width="1" height="13"/>
+				</line>
+				<line>
+					<reportElement x="757" y="0" width="1" height="13"/>
+				</line>
+				<textField>
+					<reportElement x="678" y="1" width="42" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{genderTotalOrdersDelivered3}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="633" y="0" width="1" height="13"/>
+				</line>
+				<textField>
+					<reportElement x="413" y="1" width="42" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{genderTotalOrdersDelivered1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="457" y="1" width="43" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{genderTotalProjected2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="758" y="1" width="34" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{genderTotalInPacking}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="5" y="0" width="789" height="1"/>
+				</line>
+				<textField>
+					<reportElement x="546" y="1" width="41" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{genderTotalOrdersDelivered2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="369" y="1" width="42" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{genderTotalOrdersReceived1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="368" y="0" width="1" height="13"/>
+				</line>
+				<line>
+					<reportElement x="794" y="0" width="1" height="14"/>
+				</line>
+				<line>
+					<reportElement x="4" y="0" width="1" height="14"/>
+				</line>
+				<textField>
+					<reportElement x="6" y="1" width="276" height="12"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Total for " + $F{genderId}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="5" y="13" width="789" height="1"/>
+				</line>
+				<line>
+					<reportElement x="721" y="0" width="1" height="13"/>
+				</line>
+				<textField>
+					<reportElement x="722" y="1" width="34" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{genderTotalMonthCover}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="283" y="1" width="38" height="12"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{genderTotalCurrentStock}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="282" y="0" width="1" height="13"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="28" width="802" height="1"/>
+			</line>
+			<line>
+				<reportElement key="line" x="0" y="1" width="802" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="20" y="2" width="400" height="26"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Stock vs Sales Forecast By Customer]]></text>
+			</staticText>
+			<textField hyperlinkType="Reference">
+				<reportElement x="420" y="1" width="358" height="27"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="1" width="40" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemReference}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="49" y="1" width="108" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemDescription}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="1" width="38" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{currentStock}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="324" y="1" width="43" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{projected1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="369" y="1" width="42" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{ordersReceived1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="413" y="1" width="42" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{ordersDelivered1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="457" y="1" width="43" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{projected2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="546" y="1" width="41" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{ordersDelivered2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="502" y="1" width="42" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{ordersReceived2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="590" y="1" width="42" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{projected3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="678" y="1" width="42" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{ordersDelivered3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="634" y="1" width="42" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{ordersReceived3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="758" y="1" width="34" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{inPacking}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="47" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="282" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="323" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="368" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="412" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="456" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="501" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="545" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="589" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="633" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="677" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="721" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="794" y="0" width="1" height="13"/>
+			</line>
+			<textField>
+				<reportElement x="722" y="1" width="34" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{monthCover}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="757" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="231" y="0" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="158" y="0" width="1" height="13"/>
+			</line>
+			<textField>
+				<reportElement x="233" y="1" width="49" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{supplierRef}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="1" width="41" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="202" y="0" width="1" height="13"/>
+			</line>
+			<textField>
+				<reportElement x="204" y="1" width="27" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="585" y="2" width="156" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="20" y="2" width="758" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="743" y="2" width="35" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="20" y="2" width="126" height="14"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD
+
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="20" y="1" width="758" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

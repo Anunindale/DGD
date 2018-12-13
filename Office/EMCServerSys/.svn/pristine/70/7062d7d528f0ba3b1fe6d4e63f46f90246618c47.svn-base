@@ -1,0 +1,745 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.bus.trec.customerchemicals;
+
+import emc.bus.trec.chemicals.TRECChemicalsLocal;
+import emc.bus.trec.treccards.TRECTrecCardsLinesLocal;
+import emc.entity.trec.TRECChemicals;
+import emc.entity.trec.TRECCustomerChemicals;
+import emc.entity.trec.TRECPhrases;
+import emc.entity.trec.TRECTrecCardsLines;
+import emc.enums.emcquery.EMCQueryBracketConditions;
+import emc.enums.enumQueryTypes;
+import emc.enums.trec.TRECTypeEnum;
+import emc.framework.EMCEntityBean;
+import emc.framework.EMCEntityBeanException;
+import emc.framework.EMCQuery;
+import emc.framework.EMCUserData;
+import emc.helpers.trec.TRECPhraseHelper;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author asd_admin
+ */
+@Stateless
+public class TRECCustomerChemicalsBean extends EMCEntityBean implements TRECCustomerChemicalsLocal {
+
+    private final String special = "tr3ck3y";
+    @EJB
+    private TRECTrecCardsLinesLocal trecLinesBean;
+    @EJB
+    private TRECChemicalsLocal chemicalBean;
+
+    @Override
+    public Collection getDataInRange(Class theTable, EMCUserData userData, int start, int end) {
+        EMCQuery query = (EMCQuery) userData.getUserData(0);
+
+        super.checkCompanyId(query, userData);
+
+        query = handleEncryptedSearching(query, userData);
+
+        List<TRECCustomerChemicals> selectedData = util.executeNativeQuery(query, TRECCustomerChemicals.class, userData);
+        selectedData = selectedData.subList(start, end > selectedData.size() ? selectedData.size() : end);
+
+        util.detachEntities(userData);
+
+        EMCQuery qu = new EMCQuery(enumQueryTypes.SELECT, TRECCustomerChemicals.class);
+        qu.addFieldDecrypt("phrasesRefNum", special);
+        qu.addFieldDecrypt("hPhrases", special);
+        qu.addFieldDecrypt("pPhrases", special);
+        qu.addFieldDecrypt("qPhrases", special);
+        qu.addFieldDecrypt("dPhrases", special);
+        qu.addFieldDecrypt("sPhrases", special);
+        qu.addFieldDecrypt("fPhrases", special);
+        qu.addFieldDecrypt("aPhrases", special);
+        qu.addFieldDecrypt("ePhrases", special);
+
+        for (TRECCustomerChemicals ch : selectedData) {
+            qu.removeAnd("recordID");
+            qu.addAnd("recordID", ch.getRecordID());
+            List resultList = util.executeNativeQuery(qu, userData);
+            if (resultList.size() > 0) {
+                Object[] result = (Object[]) resultList.get(0);
+
+                if (result[0] == null) {
+                    ch.setPhrasesRefNum(null);
+                } else if (result[0] instanceof String) {
+                    ch.setPhrasesRefNum((String) result[0]);
+                } else {
+                    ch.setPhrasesRefNum(new String((byte[]) result[0]));
+                }
+
+                if (result[1] == null) {
+                    ch.sethPhrases(null);
+                } else if (result[1] instanceof String) {
+                    ch.sethPhrases((String) result[1]);
+                } else {
+                    ch.sethPhrases(new String((byte[]) result[1]));
+                }
+
+                if (result[2] == null) {
+                    ch.setpPhrases(null);
+                } else if (result[2] instanceof String) {
+                    ch.setpPhrases((String) result[2]);
+                } else {
+                    ch.setpPhrases(new String((byte[]) result[2]));
+                }
+
+                if (result[3] == null) {
+                    ch.setqPhrases(null);
+                } else if (result[3] instanceof String) {
+                    ch.setqPhrases((String) result[3]);
+                } else {
+                    ch.setqPhrases(new String((byte[]) result[3]));
+                }
+
+                if (result[4] == null) {
+                    ch.setdPhrases(null);
+                } else if (result[4] instanceof String) {
+                    ch.setdPhrases((String) result[4]);
+                } else {
+                    ch.setdPhrases(new String((byte[]) result[4]));
+                }
+
+                if (result[5] == null) {
+                    ch.setsPhrases(null);
+                } else if (result[5] instanceof String) {
+                    ch.setsPhrases((String) result[5]);
+                } else {
+                    ch.setsPhrases(new String((byte[]) result[5]));
+                }
+
+                if (result[6] == null) {
+                    ch.setfPhrases(null);
+                } else if (result[6] instanceof String) {
+                    ch.setfPhrases((String) result[6]);
+                } else {
+                    ch.setfPhrases(new String((byte[]) result[6]));
+                }
+
+                if (result[7] == null) {
+                    ch.setaPhrases(null);
+                } else if (result[7] instanceof String) {
+                    ch.setaPhrases((String) result[7]);
+                } else {
+                    ch.setaPhrases(new String((byte[]) result[7]));
+                }
+
+                if (result[8] == null) {
+                    ch.setePhrases(null);
+                } else if (result[8] instanceof String) {
+                    ch.setePhrases((String) result[8]);
+                } else {
+                    ch.setePhrases(new String((byte[]) result[8]));
+                }
+            }
+        }
+
+        return selectedData;
+    }
+
+    @Override
+    public String getNumRows(Class theTable, EMCUserData userData) {
+        EMCQuery query = (EMCQuery) userData.getUserData(0);
+
+        super.checkCompanyId(query, userData);
+
+        query = handleEncryptedSearching(query, userData);
+
+        List dataList = util.executeNativeQuery(query, userData);
+
+        return String.valueOf(dataList.size());
+    }
+
+    private EMCQuery handleEncryptedSearching(EMCQuery query, EMCUserData userData) {
+        String alias = query.getTableAlias(TRECCustomerChemicals.class);
+
+        List<String> whereList = query.getWhereFields();
+        List<String> modifiedWhereList = new ArrayList<>();
+
+        for (String where : whereList) {
+            if (where.contains(alias + ".phrasesRefNum")) {
+                where = where.replaceAll(alias + ".phrasesRefNum", "CAST(AES_DECRYPT(" + alias + ".phrasesRefNum, \'" + special + "\') AS CHAR)");
+            } else if (where.contains(alias + ".hPhrases")) {
+                where = where.replaceAll(alias + ".hPhrases", "CAST(AES_DECRYPT(" + alias + ".hPhrases, \'" + special + "\') AS CHAR)");
+            } else if (where.contains(alias + ".pPhrases")) {
+                where = where.replaceAll(alias + ".pPhrases", "CAST(AES_DECRYPT(" + alias + ".pPhrases, \'" + special + "\') AS CHAR)");
+            } else if (where.contains(alias + ".qPhrases")) {
+                where = where.replaceAll(alias + ".qPhrases", "CAST(AES_DECRYPT(" + alias + ".qPhrases, \'" + special + "\') AS CHAR)");
+            } else if (where.contains(alias + ".dPhrases")) {
+                where = where.replaceAll(alias + ".dPhrases", "CAST(AES_DECRYPT(" + alias + ".dPhrases, \'" + special + "\') AS CHAR)");
+            } else if (where.contains(alias + ".sPhrases")) {
+                where = where.replaceAll(alias + ".sPhrases", "CAST(AES_DECRYPT(" + alias + ".sPhrases, \'" + special + "\') AS CHAR)");
+            } else if (where.contains(alias + ".fPhrases")) {
+                where = where.replaceAll(alias + ".fPhrases", "CAST(AES_DECRYPT(" + alias + ".fPhrases, \'" + special + "\') AS CHAR)");
+            } else if (where.contains(alias + ".aPhrases")) {
+                where = where.replaceAll(alias + ".aPhrases", "CAST(AES_DECRYPT(" + alias + ".aPhrases, \'" + special + "\') AS CHAR)");
+            } else if (where.contains(alias + ".ePhrases")) {
+                where = where.replaceAll(alias + ".ePhrases", "CAST(AES_DECRYPT(" + alias + ".ePhrases, \'" + special + "\') AS CHAR)");
+            }
+
+            modifiedWhereList.add(where);
+        }
+
+        query.setWhereFields(modifiedWhereList);
+
+        return query;
+    }
+
+    /**
+     * Special method to help with encryption
+     *
+     * @param chemical
+     * @param originalRef
+     * @param userData
+     */
+    @Override
+    public void updateEncryptedFields(TRECCustomerChemicals chemical, EMCUserData userData) {
+        EMCQuery qu = new EMCQuery(enumQueryTypes.UPDATE, TRECCustomerChemicals.class);
+        qu.addAnd("recordID", chemical.getRecordID());
+
+        qu.addSetEncryption("phrasesRefNum", special, chemical.getPhrasesRefNum());
+        qu.addSetEncryption("hPhrases", special, chemical.gethPhrases());
+        qu.addSetEncryption("pPhrases", special, chemical.getpPhrases());
+        qu.addSetEncryption("qPhrases", special, chemical.getqPhrases());
+        qu.addSetEncryption("dPhrases", special, chemical.getdPhrases());
+        qu.addSetEncryption("sPhrases", special, chemical.getsPhrases());
+        qu.addSetEncryption("fPhrases", special, chemical.getfPhrases());
+        qu.addSetEncryption("aPhrases", special, chemical.getaPhrases());
+        qu.addSetEncryption("ePhrases", special, chemical.getePhrases());
+
+        util.executeNativeUpdate(qu, userData);
+    }
+
+    @Override
+    public void updateEncryptedFields(long chemRecId, EMCUserData userData) {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECCustomerChemicals.class);
+        query.addAnd("recordID", chemRecId);
+        TRECCustomerChemicals chemical = (TRECCustomerChemicals) util.executeSingleResultQuery(query, userData);
+
+
+        EMCQuery qu = new EMCQuery(enumQueryTypes.UPDATE, TRECCustomerChemicals.class);
+        qu.addAnd("recordID", chemical.getRecordID());
+
+        qu.addSetEncryption("phrasesRefNum", special, chemical.getPhrasesRefNum());
+        qu.addSetEncryption("hPhrases", special, chemical.gethPhrases());
+        qu.addSetEncryption("pPhrases", special, chemical.getpPhrases());
+        qu.addSetEncryption("qPhrases", special, chemical.getqPhrases());
+        qu.addSetEncryption("dPhrases", special, chemical.getdPhrases());
+        qu.addSetEncryption("sPhrases", special, chemical.getsPhrases());
+        qu.addSetEncryption("fPhrases", special, chemical.getfPhrases());
+        qu.addSetEncryption("aPhrases", special, chemical.getaPhrases());
+        qu.addSetEncryption("ePhrases", special, chemical.getePhrases());
+
+        util.executeNativeUpdate(qu, userData);
+    }
+
+    @Override
+    public long createCustomerChemical(long trecLineRecId, String customer, String unNumber, String shippingName, EMCUserData userData) throws EMCEntityBeanException {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECTrecCardsLines.class);
+        query.addAnd("recordID", trecLineRecId);
+
+        TRECTrecCardsLines trecLine = (TRECTrecCardsLines) util.executeSingleResultQuery(query, userData);
+
+        if (trecLine == null) {
+            Logger.getLogger("emc").log(Level.SEVERE, "Failed to find the TREC Char Line Record.", userData);
+            return -1;
+        }
+
+
+        query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+        query.addAnd("unNumber", unNumber);
+        query.addAnd("shippingName", shippingName);
+
+        TRECChemicals chemical = (TRECChemicals) util.executeSingleResultQuery(query, userData);
+
+        if (chemical == null) {
+            Logger.getLogger("emc").log(Level.SEVERE, "Failed to find the TREC Chemical Record.", userData);
+            return -1;
+        }
+
+
+        query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+        query.addAnd("recordID", chemical.getRecordID());
+        query.addFieldDecrypt("phrasesRefNum", special);
+        query.addFieldDecrypt("hPhrases", special);
+        query.addFieldDecrypt("pPhrases", special);
+        query.addFieldDecrypt("qPhrases", special);
+        query.addFieldDecrypt("dPhrases", special);
+        query.addFieldDecrypt("sPhrases", special);
+        query.addFieldDecrypt("fPhrases", special);
+        query.addFieldDecrypt("aPhrases", special);
+        query.addFieldDecrypt("ePhrases", special);
+
+        List chemicalPhrasesList = util.executeNativeQuery(query, userData);
+
+
+        TRECCustomerChemicals custChemical = new TRECCustomerChemicals();
+        custChemical.setCustomerId(customer);
+        custChemical.setChemicalId(chemical.getChemicalId());
+        custChemical.setUnNumber(chemical.getUnNumber());
+        custChemical.setErg(chemical.getErg());
+        custChemical.setClassId(chemical.getClassId());
+        custChemical.setShippingName(chemical.getShippingName());
+        custChemical.setAddShippingName(chemical.getAddShippingName());
+        custChemical.setPhrasesRefNum(chemical.getPhrasesRefNum());
+        custChemical.setSubsidairyRisk(chemical.getSubsidairyRisk());
+        custChemical.setPackingGroup(chemical.getPackingGroup());
+        custChemical.setReady(chemical.isReady());
+        custChemical.setTrecVersion(chemical.getTrecVersion());
+        custChemical.setPackingGroup(chemical.getPackingGroup());
+        custChemical.setRisk1(chemical.getRisk1());
+        custChemical.setRisk2(chemical.getRisk2());
+        custChemical.setRisk3(chemical.getRisk3());
+
+        if (chemicalPhrasesList != null && !chemicalPhrasesList.isEmpty()) {
+            Object[] chemicalPhrases = (Object[]) chemicalPhrasesList.get(0);
+
+            custChemical.setPhrasesRefNum(chemicalPhrases[0] == null ? null : chemicalPhrases[0] instanceof String ? (String) chemicalPhrases[0] : new String((byte[]) chemicalPhrases[0]));
+            custChemical.sethPhrases(checkCustomerPhrases(chemicalPhrases[1] == null ? null : chemicalPhrases[1] instanceof String ? (String) chemicalPhrases[1] : new String((byte[]) chemicalPhrases[1]), custChemical.getClassId(), userData));
+            custChemical.setpPhrases(checkCustomerPhrases(chemicalPhrases[2] == null ? null : chemicalPhrases[2] instanceof String ? (String) chemicalPhrases[2] : new String((byte[]) chemicalPhrases[2]), custChemical.getClassId(), userData));
+            custChemical.setqPhrases(checkCustomerPhrases(chemicalPhrases[3] == null ? null : chemicalPhrases[3] instanceof String ? (String) chemicalPhrases[3] : new String((byte[]) chemicalPhrases[3]), custChemical.getClassId(), userData));
+            custChemical.setdPhrases(checkCustomerPhrases(chemicalPhrases[4] == null ? null : chemicalPhrases[4] instanceof String ? (String) chemicalPhrases[4] : new String((byte[]) chemicalPhrases[4]), custChemical.getClassId(), userData));
+            custChemical.setsPhrases(checkCustomerPhrases(chemicalPhrases[5] == null ? null : chemicalPhrases[5] instanceof String ? (String) chemicalPhrases[5] : new String((byte[]) chemicalPhrases[5]), custChemical.getClassId(), userData));
+            custChemical.setfPhrases(checkCustomerPhrases(chemicalPhrases[6] == null ? null : chemicalPhrases[6] instanceof String ? (String) chemicalPhrases[6] : new String((byte[]) chemicalPhrases[6]), custChemical.getClassId(), userData));
+            custChemical.setaPhrases(checkCustomerPhrases(chemicalPhrases[7] == null ? null : chemicalPhrases[7] instanceof String ? (String) chemicalPhrases[7] : new String((byte[]) chemicalPhrases[7]), custChemical.getClassId(), userData));
+            custChemical.setePhrases(checkCustomerPhrases(chemicalPhrases[8] == null ? null : chemicalPhrases[8] instanceof String ? (String) chemicalPhrases[8] : new String((byte[]) chemicalPhrases[8]), custChemical.getClassId(), userData));
+        }
+
+
+        custChemical = (TRECCustomerChemicals) insert(custChemical, userData);
+
+        trecLine.setCustomerChemical(custChemical.getRecordID());
+
+        trecLinesBean.update(trecLine, userData);
+
+        return custChemical.getRecordID();
+    }
+
+    private String checkCustomerPhrases(String phraseString, String chemicalClass, EMCUserData userData) {
+        if (isBlank(phraseString)) {
+            return null;
+        }
+
+        String[] phrasesSplit = phraseString.split(";");
+
+        StringBuilder returnPhrases = new StringBuilder();
+
+        EMCQuery query;
+        Object[] phraseDetail;
+
+        for (String phraseId : phrasesSplit) {
+            phraseId = phraseId.trim();
+
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+            query.addAnd("phraseId", phraseId);
+            query.addField("addedPhrases");
+            query.addField("classSpecific");
+            query.addField("parentClass");
+
+            phraseDetail = (Object[]) util.executeSingleResultQuery(query, userData);
+
+            if (phraseDetail == null || (Boolean) phraseDetail[0] || ((Boolean) phraseDetail[1] && !util.checkObjectsEqual((String) phraseDetail[2], chemicalClass))) {
+                continue;
+            }
+
+            if (returnPhrases.length() > 0) {
+                returnPhrases.append("; ");
+            }
+
+            returnPhrases.append(phraseId);
+        }
+
+        if (isBlank(returnPhrases.toString())) {
+            return null;
+        } else {
+            return returnPhrases.toString();
+        }
+    }
+
+    @Override
+    public TRECCustomerChemicals fetchCustomerChemical(long recordID, EMCUserData userData) {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECCustomerChemicals.class);
+        query.addAnd("recordID", recordID);
+
+        List<TRECCustomerChemicals> chemList = util.executeNativeQuery(query, TRECCustomerChemicals.class, userData);
+        util.detachEntities(userData);
+
+        EMCQuery qu = new EMCQuery(enumQueryTypes.SELECT, TRECCustomerChemicals.class);
+        qu.addFieldDecrypt("phrasesRefNum", special);
+        qu.addFieldDecrypt("hPhrases", special);
+        qu.addFieldDecrypt("pPhrases", special);
+        qu.addFieldDecrypt("qPhrases", special);
+        qu.addFieldDecrypt("dPhrases", special);
+        qu.addFieldDecrypt("sPhrases", special);
+        qu.addFieldDecrypt("fPhrases", special);
+        qu.addFieldDecrypt("aPhrases", special);
+        qu.addFieldDecrypt("ePhrases", special);
+
+        for (TRECCustomerChemicals ch : chemList) {
+            qu.removeAnd("recordID");
+            qu.addAnd("recordID", ch.getRecordID());
+            List resultList = util.executeNativeQuery(qu, userData);
+            if (resultList.size() > 0) {
+                Object[] result = (Object[]) resultList.get(0);
+
+                if (result[0] == null) {
+                    ch.setPhrasesRefNum(null);
+                } else if (result[0] instanceof String) {
+                    ch.setPhrasesRefNum((String) result[0]);
+                } else {
+                    ch.setPhrasesRefNum(new String((byte[]) result[0]));
+                }
+
+                if (result[1] == null) {
+                    ch.sethPhrases(null);
+                } else if (result[1] instanceof String) {
+                    ch.sethPhrases((String) result[1]);
+                } else {
+                    ch.sethPhrases(new String((byte[]) result[1]));
+                }
+
+                if (result[2] == null) {
+                    ch.setpPhrases(null);
+                } else if (result[2] instanceof String) {
+                    ch.setpPhrases((String) result[2]);
+                } else {
+                    ch.setpPhrases(new String((byte[]) result[2]));
+                }
+
+                if (result[3] == null) {
+                    ch.setqPhrases(null);
+                } else if (result[3] instanceof String) {
+                    ch.setqPhrases((String) result[3]);
+                } else {
+                    ch.setqPhrases(new String((byte[]) result[3]));
+                }
+
+                if (result[4] == null) {
+                    ch.setdPhrases(null);
+                } else if (result[4] instanceof String) {
+                    ch.setdPhrases((String) result[4]);
+                } else {
+                    ch.setdPhrases(new String((byte[]) result[4]));
+                }
+
+                if (result[5] == null) {
+                    ch.setsPhrases(null);
+                } else if (result[5] instanceof String) {
+                    ch.setsPhrases((String) result[5]);
+                } else {
+                    ch.setsPhrases(new String((byte[]) result[5]));
+                }
+
+                if (result[6] == null) {
+                    ch.setfPhrases(null);
+                } else if (result[6] instanceof String) {
+                    ch.setfPhrases((String) result[6]);
+                } else {
+                    ch.setfPhrases(new String((byte[]) result[6]));
+                }
+
+                if (result[7] == null) {
+                    ch.setaPhrases(null);
+                } else if (result[7] instanceof String) {
+                    ch.setaPhrases((String) result[7]);
+                } else {
+                    ch.setaPhrases(new String((byte[]) result[7]));
+                }
+
+                if (result[8] == null) {
+                    ch.setePhrases(null);
+                } else if (result[8] instanceof String) {
+                    ch.setePhrases((String) result[8]);
+                } else {
+                    ch.setePhrases(new String((byte[]) result[8]));
+                }
+            }
+        }
+
+        return chemList.get(0);
+    }
+
+    @Override
+    public Map<String, String> fetchPhrasesForChemical(int chemicalId, String phraseType, boolean allPhrases, EMCUserData userData) {
+        Map<String, String> phraseMap = new HashMap<>();
+
+        TRECChemicals chemical = chemicalBean.fetchChemical(chemicalId, userData);
+
+        Field phraseField = null;
+        try {
+            switch (phraseType) {
+                case "A":
+                    phraseField = TRECChemicals.class.getSuperclass().getDeclaredField("aPhrases");
+                    break;
+                case "D":
+                    phraseField = TRECChemicals.class.getSuperclass().getDeclaredField("dPhrases");
+                    break;
+                case "E":
+                    phraseField = TRECChemicals.class.getSuperclass().getDeclaredField("ePhrases");
+                    break;
+                case "F":
+                    phraseField = TRECChemicals.class.getSuperclass().getDeclaredField("fPhrases");
+                    break;
+                case "H":
+                    phraseField = TRECChemicals.class.getSuperclass().getDeclaredField("hPhrases");
+                    break;
+                case "P":
+                    phraseField = TRECChemicals.class.getSuperclass().getDeclaredField("pPhrases");
+                    break;
+                case "Q":
+                    phraseField = TRECChemicals.class.getSuperclass().getDeclaredField("qPhrases");
+                    break;
+                case "S":
+                    phraseField = TRECChemicals.class.getSuperclass().getDeclaredField("sPhrases");
+                    break;
+            }
+            phraseField.setAccessible(true);
+        } catch (Exception ex) {
+            Logger.getLogger("emc").log(Level.SEVERE, "Failed to get Phrases from Chemical.", userData);
+        }
+
+        //Get Chemical Phrases
+        List<Object[]> chemicalPhrasesList;
+        Object chemicalPhrases;
+        String phraseString = null;
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, chemical.getClass());
+        query.addAnd("recordID", chemical.getRecordID());
+        query.addFieldDecrypt(phraseField.getName(), "tr3ck3y");
+        chemicalPhrasesList = util.executeNativeQuery(query, userData);
+
+        if (chemicalPhrasesList != null && !chemicalPhrasesList.isEmpty()) {
+            chemicalPhrases = chemicalPhrasesList.get(0);
+
+            if (chemicalPhrases != null) {
+                if (chemicalPhrases instanceof String) {
+                    phraseString = (String) chemicalPhrases;
+                } else {
+                    phraseString = new String((byte[]) chemicalPhrases);
+                }
+
+                if (!isBlank(phraseString)) {
+                    phraseMap = getPhrases(phraseString, chemical, allPhrases, userData);
+                }
+            }
+        }
+        return phraseMap;
+
+    }
+
+    private Map<String, String> getPhrases(String phraseString, TRECChemicals chemical, boolean allPhrases, EMCUserData userData) {
+        Map<String, String> phraseMap = new HashMap<>();
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.openConditionBracket(EMCQueryBracketConditions.NONE);
+
+        String[] phraseArray = phraseString.split(";");
+
+        for (String phrase : phraseArray) {
+            query.addOr("phraseId", phrase.trim());
+        }
+
+        query.closeConditionBracket();
+
+        query.addFieldDecrypt("phrase", "tr3ck3y");//0
+        query.addField("parentClass");//1
+        query.addField("classSpecific");//2
+        query.addField("addedPhrases");//3
+        query.addField("standardPhrases");//4
+        query.addField("phraseId");//5
+
+        List phrasesList = util.executeNativeQuery(query, userData);
+
+        Object[] phrase;
+
+        for (Object o : phrasesList) {
+            phrase = (Object[]) o;
+
+            //Phrase is class specific and deos not match chemical class
+            if ((Boolean) phrase[2] && !util.checkObjectsEqual(chemical.getClassId(), (String) phrase[1])) {
+                continue;
+            }
+
+            //Phrase Is added Phrase and should only be printed if customer chose chemical
+            if (!allPhrases && ((Boolean) phrase[3] && chemical instanceof TRECChemicals)) {
+                continue;
+            }
+
+            if (phrase[0] instanceof String) {
+                phraseMap.put((String) phrase[0], (String) phrase[5]);
+            } else {
+                phraseMap.put(new String((byte[]) phrase[0]), (String) phrase[5]);
+            }
+        }
+
+        return phraseMap;
+    }
+
+    @Override
+    public Object update(Object uobject, EMCUserData userData) throws EMCEntityBeanException {
+        TRECCustomerChemicals custChem = (TRECCustomerChemicals) uobject;
+
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECTrecCardsLines.class);
+        query.addAnd("customerChemical", custChem.getRecordID());
+
+        //Remove active S & F Phrases from E
+        checkEPhrases(custChem, userData);
+
+        //Unapprove TREC Line
+        List<TRECTrecCardsLines> trecLinesList = util.executeGeneralSelectQuery(query, userData);
+   //this hange has been done to handle 2 cards linking to the same chemical eg when customer changes their details  a new card is generated linking to the same chemical
+        if (trecLinesList.isEmpty()) {
+            throw new EMCEntityBeanException("Failed to find the TREC Line.");
+        } else {
+                    
+            for (TRECTrecCardsLines trecLine : trecLinesList) {
+                if (trecLine.isApproved() && !"FROM_WEB".equals(userData.getUserData(5))) {
+                    trecLine.setApproved(false);
+                    trecLine.setApprovedBy(null);
+                    trecLine.setApprovedDate(null);
+
+                    trecLinesBean.update(trecLine, userData);
+                }
+            }
+
+            return super.update(custChem, userData);
+        }
+    }
+
+    @Override
+    public void checkEPhrases(TRECCustomerChemicals custChem, EMCUserData userData) {
+        String ePhrasesString = custChem.getePhrases();
+
+        if (!isBlank(ePhrasesString)) {
+            String[] ePhrasesSplit = ePhrasesString.split(";");
+            List<String> ePhrases = new ArrayList<>();
+
+            for (String e : ePhrasesSplit) {
+                ePhrases.add(e.trim());
+            }
+
+            //Remove S Phrases from E
+            String sPhrasesString = custChem.getsPhrases();
+            if (!isBlank(sPhrasesString)) {
+                String[] sPhrasesSplit = sPhrasesString.split(";");
+
+                for (String s : sPhrasesSplit) {
+                    ePhrases.remove(s.trim());
+                }
+            }
+
+            //Remove F Phrases from E
+            String fPhrasesString = custChem.getfPhrases();
+            if (!isBlank(fPhrasesString)) {
+                String[] fPhrasesSplit = fPhrasesString.split(";");
+
+                for (String f : fPhrasesSplit) {
+                    ePhrases.remove(f.trim());
+                }
+            }
+
+            //Remove A Phrases from E
+            String aPhrasesString = custChem.getaPhrases();
+            if (!isBlank(aPhrasesString)) {
+                String[] aPhrasesSplit = aPhrasesString.split(";");
+
+                for (String f : aPhrasesSplit) {
+                    ePhrases.remove(f.trim());
+                }
+            }
+
+            //Remove D Phrases from E
+            String dPhrasesString = custChem.getdPhrases();
+            if (!isBlank(dPhrasesString)) {
+                String[] dPhrasesSplit = dPhrasesString.split(";");
+
+                for (String f : dPhrasesSplit) {
+                    ePhrases.remove(f.trim());
+                }
+            }
+
+            //Remove H Phrases from E
+            String hPhrasesString = custChem.gethPhrases();
+            if (!isBlank(hPhrasesString)) {
+                String[] hPhrasesSplit = hPhrasesString.split(";");
+
+                for (String f : hPhrasesSplit) {
+                    ePhrases.remove(f.trim());
+                }
+            }
+
+            //Remove P Phrases from E
+            String pPhrasesString = custChem.getpPhrases();
+            if (!isBlank(pPhrasesString)) {
+                String[] pPhrasesSplit = pPhrasesString.split(";");
+
+                for (String f : pPhrasesSplit) {
+                    ePhrases.remove(f.trim());
+                }
+            }
+
+            //Remove Q Phrases from E
+            String qPhrasesString = custChem.getqPhrases();
+            if (!isBlank(qPhrasesString)) {
+                String[] qPhrasesSplit = qPhrasesString.split(";");
+
+                for (String f : qPhrasesSplit) {
+                    ePhrases.remove(f.trim());
+                }
+            }
+
+            if (ePhrases.isEmpty()) {
+                custChem.setePhrases(null);
+            } else {
+                StringBuilder ePhraseBuilder = new StringBuilder();
+
+                for (String e : ePhrases) {
+                    if (ePhraseBuilder.length() > 0) {
+                        ePhraseBuilder.append("; ");
+                    }
+
+                    ePhraseBuilder.append(e);
+                }
+
+                custChem.setePhrases(ePhraseBuilder.toString());
+            }
+        }
+    }
+
+    @Override
+    public boolean resetCustomerChemical(long trecLineRecId, EMCUserData userData) throws EMCEntityBeanException {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECCustomerChemicals.class);
+        query.addTableAnd(TRECTrecCardsLines.class.getName(), "recordID", TRECCustomerChemicals.class.getName(), "customerChemical");
+        query.addAnd("recordID", trecLineRecId, TRECTrecCardsLines.class.getName());
+
+        TRECCustomerChemicals customerChemical = (TRECCustomerChemicals) util.executeSingleResultQuery(query, userData);
+
+        if (customerChemical == null) {
+            Logger.getLogger("emc").log(Level.WARNING, "No customer chemical set against the trec line.", userData);
+            return false;
+        }
+
+        delete(customerChemical, userData);
+
+        query = new EMCQuery(enumQueryTypes.UPDATE, TRECTrecCardsLines.class);
+        query.addAnd("recordID", trecLineRecId);
+        query.addSet("customerChemical", 0);
+        query.addSet("approved", false);
+        query.addSet("approvedBy", null);
+        query.addSet("approvedDate", null);
+        util.executeUpdate(query, userData);
+
+        return true;
+    }
+}

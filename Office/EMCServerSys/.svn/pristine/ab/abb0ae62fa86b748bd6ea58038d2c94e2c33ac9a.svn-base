@@ -1,0 +1,691 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.bus.trec.phrases;
+
+import emc.bus.base.BaseDocRefLocal;
+import emc.bus.trec.chemicals.TRECChemicalsLocal;
+import emc.entity.trec.TRECChemicals;
+import emc.entity.trec.TRECPhrases;
+import emc.enums.enumQueryTypes;
+import emc.enums.trec.TRECTypeEnum;
+import emc.framework.EMCEntityBean;
+import emc.framework.EMCEntityBeanException;
+import emc.framework.EMCQuery;
+import emc.framework.EMCUserData;
+import emc.helpers.trec.TRECPhraseHelper;
+import emc.tables.EMCTable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author wikus
+ */
+@Stateless
+public class TRECPhrasesBean extends EMCEntityBean implements TRECPhrasesLocal {
+
+    private final String special = "tr3ck3y";
+    @EJB
+    private TRECChemicalsLocal chemicalsBean;
+
+    @Override
+    public Collection getDataInRange(Class theTable, EMCUserData userData, int start, int end) {
+        EMCQuery query = (EMCQuery) userData.getUserData(0);
+
+        super.checkCompanyId(query, userData);
+
+        query = handleEncryptedSearching(query, userData);
+
+        List<TRECPhrases> selectedData = util.executeNativeQuery(query, TRECPhrases.class, userData);
+        selectedData = selectedData.subList(start, end > selectedData.size() ? selectedData.size() : end);
+
+        util.detachEntities(userData);
+
+        EMCQuery qu = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        qu.addFieldDecrypt("phrase", special);
+        qu.addFieldDecrypt("ergNumber", special);
+
+        for (TRECPhrases ph : selectedData) {
+            qu.removeAnd("recordID");
+            qu.addAnd("recordID", ph.getRecordID());
+
+            List resultList = util.executeNativeQuery(qu, userData);
+
+            if (resultList.size() > 0) {
+                Object[] result = (Object[]) resultList.get(0);
+
+                if (result[0] == null) {
+                    ph.setPhrase(null);
+                } else if (result[0] instanceof String) {
+                    ph.setPhrase((String) result[0]);
+                } else {
+                    ph.setPhrase(new String((byte[]) result[0]));
+                }
+
+                if (result[1] == null) {
+                    ph.setErgNumber(null);
+                } else if (result[1] instanceof String) {
+                    ph.setErgNumber((String) result[1]);
+                } else {
+                    ph.setErgNumber(new String((byte[]) result[1]));
+                }
+            }
+        }
+
+        return selectedData;
+    }
+
+    @Override
+    public String getNumRows(Class theTable, EMCUserData userData) {
+        EMCQuery query = (EMCQuery) userData.getUserData(0);
+
+        super.checkCompanyId(query, userData);
+
+        query = handleEncryptedSearching(query, userData);
+
+        List dataList = util.executeNativeQuery(query, userData);
+
+        return String.valueOf(dataList.size());
+    }
+
+    private EMCQuery handleEncryptedSearching(EMCQuery query, EMCUserData userData) {
+        String alias = query.getTableAlias(TRECPhrases.class);
+
+        List<String> whereList = query.getWhereFields();
+        List<String> modifiedWhereList = new ArrayList<>();
+
+        for (String where : whereList) {
+            if (where.contains(alias + ".phrase ")) {
+                where = where.replaceAll(alias + ".phrase ", "CAST(AES_DECRYPT(" + alias + ".phrase, \'" + special + "\') AS CHAR) ");
+            } else if (where.contains(alias + ".ergNumber")) {
+                where = where.replaceAll(alias + ".ergNumber", "CAST(AES_DECRYPT(" + alias + ".ergNumber, \'" + special + "\') AS CHAR)");
+            }
+
+            modifiedWhereList.add(where);
+        }
+
+        query.setWhereFields(modifiedWhereList);
+
+        return query;
+    }
+
+    @Override
+    public Object insert(Object iobject, EMCUserData userData) throws EMCEntityBeanException {
+        TRECPhrases record = (TRECPhrases) iobject;
+
+        if (!isBlank(record.getErgNumber())) {
+            updateChemicalsWithPhrase(record, userData);
+        }
+
+        setSortCode(record, userData);
+
+        return super.insert(record, userData);
+    }
+
+    @Override
+    public Object update(Object uobject, EMCUserData userData) throws EMCEntityBeanException {
+        TRECPhrases record = (TRECPhrases) uobject;
+
+        updateChemicalsWithPhrase(record, userData);
+
+        return super.update(record, userData);
+    }
+
+    @Override
+    public boolean doDeleteValidation(EMCTable vobject, EMCUserData userData) throws EMCEntityBeanException {
+        boolean valid = super.doDeleteValidation(vobject, userData);
+
+        if (valid) {
+            TRECPhrases phrase = (TRECPhrases) vobject;
+
+            if (!isBlank(phrase.getTypeId()) && !isBlank(phrase.getPhraseId())) {
+                String chemField = null;
+
+                switch (TRECTypeEnum.fromString(phrase.getTypeId())) {
+                    case A:
+                        chemField = "aPhrases";
+                        break;
+                    case D:
+                        chemField = "dPhrases";
+                        break;
+                    case E:
+                        chemField = "ePhrases";
+                        break;
+                    case F:
+                        chemField = "fPhrases";
+                        break;
+                    case H:
+                        chemField = "hPhrases";
+                        break;
+                    case P:
+                        chemField = "pPhrases";
+                        break;
+                    case Q:
+                        chemField = "qPhrases";
+                        break;
+                    case S:
+                        chemField = "sPhrases";
+                        break;
+                }
+
+                EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+                query.addCustomAnd("AES_DECRYPT(" + chemField + ", \'" + special + "\') LIKE \'%" + phrase.getPhraseId() + "%\'");
+                query.addField("recordID");
+
+                List chemList = util.executeNativeQuery(query, userData);
+
+                if (chemList != null && !chemList.isEmpty()) {
+                    Logger.getLogger("emc").log(Level.SEVERE, "The selected phrase is still being used on some chemicals.", userData);
+
+                    valid = false;
+                }
+            }
+        }
+
+        return valid;
+    }
+
+    private void updateChemicalsWithPhrase(TRECPhrases record, EMCUserData userData) {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.addAnd("recordID", record.getRecordID());
+        query.addFieldDecrypt("ergNumber", special);
+
+        List resultList = util.executeNativeQuery(query, userData);
+        String persistedErg = null;
+
+        if (resultList.size() > 0) {
+
+            if (resultList.get(0) == null) {
+                persistedErg = "";
+            } else if (resultList.get(0) instanceof String) {
+                persistedErg = (String) resultList.get(0);
+            } else {
+                persistedErg = new String((byte[]) resultList.get(0));
+            }
+        }
+
+        String[] persistedErgSplit = persistedErg.split(";");
+
+        List<String> persistedErgList = new ArrayList<>();
+
+        for (String e : persistedErgSplit) {
+            if (!persistedErgList.contains(e.trim())) {
+                persistedErgList.add(e.trim());
+            }
+        }
+
+        String[] ergSplit = (isBlank(record.getErgNumber()) ? "" : record.getErgNumber()).split(";");
+
+        List<String> ergList = new ArrayList<>();
+
+        for (String e : ergSplit) {
+            if (!ergList.contains(e.trim())) {
+                ergList.add(e.trim());
+            }
+        }
+
+        Collections.sort(ergList);
+
+        List<Object[]> chemicalList;
+
+        StringBuilder ergString = new StringBuilder();
+
+        String chemicalPhrases;
+        String[] chemicalPhrasesSplit;
+        List<String> chemicalPhrasesList;
+        StringBuilder chemicalPhrasesString;
+
+        for (String erg : ergList) {
+            if (!isBlank(erg)) {
+
+                erg = erg.trim();
+
+                if (ergString.length() > 0) {
+                    ergString.append("; ");
+                }
+
+                ergString.append(erg);
+
+                query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+                query.addAnd("erg", erg);
+                query.addField("recordID");
+                query.addFieldDecrypt(record.getTypeId().toLowerCase() + "Phrases", special);
+                chemicalList = util.executeNativeQuery(query, userData);
+
+                for (Object[] chemical : chemicalList) {
+                    if (chemical[1] == null) {
+                        chemicalPhrases = "";
+                    } else if (chemical[1] instanceof String) {
+                        chemicalPhrases = (String) chemical[1];
+                    } else {
+                        chemicalPhrases = new String((byte[]) chemical[1]);
+                    }
+
+                    chemicalPhrasesSplit = chemicalPhrases.split(";");
+
+                    chemicalPhrasesList = new ArrayList<>();
+
+                    for (String p : chemicalPhrasesSplit) {
+                        if (!chemicalPhrasesList.contains(p.trim())) {
+                            chemicalPhrasesList.add(p.trim());
+                        }
+                    }
+
+                    if (!chemicalPhrasesList.contains(record.getPhraseId())) {
+                        chemicalPhrasesList.add(record.getPhraseId());
+                    }
+
+                    Collections.sort(chemicalPhrasesList);
+
+                    chemicalPhrasesString = new StringBuilder();
+
+                    for (String phrase : chemicalPhrasesList) {
+                        if (isBlank(phrase)) {
+                            continue;
+                        }
+
+                        if (chemicalPhrasesString.length() > 0) {
+                            chemicalPhrasesString.append("; ");
+                        }
+
+                        chemicalPhrasesString.append(phrase);
+                    }
+
+
+                    if (!isBlank(chemicalPhrasesString.toString())) {
+                        query = new EMCQuery(enumQueryTypes.UPDATE, TRECChemicals.class);
+                        query.addAnd("recordID", chemical[0]);
+                        query.addSetEncryption(record.getTypeId().toLowerCase() + "Phrases", special, chemicalPhrasesString.toString());
+
+                        util.executeNativeUpdate(query, userData);
+                    }
+                }
+            }
+
+            persistedErgList.remove(erg); //to check for erg removal
+        }
+
+        if (!isBlank(ergString.toString())) {
+            record.setErgNumber(ergString.toString());
+        }
+        //phrase removal from chemical/s
+        for (String erg : persistedErgList) {
+            if (!isBlank(erg)) {
+
+                erg = erg.trim();
+
+                query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+                query.addAnd("erg", erg);
+                query.addField("recordID");
+                query.addFieldDecrypt(record.getTypeId().toLowerCase() + "Phrases", special);
+                chemicalList = util.executeNativeQuery(query, userData);
+
+                for (Object[] chemical : chemicalList) {
+                    if (chemical[1] == null) {
+                        chemicalPhrases = "";
+                    } else if (chemical[1] instanceof String) {
+                        chemicalPhrases = (String) chemical[1];
+                    } else {
+                        chemicalPhrases = new String((byte[]) chemical[1]);
+                    }
+
+                    chemicalPhrasesSplit = chemicalPhrases.split(";");
+
+                    chemicalPhrasesList = new ArrayList<>();
+
+                    for (String p : chemicalPhrasesSplit) {
+                        if (!chemicalPhrasesList.contains(p.trim())) {
+                            chemicalPhrasesList.add(p.trim());
+                        }
+                    }
+
+                    chemicalPhrasesList.remove(record.getPhraseId());
+
+                    Collections.sort(chemicalPhrasesList);
+
+                    chemicalPhrasesString = new StringBuilder();
+
+                    for (String phrase : chemicalPhrasesList) {
+                        if (isBlank(phrase)) {
+                            continue;
+                        }
+
+                        if (chemicalPhrasesString.length() > 0) {
+                            chemicalPhrasesString.append("; ");
+                        }
+
+                        chemicalPhrasesString.append(phrase);
+                    }
+
+
+                    query = new EMCQuery(enumQueryTypes.UPDATE, TRECChemicals.class);
+                    query.addAnd("recordID", chemical[0]);
+                    query.addSetEncryption(record.getTypeId().toLowerCase() + "Phrases", special, isBlank(chemicalPhrasesString.toString()) ? "" : chemicalPhrasesString.toString());
+
+                    util.executeNativeUpdate(query, userData);
+                }
+            }
+        }
+    }
+
+    /**
+     * Special method to help with encryption
+     *
+     * @param phrase
+     * @param userData
+     */
+    public void updateEncryptedFields(TRECPhrases ph, EMCUserData userData) {
+        EMCQuery qu = new EMCQuery(enumQueryTypes.UPDATE, TRECPhrases.class);
+        qu.addAnd("recordID", ph.getRecordID());
+        if (!isBlank(ph.getPhrase())) {
+            qu.addSetEncryption("phrase", special, ph.getPhrase());
+        }
+        if (!isBlank(ph.getErgNumber())) {
+            qu.addSetEncryption("ergNumber", special, ph.getErgNumber());
+        }
+        util.executeNativeUpdate(qu, userData);
+    }
+
+    private void setSortCode(TRECPhrases phrase, EMCUserData userData) {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.addAnd("typeId", phrase.getTypeId());
+        query.addAnd("parentClass", phrase.getParentClass());
+        query.addFieldAggregateFunction("sortNumber", "MAX");
+        Integer maxSort = (Integer) util.executeSingleResultQuery(query, userData);
+        if (maxSort == null) {
+            maxSort = 0;
+        }
+
+        phrase.setSortNumber(maxSort + 1);
+    }
+
+    @Override
+    public List<TRECPhraseHelper> getPhrases(String UNNumber, String stringType, EMCUserData userData) {
+        TRECTypeEnum type = null;
+        List<TRECPhraseHelper> helperList = new ArrayList<>();
+        if (isBlank(UNNumber)) {
+            logMessage(Level.SEVERE, " Please set UN Number", userData);
+            return null;
+        }
+        if (isBlank(stringType)) {
+            logMessage(Level.SEVERE, " Please set type", userData);
+            return null;
+        }else{
+           type = TRECTypeEnum.fromString(stringType);
+        }
+
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+        query.addAnd("unNumber", UNNumber);
+
+        EMCUserData copyUserData = userData.copyUserData();
+        copyUserData.setUserData(0, query);
+
+        List<TRECChemicals> selectedData = (List<TRECChemicals>) chemicalsBean.getDataInRange(TRECChemicals.class, copyUserData, 0, Integer.MAX_VALUE);
+
+        try {
+            switch (type) {
+                case A:
+                    helperList = getAPhrases(selectedData.get(0), userData);
+                    break;
+                case D:
+                    helperList = getDPhrases(selectedData.get(0), userData);
+                    break;
+                case E:
+                  //  helperList = getEPhrases(selectedData.get(0), userData);
+                    break;
+                case F:
+                    helperList = getFPhrases(selectedData.get(0), userData);
+                    break;
+                case H:
+                    helperList = getHPhrases(selectedData.get(0), userData);
+                    break;
+                case P:
+                    helperList = getPPhrases(selectedData.get(0), userData);
+                    break;
+                case Q:
+                    helperList = getQPhrases(selectedData.get(0), userData);
+                    break;
+                case S:
+                    helperList = getSPhrases(selectedData.get(0), userData);
+                    break;
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger("emc").log(Level.SEVERE, "Failed to get Phrases from Chemical.", userData);
+        }
+
+
+        return helperList;
+    }
+
+    private List<TRECPhraseHelper> getPPhrases(TRECChemicals chemical, EMCUserData userData) {
+        List<TRECPhraseHelper> retList = new ArrayList<>();
+
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.addAnd("typeId", "P");
+        query.addAnd("standardPhrases", true);
+
+
+        EMCUserData copyUserData = userData.copyUserData();
+        copyUserData.setUserData(0, query);
+
+        Collection<TRECPhrases> selectedData = getDataInRange(TRECPhrases.class, copyUserData, 0, Integer.MAX_VALUE);
+        for (TRECPhrases phrase : selectedData) {
+            if (phrase.isClassSpecific() && !isBlank(phrase.getErgNumber()) && !phrase.getParentClass().equalsIgnoreCase(chemical.getClassId())) {
+                continue;
+            } else {
+                TRECPhraseHelper helper = new TRECPhraseHelper();
+                helper.setPhraseId(phrase.getPhraseId());
+                helper.setPhraseDescription(phrase.getPhrase());
+                if (!phrase.isAddedPhrases() && phrase.getErgNumber().contains(chemical.getErg())) {
+                    helper.setTicked(true);
+                }
+                retList.add(helper);
+            }
+
+
+        }
+
+        return retList;
+    }
+
+    private List<TRECPhraseHelper> getQPhrases(TRECChemicals chemical, EMCUserData userData) {
+        List<TRECPhraseHelper> retList = new ArrayList<>();
+
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.addAnd("typeId", "Q");
+        query.addAnd("standardPhrases", true);
+
+
+        EMCUserData copyUserData = userData.copyUserData();
+        copyUserData.setUserData(0, query);
+
+        Collection<TRECPhrases> selectedData = getDataInRange(TRECPhrases.class, copyUserData, 0, Integer.MAX_VALUE);
+        for (TRECPhrases phrase : selectedData) {
+            if (phrase.isClassSpecific() && !phrase.getParentClass().equalsIgnoreCase(chemical.getClassId())) {
+                continue;
+            } else {
+                TRECPhraseHelper helper = new TRECPhraseHelper();
+                helper.setPhraseId(phrase.getPhraseId());
+                helper.setPhraseDescription(phrase.getPhrase());
+                if (!phrase.isAddedPhrases() && !isBlank(phrase.getErgNumber()) && phrase.getErgNumber().contains(chemical.getErg())) {
+                    helper.setTicked(true);
+                }
+                retList.add(helper);
+            }
+
+
+        }
+
+        return retList;
+    }
+
+    private List<TRECPhraseHelper> getDPhrases(TRECChemicals chemical, EMCUserData userData) {
+        List<TRECPhraseHelper> retList = new ArrayList<>();
+
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.addAnd("typeId", "D");
+        query.addAnd("standardPhrases", true);
+
+
+        EMCUserData copyUserData = userData.copyUserData();
+        copyUserData.setUserData(0, query);
+
+        Collection<TRECPhrases> selectedData = getDataInRange(TRECPhrases.class, copyUserData, 0, Integer.MAX_VALUE);
+        for (TRECPhrases phrase : selectedData) {
+            if (phrase.isClassSpecific() && !phrase.getParentClass().equalsIgnoreCase(chemical.getClassId())) {
+                continue;
+            } else {
+                TRECPhraseHelper helper = new TRECPhraseHelper();
+                helper.setPhraseId(phrase.getPhraseId());
+                helper.setPhraseDescription(phrase.getPhrase());
+                if (!phrase.isAddedPhrases() && !isBlank(phrase.getErgNumber()) && phrase.getErgNumber().contains(chemical.getErg())) {
+                    helper.setTicked(true);
+                }
+                if (phrase.isStandardPhrases()) {
+                    helper.setTicked(true);
+                    helper.setMandatory(true);
+                }
+                retList.add(helper);
+            }
+
+
+        }
+
+        return retList;
+    }
+
+    private List<TRECPhraseHelper> getAPhrases(TRECChemicals chemical, EMCUserData userData) {
+        List<TRECPhraseHelper> retList = new ArrayList<>();
+
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.addAnd("typeId", "A");
+        // query.addAnd("standardPhrases", true);
+
+
+        EMCUserData copyUserData = userData.copyUserData();
+        copyUserData.setUserData(0, query);
+
+        Collection<TRECPhrases> selectedData = getDataInRange(TRECPhrases.class, copyUserData, 0, Integer.MAX_VALUE);
+        for (TRECPhrases phrase : selectedData) {
+            if (phrase.isClassSpecific() && !phrase.getParentClass().equalsIgnoreCase(chemical.getClassId())) {
+                continue;
+            } else {
+                TRECPhraseHelper helper = new TRECPhraseHelper();
+                helper.setPhraseId(phrase.getPhraseId());
+                helper.setPhraseDescription(phrase.getPhrase());
+                if (!phrase.isAddedPhrases() && !isBlank(phrase.getErgNumber()) && phrase.getErgNumber().contains(chemical.getErg())) {
+                    helper.setTicked(true);
+                }
+                retList.add(helper);
+            }
+
+
+        }
+
+        return retList;
+    }
+
+    private List<TRECPhraseHelper> getSPhrases(TRECChemicals chemical, EMCUserData userData) {
+        List<TRECPhraseHelper> retList = new ArrayList<>();
+
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.addAnd("typeId", "S");
+        // query.addAnd("standardPhrases", true);
+
+
+        EMCUserData copyUserData = userData.copyUserData();
+        copyUserData.setUserData(0, query);
+
+        Collection<TRECPhrases> selectedData = getDataInRange(TRECPhrases.class, copyUserData, 0, Integer.MAX_VALUE);
+        for (TRECPhrases phrase : selectedData) {
+            if (phrase.isClassSpecific() && !isBlank(phrase.getErgNumber()) && !phrase.getParentClass().equalsIgnoreCase(chemical.getClassId())) {
+                continue;
+            } else {
+                TRECPhraseHelper helper = new TRECPhraseHelper();
+                helper.setPhraseId(phrase.getPhraseId());
+                helper.setPhraseDescription(phrase.getPhrase());
+                if (!phrase.isAddedPhrases() && phrase.getErgNumber().contains(chemical.getErg())) {
+                    helper.setTicked(true);
+                }
+                retList.add(helper);
+            }
+
+
+        }
+
+        return retList;
+    }
+
+    private List<TRECPhraseHelper> getFPhrases(TRECChemicals chemical, EMCUserData userData) {
+        List<TRECPhraseHelper> retList = new ArrayList<>();
+
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.addAnd("typeId", "F");
+        // query.addAnd("standardPhrases", true);
+
+
+        EMCUserData copyUserData = userData.copyUserData();
+        copyUserData.setUserData(0, query);
+
+        Collection<TRECPhrases> selectedData = getDataInRange(TRECPhrases.class, copyUserData, 0, Integer.MAX_VALUE);
+        for (TRECPhrases phrase : selectedData) {
+            if (phrase.isClassSpecific() && !phrase.getParentClass().equalsIgnoreCase(chemical.getClassId())) {
+                continue;
+            } else {
+                TRECPhraseHelper helper = new TRECPhraseHelper();
+                helper.setPhraseId(phrase.getPhraseId());
+                helper.setPhraseDescription(phrase.getPhrase());
+                if (!phrase.isAddedPhrases() && !isBlank(phrase.getErgNumber()) && phrase.getErgNumber().contains(chemical.getErg())) {
+                    helper.setTicked(true);
+                }
+                retList.add(helper);
+            }
+
+
+        }
+
+        return retList;
+    }
+
+    private List<TRECPhraseHelper> getHPhrases(TRECChemicals chemical, EMCUserData userData) {
+        List<TRECPhraseHelper> retList = new ArrayList<>();
+
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.addAnd("typeId", "H");
+        // query.addAnd("standardPhrases", true);
+
+
+        EMCUserData copyUserData = userData.copyUserData();
+        copyUserData.setUserData(0, query);
+
+        Collection<TRECPhrases> selectedData = getDataInRange(TRECPhrases.class, copyUserData, 0, Integer.MAX_VALUE);
+        for (TRECPhrases phrase : selectedData) {
+            if (phrase.isClassSpecific() && !phrase.getParentClass().equalsIgnoreCase(chemical.getClassId())) {
+                continue;
+            } else {
+                TRECPhraseHelper helper = new TRECPhraseHelper();
+                helper.setPhraseId(phrase.getPhraseId());
+                helper.setPhraseDescription(phrase.getPhrase());
+                if (!phrase.isAddedPhrases() && !isBlank(phrase.getErgNumber()) && !isBlank(phrase.getErgNumber()) && phrase.getErgNumber().contains(chemical.getErg())) {
+                    helper.setTicked(true);
+                }
+                retList.add(helper);
+            }
+
+
+        }
+
+        return retList;
+    }
+}

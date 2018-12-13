@@ -1,0 +1,310 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.bus.trec.treccards;
+
+import emc.bus.trec.customerchemicals.TRECCustomerChemicalsLocal;
+import emc.bus.trec.preferredshipname.TRECPreferredShipNameLocal;
+import emc.entity.trec.TRECChemicals;
+import emc.entity.trec.TRECCustomerChemicals;
+import emc.entity.trec.TRECTrecCardsLines;
+import emc.entity.trec.TRECTrecCardsMaster;
+import emc.enums.enumQueryTypes;
+import emc.framework.EMCEntityBean;
+import emc.framework.EMCEntityBeanException;
+import emc.framework.EMCQuery;
+import emc.framework.EMCUserData;
+import emc.functions.Functions;
+import emc.tables.EMCTable;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author wikus
+ */
+@Stateless
+public class TRECTrecCardsLinesBean extends EMCEntityBean implements TRECTrecCardsLinesLocal {
+
+    @EJB
+    private TRECCustomerChemicalsLocal custChemBean;
+    @EJB
+    private TRECPreferredShipNameLocal shipNameBean;
+
+    @Override
+    public boolean doUpdateValidation(EMCTable vobject, EMCUserData userData) throws EMCEntityBeanException {
+        TRECTrecCardsLines record = (TRECTrecCardsLines) vobject;
+
+        if (!isBlank(userData.getUserData(5)) && "FROM_WEB".equals(userData.getUserData(5))) {
+            //Skip next set of validation for creation of web orders
+        } else {
+            if (isBlank(record.getColour()) && isBlank(record.getForm()) && isBlank(record.getOdour())) {
+                logMessage(Level.SEVERE, "Either Form, Colour or Odour should be filled in first ", userData);
+                return false;
+            }
+        }
+        
+        boolean valid = validateShippingName(record, userData);
+        if(!valid){
+            return false;
+        }
+
+        return super.doUpdateValidation(vobject, userData) && checkPackingGroup(record, userData);
+    }
+
+    @Override
+    public boolean doInsertValidation(EMCTable vobject, EMCUserData userData) {
+        TRECTrecCardsLines record = (TRECTrecCardsLines) vobject;
+        
+        boolean valid = validateShippingName(record, userData);
+        if(!valid){
+            return false;
+        }
+        return super.doInsertValidation(vobject, userData) && checkPackingGroup(record, userData);
+    }
+
+    private boolean checkPackingGroup(TRECTrecCardsLines record, EMCUserData userData) {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class.getName());
+        query.addAnd("unNumber", record.getUnNumber());
+        query.addAnd("shippingName", record.getProperShipping());
+        TRECChemicals chemical = (TRECChemicals) util.executeSingleResultQuery(query, userData);
+        if (chemical != null) {
+            if (!isBlank(chemical.getPackingGroup()) && isBlank(record.getPackingGroup())) {
+                Logger.getLogger("emc").log(Level.SEVERE, "The chemical requires a packing group.", userData);
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    @Override
+    public Object validateField(String fieldNameToValidate, Object theRecord, EMCUserData userData) {
+        boolean ret = (Boolean) super.validateField(fieldNameToValidate, theRecord, userData);
+        boolean returnRec = false;
+        if (ret) {
+            TRECTrecCardsLines record = (TRECTrecCardsLines) theRecord;
+            if (isBlank(record.getPreparedBy()) || isBlank(record.getEmergencyNumber())) {
+                EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECTrecCardsMaster.class.getName());
+                query.addAnd("masterId", record.getMasterId());
+                TRECTrecCardsMaster master = (TRECTrecCardsMaster) util.executeSingleResultQuery(query, userData);
+                if (master != null) {
+                    if (isBlank(record.getPreparedBy())) {
+                        record.setPreparedBy(master.getTrecCompanyName());
+                        returnRec = true;
+                    }
+                    if (isBlank(record.getEmergencyNumber())) {
+                        record.setEmergencyNumber(master.getEmergencyNumber());
+                        returnRec = true;
+                    }
+                }
+            }
+        
+            if (fieldNameToValidate.equals("unNumber")) {
+                returnRec = true;
+                //record.setProperShipping(null);
+                if (!isBlank(record.getUnNumber())) {
+                    EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class.getName());
+                    query.addAnd("unNumber", record.getUnNumber());
+                    TRECChemicals chemical = (TRECChemicals) util.executeSingleResultQuery(query, userData);
+                    if (chemical != null) {
+                        record.setProperShipping(chemical.getShippingName());
+                        record.setPackingGroup(null);
+                        record.setForm(null);
+                        record.setColour(null);
+                        record.setOdour(null);
+                        record.setTradingName(null);
+                        record.setPreferredShipName(null);
+
+                    }
+                }
+            } else if (fieldNameToValidate.equals("packingGroup")) {
+                if (!isBlank(record.getUnNumber())) {
+                    EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class.getName());
+                    query.addAnd("unNumber", record.getUnNumber());
+                    query.addAnd("shippingName", record.getProperShipping());
+                    TRECChemicals chemical = (TRECChemicals) util.executeSingleResultQuery(query, userData);
+                    if (chemical != null) {
+                        if (isBlank(chemical.getPackingGroup())) {
+                            Logger.getLogger("emc").log(Level.SEVERE, "The selected chemical may not have a packing group.", userData);
+                            return false;
+                        } else if (!chemical.getPackingGroup().contains(record.getPackingGroup())) {
+                            Logger.getLogger("emc").log(Level.WARNING, "The selected packing group is not set up on the chemical. "
+                                    + "The chemical has the following packing groups: " + chemical.getPackingGroup(), userData);
+                        }
+                    }
+                }
+            } else if (fieldNameToValidate.equals("properShipping")) {
+                EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class.getName());
+                query.addAnd("unNumber", record.getUnNumber());
+                query.addAnd("shippingName", record.getProperShipping());
+                if (!util.exists(query, userData)) {
+                    Logger.getLogger("emc").log(Level.SEVERE, "The selected chemical does not have the selected shipping name.", userData);
+                    return false;
+                }
+            }else if(fieldNameToValidate.equals("preferredShipName")) {
+               boolean valid = validateShippingName(record, userData);
+               if(!valid){
+                 return false;  
+               }
+            } 
+            if (returnRec) {
+                return record;
+            }
+        }
+        return ret;
+    }
+
+    @Override
+    public boolean validatePackingGroup(TRECTrecCardsLines record, EMCUserData userData) {
+        if (!isBlank(record.getUnNumber())) {
+            EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class.getName());
+            query.addAnd("unNumber", record.getUnNumber());
+            query.addAnd("shippingName", record.getProperShipping());
+            TRECChemicals chemical = (TRECChemicals) util.executeSingleResultQuery(query, userData);
+            if (chemical != null) {
+                if (isBlank(chemical.getPackingGroup())) {
+                    Logger.getLogger("emc").log(Level.WARNING, "The selected chemical may not have a packing group.", userData);
+                    return false;
+                } else {
+                    Logger.getLogger("emc").log(Level.WARNING, "The selected packing group is not set up on the chemical. "
+                            + "The chemical has the following packing groups: " + chemical.getPackingGroup(), userData);
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void updateLinesFields(String masterId, String emergencyNumber, String preparedBy, EMCUserData userData) {
+        boolean update = false;
+        EMCQuery query = new EMCQuery(enumQueryTypes.UPDATE, TRECTrecCardsLines.class);
+        query.addAnd("masterId", masterId);
+        if (!isBlank(emergencyNumber)) {
+            query.addSet("emergencyNumber", emergencyNumber);
+            update = true;
+        }
+        if (!isBlank(preparedBy)) {
+            query.addSet("preparedBy", preparedBy);
+            update = true;
+        }
+        if (update) {
+            util.executeUpdate(query, userData);
+        }
+    }
+
+    @Override
+    public boolean approveTREC(long recordID, EMCUserData userData) throws EMCEntityBeanException {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECTrecCardsLines.class);
+        query.addAnd("recordID", recordID);
+        TRECTrecCardsLines line = (TRECTrecCardsLines) util.executeSingleResultQuery(query, userData);
+
+        if (line == null) {
+            throw new EMCEntityBeanException("Failed to find the TREC Line");
+        }
+
+        line.setApproved(true);
+        line.setApprovedBy(userData.getUserName());
+        line.setApprovedDate(Functions.nowDate());
+
+        update(line, userData);
+
+        return true;
+    }
+
+    @Override
+    public Object update(Object uobject, EMCUserData userData) throws EMCEntityBeanException {
+        TRECTrecCardsLines record = (TRECTrecCardsLines) uobject;
+        TRECTrecCardsLines persisted = (TRECTrecCardsLines) util.findDetachedPersisted(record, userData);
+
+        if (persisted != null && record.getCustomerChemical() != 0) {
+            if (!util.checkObjectsEqual(record.getUnNumber(), persisted.getUnNumber())
+                    || !util.checkObjectsEqual(record.getProperShipping(), persisted.getProperShipping())) {
+                EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECCustomerChemicals.class);
+                query.addAnd("recordID", record.getCustomerChemical());
+
+                TRECCustomerChemicals custChem = (TRECCustomerChemicals) util.executeSingleResultQuery(query, userData);
+
+                if (custChem != null) {
+                    custChemBean.delete(custChem, userData);
+
+                    record.setCustomerChemical(0);
+                }
+            }
+        }
+
+
+        return super.update(record, userData);
+    }
+
+    @Override
+    public Object delete(Object dobject, EMCUserData userData) throws EMCEntityBeanException {
+        TRECTrecCardsLines record = (TRECTrecCardsLines) dobject;
+
+        if (record.getCustomerChemical() != 0) {
+            EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECCustomerChemicals.class);
+            query.addAnd("recordID", record.getCustomerChemical());
+
+            TRECCustomerChemicals custChem = (TRECCustomerChemicals) util.executeSingleResultQuery(query, userData);
+
+            if (custChem != null) {
+                custChemBean.delete(custChem, userData);
+            }
+        }
+
+        return super.delete(record, userData);
+    }
+
+    @Override
+    public String getPackingGroup(String UNNumber, EMCUserData userData) {
+        String pGroup = null;
+        if (!isBlank(UNNumber)) {
+            EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+            query.addAnd("unNumber", UNNumber);
+            query.addField("packingGroup");
+            pGroup = (String) util.executeSingleResultQuery(query, userData);
+        }
+
+        return pGroup;
+    }
+
+    private boolean validateShippingName(TRECTrecCardsLines line, EMCUserData userData) {
+        if (!isBlank(line.getUnNumber()) && !isBlank(line.getProperShipping())) {
+            List shippingNameList = shipNameBean.getPreferredShipNameList(line.getUnNumber(), line.getProperShipping(), userData);
+            if (shippingNameList == null ||shippingNameList.isEmpty()) {
+                if(!isBlank(line.getPreferredShipName())){
+                logMessage(Level.SEVERE, "There are no preferred names for the cemical UN " + line.getUnNumber(), userData);
+                return false;
+                }
+            } else {
+                if(!isBlank(line.getPreferredShipName())){
+                if (shippingNameList.contains(line.getPreferredShipName())) {
+                    return true;
+                }else{
+                  logMessage(Level.SEVERE, line.getPreferredShipName()+" does not exist in Preferred Shipping Name's under UN Number "+line.getUnNumber(), userData);
+                return false;  
+                }
+            }else{
+                 logMessage(Level.WARNING, " There are Preferred Shipping Names available that you can select for UN Number "+line.getUnNumber(), userData);
+                return true;     
+                }
+            }
+        } 
+//        else {
+//            logMessage(Level.SEVERE, "Please select UN Number and Shipping Name first", userData);
+//            return false;
+//        }
+
+
+        return true;
+
+    }
+}

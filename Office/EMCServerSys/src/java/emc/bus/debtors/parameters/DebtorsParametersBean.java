@@ -1,0 +1,116 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.bus.debtors.parameters;
+
+import emc.bus.base.journals.BaseJournalDefinitionLocal;
+import emc.entity.base.journals.BaseJournalDefinitionTable;
+import emc.entity.debtors.DebtorsParameters;
+import emc.enums.base.journals.Modules;
+import emc.enums.debtors.journals.DebtorsJournalType;
+import emc.enums.enumQueryTypes;
+import emc.framework.EMCEntityBean;
+import emc.framework.EMCEntityBeanException;
+import emc.framework.EMCQuery;
+import emc.framework.EMCUserData;
+import emc.messages.ServerDebtorsMessageEnum;
+import emc.tables.EMCTable;
+import java.util.logging.Level;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ * @description : Entity bean for DebtorsParameters.
+ *
+ * @date        : 19 May 2010
+ *
+ * @author      : Riaan Nel
+ *
+ * @version     : 1.0
+ */
+@Stateless
+public class DebtorsParametersBean extends EMCEntityBean implements DebtorsParametersLocal {
+
+    @EJB
+    private BaseJournalDefinitionLocal journalDefBean;
+
+    /** Creates a new instance of DebtorsParametersBean */
+    public DebtorsParametersBean() {
+    }
+
+    @Override
+    public Object validateField(String fieldNameToValidate, Object theRecord, EMCUserData userData) {
+        boolean valid = (Boolean) super.validateField(fieldNameToValidate, theRecord, userData);
+
+        if (valid) {
+            DebtorsParameters params = (DebtorsParameters) theRecord;
+
+            if ("postDatedPaymentJournalDef".equals(fieldNameToValidate) && !isBlank(params.getPostDatedPaymentJournalDef())) {
+                BaseJournalDefinitionTable journalDef = journalDefBean.getJournalDefinition(params.getPostDatedPaymentJournalDef(), Modules.DEBTORS, userData);
+
+                if (!DebtorsJournalType.PAYMENT.equals(DebtorsJournalType.fromString(journalDef.getJournalType()))) {
+                    logMessage(Level.SEVERE, ServerDebtorsMessageEnum.WRONG_TYPE_DEF, userData, params.getDisplayLabelForField(fieldNameToValidate, userData), DebtorsJournalType.PAYMENT.toString());
+                    return false;
+                }
+            }
+        }
+
+        return valid;
+    }
+
+    @Override
+    public boolean doInsertValidation(EMCTable vobject, EMCUserData userData) {
+        boolean ret = super.doInsertValidation(vobject, userData);
+
+        if (ret) {
+            DebtorsParameters parameters = (DebtorsParameters)vobject;
+            ret = ret && validateRoyalty(parameters, userData);
+        }
+
+        return ret;
+    }
+
+    @Override
+    public boolean doUpdateValidation(EMCTable vobject, EMCUserData userData) throws EMCEntityBeanException {
+        boolean ret = super.doUpdateValidation(vobject, userData);
+
+        if (ret) {
+            DebtorsParameters parameters = (DebtorsParameters)vobject;
+            ret = ret && validateRoyalty(parameters, userData);
+        }
+
+        return ret;
+    }
+
+    /**
+     * This method validates the royalty fields set up on the specified DebtorsParameters instance.
+     * Logs a message if validation fails.
+     * @param parameters Parameter record to validate.
+     * @param userData User data.
+     * @return A boolean indicating whether the royalty fields set up on the specified record are valid.
+     */
+    private boolean validateRoyalty(DebtorsParameters parameters, EMCUserData userData) {
+        if (isBlank(parameters.getRoyaltyField1()) && !isBlank(parameters.getRoyaltyField2())) {
+            logMessage(Level.SEVERE, ServerDebtorsMessageEnum.BLANK_ROYALTY_FIELD, userData, parameters.getDisplayLabelForField("royaltyField1", userData), parameters.getDisplayLabelForField("royaltyField2", userData));
+            return false;
+        } else if (isBlank(parameters.getRoyaltyField2()) && !isBlank(parameters.getRoyaltyField3())) {
+            logMessage(Level.SEVERE, ServerDebtorsMessageEnum.BLANK_ROYALTY_FIELD, userData, parameters.getDisplayLabelForField("royaltyField2", userData), parameters.getDisplayLabelForField("royaltyField3", userData));
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Returns a DebtorsParameters instance for the active company, or null, if none is found.
+     * @param userData User data.
+     * @return A DebtorsParameters instance for the active company, or null, if none is found.
+     */
+    public DebtorsParameters getDebtorsParameters(EMCUserData userData) {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, DebtorsParameters.class);
+
+       
+        return (DebtorsParameters) util.executeSingleResultQuery(query, userData);
+    }
+}

@@ -1,0 +1,237 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.forms.inventory.display.parameters;
+
+import emc.app.components.documents.EMCBigDecimalFormDocument;
+import emc.app.components.documents.EMCDoubleFormDocument;
+import emc.app.components.documents.EMCIntegerFormDocument;
+import emc.app.components.emcJLabel;
+import emc.app.components.emcJPanel;
+import emc.app.components.emcJTabbedPane;
+import emc.app.components.emcJTextField;
+import emc.app.components.emcSetGridBagConstraints;
+import emc.app.components.emctable.emcDataRelationManagerUpdate;
+import emc.app.components.emctable.emcGenericDataSourceUpdate;
+import emc.app.components.emctable.emcYesNoComponent;
+import emc.app.components.formlookup.EMCLookupFormComponent;
+import emc.app.components.lookup.popup.EMCLookupPopup;
+import emc.app.scrollabledesktop.BaseInternalFrame;
+import emc.entity.base.BaseEmployeeTable;
+import emc.entity.base.journals.BaseJournalDefinitionTable;
+import emc.entity.inventory.InventoryItemMaster;
+import emc.entity.inventory.InventoryWarehouse;
+import emc.enums.modules.enumEMCModules;
+import emc.framework.EMCUserData;
+import emc.menus.base.menuItems.display.employees;
+import emc.menus.inventory.menuitems.display.ItemMaster;
+import emc.menus.inventory.menuitems.display.JournalDefinitions;
+import emc.menus.inventory.menuitems.display.Warehouse;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import javax.swing.BorderFactory;
+
+/**
+ *
+ * @author wikus
+ */
+public class ParametersForm extends BaseInternalFrame {
+
+    private emcDataRelationManagerUpdate dataRelation;
+    private emcYesNoComponent itemColours;
+    private emcYesNoComponent ysnAllowDim1NotOnGroup;
+    private EMCLookupFormComponent defaultWhs;
+    private EMCLookupFormComponent defaultDimGrp;
+    private EMCLookupFormComponent defaultVatCode;
+    private EMCLookupFormComponent defaultBaseUOM;
+    private EMCLookupFormComponent defaultPrint;
+    private EMCLookupFormComponent defaultLaminate;
+    private EMCLookupFormComponent defaultDelivery;
+    private EMCLookupFormComponent defaultDeliveryForOthers; 
+    private EMCLookupFormComponent defaultReminderItem; 
+    private EMCUserData userData;
+
+    public ParametersForm(EMCUserData userData) {
+        super("Inventory Parameters", true, true, true, true, userData);
+        this.setBounds(20, 20, 600, 400);
+        this.userData = userData;
+        try {
+            dataRelation = new emcDataRelationManagerUpdate(new emcGenericDataSourceUpdate(
+                    enumEMCModules.INVENTORY.getId(), new emc.entity.inventory.InventoryParameters(), userData), userData);
+            this.setDataManager(dataRelation);
+            dataRelation.setDummyForm(this);
+        } catch (Exception e) {
+        }
+        initFrame();
+        dataRelation.doRelation(0);
+    }
+
+    private void initFrame() {
+        emcJTabbedPane tabbed = new emcJTabbedPane();
+        tabbed.add("Dimensions", dimPane());
+        tabbed.add("Default Item Values", defaultItemValuePanel());
+        tabbed.add("Batch Consolidation", crateConsolidationPane());
+        tabbed.add("Stock", stockPane());
+        tabbed.add("Stock Take", stockTakePane());
+        tabbed.add("Stock Ageing", stockAgeingPane());
+        this.add(tabbed);
+    }
+
+    private emcJPanel defaultItemValuePanel() {
+        this.defaultWhs = new EMCLookupFormComponent(new emc.menus.inventory.menuitems.display.Warehouse(), dataRelation, "defaultWarehouse", "warehouseId");
+        this.defaultDimGrp = new EMCLookupFormComponent(new emc.menus.inventory.menuitems.display.DimensionGroupSetup(), dataRelation,
+                                                        "dimensionGroup", "itemDimensionGroupId");
+        this.defaultVatCode = new EMCLookupFormComponent(new emc.menus.gl.menuitems.display.GLVATCode(), dataRelation,
+                                                         "purchaseVatCode", "vatId");
+        this.defaultBaseUOM = new EMCLookupFormComponent(new emc.menus.base.menuItems.display.UnitsOfMeasure(), dataRelation,
+                                                         "baseUOM", "unit");
+        this.defaultPrint = new EMCLookupFormComponent(new ItemMaster(), dataRelation,
+                                                         "defaultDeliveryPrintItem","itemId");
+        this.defaultLaminate = new EMCLookupFormComponent(new ItemMaster(), dataRelation,
+                                                         "defaultDeliveryLaminateItem", "itemId");
+        this.defaultDelivery= new EMCLookupFormComponent(new ItemMaster(), dataRelation,
+                                                         "defaultDeliveryItem", "itemId"); 
+        this.defaultDeliveryForOthers= new EMCLookupFormComponent(new ItemMaster(), dataRelation,
+                                                         "defaultDeliveryItemForAccessories", "itemId");
+        this.defaultReminderItem= new EMCLookupFormComponent(new ItemMaster(), dataRelation,
+                                                         "defaultReminderItem", "itemId");
+        
+        
+        EMCLookupPopup warehouse = new EMCLookupPopup(new emc.entity.inventory.InventoryWarehouse(), "warehouseId", userData);
+        defaultWhs.setPopup(warehouse);
+        EMCLookupPopup dimGrp = new EMCLookupPopup(new emc.entity.inventory.dimensions.InventoryItemDimensionGroup(), "itemDimensionGroupId", userData);
+        defaultDimGrp.setPopup(dimGrp);
+        EMCLookupPopup vatCode = new EMCLookupPopup(new emc.entity.gl.GLVATCode(), "vatId", userData);
+        defaultVatCode.setPopup(vatCode);
+        EMCLookupPopup baseUOM = new EMCLookupPopup(new emc.entity.base.BaseUnitsOfMeasure(), "unit", userData);
+        defaultBaseUOM.setPopup(baseUOM);
+        EMCLookupPopup defPrint = new EMCLookupPopup(new InventoryItemMaster(), "itemId", userData);
+        defaultPrint.setPopup(defPrint);
+        EMCLookupPopup defLaminate = new EMCLookupPopup(new InventoryItemMaster(), "itemId", userData);
+        defaultLaminate.setPopup(defLaminate);
+        EMCLookupPopup defDelivery = new EMCLookupPopup(new InventoryItemMaster(), "itemId", userData);
+        defaultDelivery.setPopup(defDelivery);
+        EMCLookupPopup defDeliveryForOthers = new EMCLookupPopup(new InventoryItemMaster(), "itemId", userData);
+        defaultDeliveryForOthers.setPopup(defDeliveryForOthers);
+        EMCLookupPopup defRemonder = new EMCLookupPopup(new InventoryItemMaster(), "itemId", userData);
+        defaultReminderItem.setPopup(defRemonder);
+        
+        
+        Component[][] components = {{new emcJLabel("Default " + dataRelation.getFieldEmcLabel("defaultWarehouse")), defaultWhs},
+                                    {new emcJLabel("Default " + dataRelation.getFieldEmcLabel("dimensionGroup")), defaultDimGrp},
+                                    {new emcJLabel("Default VAT Code"), defaultVatCode},
+                                    {new emcJLabel("Default " + dataRelation.getFieldEmcLabel("baseUOM")), defaultBaseUOM},
+                                    {new emcJLabel("Default Print Item"), defaultPrint},
+                                    {new emcJLabel("Default Laminate Item"), defaultLaminate},
+                                    {new emcJLabel("Default Courier Item "), defaultDeliveryForOthers},
+                                    {new emcJLabel("Default TREC Cards ONLY Courier Item"), defaultDelivery},
+                                    {new emcJLabel("Default TREC Card Reminder Item "), defaultReminderItem}};
+        emcJPanel thePanel = emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+        thePanel.setBorder(BorderFactory.createTitledBorder("Dimensions"));
+        return thePanel;
+    }
+
+    private emcJPanel dimPane() {
+        itemColours = new emcYesNoComponent(dataRelation, "allowOtherColoursOnItem");
+        ysnAllowDim1NotOnGroup = new emcYesNoComponent(dataRelation, "allowDim1NotOnGroup");
+        Component[][] components = {{new emcJLabel("Allow Non-Group Item Colours"), itemColours},
+                                    {new emcJLabel(dataRelation.getColumnName("allowDim1NotOnGroup")), ysnAllowDim1NotOnGroup}};
+        emcJPanel thePanel = emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+        thePanel.setBorder(BorderFactory.createTitledBorder("Dimensions"));
+        return thePanel;
+    }
+
+    private emcJPanel stockPane() {
+        final emcJTextField overIssuedPer = new emcJTextField(new EMCDoubleFormDocument(dataRelation, "overIssuePercentage"));
+        emcYesNoComponent overIssuedAllowed = new emcYesNoComponent(dataRelation, "overIssueAllowed") {
+            @Override
+            public void setBoolField(boolean boolField) {
+                super.setBoolField(boolField);
+                overIssuedPer.setEditable(boolField);
+            }
+        };
+        overIssuedPer.setEditable(Boolean.valueOf(overIssuedAllowed.getSelectedItem().toString()));
+
+        final emcJTextField underIssuedPer = new emcJTextField(new EMCDoubleFormDocument(dataRelation, "underIssuePercentage"));
+        emcYesNoComponent underIssuedAllowed = new emcYesNoComponent(dataRelation, "underIssueAllowed") {
+            @Override
+            public void setBoolField(boolean boolField) {
+                super.setBoolField(boolField);
+                underIssuedPer.setEditable(boolField);
+            }
+        };
+        underIssuedPer.setEditable(Boolean.valueOf(underIssuedAllowed.getSelectedItem().toString()));
+
+        emcYesNoComponent allowRekimbling = new emcYesNoComponent(dataRelation, "allowRekimbling");
+
+        Component[][] comp = {{new emcJLabel("Allow Over Issue"), overIssuedAllowed},
+                              {new emcJLabel("Over Issue Percentage"), overIssuedPer},
+                              {new emcJLabel()},
+                              {new emcJLabel("Allow Under Issue"), underIssuedAllowed},
+                              {new emcJLabel("Under Issue Percentage"), underIssuedPer},
+                              {new emcJLabel()},
+                              {new emcJLabel("Allow Rekimbling"), allowRekimbling}};
+        emcJPanel thePanel = emcSetGridBagConstraints.createSimplePanel(comp, GridBagConstraints.NONE, true);
+        thePanel.setBorder(BorderFactory.createTitledBorder("Stock Issue"));
+        return thePanel;
+    }
+
+    private emcJPanel stockTakePane() {
+        emcJTextField txtQuantityDiff = new emcJTextField(new EMCDoubleFormDocument(dataRelation, "stockTakeQuantityDiff"));
+        emcJTextField txtValueDiff = new emcJTextField(new EMCDoubleFormDocument(dataRelation, "stockTakeValueDiff"));
+        emcYesNoComponent showOnHand = new emcYesNoComponent(dataRelation, "showOnHanndQty");
+        Component[][] comp = {{new emcJLabel("Recount if quantity difference exceeds %"), txtQuantityDiff},
+                              {new emcJLabel("Recount if value difference exceeds"), txtValueDiff},
+                              {new emcJLabel("Show on hand on count sheet"), showOnHand}};
+        return emcSetGridBagConstraints.createSimplePanel(comp, GridBagConstraints.NONE, true, "Stock Take");
+    }
+
+    private Component stockAgeingPane() {
+        emcYesNoComponent ynInclideBatch = new emcYesNoComponent(dataRelation, "includeBatchOnAgeing");
+        EMCLookupFormComponent lkpLoggerUser = new EMCLookupFormComponent(new employees(), dataRelation, "ageingMessageLogUser");
+        lkpLoggerUser.setPopup(new EMCLookupPopup(new BaseEmployeeTable(), "employeeNumber", userData));
+
+        Component[][] comp = {{new emcJLabel("Include Batch in Age Resolver"), ynInclideBatch},
+                              {new emcJLabel("Log Ageing Messages To"), lkpLoggerUser}};
+        return emcSetGridBagConstraints.createSimplePanel(comp, GridBagConstraints.NONE, true, "Stock Ageing");
+    }
+
+    private Component crateConsolidationPane() {
+        emcJTextField txtMinCrateQuantity = new emcJTextField(new EMCBigDecimalFormDocument(dataRelation, "consolidationCrateQuantity"));
+        emcJTextField txtMaxCrateQuantity = new emcJTextField(new EMCBigDecimalFormDocument(dataRelation, "maxCrateQuantity"));
+        emcJTextField txtLineCost = new emcJTextField(new EMCBigDecimalFormDocument(dataRelation, "consolidationLineCost"));
+
+        emcJTextField txtMaxCrates = new emcJTextField(new EMCIntegerFormDocument(dataRelation, "maxNumberOfCrates"));
+        emcJTextField txtMaxLines = new emcJTextField(new EMCIntegerFormDocument(dataRelation, "maxLinesPerJournal"));
+
+        emcYesNoComponent ynCheckPartialReserved = new emcYesNoComponent(dataRelation, "checkPartialReservedCrates");
+
+        EMCLookupFormComponent lkpTransferDefinition = new EMCLookupFormComponent(new JournalDefinitions(), dataRelation, "consolidationTransferDefinition");
+        lkpTransferDefinition.setPopup(new EMCLookupPopup(new BaseJournalDefinitionTable(), "journalDefinitionId", userData));
+
+        EMCLookupFormComponent lkpMovementDefinition = new EMCLookupFormComponent(new JournalDefinitions(), dataRelation, "consolidationMovementDefinition");
+        lkpMovementDefinition.setPopup(new EMCLookupPopup(new BaseJournalDefinitionTable(), "journalDefinitionId", userData));
+
+        EMCLookupFormComponent lkpWarehouse = new EMCLookupFormComponent(new Warehouse(), dataRelation, "consolidationWarehouse");
+        lkpWarehouse.setPopup(new EMCLookupPopup(new InventoryWarehouse(), "warehouseId", userData));
+
+        EMCLookupFormComponent lkpLogUser = new EMCLookupFormComponent(new employees(), dataRelation, "batchConsolidationActivityUser");
+        lkpLogUser.setPopup(new EMCLookupPopup(new BaseEmployeeTable(), "employeeNumber", userData));
+
+        Component[][] comp = {{new emcJLabel("Consolidate crates with quantity less than"), txtMinCrateQuantity},
+                              {new emcJLabel("Max crate quantity"), txtMaxCrateQuantity},
+                              {new emcJLabel("Max number of crates to visit"), txtMaxCrates},
+                              {new emcJLabel("Check partial reserved crates"), ynCheckPartialReserved},
+                              {new emcJLabel()},
+                              {new emcJLabel("Transfer journal definition"), lkpTransferDefinition},
+                              {new emcJLabel("Movement journal definition"), lkpMovementDefinition},
+                              {new emcJLabel("Max number of line per journal"), txtMaxLines},
+                              {new emcJLabel("Journal line cost"), txtLineCost},
+                              {new emcJLabel("Default warehouse"), lkpWarehouse},
+                              {new emcJLabel()},
+                              {new emcJLabel("Log Activity User"), lkpLogUser}};
+
+        return emcSetGridBagConstraints.createSimplePanel(comp, GridBagConstraints.NONE, true, "Batch Consolidation");
+    }
+}

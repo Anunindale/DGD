@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Royalty Report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a021aa4d-dfd5-4887-9868-c794bc77f577">
+	<property name="ireport.zoom" value="1.7715610000000341"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="94"/>
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="fromDate" class="java.lang.String"/>
+	<parameter name="toDate" class="java.lang.String"/>
+	<field name="royaltyGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[@royaltyGroup]]></fieldDescription>
+	</field>
+	<field name="royaltyField1" class="java.lang.String">
+		<fieldDescription><![CDATA[@royaltyField1]]></fieldDescription>
+	</field>
+	<field name="royaltyField2" class="java.lang.String">
+		<fieldDescription><![CDATA[@royaltyField2]]></fieldDescription>
+	</field>
+	<field name="royaltyField3" class="java.lang.String">
+		<fieldDescription><![CDATA[@royaltyField3]]></fieldDescription>
+	</field>
+	<field name="units" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@units]]></fieldDescription>
+	</field>
+	<field name="packs" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@packs]]></fieldDescription>
+	</field>
+	<field name="grossValue" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@grossValue]]></fieldDescription>
+	</field>
+	<field name="royaltyValue" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@royaltyValue]]></fieldDescription>
+	</field>
+	<field name="royaltyPercentage" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@royaltyPercentage]]></fieldDescription>
+	</field>
+	<field name="jockeyShopRoyaltyValue" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@jockeyShopRoyaltyValue]]></fieldDescription>
+	</field>
+	<field name="jockeyShopGrossValue" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@jockeyShopGrossValue]]></fieldDescription>
+	</field>
+	<field name="jockeyShopUnits" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@jockeyShopUnits]]></fieldDescription>
+	</field>
+	<field name="jockeyShopPacks" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@jockeyShopPacks]]></fieldDescription>
+	</field>
+	<field name="printLessJockeyShops" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printLessJockeyShops]]></fieldDescription>
+	</field>
+	<variable name="totalUnits" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField2">
+		<variableExpression><![CDATA[$V{totalUnits}.add($F{units})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalPacks" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField2">
+		<variableExpression><![CDATA[$V{totalPacks}.add($F{packs})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="grossTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField2">
+		<variableExpression><![CDATA[$V{grossTotal}.add($F{grossValue})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royaltyTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField2">
+		<variableExpression><![CDATA[$V{royaltyTotal}.add($F{royaltyValue})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="jockeyShopTotalUnits" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField1" incrementType="Group" incrementGroup="RoyaltyField1">
+		<variableExpression><![CDATA[$V{jockeyShopTotalUnits}.add($F{jockeyShopUnits})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="jockeyShopTotalPacks" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField1">
+		<variableExpression><![CDATA[$V{jockeyShopTotalPacks}.add($F{jockeyShopPacks})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="jockeyShopGrossTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField1" incrementType="Group" incrementGroup="RoyaltyField1">
+		<variableExpression><![CDATA[$V{jockeyShopGrossTotal}.add($F{jockeyShopGrossValue})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="jockeyShopRoyaltyTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField1" incrementType="Group" incrementGroup="RoyaltyField1">
+		<variableExpression><![CDATA[$V{jockeyShopRoyaltyTotal}.add($F{jockeyShopRoyaltyValue})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royalty2NetTotalUnits" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField2">
+		<variableExpression><![CDATA[$V{totalUnits}.subtract($F{jockeyShopUnits})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royalty2NetTotalPacks" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField2">
+		<variableExpression><![CDATA[$V{totalPacks}.subtract($F{jockeyShopPacks})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royalty2NetTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField2">
+		<variableExpression><![CDATA[$V{grossTotal}.subtract($F{jockeyShopGrossValue})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royalty2RoyaltyTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField2">
+		<variableExpression><![CDATA[$V{royaltyTotal}.subtract($F{jockeyShopRoyaltyValue})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royalty1TotalUnits" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField1">
+		<variableExpression><![CDATA[$V{royalty1TotalUnits}.add($F{units})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royalty1TotalPacks" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField1">
+		<variableExpression><![CDATA[$V{royalty1TotalPacks}.add($F{packs})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royalty1GrossTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField1">
+		<variableExpression><![CDATA[$V{royalty1GrossTotal}.add($F{grossValue})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royalty1RoyaltyTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField1">
+		<variableExpression><![CDATA[$V{royalty1RoyaltyTotal}.add($F{royaltyValue})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royalty1NetTotalUnits" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField1">
+		<variableExpression><![CDATA[$V{royalty1TotalUnits}.subtract($V{jockeyShopTotalUnits})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royalty1NetTotalPacks" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField1">
+		<variableExpression><![CDATA[$V{royalty1TotalPacks}.subtract($V{jockeyShopTotalPacks})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royalty1NetTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField1">
+		<variableExpression><![CDATA[$V{royalty1GrossTotal}.subtract($V{jockeyShopGrossTotal})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="royalty1NetRoyaltyTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="RoyaltyField1">
+		<variableExpression><![CDATA[$V{royalty1RoyaltyTotal}.subtract($V{jockeyShopRoyaltyTotal})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<group name="RoyaltyField1" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{royaltyField1}]]></groupExpression>
+		<groupHeader>
+			<band height="58" splitType="Stretch">
+				<staticText>
+					<reportElement uuid="81f97b64-3388-4dda-b20b-e5c6344f422b" x="19" y="42" width="112" height="16"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description
+                    ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="4a0783e5-8218-4f4e-ae11-49727f7c87bc" x="136" y="42" width="48" height="16"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Group
+                    ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="66374517-f00a-4a44-a2a1-48a6c9e31b56" x="288" y="42" width="55" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Units
+                    ]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="e757d7cb-c470-4f38-971c-54c056d2b56e" x="16" y="40" width="526" height="1"/>
+				</line>
+				<staticText>
+					<reportElement uuid="30cd03df-66d7-4b45-8f9c-5bbc6ae9c819" x="349" y="42" width="75" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Gross Value
+                    ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="d22b70f6-dc3d-4ef7-8d05-5680001fe115" x="427" y="42" width="24" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[%
+                    ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="35f93d21-78ed-4ab0-82a0-08dd3d35c4ea" x="454" y="42" width="86" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Royalty Value
+                    ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="1ddf9c7f-fce1-4c27-8b99-a4160811882b" x="19" y="22" width="165" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{royaltyField1} + " Royalty"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement uuid="9c9f22d1-7aed-4f40-87e3-2f0e0cb8cf92" key="textField" x="181" y="4" width="64" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{toDate}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="8723ddd8-1f6e-4869-bd01-ae9756210cdd" key="staticText" x="154" y="4" width="24" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[To:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement uuid="afed3333-529f-4534-a0de-b860859f8bfd" key="textField" x="54" y="4" width="64" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{fromDate}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="368f3c58-26e2-4006-ad4e-2890c2ab8918" key="staticText" x="19" y="4" width="34" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[From:]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="5e052c7b-ea14-4d77-bce3-03ba639aec5b" x="16" y="57" width="525" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="7d5d23d7-5400-4248-93dc-e1dd6f2cb2ef" x="16" y="40" width="1" height="17"/>
+				</line>
+				<line>
+					<reportElement uuid="b56d558b-897c-4bf5-a3f2-ec322253ff0d" x="132" y="41" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="36e55b29-f2d1-4ba6-89e7-f56f7c405f3f" x="286" y="41" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="75c7c25c-136f-45cb-a9f2-fde11080ff0f" x="345" y="41" width="1" height="17"/>
+				</line>
+				<line>
+					<reportElement uuid="59dac293-d75f-47dd-aaed-8ecd86311824" x="425" y="41" width="1" height="17"/>
+				</line>
+				<line>
+					<reportElement uuid="88e33353-eea8-4526-b3d4-58b62ab1429e" x="452" y="41" width="1" height="17"/>
+				</line>
+				<line>
+					<reportElement uuid="102e3993-221f-439a-82a3-c2c62b2b0f6e" x="541" y="41" width="1" height="17"/>
+				</line>
+				<line>
+					<reportElement uuid="31516356-6a97-4237-b0fd-aedd2d6d77db" x="196" y="41" width="1" height="16"/>
+				</line>
+				<staticText>
+					<reportElement uuid="bb22df1a-e0a8-4493-b911-feb50b35866c" x="244" y="42" width="40" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Packs]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="36e55b29-f2d1-4ba6-89e7-f56f7c405f3f" x="241" y="41" width="1" height="16"/>
+				</line>
+				<staticText>
+					<reportElement uuid="bb22df1a-e0a8-4493-b911-feb50b35866c" x="199" y="42" width="40" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Doz]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="21">
+				<line>
+					<reportElement uuid="4df98c4d-2186-4569-baca-447e0fa93577" x="16" y="0" width="525" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="bf041c21-2543-4d4f-8e97-53c0fb2fe3b2" x="16" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="767cb815-c896-4ba9-b0b9-f99d80a56c44" x="286" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="946766b2-9e0c-4770-80bc-a481544803e5" x="345" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="4e31bbf2-0b73-4f61-bbdc-45c83d3687ab" x="425" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="9d93f983-cb8d-4d23-98de-c8939bb005d2" x="452" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="a46b45eb-36cc-426b-bc7b-cc27b347def7" x="541" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="12822ccf-5952-4bc1-91e3-1d2644fd2a31" x="132" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="e25fa72c-cb86-4944-9fc2-d88db9e07260" x="16" y="16" width="525" height="1"/>
+				</line>
+				<staticText>
+					<reportElement uuid="9e23f040-b9ca-4b66-84e3-db1c40f49317" x="19" y="0" width="113" height="16"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Totals]]></text>
+				</staticText>
+				<textField pattern="###0;-###0" isBlankWhenNull="true">
+					<reportElement uuid="4bebbf05-46e8-41ae-8a0b-c99a845b8e3d" x="288" y="0" width="55" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{royalty1NetTotalUnits}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement uuid="c1fae2f7-62f5-4571-b5f9-35d539ae0cfc" x="349" y="0" width="75" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{royalty1NetTotal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement uuid="b19b2979-d8e5-48c7-a924-4d521bd803ff" x="455" y="1" width="85" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{royalty1NetRoyaltyTotal}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="598c2d70-b0b1-4e5b-8a8a-98f42ba0525a" x="196" y="1" width="1" height="16"/>
+				</line>
+				<textField pattern="###0;-###0" isBlankWhenNull="true">
+					<reportElement uuid="ad0c1681-85ac-44b3-8c8b-5c5fa6898619" x="244" y="1" width="40" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{royalty1NetTotalPacks}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="767cb815-c896-4ba9-b0b9-f99d80a56c44" x="241" y="1" width="1" height="16"/>
+				</line>
+				<textField pattern="###0.0;-###0.0" isBlankWhenNull="true">
+					<reportElement uuid="4bebbf05-46e8-41ae-8a0b-c99a845b8e3d" x="199" y="1" width="40" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new BigDecimal($V{royalty1NetTotalUnits}.doubleValue()/12)]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="RoyaltyField2">
+		<groupExpression><![CDATA[$F{royaltyField2}]]></groupExpression>
+		<groupHeader>
+			<band height="16">
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="61223026-80e1-464b-a0f0-62754793c519" x="19" y="0" width="112" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{royaltyField2}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="81c66680-cd8c-47f8-bd78-8a0f4037e672" x="16" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="e7b0204f-64b7-4e87-bb85-19e716cad83c" x="132" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="041934b6-7271-4a1a-ba9a-c951b695a5a1" x="286" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="299f605b-6e32-456f-a119-4b849046a1e1" x="345" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="886bfcee-2de7-4356-a75c-ee11ae2392ce" x="425" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="0d2f603a-49ba-4675-9078-e19ede2d6869" x="452" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="ca204fe3-d427-4c29-b320-d0da5f0e44ad" x="541" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="9f02e84a-5976-4fe6-8b50-6366fd9f4d88" x="196" y="0" width="1" height="16"/>
+				</line>
+				<line>
+					<reportElement uuid="041934b6-7271-4a1a-ba9a-c951b695a5a1" x="241" y="0" width="1" height="16"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="62">
+				<staticText>
+					<reportElement uuid="c5461d74-8bbf-402f-ab56-4a6d159d1a5f" x="19" y="14" width="112" height="16">
+						<printWhenExpression><![CDATA[$F{printLessJockeyShops}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Less:]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="d1622570-0edf-4da3-8e4f-8211495d1b7f" x="16" y="0" width="1" height="62"/>
+				</line>
+				<line>
+					<reportElement uuid="1fc55af4-ccce-4ca2-bca0-6d76d0139222" x="541" y="0" width="1" height="62"/>
+				</line>
+				<line>
+					<reportElement uuid="d606f59b-778f-4af3-8c20-71fe51039aa2" x="286" y="0" width="1" height="62"/>
+				</line>
+				<staticText>
+					<reportElement uuid="95a3e197-0ffa-448c-b600-f00e54246410" x="25" y="29" width="106" height="16">
+						<printWhenExpression><![CDATA[$F{printLessJockeyShops}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Jockey Retail Shops]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="b46fa162-0ca2-4fb5-a9b8-3b7b0da0e32a" x="132" y="0" width="1" height="62"/>
+				</line>
+				<line>
+					<reportElement uuid="f17bedab-f407-484a-9d2c-35182a035c52" x="345" y="0" width="1" height="62"/>
+				</line>
+				<line>
+					<reportElement uuid="debad044-8fd5-4eb8-ae99-9ec8ff4a8e3a" x="425" y="0" width="1" height="62"/>
+				</line>
+				<line>
+					<reportElement uuid="bb91ea22-f09c-446b-aa12-61522d8bdf91" x="452" y="0" width="1" height="62"/>
+				</line>
+				<textField pattern="###0;-###0" isBlankWhenNull="true">
+					<reportElement uuid="6fbc4cf2-ff77-4a24-a62d-a67abe22ea83" x="288" y="0" width="55" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalUnits}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement uuid="544a3c02-4ac2-410c-9fb4-8ffa570044e4" x="349" y="0" width="75" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{grossTotal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement uuid="c86e2fc3-aec0-4885-9329-18d6f801599a" x="455" y="0" width="85" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{royaltyTotal}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="612702af-bfc4-47a4-9f98-974d29d4a7d5" x="196" y="0" width="346" height="1"/>
+				</line>
+				<textField pattern="###0;-###0" isBlankWhenNull="true">
+					<reportElement uuid="2dda6d94-47b6-40c8-9f00-d5013e3fc812" x="288" y="30" width="55" height="16">
+						<printWhenExpression><![CDATA[$F{printLessJockeyShops}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{jockeyShopUnits}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement uuid="6c5961dd-34db-4dc6-a5e4-26c3c68fdc01" x="349" y="30" width="75" height="16">
+						<printWhenExpression><![CDATA[$F{printLessJockeyShops}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{jockeyShopGrossValue}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement uuid="092bdbbd-3e18-4d5b-be1e-775f79cacfeb" x="455" y="30" width="85" height="16">
+						<printWhenExpression><![CDATA[$F{printLessJockeyShops}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{jockeyShopRoyaltyValue}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement uuid="00e7b0db-82d8-47c6-b484-a3f7fd3e17cc" x="349" y="46" width="75" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{royalty2NetTotal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement uuid="031f923a-7398-405f-b337-1bf8b503aecc" x="455" y="46" width="85" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{royalty2RoyaltyTotal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0;-###0" isBlankWhenNull="true">
+					<reportElement uuid="152566bc-712e-47be-81c5-b17e222969c6" x="288" y="46" width="55" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{royalty2NetTotalUnits}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="8aa33e7b-29e0-4069-b5df-052f1db7c9fa" x="196" y="46" width="346" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="58c38993-bb42-4aae-9aa7-1de646129b9e" x="196" y="0" width="1" height="62"/>
+				</line>
+				<textField pattern="###0;-###0" isBlankWhenNull="true">
+					<reportElement uuid="0b6b365c-2a28-4407-8727-29a014329afa" x="244" y="0" width="40" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalPacks}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0;-###0" isBlankWhenNull="true">
+					<reportElement uuid="62e14694-a3af-4790-87a1-2e42ec9370bc" x="244" y="30" width="40" height="16">
+						<printWhenExpression><![CDATA[$F{printLessJockeyShops}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{jockeyShopPacks}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0;-###0" isBlankWhenNull="true">
+					<reportElement uuid="d4ef1046-ff1e-474a-90e2-ae5c424c2c2d" x="244" y="46" width="40" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{royalty2NetTotalPacks}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="d606f59b-778f-4af3-8c20-71fe51039aa2" x="241" y="0" width="1" height="62"/>
+				</line>
+				<textField pattern="###0.0;-###0.0" isBlankWhenNull="true">
+					<reportElement uuid="62e14694-a3af-4790-87a1-2e42ec9370bc" x="199" y="29" width="40" height="16">
+						<printWhenExpression><![CDATA[$F{printLessJockeyShops}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new BigDecimal($F{jockeyShopUnits}.doubleValue()/12)]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.0;-###0.0" isBlankWhenNull="true">
+					<reportElement uuid="6fbc4cf2-ff77-4a24-a62d-a67abe22ea83" x="199" y="1" width="40" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new BigDecimal($V{totalUnits}.doubleValue()/12)]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.0;-###0.0" isBlankWhenNull="true">
+					<reportElement uuid="152566bc-712e-47be-81c5-b17e222969c6" x="199" y="46" width="40" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new BigDecimal($V{royalty2NetTotalUnits}.doubleValue()/12)]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="28" splitType="Stretch">
+			<line>
+				<reportElement uuid="1512d456-cec0-45eb-b220-3e4e6e3c8a47" key="line" positionType="FixRelativeToBottom" x="0" y="26" width="555" height="1"/>
+			</line>
+			<textField hyperlinkType="Reference">
+				<reportElement uuid="f9c0b7c8-b756-4296-a5ce-fe68f97c821d" x="19" y="1" width="522" height="25"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<line>
+				<reportElement uuid="8cdbe887-e1dc-4328-9f62-c66ab728d6ec" key="line" x="0" y="1" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="6ac89e1d-675d-4b6c-b0b3-ca422e2f2ff3" x="18" y="2" width="523" height="24"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Royalty Report
+                ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="a1892ec5-d3b2-46f7-9b4f-dcfb411902e6" x="288" y="0" width="55" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{units}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="5a113419-59f8-4065-80b1-486da087e365" x="33" y="0" width="98" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{royaltyField3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement uuid="d3c316c0-6e9c-4997-91bd-4fc0b5be9dd9" x="349" y="0" width="75" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grossValue}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="74897305-bc65-4b51-87e3-85a552b957c3" x="136" y="0" width="48" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{royaltyGroup}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement uuid="475bb5bf-a631-4028-8ff5-11612c3b5db8" x="427" y="0" width="24" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{royaltyPercentage}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement uuid="4ce0f9a0-b821-49af-8c36-8e60b3b0edd1" x="454" y="0" width="86" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{royaltyValue}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="c7726571-6956-46ef-845b-7d30ac99a07b" x="16" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement uuid="ab30970a-6cff-40f8-a2ec-f983759b891b" x="286" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement uuid="c35154e1-b5fa-4bb0-838b-a416014de867" x="345" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement uuid="42573b47-eac8-477d-8622-aa83ef535b04" x="425" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement uuid="6f0ec8a9-2163-4fe0-9e34-9783197ce72e" x="452" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement uuid="5d8ecd21-0ba2-45c8-a730-187eb20158db" x="541" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement uuid="3ec4c3c5-61e1-417c-98ed-23c58aa16927" x="132" y="0" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement uuid="cc4e004c-d121-4a63-83e2-0ba6ade67962" x="196" y="0" width="1" height="16"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="ce2c4c67-3c00-45ac-9430-7455333d65c9" x="244" y="0" width="40" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{packs}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="ab30970a-6cff-40f8-a2ec-f983759b891b" x="241" y="0" width="1" height="16"/>
+			</line>
+			<textField pattern="###0.0;-###0.0" isBlankWhenNull="true">
+				<reportElement uuid="a1892ec5-d3b2-46f7-9b4f-dcfb411902e6" x="199" y="0" width="40" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new BigDecimal($F{units}.doubleValue()/12.0)]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22">
+			<line>
+				<reportElement uuid="825f582d-bc1b-4e90-90ee-a012cdb5a8cb" positionType="FixRelativeToBottom" x="19" y="2" width="519" height="1"/>
+			</line>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement uuid="bc0d1e32-da0a-45cf-89d0-8fa80a119eea" key="textField" x="502" y="2" width="36" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement uuid="5f29a08e-907a-4b70-8c27-0cd20356aece" key="textField" x="33" y="3" width="507" height="16" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement uuid="e21e52ad-56fe-4a83-946a-1f93a3f9c31f" key="textField" x="367" y="2" width="134" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6f6c3096-00cc-4c03-8230-8fee81189ee5" key="staticText" x="18" y="2" width="186" height="19"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD
+                ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

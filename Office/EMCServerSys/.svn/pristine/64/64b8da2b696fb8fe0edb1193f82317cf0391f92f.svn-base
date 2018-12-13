@@ -1,0 +1,248 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.reports.trec.customerselection;
+
+import emc.reports.trec.treccard.*;
+import emc.bus.trec.parameters.TRECParametersLocal;
+import emc.entity.trec.TRECChemicals;
+import emc.entity.trec.TRECChemicalsSuper;
+import emc.entity.trec.TRECClasses;
+import emc.entity.trec.TRECColours;
+import emc.entity.trec.TRECCustomerChemicals;
+import emc.entity.trec.TRECForms;
+import emc.entity.trec.TRECOdours;
+import emc.entity.trec.TRECPhrases;
+import emc.entity.trec.TRECTrecCardsLines;
+import emc.enums.emcquery.EMCQueryBracketConditions;
+import emc.enums.enumQueryTypes;
+import emc.enums.trec.TRECSpecialPrintEnum;
+import emc.framework.EMCQuery;
+import emc.framework.EMCReportBean;
+import emc.framework.EMCUserData;
+import emc.functions.Functions;
+import java.io.File;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author wikus
+ */
+@Stateless
+public class TRECProducedCardTemplateBean extends EMCReportBean implements TRECProducedCardTemplateLocal {
+
+    @EJB
+    private TRECParametersLocal paramBean;
+
+    @Override
+    public List<Object> manipulateQueryResult(List<Object> queryResult, java.util.Map<java.lang.String, java.lang.Object> paramMap, EMCUserData userData) {
+        TRECProducedCardTemplateDS ds;
+        TRECChemicals line;
+        List<Object[]> chemicalPhrasesList;
+        Object[] chemicalPhrases;
+        String phraseString = null;
+        List dataList = new ArrayList();
+
+        for (Object o : queryResult) {
+            line = (TRECChemicals) o;
+
+
+
+
+            ds = new TRECProducedCardTemplateDS();
+            ds.setUNNumber(line.getUnNumber());
+
+
+            /////////////////////////////////////////////////////////////////////////////////
+            //Get Chemical Phrases
+            EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+            query.addAnd("recordID", line.getRecordID());
+            query.addFieldDecrypt("hPhrases", "tr3ck3y");
+            query.addFieldDecrypt("pPhrases", "tr3ck3y");
+            query.addFieldDecrypt("qPhrases", "tr3ck3y");
+            query.addFieldDecrypt("dPhrases", "tr3ck3y");
+            query.addFieldDecrypt("sPhrases", "tr3ck3y");
+            query.addFieldDecrypt("fPhrases", "tr3ck3y");
+            query.addFieldDecrypt("aPhrases", "tr3ck3y");
+            query.addFieldDecrypt("ePhrases", "tr3ck3y");
+
+            chemicalPhrasesList = util.executeNativeQuery(query, userData);
+
+
+            if (chemicalPhrasesList != null && !chemicalPhrasesList.isEmpty()) {
+                chemicalPhrases = chemicalPhrasesList.get(0);
+                if (chemicalPhrases[0] != null) {
+                    if (chemicalPhrases[0] instanceof String) {
+                        phraseString = (String) chemicalPhrases[0];
+                    } else {
+                        phraseString = new String((byte[]) chemicalPhrases[0]);
+                    }
+                    //H Phrases
+                    if (!isBlank(phraseString)) {
+                        ds = buildPhrase(phraseString, line, userData);
+                    }
+                }
+
+                //P Phrases
+                if (chemicalPhrases[1] != null) {
+                    if (chemicalPhrases[1] instanceof String) {
+                        phraseString = (String) chemicalPhrases[1];
+                    } else {
+                        phraseString = new String((byte[]) chemicalPhrases[1]);
+                    }
+
+                    if (!isBlank(phraseString)) {
+                        ds = buildPhrase(phraseString, line, userData);
+                    }
+                }
+
+                //Q Phrases
+                if (chemicalPhrases[2] != null) {
+                    if (chemicalPhrases[2] instanceof String) {
+                        phraseString = (String) chemicalPhrases[2];
+                    } else {
+                        phraseString = new String((byte[]) chemicalPhrases[2]);
+                    }
+
+                    if (!isBlank(phraseString)) {
+                        ds = buildPhrase(phraseString, line, userData);
+                    }
+                }
+
+                //D Phrases
+                if (chemicalPhrases[3] != null) {
+                    if (chemicalPhrases[3] instanceof String) {
+                        phraseString = (String) chemicalPhrases[3];
+                    } else {
+                        phraseString = new String((byte[]) chemicalPhrases[3]);
+                    }
+
+                    if (!isBlank(phraseString)) {
+                        ds = buildPhrase(phraseString, line, userData);
+                    }
+                }
+
+                //S Phrases
+                if (chemicalPhrases[4] != null) {
+                    if (chemicalPhrases[4] instanceof String) {
+                        phraseString = (String) chemicalPhrases[4];
+                    } else {
+                        phraseString = new String((byte[]) chemicalPhrases[4]);
+                    }
+
+                    if (!isBlank(phraseString)) {
+                        ds = buildPhrase(phraseString, line, userData);
+                    }
+                }
+
+                //F Phrases
+                if (chemicalPhrases[5] != null) {
+                    if (chemicalPhrases[5] instanceof String) {
+                        phraseString = (String) chemicalPhrases[5];
+                    } else {
+                        phraseString = new String((byte[]) chemicalPhrases[5]);
+                    }
+
+                    if (!isBlank(phraseString)) {
+                        ds = buildPhrase(phraseString, line, userData);
+                    }
+                }
+
+                //A Phrases
+                if (chemicalPhrases[6] != null) {
+                    if (chemicalPhrases[6] instanceof String) {
+                        phraseString = (String) chemicalPhrases[6];
+                    } else {
+                        phraseString = new String((byte[]) chemicalPhrases[6]);
+                    }
+
+                    if (!isBlank(phraseString)) {
+                        ds = buildPhrase(phraseString, line, userData);
+                    }
+                }
+
+                //E Phrases
+                if (chemicalPhrases[7] != null) {
+                    if (chemicalPhrases[7] instanceof String) {
+                        phraseString = (String) chemicalPhrases[7];
+                    } else {
+                        phraseString = new String((byte[]) chemicalPhrases[7]);
+                    }
+
+                    if (!isBlank(phraseString)) {
+                        ds = buildPhrase(phraseString, line, userData);
+                    }
+                }
+            }
+
+
+
+            dataList.add(ds);
+        }
+        return dataList;
+    }
+
+    private TRECProducedCardTemplateDS buildPhrase(String phraseString, TRECChemicals chemical, EMCUserData userData) throws IndexOutOfBoundsException {
+        // move method to body
+        TRECProducedCardTemplateDS ds = null;
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.openConditionBracket(EMCQueryBracketConditions.NONE);
+
+        String[] phraseArray = phraseString.split(";");
+
+        for (String phrase : phraseArray) {
+            query.addOr("phraseId", phrase.trim());
+        }
+
+        query.closeConditionBracket();
+
+        query.addFieldDecrypt("phrase", "tr3ck3y");//0
+        query.addField("parentClass");//1
+        query.addField("classSpecific");//2
+        query.addField("addedPhrases");//3
+        query.addField("standardPhrases");//4
+
+        List phrasesList = util.executeNativeQuery(query, userData);
+
+        Object[] phrase;
+
+        StringBuilder phrasesString = new StringBuilder();
+
+        for (Object o : phrasesList) {
+            phrase = (Object[]) o;
+            ds = new TRECProducedCardTemplateDS();
+            // set Values to DS
+
+            //Phrase is class specific and deos not match chemical class
+            if ((Boolean) phrase[2] && !util.checkObjectsEqual(chemical.getClassId(), (String) phrase[1])) {
+                continue;
+            }
+
+            //Phrase Is added Phrase and should only be printed if customer chose chemical
+            if ((Boolean) phrase[3] && chemical instanceof TRECChemicals) {
+                continue;
+            }
+
+            if (phrase[0] instanceof String) {
+                phrasesString.append("&#9679").append(" ").append((String) phrase[0]).append("  ");
+            } else {
+                phrasesString.append("&#9679").append(" ").append(new String((byte[]) phrase[0])).append("  ");
+            }
+            
+        
+        }
+
+        return ds;
+    }
+
+   
+}

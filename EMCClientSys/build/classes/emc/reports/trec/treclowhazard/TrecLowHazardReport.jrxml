@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TREC Low Hazard" printOrder="Horizontal" pageWidth="595" pageHeight="882" columnWidth="545" leftMargin="25" rightMargin="25" topMargin="0" bottomMargin="0">
+	<style name="html" isDefault="true" markup="html"/>
+	<subDataset name="dataset1"/>
+	<field name="UNNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@UNNumber]]></fieldDescription>
+	</field>
+	<field name="ChemicalClass" class="java.lang.String">
+		<fieldDescription><![CDATA[@chemicalClass]]></fieldDescription>
+	</field>
+	<field name="SubsudiaryRisk" class="java.lang.String">
+		<fieldDescription><![CDATA[@subsudiaryRisk]]></fieldDescription>
+	</field>
+	<field name="PackingGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[@packingGroup]]></fieldDescription>
+	</field>
+	<field name="ERGNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@ergNumber]]></fieldDescription>
+	</field>
+	<field name="ProperShippingName" class="java.lang.String">
+		<fieldDescription><![CDATA[@properShippingName]]></fieldDescription>
+	</field>
+	<field name="Appearance" class="java.lang.String">
+		<fieldDescription><![CDATA[@appearance]]></fieldDescription>
+	</field>
+	<field name="Danger" class="java.lang.String">
+		<fieldDescription><![CDATA[@danger]]></fieldDescription>
+	</field>
+	<field name="PersonalProtectiveEquipment" class="java.lang.String">
+		<fieldDescription><![CDATA[@personalProtectiveEquipment]]></fieldDescription>
+	</field>
+	<field name="EmergencyResponseEquipment" class="java.lang.String">
+		<fieldDescription><![CDATA[@emergencyResponseEquipment]]></fieldDescription>
+	</field>
+	<field name="DriverFirstAction" class="java.lang.String">
+		<fieldDescription><![CDATA[@driverFirstAction]]></fieldDescription>
+	</field>
+	<field name="DriverAdditionalAction" class="java.lang.String">
+		<fieldDescription><![CDATA[@driverAdditionalAction]]></fieldDescription>
+	</field>
+	<field name="DriverFireAction" class="java.lang.String">
+		<fieldDescription><![CDATA[@driverFireAction]]></fieldDescription>
+	</field>
+	<field name="FirstAid" class="java.lang.String">
+		<fieldDescription><![CDATA[@firstAid]]></fieldDescription>
+	</field>
+	<field name="InfoForEmergencyServices" class="java.lang.String">
+		<fieldDescription><![CDATA[@infoForEmergencyServices]]></fieldDescription>
+	</field>
+	<field name="AdditionalInfo" class="java.lang.String">
+		<fieldDescription><![CDATA[@additionalInfo]]></fieldDescription>
+	</field>
+	<field name="TradeName" class="java.lang.String">
+		<fieldDescription><![CDATA[@tradeName]]></fieldDescription>
+	</field>
+	<field name="EmergencyPhoneNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@emergencyPhoneNumber]]></fieldDescription>
+	</field>
+	<field name="PreparedBy" class="java.lang.String">
+		<fieldDescription><![CDATA[@preparedBy]]></fieldDescription>
+	</field>
+	<field name="DatePrinted" class="java.lang.String">
+		<fieldDescription><![CDATA[@datePrinted]]></fieldDescription>
+	</field>
+	<field name="ReferenceNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@referenceNumber]]></fieldDescription>
+	</field>
+	<field name="PrintRedLines" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printRedLines]]></fieldDescription>
+	</field>
+	<field name="expiryDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@expiryDate]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="882" splitType="Immediate">
+			<staticText>
+				<reportElement positionType="Float" x="38" y="258" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DRIVER FIRST ACTIONS - Only if it can be carried out without personal risk
+                ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="77" width="320" height="14"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ProperShippingName}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="364" y="126" width="144" height="1"/>
+			</line>
+			<rectangle>
+				<reportElement positionType="Float" x="38" y="371" width="470" height="2" backcolor="#010101"/>
+			</rectangle>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="235" y="549" width="273" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{EmergencyPhoneNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="335" y="592" width="55" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Reference:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="564" width="76" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PREPARED BY
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="394" y="592" width="114" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ReferenceNumber}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="396" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FirstAid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="475" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ADDITIONAL INFORMATION
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="334" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DRIVER ACTIONS IN CASE OF FIRE - Only if it can be carried out without personal risk
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="62" width="320" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROPER SHIPPING NAME
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="365" y="101" width="77" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Packing Group
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="549" width="192" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMERGENCY TELEPHONE NUMBERS
+                ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" x="38" y="490" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{AdditionalInfo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="365" y="75" width="143" height="1"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="40" width="470" height="14"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[SANS 10232-4 - Does not apply
+                ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="273" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DriverFirstAction}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement positionType="Float" x="38" y="248" width="470" height="2" backcolor="#010101"/>
+			</rectangle>
+			<textField pattern="">
+				<reportElement positionType="Float" x="394" y="579" width="114" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DatePrinted}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="508" y="62" width="1" height="64"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="21" width="470" height="19"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRANSPORT CARD LOW HAZARD GOODS - Road Transport
+                ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="Float" x="38" y="465" width="470" height="2" backcolor="#010101"/>
+			</rectangle>
+			<line>
+				<reportElement positionType="Float" x="364" y="61" width="144" height="1"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="173" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PERSONAL PROTECTIVE EQUIPMENT
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="97" width="320" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APPEARANCE
+                ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="349" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DriverFireAction}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="365" y="88" width="77" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Subsidiary Risk
+                ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="526" width="470" height="15"/>
+				<textElement markup="none">
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TradeName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="211" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMERGENCY RESPONSE EQUIPMENT
+                ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="112" y="564" width="396" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PreparedBy}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="443" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{InfoForEmergencyServices}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="311" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DriverAdditionalAction}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="365" y="62" width="77" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[UN Number
+                ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="188" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PersonalProtectiveEquipment}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="381" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FIRST AID
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="360" y="579" width="30" height="13"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Date:
+                ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="112" width="320" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Appearance}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="428" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SPECIAL INFORMATION FOR EMERGENCY SERVICES
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="365" y="75" width="77" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Class
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="364" y="62" width="1" height="64"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="135" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DANGER
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="441" y="62" width="1" height="65"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="365" y="114" width="77" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[ERG Number
+                ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" x="518" y="0" width="27" height="882" forecolor="#FF0000" backcolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{PrintRedLines}]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="27" height="882" forecolor="#FF0000" backcolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{PrintRedLines}]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="150" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Danger}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="579" width="279" height="44"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[from the best knowledge currently available; no guarantee is provided that the information is sufficient or correct under all circumstances.
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="365" y="100" width="143" height="1"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="365" y="88" width="143" height="1"/>
+			</line>
+			<rectangle>
+				<reportElement positionType="Float" x="38" y="418" width="470" height="2" backcolor="#010101"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="296" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DRIVER SPECIAL/ADDITIONAL ACTIONS - Only if it can be carried out without personal risk
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="38" y="511" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRADE NAME
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="365" y="113" width="143" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="442" y="62" width="66" height="14"/>
+				<textElement/>
+				<text><![CDATA[No Number
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="76" width="66" height="13"/>
+				<textElement/>
+				<text><![CDATA[No Number
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="89" width="66" height="13"/>
+				<textElement/>
+				<text><![CDATA[No Number
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="101" width="66" height="13"/>
+				<textElement/>
+				<text><![CDATA[No Number
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="114" width="66" height="13"/>
+				<textElement/>
+				<text><![CDATA[No Number
+                ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="38" y="226" width="470" height="15"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{EmergencyResponseEquipment}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

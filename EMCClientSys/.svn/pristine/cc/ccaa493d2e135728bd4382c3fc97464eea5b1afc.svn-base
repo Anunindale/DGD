@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<field name="printLines" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printLines]]></fieldDescription>
+	</field>
+	<field name="studentNumber1" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentNumber1]]></fieldDescription>
+	</field>
+	<field name="surnameInitials1" class="java.lang.String">
+		<fieldDescription><![CDATA[@surnameInitials1]]></fieldDescription>
+	</field>
+	<field name="address1" class="java.lang.String">
+		<fieldDescription><![CDATA[@address1]]></fieldDescription>
+	</field>
+	<field name="city1" class="java.lang.String">
+		<fieldDescription><![CDATA[@city1]]></fieldDescription>
+	</field>
+	<field name="postalCode1" class="java.lang.String">
+		<fieldDescription><![CDATA[@postalCode1]]></fieldDescription>
+	</field>
+	<field name="courseYear1" class="java.lang.String">
+		<fieldDescription><![CDATA[@courseYear1]]></fieldDescription>
+	</field>
+	<field name="studentNumber2" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentNumber2]]></fieldDescription>
+	</field>
+	<field name="surnameInitials2" class="java.lang.String">
+		<fieldDescription><![CDATA[@surnameInitials2]]></fieldDescription>
+	</field>
+	<field name="address2" class="java.lang.String">
+		<fieldDescription><![CDATA[@address2]]></fieldDescription>
+	</field>
+	<field name="city2" class="java.lang.String">
+		<fieldDescription><![CDATA[@city2]]></fieldDescription>
+	</field>
+	<field name="postalCode2" class="java.lang.String">
+		<fieldDescription><![CDATA[@postalCode2]]></fieldDescription>
+	</field>
+	<field name="courseYear2" class="java.lang.String">
+		<fieldDescription><![CDATA[@courseYear2]]></fieldDescription>
+	</field>
+	<field name="studentNumber3" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentNumber3]]></fieldDescription>
+	</field>
+	<field name="surnameInitials3" class="java.lang.String">
+		<fieldDescription><![CDATA[@surnameInitials3]]></fieldDescription>
+	</field>
+	<field name="address3" class="java.lang.String">
+		<fieldDescription><![CDATA[@address3]]></fieldDescription>
+	</field>
+	<field name="city3" class="java.lang.String">
+		<fieldDescription><![CDATA[@city3]]></fieldDescription>
+	</field>
+	<field name="postalCode3" class="java.lang.String">
+		<fieldDescription><![CDATA[@postalCode3]]></fieldDescription>
+	</field>
+	<field name="courseYear3" class="java.lang.String">
+		<fieldDescription><![CDATA[@courseYear3]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="95" splitType="Stretch">
+			<textField>
+				<reportElement x="18" y="11" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentNumber1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="23" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{surnameInitials1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="35" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{address1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="47" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{city1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="59" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{postalCode1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="71" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{courseYear1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="59" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{postalCode2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="35" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{address2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="71" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{courseYear2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="23" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{surnameInitials2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="47" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{city2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="11" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentNumber2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="59" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{postalCode3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="35" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{address3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="71" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{courseYear3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="23" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{surnameInitials3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="47" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{city3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="11" width="150" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentNumber3}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="184" y="0" width="1" height="95">
+					<printWhenExpression><![CDATA[$F{printLines}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="369" y="0" width="1" height="95">
+					<printWhenExpression><![CDATA[$F{printLines}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="95">
+					<printWhenExpression><![CDATA[$F{printLines}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="554" y="0" width="1" height="95">
+					<printWhenExpression><![CDATA[$F{printLines}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="1" y="0" width="553" height="1">
+					<printWhenExpression><![CDATA[$F{printLines}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="1" y="94" width="553" height="1">
+					<printWhenExpression><![CDATA[$F{printLines}]]></printWhenExpression>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

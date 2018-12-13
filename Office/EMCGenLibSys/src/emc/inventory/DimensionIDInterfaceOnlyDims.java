@@ -1,0 +1,32 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.inventory;
+
+/**
+ * This interface is intended to be implemented on data source entities where
+ * dimensions have to be set according to a dimension id. It only contains
+ * getters and setters for dimensions 1 - 3. Warehouse, location, pallet, etc
+ * not included.
+ *
+ * @author riaan
+ */
+public interface DimensionIDInterfaceOnlyDims {
+
+    public void setDimRecordID(long recordID);
+
+    public long getDimRecordID();
+
+    public void setDimension1(String dimension1);
+
+    public String getDimension1();
+
+    public void setDimension2(String dimension2);
+
+    public String getDimension2();
+
+    public void setDimension3(String dimension3);
+
+    public String getDimension3();
+}

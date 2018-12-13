@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Order Schedule" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.357947691000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="80"/>
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="toDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fromDate" class="java.lang.String" isForPrompting="false"/>
+	<field name="wcPlanningGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[@wcPlanningGroup]]></fieldDescription>
+	</field>
+	<field name="itemReference" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemReference]]></fieldDescription>
+	</field>
+	<field name="itemDescription" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemDescription]]></fieldDescription>
+	</field>
+	<field name="deliveryDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@deliveryDate]]></fieldDescription>
+	</field>
+	<field name="dimension3" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension3]]></fieldDescription>
+	</field>
+	<field name="dimension2Label1" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2Label1]]></fieldDescription>
+	</field>
+	<field name="dimension2Label2" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2Label2]]></fieldDescription>
+	</field>
+	<field name="dimension2Label3" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2Label3]]></fieldDescription>
+	</field>
+	<field name="dimension2Label4" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2Label4]]></fieldDescription>
+	</field>
+	<field name="dimension2Label5" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2Label5]]></fieldDescription>
+	</field>
+	<field name="dimension2Label6" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2Label6]]></fieldDescription>
+	</field>
+	<field name="dimension2Label7" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2Label7]]></fieldDescription>
+	</field>
+	<field name="dimension2Label8" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2Label8]]></fieldDescription>
+	</field>
+	<field name="dimension2Total1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@dimension2Total1]]></fieldDescription>
+	</field>
+	<field name="dimension2Total2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@dimension2Total2]]></fieldDescription>
+	</field>
+	<field name="dimension2Total3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@dimension2Total3]]></fieldDescription>
+	</field>
+	<field name="dimension2Total4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@dimension2Total4]]></fieldDescription>
+	</field>
+	<field name="dimension2Total5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@dimension2Total5]]></fieldDescription>
+	</field>
+	<field name="dimension2Total6" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@dimension2Total6]]></fieldDescription>
+	</field>
+	<field name="dimension2Total7" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@dimension2Total7]]></fieldDescription>
+	</field>
+	<field name="dimension2Total8" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@dimension2Total8]]></fieldDescription>
+	</field>
+	<field name="pwoTotal" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@pwoTotal]]></fieldDescription>
+	</field>
+	<field name="cageWIPDimension2Total1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@cageWIPDimension2Total1]]></fieldDescription>
+	</field>
+	<field name="cageWIPDimension2Total2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@cageWIPDimension2Total2]]></fieldDescription>
+	</field>
+	<field name="cageWIPDimension2Total3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@cageWIPDimension2Total3]]></fieldDescription>
+	</field>
+	<field name="cageWIPDimension2Total4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@cageWIPDimension2Total4]]></fieldDescription>
+	</field>
+	<field name="cageWIPDimension2Total5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@cageWIPDimension2Total5]]></fieldDescription>
+	</field>
+	<field name="cageWIPDimension2Total6" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@cageWIPDimension2Total6]]></fieldDescription>
+	</field>
+	<field name="cageWIPDimension2Total7" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@cageWIPDimension2Total7]]></fieldDescription>
+	</field>
+	<field name="cageWIPDimension2Total8" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@cageWIPDimension2Total8]]></fieldDescription>
+	</field>
+	<field name="cageWIPLineTotal" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@cageWIPLineTotal]]></fieldDescription>
+	</field>
+	<field name="type" class="java.lang.String">
+		<fieldDescription><![CDATA[@type]]></fieldDescription>
+	</field>
+	<variable name="dimension2Value1Total" class="java.math.BigDecimal" resetType="Group" resetGroup="PlanningGroup">
+		<variableExpression><![CDATA[$V{dimension2Value1Total}.add($F{dimension2Total1}).add($F{cageWIPDimension2Total1})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="dimension2Value2Total" class="java.math.BigDecimal" resetType="Group" resetGroup="PlanningGroup">
+		<variableExpression><![CDATA[$V{dimension2Value2Total}.add($F{dimension2Total2}).add($F{cageWIPDimension2Total2})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="dimension2Value3Total" class="java.math.BigDecimal" resetType="Group" resetGroup="PlanningGroup">
+		<variableExpression><![CDATA[$V{dimension2Value3Total}.add($F{dimension2Total3}).add($F{cageWIPDimension2Total3})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="dimension2Value4Total" class="java.math.BigDecimal" resetType="Group" resetGroup="PlanningGroup">
+		<variableExpression><![CDATA[$V{dimension2Value4Total}.add($F{dimension2Total4}).add($F{cageWIPDimension2Total4})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="dimension2Value5Total" class="java.math.BigDecimal" resetType="Group" resetGroup="PlanningGroup">
+		<variableExpression><![CDATA[$V{dimension2Value5Total}.add($F{dimension2Total5}).add($F{cageWIPDimension2Total5})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="dimension2Value6Total" class="java.math.BigDecimal" resetType="Group" resetGroup="PlanningGroup">
+		<variableExpression><![CDATA[$V{dimension2Value6Total}.add($F{dimension2Total6}).add($F{cageWIPDimension2Total6})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="dimension2Value7Total" class="java.math.BigDecimal" resetType="Group" resetGroup="PlanningGroup">
+		<variableExpression><![CDATA[$V{dimension2Value7Total}.add($F{dimension2Total7}).add($F{cageWIPDimension2Total7})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="dimension2Value8Total" class="java.math.BigDecimal" resetType="Group" resetGroup="PlanningGroup">
+		<variableExpression><![CDATA[$V{dimension2Value8Total}.add($F{dimension2Total8}).add($F{cageWIPDimension2Total8})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="grandTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="PlanningGroup">
+		<variableExpression><![CDATA[$V{grandTotal}.add($F{dimension2Total1}).add($F{dimension2Total2}).add($F{dimension2Total3}).add($F{dimension2Total4}).add($F{dimension2Total5}).add($F{dimension2Total6}).add($F{dimension2Total7}).add($F{dimension2Total8}).add($F{cageWIPDimension2Total1}).add($F{cageWIPDimension2Total2}).add($F{cageWIPDimension2Total3}).add($F{cageWIPDimension2Total4}).add($F{cageWIPDimension2Total5}).add($F{cageWIPDimension2Total6}).add($F{cageWIPDimension2Total7}).add($F{cageWIPDimension2Total8})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<group name="PlanningGroup">
+		<groupExpression><![CDATA[$F{wcPlanningGroup}.toUpperCase()]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<textField>
+					<reportElement x="344" y="5" width="40" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2Label5}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="104" y="5" width="50" height="14"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Colour   ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="303" y="5" width="40" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2Label4}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="221" y="5" width="40" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2Label2}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="19" width="555" height="1"/>
+				</line>
+				<textField>
+					<reportElement x="426" y="5" width="40" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2Label7}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="56" y="5" width="47" height="14"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Item      ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="180" y="5" width="40" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2Label1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="5" y="5" width="50" height="14"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[WC P. Grp.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="508" y="5" width="40" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="385" y="5" width="40" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2Label6}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="467" y="5" width="40" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2Label8}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="263" y="5" width="40" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2Label3}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="154" y="5" width="25" height="14"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Type]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="14">
+				<textField>
+					<reportElement x="180" y="2" width="40" height="11">
+						<printWhenExpression><![CDATA[new Boolean($F{dimension2Label1} != null && !"".equals($F{dimension2Label1}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{dimension2Value1Total}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="263" y="2" width="40" height="11">
+						<printWhenExpression><![CDATA[new Boolean($F{dimension2Label3} != null && !"".equals($F{dimension2Label3}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{dimension2Value3Total}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="467" y="2" width="40" height="11">
+						<printWhenExpression><![CDATA[new Boolean($F{dimension2Label8} != null && !"".equals($F{dimension2Label8}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{dimension2Value8Total}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="303" y="2" width="40" height="11">
+						<printWhenExpression><![CDATA[new Boolean($F{dimension2Label4} != null && !"".equals($F{dimension2Label4}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{dimension2Value4Total}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="508" y="2" width="40" height="11"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{grandTotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="426" y="2" width="40" height="11">
+						<printWhenExpression><![CDATA[new Boolean($F{dimension2Label7} != null && !"".equals($F{dimension2Label7}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{dimension2Value7Total}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="344" y="2" width="40" height="11">
+						<printWhenExpression><![CDATA[new Boolean($F{dimension2Label5} != null && !"".equals($F{dimension2Label5}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{dimension2Value5Total}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="221" y="2" width="40" height="11">
+						<printWhenExpression><![CDATA[new Boolean($F{dimension2Label2} != null && !"".equals($F{dimension2Label2}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{dimension2Value2Total}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="385" y="2" width="40" height="11">
+						<printWhenExpression><![CDATA[new Boolean($F{dimension2Label6} != null && !"".equals($F{dimension2Label6}))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{dimension2Value6Total}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="1" width="555" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="135" y="2" width="44" height="11"/>
+					<textElement verticalAlignment="Top">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Totals:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="48" splitType="Stretch">
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="28" width="555" height="1"/>
+			</line>
+			<textField hyperlinkType="Reference">
+				<reportElement x="277" y="2" width="268" height="27"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<line>
+				<reportElement key="line" x="0" y="1" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="11" y="0" width="266" height="28"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sales PWO vs. Stock View]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="33" width="31" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[From:
+                    ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="36" y="33" width="92" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fromDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="128" y="33" width="20" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To:
+                    ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="148" y="33" width="84" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{toDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="1" width="50" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{wcPlanningGroup}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="1" width="50" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="1" width="47" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemReference}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="1" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label2} != null && !"".equals($F{dimension2Label2}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{dimension2Total2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="303" y="1" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label4} != null && !"".equals($F{dimension2Label4}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{dimension2Total4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="344" y="1" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label5} != null && !"".equals($F{dimension2Label5}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{dimension2Total5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="1" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label3} != null && !"".equals($F{dimension2Label3}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{dimension2Total3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="1" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label6} != null && !"".equals($F{dimension2Label6}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{dimension2Total6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="1" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label1} != null && !"".equals($F{dimension2Label1}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{dimension2Total1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="426" y="1" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label7} != null && !"".equals($F{dimension2Label7}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{dimension2Total7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="467" y="1" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label8} != null && !"".equals($F{dimension2Label8}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{dimension2Total8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="508" y="1" width="40" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{pwoTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="1" width="25" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{type}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="135" y="13" width="44" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cage/WIP:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="344" y="13" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label5} != null && !"".equals($F{dimension2Label5}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cageWIPDimension2Total5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="303" y="13" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label4} != null && !"".equals($F{dimension2Label4}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cageWIPDimension2Total4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="13" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label3} != null && !"".equals($F{dimension2Label3}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cageWIPDimension2Total3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="467" y="13" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label8} != null && !"".equals($F{dimension2Label8}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cageWIPDimension2Total8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="13" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label2} != null && !"".equals($F{dimension2Label2}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cageWIPDimension2Total2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="13" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label1} != null && !"".equals($F{dimension2Label1}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cageWIPDimension2Total1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="508" y="13" width="40" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cageWIPLineTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="426" y="13" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label7} != null && !"".equals($F{dimension2Label7}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cageWIPDimension2Total7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="13" width="40" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension2Label6} != null && !"".equals($F{dimension2Label6}))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cageWIPDimension2Total6}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="11" y="3" width="534" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="11" y="3" width="130" height="14"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD
+
+
+                ]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="516" y="3" width="29" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="360" y="3" width="156" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line" x="11" y="2" width="534" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

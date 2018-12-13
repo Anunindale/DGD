@@ -1,0 +1,50 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.forms.trec.display.treccards.resources;
+
+import emc.app.components.emctable.emcDataRelationManagerUpdate;
+import emc.app.components.lookup.EMCLookup;
+import emc.app.components.lookup.EMCLookupRelationManager;
+import emc.entity.trec.TRECChemicals;
+import emc.entity.trec.TRECPreferredShipName;
+import emc.enums.enumQueryTypes;
+import emc.framework.EMCQuery;
+
+/**
+ *
+ * @author wikus
+ */
+public class TRECLRM extends EMCLookupRelationManager {
+
+    @Override
+    public void doRelation(EMCLookup lookup) {
+        if (getLookupName(lookup).equals("unNumber")) {
+            EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class.getName());
+            query.addAnd("unNumber", lookup.getValue());
+            getLookupFromName("shippingName").get(0).setTheQuery(query);
+        }
+
+//        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPreferredShipName.class);
+//        query.addTableAnd(TRECChemicals.class.getName(), "chemicalLink", TRECPreferredShipName.class.getName(), "recordID");
+//        query.addAnd("unNumber", getLookupFromName("unNumber").get(0).getValue(), TRECChemicals.class.getName());
+//        query.addAnd("shippingName", getLookupFromName("properShipping").get(0).getValue(), TRECChemicals.class.getName());
+//        getLookupFromName("preferredName").get(0).setTheQuery(query);
+
+    }
+
+    @Override
+    public void doRowChanged(emcDataRelationManagerUpdate drm) {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class.getName());
+        query.addAnd("unNumber", drm.getLastFieldValueAt("unNumber"));
+        getLookupFromName("shippingName").get(0).setTheQuery(query);
+
+
+        query = new EMCQuery(enumQueryTypes.SELECT, TRECPreferredShipName.class);
+        query.addTableAnd(TRECChemicals.class.getName(), "chemicalLink", TRECPreferredShipName.class.getName(), "recordID");
+        query.addAnd("unNumber", drm.getLastFieldValueAt("unNumber"), TRECChemicals.class.getName());
+        query.addAnd("shippingName", drm.getLastFieldValueAt("properShipping"), TRECChemicals.class.getName());
+        getLookupFromName("preferredName").get(0).setTheQuery(query);
+    }
+}

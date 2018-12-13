@@ -1,0 +1,356 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.reports.trec.customerselection;
+
+import emc.bus.trec.chemicals.TRECChemicalsLocal;
+import emc.bus.trec.customerchemicals.TRECCustomerChemicalsLocal;
+import emc.bus.trec.parameters.TRECParametersLocal;
+import emc.bus.trec.phrases.TRECPhrasesLocal;
+import emc.bus.trec.treccards.TRECTrecCardsLinesLocal;
+import emc.entity.trec.TRECChemicals;
+import emc.entity.trec.TRECChemicalsSuper;
+import emc.entity.trec.TRECColours;
+import emc.entity.trec.TRECCustomerChemicals;
+import emc.entity.trec.TRECForms;
+import emc.entity.trec.TRECOdours;
+import emc.entity.trec.TRECPreferredShipName;
+import emc.entity.trec.TRECTrecCardsLines;
+import emc.enums.enumQueryTypes;
+import emc.enums.trec.TRECTypeEnum;
+import emc.framework.EMCEntityBeanException;
+import emc.framework.EMCQuery;
+import emc.framework.EMCReportBean;
+import emc.framework.EMCUserData;
+import emc.functions.Functions;
+import emc.helpers.trec.TRECPhraseHelper;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author wikus
+ */
+@Stateless
+public class TRECProducedCardTemplateBean extends EMCReportBean implements TRECProducedCardTemplateLocal {
+
+    @EJB
+    private TRECParametersLocal paramBean;
+    @EJB
+    private TRECPhrasesLocal phrasesBean;
+    @EJB
+    private TRECCustomerChemicalsLocal customerChemicalBean;
+    @EJB
+    private TRECChemicalsLocal chemicalBean;
+    @EJB
+    private TRECTrecCardsLinesLocal linesBean;
+    private TRECTypeEnum type;
+
+    @Override
+    public List<Object> manipulateQueryResult(List<Object> queryResult, java.util.Map<java.lang.String, java.lang.Object> paramMap, EMCUserData userData) {
+
+        List dataList = new ArrayList();
+
+        TRECTrecCardsLines line;
+        EMCUserData copyUD;
+        TRECCustomerChemicals chemical;
+        TRECProducedCardTemplateDS ds;
+
+
+        Map<String, List<TRECPhraseHelper>> EphraseMap;
+        List<TRECPhraseHelper> phraseList;
+        String activePhraseString;
+
+
+
+        for (Object o : queryResult) {
+            line = (TRECTrecCardsLines) o;
+
+            chemical = null;
+
+            //Create Customer Chemical
+            if (line.getCustomerChemical() == 0) {
+                try {
+                    long custChemId = customerChemicalBean.createCustomerChemical(line.getRecordID(), null, line.getUnNumber(), line.getProperShipping(), userData);
+<<<<<<< .mine
+                    line.setCustomerChemical(custChemId);
+                    linesBean.update(line, userData);
+                    util.flushEntity(userData);
+
+                    customerChemicalBean.updateEncryptedFields(custChemId, userData);
+=======
+
+                    if (custChemId > 0) {
+
+                        line.setCustomerChemical(custChemId);
+                        linesBean.update(line, userData);
+                        util.flushEntity(userData);
+
+                        customerChemicalBean.updateEncryptedFields(custChemId, userData);
+                    }
+>>>>>>> .r25416
+                } catch (EMCEntityBeanException ex) {
+                    Logger.getLogger("emc").log(Level.SEVERE, "Failed to create customer chemical.", userData);
+                    return new ArrayList<>();
+                }
+            }
+
+            //Fetch Customer chemical
+            EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECCustomerChemicals.class);
+            query.addAnd("recordID", line.getCustomerChemical());
+
+            copyUD = userData.copyUserData();
+            copyUD.setUserData(0, query);
+
+            List dataInRange = (List) customerChemicalBean.getDataInRange(TRECCustomerChemicals.class, copyUD, 0, 1);
+            if (dataInRange != null && !dataInRange.isEmpty()) {
+                chemical = (TRECCustomerChemicals) dataInRange.get(0);
+            }
+
+            if (chemical == null) {
+                Logger.getLogger("emc").log(Level.SEVERE, "Failed to get the chemical record.", userData);
+                return new ArrayList<>();
+            }
+
+            //H
+            phraseList = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.H.toString(), userData);
+            activePhraseString = chemical.gethPhrases();
+            populateDS(activePhraseString, phraseList, dataList, "POTENTIAL HAZARD", line, chemical, userData);
+
+
+            //P
+            phraseList = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.P.toString(), userData);
+            activePhraseString = chemical.getpPhrases();
+            populateDS(activePhraseString, phraseList, dataList, "PERSONAL PROTECTIVE EQUIPMENT", line, chemical, userData);
+
+            //Q
+            phraseList = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.Q.toString(), userData);
+            activePhraseString = chemical.getqPhrases();
+            populateDS(activePhraseString, phraseList, dataList, "DRIVER INTERVENTION EQUIPMENT", line, chemical, userData);
+
+            //D
+            phraseList = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.D.toString(), userData);
+            activePhraseString = chemical.getdPhrases();
+            populateDS(activePhraseString, phraseList, dataList, "DRIVER FIRST ACTIONS", line, chemical, userData);
+
+            //S
+            phraseList = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.S.toString(), userData);
+            activePhraseString = chemical.getsPhrases();
+            populateDS(activePhraseString, phraseList, dataList, "DRIVER SPECIAL/ADDITIONAL ACTIONS", line, chemical, userData);
+
+            //F
+            phraseList = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.F.toString(), userData);
+            activePhraseString = chemical.getfPhrases();
+            populateDS(activePhraseString, phraseList, dataList, "DRIVER ACTIONS IN CASE OF FIRE", line, chemical, userData);
+
+            //A
+            phraseList = phrasesBean.getPhrases(line.getUnNumber(), TRECTypeEnum.A.toString(), userData);
+            activePhraseString = chemical.getaPhrases();
+            populateDS(activePhraseString, phraseList, dataList, "FIRST AID", line, chemical, userData);
+
+            //We are not printing E Phrases on the report
+//            //E
+//            EphraseMap = phrasesBean.getEPhrases(chemical, userData);
+//            phraseList = new ArrayList<>();
+//            for (List<TRECPhraseHelper> l : EphraseMap.values()) {
+//                if (l != null && !l.isEmpty()) {
+//                    phraseList.addAll(l);
+//                }
+//            }
+//
+//            activePhraseString = chemical.getePhrases();
+//            populateDS(activePhraseString, phraseList, dataList, "SPECIAL INFORMATION FOR EMERGENCY SERVICES", line, chemical, userData);
+        }
+        return dataList;
+    }
+
+    private void populateDS(String activePhraseString, List<TRECPhraseHelper> phrseList, List<TRECProducedCardTemplateDS> dataList, String heading, TRECTrecCardsLines line, TRECChemicalsSuper chemical, EMCUserData userData) {
+        int start = dataList.size();
+        boolean addDS = false;
+
+
+        List<String> activePhrases = new ArrayList<>();
+        if (!Functions.checkBlank(activePhraseString)) {
+            String[] activeArray = activePhraseString.split(";");
+
+            for (String active : activeArray) {
+                activePhrases.add(active.trim());
+            }
+        }
+
+        for (Object phraseHelper : phrseList) {
+            TRECPhraseHelper helper = (TRECPhraseHelper) phraseHelper;
+            helper.setTicked(false);
+
+            if (activePhrases.contains(helper.getPhraseId())) {
+                helper.setTicked(true);
+            }
+
+            TRECProducedCardTemplateDS ds = null;
+            if (helper.isTicked()) {
+                for (int i = start; i < dataList.size(); i++) {
+                    TRECProducedCardTemplateDS ds1 = (TRECProducedCardTemplateDS) dataList.get(i);
+                    if (isBlank(ds1.getPhrases())) {
+                        ds = ds1;
+                        addDS = false;
+                        break;
+                    }
+                }
+
+                if (ds == null) {
+                    addDS = true;
+                    ds = new TRECProducedCardTemplateDS();
+                }
+
+                ds.setPrintPhrases(true);
+                ds.setPhrases(helper.getPhraseDescription());
+
+            } else {
+                for (int i = start; i < dataList.size(); i++) {
+                    TRECProducedCardTemplateDS ds1 = (TRECProducedCardTemplateDS) dataList.get(i);
+                    if (isBlank(ds1.getPhrasesNonMondatory())) {
+                        addDS = false;
+                        ds = ds1;
+                        break;
+                    }
+                }
+
+                if (ds == null) {
+                    addDS = true;
+                    ds = new TRECProducedCardTemplateDS();
+                }
+
+                ds.setPrintPhrasesNonMondatory(true);
+                ds.setPhrasesNonMondatory(helper.getPhraseDescription());
+
+
+            }
+            ds.setAddInfoHeading2(heading);
+            ds.setUNNumber(line.getUnNumber());
+            ds.setPreparedBy(line.getPreparedBy());
+            ds.setPackingGroup(line.getPackingGroup());
+            ds.setAppearance(getAppearanceString(line.getForm(), line.getColour(), line.getOdour(), userData));
+            ds.setEmergencyPhoneNumber(line.getEmergencyNumber());
+
+            ds.setErgNumber(chemical.getErg());
+            ds.setChemicalClass(chemical.getClassId());
+            if (isBlank(line.getPreferredShipName())) {
+                ds.setProperShippingName(chemical.getShippingName());
+            } else {
+                ds.setProperShippingName(line.getPreferredShipName());
+            }
+            ds.setSubsudiaryRisk(chemical.getSubsidairyRisk());
+
+            // Additinal info 
+            if (!isBlank(line.getTradingName())) {
+                ds.setTradeName(line.getTradingName());
+
+            }
+            if (!isBlank(line.getAdditionalInfo())) {
+                ds.setAddInfoHeading1(line.getAdditionalInfo());
+            }
+
+            EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+            query.addAnd("unNumber", line.getUnNumber());
+            query.addAnd("shippingName", line.getProperShipping());
+            TRECChemicals che = (TRECChemicals) util.executeSingleResultQuery(query, userData);
+
+            if (isBlank(che)) {
+            } else {
+                EMCQuery query1 = new EMCQuery(enumQueryTypes.SELECT, TRECPreferredShipName.class);
+                query1.addAnd("chemicalLink", che.getRecordID());
+                query1.addField("properShipName");
+                List<String> prefShipName = util.executeGeneralSelectQuery(query1, userData);
+                if (prefShipName.isEmpty()) {
+                    ds.setPreferredShippingNameNA("Not Applicable");
+                } else {
+                    int count = 0;
+                    for (int j = 0; j < prefShipName.size(); j++) {
+                        
+                        if (prefShipName.get(j) != null && count==0) {
+                            if (isBlank(ds.getPreferredShippingName0())) {
+                                ds.setPreferredShippingName0((String) prefShipName.get(j));
+                            }
+                        }
+                        if (prefShipName.get(j) != null && count==1) {
+                             if (isBlank(ds.getPreferredShippingName1())) {
+                                ds.setPreferredShippingName1((String) prefShipName.get(j));
+                            }
+                        }
+                        if (prefShipName.get(j) != null && count==2) {
+                             if (isBlank(ds.getPreferredShippingName2())) {
+                                ds.setPreferredShippingName2((String) prefShipName.get(j));
+                            }
+                        }
+                        if (prefShipName.get(j) != null && count==3) {
+                             if (isBlank(ds.getPreferredShippingName3())) {
+                                ds.setPreferredShippingName3((String) prefShipName.get(j));
+                            }
+                        }
+                        if (prefShipName.get(j) != null && count==4) {
+                             if (isBlank(ds.getPreferredShippingName4())) {
+                                ds.setPreferredShippingName4((String) prefShipName.get(j));
+                            }
+                        }
+                        if (prefShipName.get(j) != null && count==5) {
+                             if (isBlank(ds.getPreferredShippingName5())) {
+                                ds.setPreferredShippingName5((String) prefShipName.get(j));
+                            }
+                        }
+                        count++;
+                    }
+                }
+
+            }
+
+            //Date Printed
+            ds.setDatePrinted(Functions.nowDateString("dd-MM-yyyy"));
+            //Reference Number
+            ds.setReferenceNumber(chemical.getChemicalId() + "-" + chemical.getUnNumber() + "-" + chemical.getRecordID());
+
+            if (addDS) {
+                dataList.add(ds);
+            }
+        }
+
+    }
+
+    private String getAppearanceString(String form, String colour, String odour, EMCUserData userData) {
+        EMCQuery query;
+        String appearance = "";
+        if (!isBlank(form)) {
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECForms.class.getName());
+            query.addAnd("formId", form);
+            TRECForms formRec = (TRECForms) util.executeSingleResultQuery(query, userData);
+            if (formRec != null) {
+                appearance += formRec.getDescription() + (isBlank(colour) && isBlank(odour) ? "" : ";  ");
+            }
+        }
+        if (!isBlank(colour)) {
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECColours.class.getName());
+            query.addAnd("colourId", colour);
+            TRECColours colourRec = (TRECColours) util.executeSingleResultQuery(query, userData);
+            if (colourRec != null) {
+                appearance += colourRec.getDescription() + (isBlank(odour) ? "" : ";  ");
+            }
+        }
+        if (!isBlank(odour)) {
+            query = new EMCQuery(enumQueryTypes.SELECT, TRECOdours.class.getName());
+            query.addAnd("odourId", odour);
+            TRECOdours odourRec = (TRECOdours) util.executeSingleResultQuery(query, userData);
+            if (odourRec != null) {
+                appearance += odourRec.getDescription();
+            }
+        }
+        if (isBlank(appearance)) {
+            appearance = "Not Specified";
+        }
+        return appearance;
+    }
+}

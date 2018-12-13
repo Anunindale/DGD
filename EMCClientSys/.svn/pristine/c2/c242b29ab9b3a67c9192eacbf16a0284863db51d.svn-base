@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Academic_History" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3602a4f0-cb94-40cd-a98b-ed2c5ad9b107">
+	<property name="ireport.zoom" value="1.1000000000000116"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="203"/>
+	<parameter name="logoPath" class="java.lang.String"/>
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<field name="UNNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@UNNumber]]></fieldDescription>
+	</field>
+	<field name="ChemicalClass" class="java.lang.String">
+		<fieldDescription><![CDATA[@chemicalClass]]></fieldDescription>
+	</field>
+	<field name="SubsudiaryRisk" class="java.lang.String">
+		<fieldDescription><![CDATA[@subsudiaryRisk]]></fieldDescription>
+	</field>
+	<field name="PackingGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[@packingGroup]]></fieldDescription>
+	</field>
+	<field name="ERGNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@ergNumber]]></fieldDescription>
+	</field>
+	<field name="ProperShippingName" class="java.lang.String">
+		<fieldDescription><![CDATA[@properShippingName]]></fieldDescription>
+	</field>
+	<field name="Appearance" class="java.lang.String">
+		<fieldDescription><![CDATA[@appearance]]></fieldDescription>
+	</field>
+	<field name="AdditionalInfo" class="java.lang.String">
+		<fieldDescription><![CDATA[@additionalInfo]]></fieldDescription>
+	</field>
+	<field name="TradeName" class="java.lang.String">
+		<fieldDescription><![CDATA[@tradeName]]></fieldDescription>
+	</field>
+	<field name="EmergencyPhoneNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@emergencyPhoneNumber]]></fieldDescription>
+	</field>
+	<field name="PreparedBy" class="java.lang.String">
+		<fieldDescription><![CDATA[@preparedBy]]></fieldDescription>
+	</field>
+	<field name="DatePrinted" class="java.lang.String">
+		<fieldDescription><![CDATA[@datePrinted]]></fieldDescription>
+	</field>
+	<field name="addInfoHeading1" class="java.lang.String">
+		<fieldDescription><![CDATA[@addInfoHeading1]]></fieldDescription>
+	</field>
+	<field name="addInfoHeading2" class="java.lang.String">
+		<fieldDescription><![CDATA[@addInfoHeading2]]></fieldDescription>
+	</field>
+	<field name="shippingName" class="java.lang.String">
+		<fieldDescription><![CDATA[@shippingName]]></fieldDescription>
+	</field>
+	<field name="preferredShippingName" class="java.lang.String">
+		<fieldDescription><![CDATA[@preferredShippingName]]></fieldDescription>
+	</field>
+	<field name="phrases" class="java.lang.String">
+		<fieldDescription><![CDATA[@phrases]]></fieldDescription>
+	</field>
+	<field name="phrasesNonMondatory" class="java.lang.String">
+		<fieldDescription><![CDATA[@phrasesNonMondatory]]></fieldDescription>
+	</field>
+	<field name="printPhrasesNonMondatory" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printPhrasesNonMondatory]]></fieldDescription>
+	</field>
+	<field name="printPhrases" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printPhrases]]></fieldDescription>
+	</field>
+	<group name="ErgGroup" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{UNNumber}]]></groupExpression>
+		<groupHeader>
+			<band height="228">
+				<staticText>
+					<reportElement uuid="51ec59ab-8fb9-4d84-baf2-0ff60b62fd87" positionType="Float" x="5" y="129" width="505" height="13"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[(Found in section 9 of the SDS)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="24291406-f956-4508-be5b-b5d85b9f5092" positionType="Float" x="284" y="184" width="268" height="14"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Phrases that are available to add on the card, Please ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="51ec59ab-8fb9-4d84-baf2-0ff60b62fd87" positionType="Float" x="4" y="160" width="505" height="13"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[(Found in section 14 of the SDS)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="2df76941-887d-4228-9ec8-a53fd577ed68" positionType="Float" x="5" y="85" width="104" height="13"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Proper Shipping Name]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="7240083a-6e3a-4faa-b981-5cc7f2230d30" positionType="Float" x="173" y="116" width="374" height="15"/>
+					<textElement>
+						<font fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Appearance}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="9b4fbfc1-d6d3-4b8a-bce3-dcb3ff757bd4" positionType="Float" x="109" y="83" width="166" height="13"/>
+					<textElement>
+						<font fontName="Arial" isUnderline="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ProperShippingName}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="12b2e231-9bce-4aef-8ec2-e78b41168cc3" positionType="Float" x="109" y="55" width="166" height="13"/>
+					<textElement>
+						<font fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{EmergencyPhoneNumber}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="24291406-f956-4508-be5b-b5d85b9f5092" positionType="Float" x="12" y="183" width="232" height="15"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Phrases that will appear on the standard card:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="2df76941-887d-4228-9ec8-a53fd577ed68" positionType="Float" x="5" y="55" width="104" height="13"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Emergency numbers]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="2df76941-887d-4228-9ec8-a53fd577ed68" positionType="Float" x="5" y="40" width="73" height="13"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Company Name]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="5cb30470-070a-4516-8dd4-5d94dc4a53f4" positionType="Float" x="109" y="70" width="166" height="13"/>
+					<textElement>
+						<font fontName="Arial" isUnderline="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{UNNumber}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="24291406-f956-4508-be5b-b5d85b9f5092" positionType="Float" x="5" y="145" width="164" height="15"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Packing Group]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="24291406-f956-4508-be5b-b5d85b9f5092" positionType="Float" x="5" y="116" width="166" height="15"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[APPEARANCE(form,colour,odour)]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="b940284c-cfa9-40cc-846d-9b1809998b91" positionType="Float" x="173" y="145" width="101" height="15"/>
+					<textElement>
+						<font fontName="Arial" isUnderline="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PackingGroup}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="24291406-f956-4508-be5b-b5d85b9f5092" positionType="Float" x="284" y="198" width="268" height="14"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[choose most appropriate:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="9b4fbfc1-d6d3-4b8a-bce3-dcb3ff757bd4" positionType="Float" x="412" y="85" width="140" height="13"/>
+					<textElement>
+						<font fontName="Arial" isUnderline="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{preferredShippingName}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="5cb30470-070a-4516-8dd4-5d94dc4a53f4" positionType="Float" x="109" y="40" width="303" height="13"/>
+					<textElement>
+						<font fontName="Arial" isUnderline="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PreparedBy}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="51ec59ab-8fb9-4d84-baf2-0ff60b62fd87" positionType="Float" x="5" y="97" width="505" height="13"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[(Please indicate Preferred Name to be used)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="2df76941-887d-4228-9ec8-a53fd577ed68" positionType="Float" x="5" y="70" width="74" height="13"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[UN Number:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="2df76941-887d-4228-9ec8-a53fd577ed68" positionType="Float" x="278" y="85" width="134" height="13"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Preferred Shipping Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="51ec59ab-8fb9-4d84-baf2-0ff60b62fd87" positionType="Float" x="0" y="13" width="505" height="13"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Not more than 5 phrases per section please.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="51ec59ab-8fb9-4d84-baf2-0ff60b62fd87" positionType="Float" x="0" y="0" width="505" height="13"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Note: The Safety Data Sheet (SDS) of the product should be used to choose the most appropriate phrases.]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="109" y="53" width="303" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="110" y="67" width="164" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="110" y="83" width="164" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="110" y="96" width="164" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="413" y="98" width="139" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="174" y="130" width="376" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="173" y="160" width="101" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="216">
+				<staticText>
+					<reportElement uuid="515fc76f-a7ee-476b-bbbd-c50b29a6190c" positionType="Float" x="6" y="170" width="147" height="14"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[ Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="515fc76f-a7ee-476b-bbbd-c50b29a6190c" positionType="Float" x="6" y="127" width="147" height="14"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Trade Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="515fc76f-a7ee-476b-bbbd-c50b29a6190c" positionType="Float" x="6" y="108" width="147" height="14"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[ADDITIONAL INFORMATION]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="515fc76f-a7ee-476b-bbbd-c50b29a6190c" positionType="Float" x="6" y="184" width="147" height="14"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Signature]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="515fc76f-a7ee-476b-bbbd-c50b29a6190c" positionType="Float" x="6" y="153" width="147" height="14"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Approved By:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="515fc76f-a7ee-476b-bbbd-c50b29a6190c" positionType="Float" x="6" y="198" width="147" height="14"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Date]]></text>
+				</staticText>
+				<textField pattern="yyyy/MM/dd">
+					<reportElement uuid="fc19bb73-5f08-42db-9ed7-38045e6b1245" positionType="Float" x="156" y="198" width="142" height="14"/>
+					<textElement>
+						<font fontName="Arial" isUnderline="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DatePrinted}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="30df3865-b59f-4985-b3c0-e36b0624ac57" positionType="Float" x="151" y="108" width="398" height="14" isRemoveLineWhenBlank="true"/>
+					<textElement markup="styled">
+						<font fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{addInfoHeading1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="30df3865-b59f-4985-b3c0-e36b0624ac57" positionType="Float" x="152" y="127" width="396" height="14" isRemoveLineWhenBlank="true"/>
+					<textElement markup="styled">
+						<font fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TradeName}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="154" y="122" width="396" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="154" y="141" width="396" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="156" y="167" width="256" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="156" y="184" width="137" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="156" y="197" width="137" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="b60d9bb9-f454-49c5-b504-c07e8cb3ab81" x="156" y="211" width="137" height="1"/>
+				</line>
+				<staticText>
+					<reportElement uuid="515fc76f-a7ee-476b-bbbd-c50b29a6190c" positionType="Float" x="8" y="39" width="539" height="38"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[NOTE: The emergency services would normally have much more detailed information and facilities. The intention here is not to provide a large amount of information but draw attention to any special procedures or precautions that might be necessary.
+
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="515fc76f-a7ee-476b-bbbd-c50b29a6190c" positionType="Float" x="8" y="77" width="539" height="28"/>
+					<textElement>
+						<font fontName="Arial" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Please indicate any phrases in the previous sections that you would like to appear here by writing E next to the tick box.
+
+
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="515fc76f-a7ee-476b-bbbd-c50b29a6190c" positionType="Float" x="8" y="8" width="266" height="21"/>
+					<textElement>
+						<font fontName="Arial" size="11" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[SPECIAL INFORMATION FOR EMERGENCY SERVICES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="515fc76f-a7ee-476b-bbbd-c50b29a6190c" positionType="Float" x="286" y="8" width="266" height="21"/>
+					<textElement>
+						<font fontName="Arial" size="11" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[SPECIAL INFORMATION FOR EMERGENCY SERVICES]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="PhraseSectionGroup" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{addInfoHeading2}]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="cffb47d8-705f-407f-9174-97b33d8e5880" x="6" y="6" width="269" height="14"/>
+					<textElement>
+						<font size="11" isBold="true" isStrikeThrough="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{addInfoHeading2}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="cffb47d8-705f-407f-9174-97b33d8e5880" x="281" y="6" width="269" height="14"/>
+					<textElement>
+						<font size="11" isBold="true" isStrikeThrough="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{addInfoHeading2}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="25">
+				<line>
+					<reportElement uuid="70b05d69-5fa9-4ae2-a671-c2d92a6d54e7" x="6" y="0" width="543" height="1"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4810e9ee-4288-4250-85f4-6a65616b4e20" positionType="Float" x="4" y="1" width="470" height="19"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Transport Emergency Card produced by Trek Card (Pty)Ltd]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<line>
+				<reportElement uuid="a94813e3-09a8-4d3a-a049-a8d52e61d311" stretchType="RelativeToBandHeight" x="275" y="-5" width="1" height="23"/>
+			</line>
+			<line>
+				<reportElement uuid="a94813e3-09a8-4d3a-a049-a8d52e61d311" positionType="Float" x="8" y="2" width="1" height="10" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{printPhrases}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement uuid="a94813e3-09a8-4d3a-a049-a8d52e61d311" positionType="Float" x="19" y="2" width="1" height="10" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{printPhrases}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement uuid="a94813e3-09a8-4d3a-a049-a8d52e61d311" positionType="Float" x="9" y="12" width="10" height="1" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{printPhrases}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement uuid="a94813e3-09a8-4d3a-a049-a8d52e61d311" positionType="Float" x="9" y="1" width="10" height="1" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{printPhrases}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement uuid="cffb47d8-705f-407f-9174-97b33d8e5880" x="24" y="1" width="238" height="14">
+					<printWhenExpression><![CDATA[$F{printPhrases}]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{phrases}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="cffb47d8-705f-407f-9174-97b33d8e5880" x="306" y="1" width="243" height="14">
+					<printWhenExpression><![CDATA[$F{printPhrasesNonMondatory}]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{phrasesNonMondatory}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="a94813e3-09a8-4d3a-a049-a8d52e61d311" x="283" y="1" width="10" height="1">
+					<printWhenExpression><![CDATA[$F{printPhrasesNonMondatory}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement uuid="a94813e3-09a8-4d3a-a049-a8d52e61d311" x="282" y="2" width="1" height="10">
+					<printWhenExpression><![CDATA[$F{printPhrasesNonMondatory}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement uuid="a94813e3-09a8-4d3a-a049-a8d52e61d311" x="293" y="2" width="1" height="10">
+					<printWhenExpression><![CDATA[$F{printPhrasesNonMondatory}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement uuid="a94813e3-09a8-4d3a-a049-a8d52e61d311" x="283" y="12" width="10" height="1">
+					<printWhenExpression><![CDATA[$F{printPhrasesNonMondatory}]]></printWhenExpression>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement uuid="74cdc6ef-c944-47f9-927e-3c902e722fd3" key="textField" x="380" y="5" width="134" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e5580cb5-54e2-426b-8354-5c0ba90ea490" key="staticText" x="27" y="5" width="186" height="19"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement uuid="6af94258-fdc7-4ea7-9679-c9459cb98b70" key="textField" x="27" y="5" width="524" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement uuid="22713cfe-e265-43ba-9d4e-9148d142cb9c" key="textField" x="515" y="5" width="36" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

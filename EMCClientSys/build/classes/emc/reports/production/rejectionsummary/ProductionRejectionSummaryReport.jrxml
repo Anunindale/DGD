@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true">
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="toDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fromDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="rejectionGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[@rejectionGroup]]></fieldDescription>
+	</field>
+	<field name="rejectionReason" class="java.lang.String">
+		<fieldDescription><![CDATA[@rejectionReason]]></fieldDescription>
+	</field>
+	<field name="rejectionReasonDesc" class="java.lang.String">
+		<fieldDescription><![CDATA[@rejectionReasonDesc]]></fieldDescription>
+	</field>
+	<field name="wcg1" class="java.lang.String">
+		<fieldDescription><![CDATA[@wcg1]]></fieldDescription>
+	</field>
+	<field name="wcg2" class="java.lang.String">
+		<fieldDescription><![CDATA[@wcg2]]></fieldDescription>
+	</field>
+	<field name="wcg3" class="java.lang.String">
+		<fieldDescription><![CDATA[@wcg3]]></fieldDescription>
+	</field>
+	<field name="wcg4" class="java.lang.String">
+		<fieldDescription><![CDATA[@wcg4]]></fieldDescription>
+	</field>
+	<field name="wcg5" class="java.lang.String">
+		<fieldDescription><![CDATA[@wcg5]]></fieldDescription>
+	</field>
+	<field name="wcgQty1" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcgQty1]]></fieldDescription>
+	</field>
+	<field name="wcgQty2" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcgQty2]]></fieldDescription>
+	</field>
+	<field name="wcgQty3" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcgQty3]]></fieldDescription>
+	</field>
+	<field name="wcgQty4" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcgQty4]]></fieldDescription>
+	</field>
+	<field name="wcgQty5" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcgQty5]]></fieldDescription>
+	</field>
+	<field name="wcgTotal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcgTotal]]></fieldDescription>
+	</field>
+	<field name="wcgProdQty1" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcgProdQty1]]></fieldDescription>
+	</field>
+	<field name="wcgProdQty2" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcgProdQty2]]></fieldDescription>
+	</field>
+	<field name="wcgProdQty3" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcgProdQty3]]></fieldDescription>
+	</field>
+	<field name="wcgProdQty4" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcgProdQty4]]></fieldDescription>
+	</field>
+	<field name="wcgProdQty5" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcgProdQty5]]></fieldDescription>
+	</field>
+	<field name="wcgProdTotal" class="java.lang.Double">
+		<fieldDescription><![CDATA[@wcgProdTotal]]></fieldDescription>
+	</field>
+	<variable name="rowCounter" class="java.lang.Integer">
+		<variableExpression><![CDATA[new Integer($V{rowCounter}.intValue() + 1)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Integer(0)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg1Total" class="java.lang.Double" resetType="Group" resetGroup="rejectionGroup">
+		<variableExpression><![CDATA[new Double($V{wcg1Total}.doubleValue() + $F{wcgQty1}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg2Total" class="java.lang.Double" resetType="Group" resetGroup="rejectionGroup">
+		<variableExpression><![CDATA[new Double($V{wcg2Total}.doubleValue() + $F{wcgQty2}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg3Total" class="java.lang.Double" resetType="Group" resetGroup="rejectionGroup">
+		<variableExpression><![CDATA[new Double($V{wcg3Total}.doubleValue() + $F{wcgQty3}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg4Total" class="java.lang.Double" resetType="Group" resetGroup="rejectionGroup">
+		<variableExpression><![CDATA[new Double($V{wcg4Total}.doubleValue() + $F{wcgQty4}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg5Total" class="java.lang.Double" resetType="Group" resetGroup="rejectionGroup">
+		<variableExpression><![CDATA[new Double($V{wcg5Total}.doubleValue() + $F{wcgQty5}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcgTotalRow" class="java.lang.Double" resetType="Group" resetGroup="rejectionGroup">
+		<variableExpression><![CDATA[new Double($V{wcgTotalRow}.doubleValue() + $F{wcgTotal}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg1TotalGrand" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($V{wcg1TotalGrand}.doubleValue() + $F{wcgQty1}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg2TotalGrand" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($V{wcg2TotalGrand}.doubleValue() + $F{wcgQty2}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg3TotalGrand" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($V{wcg3TotalGrand}.doubleValue() + $F{wcgQty3}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg4TotalGrand" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($V{wcg4TotalGrand}.doubleValue() + $F{wcgQty4}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg5TotalGrand" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($V{wcg5TotalGrand}.doubleValue() + $F{wcgQty5}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcgTotalRowGrand" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($V{wcgTotalRowGrand}.doubleValue() + $F{wcgTotal}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg1TotalPrec" class="java.lang.Double" resetType="Group" resetGroup="rejectionGroup">
+		<variableExpression><![CDATA[new Double($V{wcg1Total}.doubleValue() / $F{wcgProdQty1}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg2TotalPrec" class="java.lang.Double" resetType="Group" resetGroup="rejectionGroup">
+		<variableExpression><![CDATA[new Double($V{wcg2Total}.doubleValue() / $F{wcgProdQty2}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg3TotalPrec" class="java.lang.Double" resetType="Group" resetGroup="rejectionGroup">
+		<variableExpression><![CDATA[new Double($V{wcg3Total}.doubleValue() / $F{wcgProdQty3}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg4TotalPrec" class="java.lang.Double" resetType="Group" resetGroup="rejectionGroup">
+		<variableExpression><![CDATA[new Double($V{wcg4Total}.doubleValue() / $F{wcgProdQty4}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg5TotalPrec" class="java.lang.Double" resetType="Group" resetGroup="rejectionGroup">
+		<variableExpression><![CDATA[new Double($V{wcg5Total}.doubleValue() / $F{wcgProdQty5}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcgTotalRowPrec" class="java.lang.Double" resetType="Group" resetGroup="rejectionGroup">
+		<variableExpression><![CDATA[new Double($V{wcgTotalRow}.doubleValue() / $F{wcgProdTotal}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg1GrandTotalPrec" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($V{wcg1TotalGrand}.doubleValue() / $F{wcgProdQty1}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg2GrandTotalPrec" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($V{wcg2TotalGrand}.doubleValue() / $F{wcgProdQty2}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg3GrandTotalPrec" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($V{wcg3TotalGrand}.doubleValue() / $F{wcgProdQty3}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg4GrandTotalPrec" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($V{wcg4TotalGrand}.doubleValue() / $F{wcgProdQty4}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcg5GrandTotalPrec" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($V{wcg5TotalGrand}.doubleValue() / $F{wcgProdQty5}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<variable name="wcgGrandTotalRowPrec" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double($V{wcgTotalRowGrand}.doubleValue() / $F{wcgProdTotal}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0d)]]></initialValueExpression>
+	</variable>
+	<group name="rejectionGroup">
+		<groupExpression><![CDATA[$F{rejectionGroup}]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<line>
+					<reportElement x="1" y="1" width="554" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="77" y="2" width="100" height="15"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Totals:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="1" y="17" width="554" height="1"/>
+				</line>
+				<textField pattern="###0">
+					<reportElement x="178" y="2" width="51" height="15">
+						<printWhenExpression><![CDATA[new Boolean($F{wcg1}.length() > 0)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcg1Total}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="444" y="2" width="59" height="15"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcgTotalRow}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="357" y="2" width="51" height="15">
+						<printWhenExpression><![CDATA[new Boolean($F{wcg3}.length() > 0)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcg3Total}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="267" y="2" width="51" height="15">
+						<printWhenExpression><![CDATA[new Boolean($F{wcg2}.length() > 0)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcg2Total}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00 %">
+					<reportElement x="229" y="2" width="34" height="15">
+						<printWhenExpression><![CDATA[new Boolean($F{wcg1}.length() > 0)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcg1TotalPrec}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00 %">
+					<reportElement x="319" y="2" width="32" height="15">
+						<printWhenExpression><![CDATA[new Boolean($F{wcg1}.length() > 0)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcg2TotalPrec}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00 %">
+					<reportElement x="409" y="2" width="31" height="15">
+						<printWhenExpression><![CDATA[new Boolean($F{wcg1}.length() > 0)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcg3TotalPrec}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00 %">
+					<reportElement x="504" y="2" width="33" height="15">
+						<printWhenExpression><![CDATA[new Boolean($F{wcg1}.length() > 0)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcgTotalRowPrec}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="47" splitType="Stretch">
+			<line>
+				<reportElement key="line" x="0" y="1" width="554" height="1"/>
+			</line>
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="26" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="15" y="1" width="261" height="25"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rejection Summary]]></text>
+			</staticText>
+			<textField hyperlinkType="Reference">
+				<reportElement x="276" y="1" width="261" height="25"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<staticText>
+				<reportElement x="174" y="29" width="59" height="16"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To Date:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="233" y="29" width="80" height="16"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{toDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="29" width="75" height="16"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[From Date:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="94" y="29" width="80" height="16"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fromDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="19" y="1" width="42" height="20"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rej Grp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="1" width="45" height="20"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reason]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="1" width="60" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="178" y="1" width="51" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{wcg1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="1" width="51" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{wcg2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="357" y="1" width="51" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{wcg3}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="20" width="554" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="106" y="1" width="71" height="20"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="19" y="1" width="42" height="13"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{rejectionGroup}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="1" width="45" height="13"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{rejectionReason}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="178" y="1" width="51" height="13">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg1}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcgQty1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="267" y="1" width="51" height="13">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg2}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcgQty2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="357" y="1" width="51" height="13">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg3}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcgQty3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="444" y="1" width="60" height="13"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcgTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="1" width="71" height="13"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{rejectionReasonDesc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="34" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() >= $P{numRows}.intValue())]]></printWhenExpression>
+			<textField pattern="###0">
+				<reportElement x="267" y="1" width="51" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg2}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcg2TotalGrand}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="444" y="1" width="59" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcgTotalRowGrand}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="178" y="1" width="51" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg1}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcg1TotalGrand}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="77" y="1" width="100" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grand Totals:]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="357" y="1" width="51" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg3}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcg3TotalGrand}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="77" y="17" width="100" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Produced:]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="357" y="17" width="51" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg3}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcgProdQty3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="178" y="17" width="51" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg1}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcgProdQty1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="444" y="17" width="59" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcgProdTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="267" y="17" width="51" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg2}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{wcgProdQty2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="504" y="1" width="33" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg1}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcgGrandTotalRowPrec}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="409" y="1" width="31" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg1}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcg3GrandTotalPrec}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="319" y="1" width="32" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg1}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcg2GrandTotalPrec}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="229" y="1" width="34" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{wcg1}.length() > 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{wcg1GrandTotalPrec}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="501" y="2" width="36" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="19" y="3" width="518" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="19" y="2" width="518" height="1"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText" x="19" y="2" width="186" height="19"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="366" y="2" width="134" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

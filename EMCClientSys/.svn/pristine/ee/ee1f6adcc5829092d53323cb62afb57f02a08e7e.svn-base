@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="logoPath" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<field name="columnHeading1" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading1]]></fieldDescription>
+	</field>
+	<field name="columnHeading2" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading2]]></fieldDescription>
+	</field>
+	<field name="columnHeading3" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading3]]></fieldDescription>
+	</field>
+	<field name="columnHeading4" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading4]]></fieldDescription>
+	</field>
+	<field name="columnHeading5" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading5]]></fieldDescription>
+	</field>
+	<field name="columnHeading6" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading6]]></fieldDescription>
+	</field>
+	<field name="columnHeading7" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading7]]></fieldDescription>
+	</field>
+	<field name="columnHeading8" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading8]]></fieldDescription>
+	</field>
+	<field name="columnHeading9" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading9]]></fieldDescription>
+	</field>
+	<field name="columnHeading10" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading10]]></fieldDescription>
+	</field>
+	<field name="columnHeading11" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading11]]></fieldDescription>
+	</field>
+	<field name="columnHeading12" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading12]]></fieldDescription>
+	</field>
+	<field name="columnHeading13" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading13]]></fieldDescription>
+	</field>
+	<field name="columnHeading14" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading14]]></fieldDescription>
+	</field>
+	<field name="columnHeading15" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading15]]></fieldDescription>
+	</field>
+	<field name="columnHeading16" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading16]]></fieldDescription>
+	</field>
+	<field name="columnHeading17" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading17]]></fieldDescription>
+	</field>
+	<field name="columnAvg1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg1]]></fieldDescription>
+	</field>
+	<field name="columnAvg2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg2]]></fieldDescription>
+	</field>
+	<field name="columnAvg3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg3]]></fieldDescription>
+	</field>
+	<field name="columnAvg4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg4]]></fieldDescription>
+	</field>
+	<field name="columnAvg5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg5]]></fieldDescription>
+	</field>
+	<field name="columnAvg6" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg6]]></fieldDescription>
+	</field>
+	<field name="columnAvg7" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg7]]></fieldDescription>
+	</field>
+	<field name="columnAvg8" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg8]]></fieldDescription>
+	</field>
+	<field name="columnAvg9" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg9]]></fieldDescription>
+	</field>
+	<field name="columnAvg10" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg10]]></fieldDescription>
+	</field>
+	<field name="columnAvg11" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg11]]></fieldDescription>
+	</field>
+	<field name="columnAvg12" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg12]]></fieldDescription>
+	</field>
+	<field name="columnAvg13" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg13]]></fieldDescription>
+	</field>
+	<field name="columnAvg14" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg14]]></fieldDescription>
+	</field>
+	<field name="columnAvg15" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg15]]></fieldDescription>
+	</field>
+	<field name="columnAvg16" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg16]]></fieldDescription>
+	</field>
+	<field name="columnAvg17" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg17]]></fieldDescription>
+	</field>
+	<field name="studentMark1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark1]]></fieldDescription>
+	</field>
+	<field name="studentMark2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark2]]></fieldDescription>
+	</field>
+	<field name="studentMark3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark3]]></fieldDescription>
+	</field>
+	<field name="studentMark4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark4]]></fieldDescription>
+	</field>
+	<field name="studentMark5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark5]]></fieldDescription>
+	</field>
+	<field name="studentMark6" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark6]]></fieldDescription>
+	</field>
+	<field name="studentMark7" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark7]]></fieldDescription>
+	</field>
+	<field name="studentMark8" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark8]]></fieldDescription>
+	</field>
+	<field name="studentMark9" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark9]]></fieldDescription>
+	</field>
+	<field name="studentMark10" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark10]]></fieldDescription>
+	</field>
+	<field name="studentMark11" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark11]]></fieldDescription>
+	</field>
+	<field name="studentMark12" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark12]]></fieldDescription>
+	</field>
+	<field name="studentMark13" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark13]]></fieldDescription>
+	</field>
+	<field name="studentMark14" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark14]]></fieldDescription>
+	</field>
+	<field name="studentMark15" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark15]]></fieldDescription>
+	</field>
+	<field name="studentMark16" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark16]]></fieldDescription>
+	</field>
+	<field name="studentMark17" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@studentMark17]]></fieldDescription>
+	</field>
+	<field name="columnDesc1" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc1]]></fieldDescription>
+	</field>
+	<field name="columnDesc2" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc2]]></fieldDescription>
+	</field>
+	<field name="columnDesc3" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc3]]></fieldDescription>
+	</field>
+	<field name="columnDesc4" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc4]]></fieldDescription>
+	</field>
+	<field name="columnDesc5" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc5]]></fieldDescription>
+	</field>
+	<field name="columnDesc6" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc6]]></fieldDescription>
+	</field>
+	<field name="columnDesc7" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc7]]></fieldDescription>
+	</field>
+	<field name="columnDesc8" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc8]]></fieldDescription>
+	</field>
+	<field name="columnDesc9" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc9]]></fieldDescription>
+	</field>
+	<field name="columnDesc10" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc10]]></fieldDescription>
+	</field>
+	<field name="columnDesc11" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc11]]></fieldDescription>
+	</field>
+	<field name="columnDesc12" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc12]]></fieldDescription>
+	</field>
+	<field name="columnDesc13" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc13]]></fieldDescription>
+	</field>
+	<field name="columnDesc14" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc14]]></fieldDescription>
+	</field>
+	<field name="columnDesc15" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc15]]></fieldDescription>
+	</field>
+	<field name="columnDesc16" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc16]]></fieldDescription>
+	</field>
+	<field name="columnDesc17" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc17]]></fieldDescription>
+	</field>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="130" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="8" y="1" width="781" height="39" backcolor="#BFBFBF"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="13" width="782" height="1"/>
+			</line>
+			<line>
+				<reportElement x="8" y="26" width="782" height="1"/>
+			</line>
+			<line>
+				<reportElement x="8" y="39" width="782" height="1"/>
+			</line>
+			<line>
+				<reportElement x="8" y="0" width="782" height="1"/>
+			</line>
+			<line>
+				<reportElement x="8" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="53" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="145" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="99" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="237" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="191" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="421" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="283" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="375" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="329" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="605" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="467" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="559" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="513" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="651" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="697" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="743" y="1" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement x="789" y="1" width="1" height="38"/>
+			</line>
+			<textField>
+				<reportElement x="8" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="192" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading9}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="468" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="514" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="560" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading13}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="606" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading14}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="652" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading15}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="698" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading16}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="744" y="1" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading17}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="8" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="54" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="100" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="146" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="192" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="238" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="284" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg7}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="330" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg8}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="376" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg9}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="422" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg10}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="468" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg11}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="514" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="560" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg13}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="606" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg14}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="652" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg15}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="698" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg16}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="744" y="14" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg17}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<line>
+				<reportElement x="8" y="11" width="782" height="1"/>
+			</line>
+			<line>
+				<reportElement x="8" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="99" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="53" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="237" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="191" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="145" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="375" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="329" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="513" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="467" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="421" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="605" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="559" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="651" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="283" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="697" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="743" y="0" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="789" y="0" width="1" height="11"/>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="8" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="54" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="100" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="146" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="192" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="238" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="284" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark7}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="330" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark8}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="376" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark9}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="422" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark10}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="468" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark11}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="514" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="560" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark13}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="606" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark14}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="652" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark15}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="698" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark16}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="744" y="0" width="46" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{studentMark17}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="101" splitType="Stretch">
+			<line>
+				<reportElement x="8" y="100" width="782" height="1"/>
+			</line>
+			<line>
+				<reportElement x="53" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="99" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="145" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="191" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="283" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="329" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="467" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="559" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="651" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="605" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="513" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="375" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="421" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="237" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="8" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="697" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="743" y="0" width="1" height="100"/>
+			</line>
+			<line>
+				<reportElement x="789" y="0" width="1" height="100"/>
+			</line>
+			<textField>
+				<reportElement x="8" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="192" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc9}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="468" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="514" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="560" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc13}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="606" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc14}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="652" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc15}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="698" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc16}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="744" y="0" width="46" height="100"/>
+				<textElement rotation="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc17}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="15" splitType="Stretch">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="756" y="3" width="36" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="11" y="2" width="781" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="621" y="3" width="134" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="11" y="1" width="781" height="1"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText" x="11" y="2" width="186" height="12"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

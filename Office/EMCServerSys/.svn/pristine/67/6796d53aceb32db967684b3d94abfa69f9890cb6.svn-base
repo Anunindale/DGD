@@ -1,0 +1,420 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.server.commandmanager.creditors;
+
+import emc.bus.creditors.approvalgroups.CreditorsApprovalGroupsLocal;
+import emc.bus.creditors.creditnoteinvoicelines.CreditorsCreditNoteInvoiceLinesLocal;
+import emc.bus.creditors.creditnoteinvoicelines.datasource.CreditorsCreditNoteInvoiceLinesDSLocal;
+import emc.bus.creditors.creditnoteinvoicemaster.CreditorsCreditNoteInvoiceMasterLocal;
+import emc.bus.creditors.creditnoteinvoicemaster.datasource.CreditorsCreditNoteInvoiceMasterDSLocal;
+import emc.bus.creditors.settlementdiscountterms.CreditorsSettlementDiscountTermsLocal;
+import emc.bus.creditors.termsofpayment.CreditorsTermsOfPaymentLocal;
+import emc.bus.creditors.parameters.CreditorsParametersLocal;
+import emc.bus.creditors.transactionsettlement.CreditorsTransactionsSettlementLocal;
+import emc.commands.EMCCommands;
+import emc.entity.creditors.CreditorsParameters;
+import emc.entity.creditors.CreditorsSettlementDiscountTerms;
+import emc.entity.creditors.CreditorsTermsOfPayment;
+import emc.entity.creditors.CreditorsTransactionSettlement;
+import emc.enums.modules.enumEMCModules;
+import emc.framework.EMCCommandClass;
+import emc.framework.EMCDebug;
+import emc.framework.EMCEntityBeanException;
+import emc.framework.EMCUserData;
+import emc.methods.creditors.ClientCreditorsMethods;
+import emc.methods.creditors.ServerCreditorsMethods;
+import emc.bus.creditors.transactions.CreditorsTransactionsLocal;
+import emc.entity.creditors.CreditorsTransactionSettlementHistory;
+import emc.bus.creditors.transactionsettlementhistory.CreditorsTransactionSettlementHistoryLocal;
+import emc.bus.creditors.approvalgroupssetup.CreditorsApprovalGroupSetupLocal;
+import emc.bus.creditors.approvalgroupssetup.datasource.CreditorsApprovalGroupsDSLocal;
+import emc.bus.creditors.invoiceregister.CreditorsInvoiceRegisterLocal;
+import emc.bus.creditors.opentransactions.CreditorsOpenTransactionsLocal;
+import emc.entity.creditors.CreditorsApprovalGroupSetup;
+import emc.entity.creditors.CreditorsApprovalGroups;
+import emc.entity.creditors.CreditorsCreditNoteInvoiceLines;
+import emc.entity.creditors.CreditorsCreditNoteInvoiceMaster;
+import emc.entity.creditors.CreditorsInvoiceRegister;
+import emc.entity.creditors.CreditorsOpenTransactions;
+import emc.entity.creditors.CreditorsTransactions;
+import emc.entity.creditors.datasource.CreditorsApprovalGroupSetupDS;
+import emc.entity.creditors.datasource.CreditorsCreditNoteInvoiceLinesDS;
+import emc.entity.creditors.datasource.CreditorsCreditNoteInvoiceMasterDS;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author riaan
+ */
+@Stateless
+public class CreditorsMethodMapperBean implements CreditorsMethodMapperBeanLocal {
+
+    @EJB
+    private CreditorsSettlementDiscountTermsLocal creditorsSettlementDiscountTermsBean;
+    @EJB
+    private CreditorsTermsOfPaymentLocal creditorsTermsOfPaymentBean;
+    @EJB
+    private CreditorsParametersLocal creditorsParameters;
+    @EJB
+    private CreditorsTransactionsLocal creditorsTransactions;
+    @EJB
+    private CreditorsTransactionsSettlementLocal creditorsTransactionSettlement;
+    @EJB
+    private CreditorsTransactionSettlementHistoryLocal creditorsTransactionSettlementHistory;
+    @EJB
+    private CreditorsCreditNoteInvoiceMasterLocal creditNoteInvoiceMasterBean;
+    @EJB
+    private CreditorsCreditNoteInvoiceMasterDSLocal creditNoteInvoiceMasterDSBean;
+    @EJB
+    private CreditorsCreditNoteInvoiceLinesLocal creditNoteInvoiceLinesBean;
+    @EJB
+    private CreditorsCreditNoteInvoiceLinesDSLocal creditNoteInvoiceLinesDSBean;
+    @EJB
+    private CreditorsApprovalGroupsLocal approvalGroupsBean;
+    @EJB
+    private CreditorsApprovalGroupSetupLocal approvalGroupSetupBean;
+    @EJB
+    private CreditorsApprovalGroupsDSLocal groupsDSBean;
+    @EJB
+    private CreditorsOpenTransactionsLocal creditorsOpenTransactions;
+    @EJB
+    private CreditorsInvoiceRegisterLocal invoiceRegisterBean;
+
+    public List mapMethodCreditors(EMCCommandClass cmd, List<Object> dataList, EMCUserData userData) throws EMCEntityBeanException {
+        List<Object> theDataList = new ArrayList();
+        EMCCommandClass retCmd = new EMCCommandClass();
+        retCmd.setCommandId(EMCCommands.CLIENT_GENERAL_COMMAND.getId());
+        retCmd.setModuleNumber(enumEMCModules.CREDITORS.getId());
+        retCmd.setMethodId(ClientCreditorsMethods.GENERAL_METHOD.toString());
+
+        switch (ServerCreditorsMethods.fromString(cmd.getMethodId())) {
+            //Creditors terms of payment
+            case INSERT_CREDITORSTERMSOFPAYMENT:
+                theDataList.add(creditorsTermsOfPaymentBean.insert((CreditorsTermsOfPayment) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSTERMSOFPAYMENT:
+                theDataList.add(creditorsTermsOfPaymentBean.update((CreditorsTermsOfPayment) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSTERMSOFPAYMENT:
+                theDataList.add(creditorsTermsOfPaymentBean.delete((CreditorsTermsOfPayment) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSTERMSOFPAYMENT:
+                theDataList.add(creditorsTermsOfPaymentBean.getNumRows(CreditorsTermsOfPayment.class, userData));
+                break;
+            case GETDATA_CREDITORSTERMSOFPAYMENT:
+                theDataList = (List<Object>) creditorsTermsOfPaymentBean.getDataInRange(CreditorsTermsOfPayment.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSTERMSOFPAYMENT:
+                theDataList.add(creditorsTermsOfPaymentBean.validateField(dataList.get(1).toString(), (CreditorsTermsOfPayment) dataList.get(2), userData));
+                break;
+            //Creditors settlement discount terms
+            case INSERT_CREDITORSSETTLEMENTDISCOUNTTERMS:
+                theDataList.add(creditorsSettlementDiscountTermsBean.insert((CreditorsSettlementDiscountTerms) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSSETTLEMENTDISCOUNTTERMS:
+                theDataList.add(creditorsSettlementDiscountTermsBean.update((CreditorsSettlementDiscountTerms) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSSETTLEMENTDISCOUNTTERMS:
+                theDataList.add(creditorsSettlementDiscountTermsBean.delete((CreditorsSettlementDiscountTerms) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSSETTLEMENTDISCOUNTTERMS:
+                theDataList.add(creditorsSettlementDiscountTermsBean.getNumRows(CreditorsSettlementDiscountTerms.class, userData));
+                break;
+            case GETDATA_CREDITORSSETTLEMENTDISCOUNTTERMS:
+                theDataList = (List<Object>) creditorsSettlementDiscountTermsBean.getDataInRange(CreditorsSettlementDiscountTerms.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSSETTLEMENTDISCOUNTTERMS:
+                theDataList.add(creditorsSettlementDiscountTermsBean.validateField(dataList.get(1).toString(), (CreditorsSettlementDiscountTerms) dataList.get(2), userData));
+                break;
+
+            //Creditors parameters
+            case INSERT_CREDITORSPARAMETERS:
+                theDataList.add(creditorsParameters.insert((CreditorsParameters) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSPARAMETERS:
+                theDataList.add(creditorsParameters.update((CreditorsParameters) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSPARAMETERS:
+                theDataList.add(creditorsParameters.delete((CreditorsParameters) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSPARAMETERS:
+                theDataList.add(creditorsParameters.getNumRows(CreditorsParameters.class, userData));
+                break;
+            case GETDATA_CREDITORSPARAMETERS:
+                theDataList = (List<Object>) creditorsParameters.getDataInRange(CreditorsParameters.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSPARAMETERS:
+                theDataList.add(creditorsParameters.validateField(dataList.get(1).toString(), (CreditorsParameters) dataList.get(2), userData));
+                break;
+            //Creditors transactions
+            case INSERT_CREDITORSTRANSACTIONS:
+                theDataList.add(creditorsTransactions.insert((CreditorsTransactions) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSTRANSACTIONS:
+                theDataList.add(creditorsTransactions.update((CreditorsTransactions) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSTRANSACTIONS:
+                theDataList.add(creditorsTransactions.delete((CreditorsTransactions) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSTRANSACTIONS:
+                theDataList.add(creditorsTransactions.getNumRows(CreditorsTransactions.class, userData));
+                break;
+            case GETDATA_CREDITORSTRANSACTIONS:
+                theDataList = (List<Object>) creditorsTransactions.getDataInRange(CreditorsTransactions.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSTRANSACTIONS:
+                theDataList.add(creditorsTransactions.validateField(dataList.get(1).toString(), (CreditorsTransactions) dataList.get(2), userData));
+                break;
+            //Creditors transactions settlement
+            case INSERT_CREDITORSTRANSACTIONSETTLEMENT:
+                theDataList.add(creditorsTransactionSettlement.insert((CreditorsTransactionSettlement) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSTRANSACTIONSETTLEMENT:
+                theDataList.add(creditorsTransactionSettlement.update((CreditorsTransactionSettlement) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSTRANSACTIONSETTLEMENT:
+                theDataList.add(creditorsTransactionSettlement.delete((CreditorsTransactionSettlement) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSTRANSACTIONSETTLEMENT:
+                theDataList.add(creditorsTransactionSettlement.getNumRows(CreditorsTransactionSettlement.class, userData));
+                break;
+            case GETDATA_CREDITORSTRANSACTIONSETTLEMENT:
+                theDataList = (List<Object>) creditorsTransactionSettlement.getDataInRange(CreditorsTransactionSettlement.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSTRANSACTIONSETTLEMENT:
+                theDataList.add(creditorsTransactionSettlement.validateField(dataList.get(1).toString(), (CreditorsTransactionSettlement) dataList.get(2), userData));
+                break;
+
+            //Creditors transactions settlement history
+            case INSERT_CREDITORSTRANSACTIONSETTLEMENTHISTORY:
+                theDataList.add(creditorsTransactionSettlementHistory.insert((CreditorsTransactionSettlementHistory) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSTRANSACTIONSETTLEMENTHISTORY:
+                theDataList.add(creditorsTransactionSettlementHistory.update((CreditorsTransactionSettlementHistory) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSTRANSACTIONSETTLEMENTHISTORY:
+                theDataList.add(creditorsTransactionSettlementHistory.delete((CreditorsTransactionSettlementHistory) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSTRANSACTIONSETTLEMENTHISTORY:
+                theDataList.add(creditorsTransactionSettlementHistory.getNumRows(CreditorsTransactionSettlementHistory.class, userData));
+                break;
+            case GETDATA_CREDITORSTRANSACTIONSETTLEMENTHISTORY:
+                theDataList = (List<Object>) creditorsTransactionSettlementHistory.getDataInRange(CreditorsTransactionSettlementHistory.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSTRANSACTIONSETTLEMENTHISTORY:
+                theDataList.add(creditorsTransactionSettlementHistory.validateField(dataList.get(1).toString(), (CreditorsTransactionSettlementHistory) dataList.get(2), userData));
+                break;
+            //CreditorsCreditNoteInvoiceMaster
+            case INSERT_CREDITORSCREDITNOTEINVOICEMASTER:
+                theDataList.add(creditNoteInvoiceMasterBean.insert((CreditorsCreditNoteInvoiceMaster) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSCREDITNOTEINVOICEMASTER:
+                theDataList.add(creditNoteInvoiceMasterBean.update((CreditorsCreditNoteInvoiceMaster) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSCREDITNOTEINVOICEMASTER:
+                theDataList.add(creditNoteInvoiceMasterBean.delete((CreditorsCreditNoteInvoiceMaster) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSCREDITNOTEINVOICEMASTER:
+                theDataList.add(creditNoteInvoiceMasterBean.getNumRows(CreditorsCreditNoteInvoiceMaster.class, userData));
+                break;
+            case GETDATA_CREDITORSCREDITNOTEINVOICEMASTER:
+                theDataList = (List<Object>) creditNoteInvoiceMasterBean.getDataInRange(CreditorsCreditNoteInvoiceMaster.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSCREDITNOTEINVOICEMASTER:
+                theDataList.add(creditNoteInvoiceMasterBean.validateField(dataList.get(1).toString(), (CreditorsCreditNoteInvoiceMaster) dataList.get(2), userData));
+                break;
+            case APPROVE_CREDITNOTE_INVOICE_MASTER:
+                theDataList.add(creditNoteInvoiceMasterBean.approveCreditNoteInvoiceMaster((String) dataList.get(1), userData));
+                break;
+            case POST_CREDITNOTE_INVOICE_MASTER:
+                theDataList.add(creditNoteInvoiceMasterBean.postCreditNoteInvoiceMaster((String) dataList.get(1), userData));
+                break;
+            //CreditorsCreditNoteInvoiceMasterDS
+            case INSERT_CREDITORSCREDITNOTEINVOICEMASTERDS:
+                theDataList.add(creditNoteInvoiceMasterDSBean.insert((CreditorsCreditNoteInvoiceMasterDS) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSCREDITNOTEINVOICEMASTERDS:
+                theDataList.add(creditNoteInvoiceMasterDSBean.update((CreditorsCreditNoteInvoiceMasterDS) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSCREDITNOTEINVOICEMASTERDS:
+                theDataList.add(creditNoteInvoiceMasterDSBean.delete((CreditorsCreditNoteInvoiceMasterDS) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSCREDITNOTEINVOICEMASTERDS:
+                theDataList.add(creditNoteInvoiceMasterDSBean.getNumRows(CreditorsCreditNoteInvoiceMasterDS.class, userData));
+                break;
+            case GETDATA_CREDITORSCREDITNOTEINVOICEMASTERDS:
+                theDataList = (List<Object>) creditNoteInvoiceMasterDSBean.getDataInRange(CreditorsCreditNoteInvoiceMasterDS.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSCREDITNOTEINVOICEMASTERDS:
+                theDataList.add(creditNoteInvoiceMasterDSBean.validateField(dataList.get(1).toString(), (CreditorsCreditNoteInvoiceMasterDS) dataList.get(2), userData));
+                break;
+            //CreditorsCreditNoteInvoiceLines
+            case INSERT_CREDITORSCREDITNOTEINVOICELINES:
+                theDataList.add(creditNoteInvoiceLinesBean.insert((CreditorsCreditNoteInvoiceLines) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSCREDITNOTEINVOICELINES:
+                theDataList.add(creditNoteInvoiceLinesBean.update((CreditorsCreditNoteInvoiceLines) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSCREDITNOTEINVOICELINES:
+                theDataList.add(creditNoteInvoiceLinesBean.delete((CreditorsCreditNoteInvoiceLines) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSCREDITNOTEINVOICELINES:
+                theDataList.add(creditNoteInvoiceLinesBean.getNumRows(CreditorsCreditNoteInvoiceLines.class, userData));
+                break;
+            case GETDATA_CREDITORSCREDITNOTEINVOICELINES:
+                theDataList = (List<Object>) creditNoteInvoiceLinesBean.getDataInRange(CreditorsCreditNoteInvoiceLines.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSCREDITNOTEINVOICELINES:
+                theDataList.add(creditNoteInvoiceLinesBean.validateField(dataList.get(1).toString(), (CreditorsCreditNoteInvoiceLines) dataList.get(2), userData));
+                break;
+            //CreditorsCreditNoteInvoiceLinesDS
+            case INSERT_CREDITORSCREDITNOTEINVOICELINESDS:
+                theDataList.add(creditNoteInvoiceLinesDSBean.insert((CreditorsCreditNoteInvoiceLinesDS) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSCREDITNOTEINVOICELINESDS:
+                theDataList.add(creditNoteInvoiceLinesDSBean.update((CreditorsCreditNoteInvoiceLinesDS) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSCREDITNOTEINVOICELINESDS:
+                theDataList.add(creditNoteInvoiceLinesDSBean.delete((CreditorsCreditNoteInvoiceLinesDS) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSCREDITNOTEINVOICELINESDS:
+                theDataList.add(creditNoteInvoiceLinesDSBean.getNumRows(CreditorsCreditNoteInvoiceLinesDS.class, userData));
+                break;
+            case GETDATA_CREDITORSCREDITNOTEINVOICELINESDS:
+                theDataList = (List<Object>) creditNoteInvoiceLinesDSBean.getDataInRange(CreditorsCreditNoteInvoiceLinesDS.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSCREDITNOTEINVOICELINESDS:
+                theDataList.add(creditNoteInvoiceLinesDSBean.validateField(dataList.get(1).toString(), (CreditorsCreditNoteInvoiceLinesDS) dataList.get(2), userData));
+                break;
+
+//CreditorsApprovalGroups
+            case INSERT_CREDITORSAPPROVALGROUPS:
+                theDataList.add(approvalGroupsBean.insert((CreditorsApprovalGroups) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSAPPROVALGROUPS:
+                theDataList.add(approvalGroupsBean.update((CreditorsApprovalGroups) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSAPPROVALGROUPS:
+                theDataList.add(approvalGroupsBean.delete((CreditorsApprovalGroups) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSAPPROVALGROUPS:
+                theDataList.add(approvalGroupsBean.getNumRows(CreditorsApprovalGroups.class, userData));
+                break;
+            case GETDATA_CREDITORSAPPROVALGROUPS:
+                theDataList = (List<Object>) approvalGroupsBean.getDataInRange(CreditorsApprovalGroups.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSAPPROVALGROUPS:
+                theDataList.add(approvalGroupsBean.validateField(dataList.get(1).toString(), (CreditorsApprovalGroups) dataList.get(2), userData));
+                break;
+//CreditorsApprovalGroupSetup
+            case INSERT_CREDITORSAPPROVALGROUPSETUP:
+                theDataList.add(approvalGroupSetupBean.insert((CreditorsApprovalGroupSetup) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSAPPROVALGROUPSETUP:
+                theDataList.add(approvalGroupSetupBean.update((CreditorsApprovalGroupSetup) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSAPPROVALGROUPSETUP:
+                theDataList.add(approvalGroupSetupBean.delete((CreditorsApprovalGroupSetup) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSAPPROVALGROUPSETUP:
+                theDataList.add(approvalGroupSetupBean.getNumRows(CreditorsApprovalGroupSetup.class, userData));
+                break;
+            case GETDATA_CREDITORSAPPROVALGROUPSETUP:
+                theDataList = (List<Object>) approvalGroupSetupBean.getDataInRange(CreditorsApprovalGroupSetup.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSAPPROVALGROUPSETUP:
+                theDataList.add(approvalGroupSetupBean.validateField(dataList.get(1).toString(), (CreditorsApprovalGroupSetup) dataList.get(2), userData));
+                break;
+
+            //CreditorsApprovalGroupSetupDS
+            case INSERT_CREDITORSAPPROVALGROUPSETUPDS:
+                theDataList.add(groupsDSBean.insert((CreditorsApprovalGroupSetupDS) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSAPPROVALGROUPSETUPDS:
+                theDataList.add(groupsDSBean.update((CreditorsApprovalGroupSetupDS) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSAPPROVALGROUPSETUPDS:
+                theDataList.add(groupsDSBean.delete((CreditorsApprovalGroupSetupDS) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSAPPROVALGROUPSETUPDS:
+                theDataList.add(groupsDSBean.getNumRows(CreditorsApprovalGroupSetupDS.class, userData));
+                break;
+            case GETDATA_CREDITORSAPPROVALGROUPSETUPDS:
+                theDataList = (List<Object>) groupsDSBean.getDataInRange(CreditorsApprovalGroupSetupDS.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSAPPROVALGROUPSETUPDS:
+                theDataList.add(groupsDSBean.validateField(dataList.get(1).toString(), (CreditorsApprovalGroupSetupDS) dataList.get(2), userData));
+                break;
+            //Creditors transactions
+            case INSERT_CREDITORSOPENTRANSACTIONS:
+                theDataList.add(creditorsOpenTransactions.insert((CreditorsOpenTransactions) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSOPENTRANSACTIONS:
+                theDataList.add(creditorsOpenTransactions.update((CreditorsOpenTransactions) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSOPENTRANSACTIONS:
+                theDataList.add(creditorsOpenTransactions.delete((CreditorsOpenTransactions) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSOPENTRANSACTIONS:
+                theDataList.add(creditorsOpenTransactions.getNumRows(CreditorsOpenTransactions.class, userData));
+                break;
+            case GETDATA_CREDITORSOPENTRANSACTIONS:
+                theDataList = (List<Object>) creditorsOpenTransactions.getDataInRange(CreditorsOpenTransactions.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSOPENTRANSACTIONS:
+                theDataList.add(creditorsOpenTransactions.validateField(dataList.get(1).toString(), (CreditorsOpenTransactions) dataList.get(2), userData));
+                break;
+            //CreditorsInvoiceRegister
+            case INSERT_CREDITORSINVOICEREGISTER:
+                theDataList.add(invoiceRegisterBean.insert((CreditorsInvoiceRegister) dataList.get(1), userData));
+                break;
+            case UPDATE_CREDITORSINVOICEREGISTER:
+                theDataList.add(invoiceRegisterBean.update((CreditorsInvoiceRegister) dataList.get(1), userData));
+                break;
+            case DELETE_CREDITORSINVOICEREGISTER:
+                theDataList.add(invoiceRegisterBean.delete((CreditorsInvoiceRegister) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_CREDITORSINVOICEREGISTER:
+                theDataList.add(invoiceRegisterBean.getNumRows(CreditorsInvoiceRegister.class, userData));
+                break;
+            case GETDATA_CREDITORSINVOICEREGISTER:
+                theDataList = (List<Object>) invoiceRegisterBean.getDataInRange(CreditorsInvoiceRegister.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_CREDITORSINVOICEREGISTER:
+                theDataList.add(invoiceRegisterBean.validateField(dataList.get(1).toString(), (CreditorsInvoiceRegister) dataList.get(2), userData));
+                break;
+
+            default:
+                if (EMCDebug.getDebug()) {
+                    Logger.getLogger("emc").log(Level.SEVERE, "Mapper: Method not found", userData);
+                }
+                break;
+        }
+
+
+        theDataList.add(0, retCmd);
+        return theDataList;
+    }
+}

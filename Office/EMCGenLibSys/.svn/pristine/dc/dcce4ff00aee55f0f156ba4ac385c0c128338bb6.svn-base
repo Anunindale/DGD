@@ -1,0 +1,21 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package emc.datatypes.inventory.dimensions.foreignkeys;
+
+import emc.datatypes.systemwide.Dimention1Interface;
+
+/**
+ *
+ * @author riaan
+ */
+public class Dimension1FKNotMandatory extends Dimension1FK implements Dimention1Interface{
+
+    /** Creates a new instance of Dimension1FKNotMandatory */
+    public Dimension1FKNotMandatory() {
+        this.setMandatory(false);
+        this.setColumnWidth(62);
+    }
+}

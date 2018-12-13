@@ -1,0 +1,19 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package emc.inventory;
+
+/**
+ * Represents an entity containing an item and a BOM.
+ * 
+ * @author riaan
+ */
+public interface ItemBOMInterface {
+
+    public void setItemId(String itemId);
+    public String getItemId();
+    public void setBomId(String bomId);
+    public String getBomId();
+}

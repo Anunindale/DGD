@@ -1,0 +1,501 @@
+/*
+ * OnlineUsersBean.java
+ *
+ * Created on 29 November 2007, 04:00
+ *
+ * To change this template, choose Tools | Template Manager
+ * and open the template in the editor.
+ */
+package emc.bus.base.onlineusers;
+
+import emc.entity.base.reporttools.BaseReportScheduling;
+import emc.enums.base.reporttools.EnumReportScheduleStatus;
+import emc.bus.base.BaseLicenceLocal;
+import emc.bus.base.onlineusers.resources.OnlineUsersMapAccess;
+import emc.bus.base.onlineusers.resources.OnlineUsersMessageMap;
+import emc.bus.base.onlineusers.resources.OnlineUsersSessionMap;
+import emc.commands.EMCCommands;
+import emc.constants.systemConstants;
+import emc.enums.enumLogTypes;
+import emc.framework.EMCDebug;
+import emc.framework.EMCLogRecord;
+import emc.framework.EMCUserData;
+import emc.entity.base.datasource.EMCSession;
+import emc.entity.inventory.InventoryStockTakeLogger;
+import emc.entity.inventory.transactions.InventorySummary;
+import emc.enums.enumQueryTypes;
+import emc.enums.inventory.inventorytables.InventorySummarySuspense;
+import emc.enums.modules.enumEMCModules;
+import emc.framework.EMCCommandClass;
+import emc.framework.EMCQuery;
+import emc.methods.workflow.ClientWorkFlowMethods;
+import emc.server.EMCSessionMessages;
+import emc.server.timedoperationmanager.EMCModuleTimedOperationManagerLocal;
+import emc.server.utility.EMCServerUtilityLocal;
+import java.lang.reflect.Field;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+import java.util.logging.MemoryHandler;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author Marius-Gert Coetzee
+ */
+@Stateless
+public class OnlineUsersBean implements OnlineUsersLocal {
+
+    @EJB
+    private BaseLicenceLocal baseLicenceBean;
+    @EJB
+    private EMCModuleTimedOperationManagerLocal timedOperationsBean;
+    @EJB
+    private EMCServerUtilityLocal utilBean;
+    /**
+     * Creates a new instance of OnlineUsersBean
+     */
+    private static OnlineUsersSessionMap emcSessions;
+    private static long lastNumber;
+    private static int numberOfUsers;
+    private static int timeOutCount;
+    private static boolean timedOperationsStarted = false;
+    private static boolean startupQueriesRun = false;
+    private static OnlineUsersMessageMap emcSessionMessages;
+    private static OnlineUsersMessageMap websiteMessages;
+    private static final Logger log = Logger.getLogger("emc");
+
+     public OnlineUsersBean() {
+        if (emcSessions == null) {
+            emcSessions = new OnlineUsersSessionMap();
+            emcSessionMessages = new OnlineUsersMessageMap();
+            websiteMessages = new OnlineUsersMessageMap();
+            numberOfUsers = -1;
+            timeOutCount = emc.constants.systemConstants.sessionIdleTime();
+            lastNumber = 0;
+
+            Handler[] handlerList = log.getHandlers();
+            for (int j = 0; j < handlerList.length; j++) {
+                log.removeHandler(handlerList[j]);
+            }
+
+            Handler emcLoggerHandler = new Handler() {
+                @Override
+                public void publish(LogRecord record) {
+
+                    Object[] x = record.getParameters();
+                    if (x != null && x.length > 0) {
+                        try{
+                            //the below used to be a simple cast, but due to different class loaders between
+                            //web and EJB it is now a reflextion lookup. We should have a valid EMCUserData method, but
+                            //it may be from a different class loader ,thus the work around.
+                            EMCUserData userData = new EMCUserData();//construct it here hopeully that will be a local class loader version
+                            Field[] inputFields = x[0].getClass().getDeclaredFields();
+                            Field[] localFields = userData.getClass().getDeclaredFields();
+                            for(int j = 0; j < inputFields.length; j++){
+                                for(int i =0; i < localFields.length; i++){
+                                    if(localFields[i].getName().equals(inputFields[j].getName())){
+                                        inputFields[j].setAccessible(true);
+                                        Object curFieldVal = inputFields[j].get(x[0]);
+                                        localFields[i].setAccessible(true);
+                                        localFields[i].set(userData, curFieldVal);
+                                        break;//got the field
+                                    }
+                                }
+                                
+                            }
+                            
+                            EMCSessionMessages emcSessionMessage = (EMCSessionMessages) emcSessionMessages.accessMessageMap(OnlineUsersMapAccess.GET, userData.getSessionID(), null);
+                            //try and fetch it from the web map if it is null
+                            if(emcSessionMessage==null)emcSessionMessage = (EMCSessionMessages) websiteMessages.accessMessageMap(OnlineUsersMapAccess.GET, userData.getSessionID(), null);
+                            
+                            if (emcSessionMessage != null) {
+                                emcSessionMessage.addMessages(new EMCLogRecord(record, userData));
+                            }
+                        }catch(Exception ex){
+                            System.out.println("Failed to cast userData "+x[0].getClass().toString());
+                        }
+                    }
+                }
+
+                @Override
+                public void flush() {
+                    throw new UnsupportedOperationException("Not supported yet.");
+                }
+
+                @Override
+                public void close() throws SecurityException {
+                    throw new UnsupportedOperationException("Not supported yet.");
+                }
+            };
+
+            MemoryHandler mhandler = new MemoryHandler(emcLoggerHandler, systemConstants.logBufferSize(), Level.ALL);
+
+            log.addHandler(mhandler);
+
+            System.out.println("Created Online Users Bean");
+        }
+    }
+
+    /**
+     * Sets a admin message for a specific user, session Id required
+     *
+     * @param userSessionNumber
+     * @param adminMessage
+     * @param userData
+     */
+    @Override
+    public void setAdminMessageForUser(long userSessionNumber, String adminMessage, EMCUserData userData) {
+        EMCSession ses = (EMCSession) emcSessions.accessSessionMap(OnlineUsersMapAccess.GET, userSessionNumber, null);
+        if (ses != null) {
+            ses.setOrGetAdminMessage(adminMessage);
+        }
+    }
+
+    /**
+     * Sets admin message for all users
+     *
+     * @param adminMessage
+     * @param userData
+     */
+    @Override
+    public synchronized void setAdminMessageForAllUsers(String adminMessage, EMCUserData userData) {
+        List<Long> keys = (List<Long>) emcSessions.accessSessionMap(OnlineUsersMapAccess.KEY_SET, 0, null);
+        EMCSession ses;
+        for (Long key : keys) {
+            ses = (EMCSession) emcSessions.accessSessionMap(OnlineUsersMapAccess.GET, key, null);
+            if (ses != null) {
+                ses.setOrGetAdminMessage(adminMessage);
+            }
+        }
+
+    }
+
+    /**
+     * Kill a specific session
+     *
+     * @param sessionNumber
+     * @param userData
+     */
+    @Override
+    public void killSession(long userSessionNumber, EMCUserData userData) {
+        EMCSession ses = (EMCSession) emcSessions.accessSessionMap(OnlineUsersMapAccess.GET, userSessionNumber, null);
+        if (ses != null) {
+            ses.setKillSession(true);
+        }
+    }
+
+    /**
+     * Kills all sessions
+     *
+     * @param userData
+     */
+    @Override
+    public synchronized void killAllSessions(EMCUserData userData) {
+        List<Long> keys = (List<Long>) emcSessions.accessSessionMap(OnlineUsersMapAccess.KEY_SET, 0, null);
+        EMCSession ses;
+        for (Long key : keys) {
+            ses = (EMCSession) emcSessions.accessSessionMap(OnlineUsersMapAccess.GET, key, null);
+            if (ses != null) {
+                ses.setKillSession(true);
+            }
+        }
+    }
+
+    @Override
+    public void updateNumberOfUsers() {
+        numberOfUsers = baseLicenceBean.findDefaultCompany().NumberOfUsers();
+    }
+
+    @Override
+    public long getEMCSessionNumber(String userName, String clientName) {
+        String clientIp = "";
+        try {
+            clientIp = InetAddress.getByName(clientName).getHostAddress();
+        } catch (UnknownHostException ex) {
+            if (EMCDebug.getDebug()) {
+                System.out.println("Unknown host exception occured: " + ex.getMessage());
+            }
+        }
+        this.emcSessionCleanup();
+
+        updateNumberOfUsers();
+
+        if (numberOfUsers == 0) {
+            numberOfUsers = 1;
+        }
+        //check number of users logged in
+        //license expire is checked on user login
+        if ((Integer) emcSessions.accessSessionMap(OnlineUsersMapAccess.SIZE, 0, null) >= numberOfUsers) {
+            return -1;
+        }
+
+        EMCSession emcSession = new EMCSession();
+        lastNumber++;
+        emcSession.setSessionNumber(lastNumber);
+        emcSession.setTimeStamp(System.currentTimeMillis());
+        emcSession.setClientIP(clientIp);
+        emcSession.setClientName(clientName);
+        emcSession.setIdleTime(0);
+        emcSession.setUserName(userName);
+        emcSession.setLoginDateTime(Calendar.getInstance().getTime());
+        emcSessions.accessSessionMap(OnlineUsersMapAccess.PUT, emcSession.getSessionNumber(), emcSession);
+
+        ////////////////////////////////////////////
+        //Add message list - Marius
+        EMCUserData userData = new EMCUserData();
+        userData.setSessionID(lastNumber);
+        emcSessionMessages.accessMessageMap(OnlineUsersMapAccess.PUT, lastNumber, new EMCSessionMessages(userData));
+        //start timed operations if first user logs in.
+        if ((Integer) emcSessions.accessSessionMap(OnlineUsersMapAccess.SIZE, 0, null) == 1 && !timedOperationsStarted) {
+            timedOperationsBean.startAllTimers(userData);
+            timedOperationsStarted = true;
+        }
+        if (!startupQueriesRun) {
+            //run queries here at startup
+            startupQueriesRun = true;
+            //ALWAYS CHECK IF TABLE EXISTS IS DATABASE BEFORE EXECUTING QUERY
+            //List tables = utilBean.executeNativeQuery("SHOW TABLES LIKE \'InventorySummary\'", userData);
+            //Above line removed, did not always work.  Cannot determine why - looks like it might relate to SQL and/or Java connector version.  MySQL only.
+            List tables = utilBean.executeNativeQuery("SELECT * FROM information_schema.TABLES WHERE TABLE_NAME  = 'InventorySummary'", userData);
+
+            if (!tables.isEmpty()) {
+                EMCQuery deleteSusOnHand = new EMCQuery(enumQueryTypes.DELETE, InventorySummary.class);
+                deleteSusOnHand.addAnd("closed", InventorySummarySuspense.SUSPENSE.toString());
+                utilBean.executeUpdate(deleteSusOnHand.toString(), userData);//want this accross company thus no comp selection
+            } else {
+                System.out.println("WARNING: InventorySummary table does not exist in the Database");
+            }
+            //ALWAYS CHECK IF TABLE EXISTS IS DATABASE BEFORE EXECUTING QUERY
+            //tables = utilBean.executeNativeQuery("SHOW TABLES LIKE \'InventoryUnreservedSummary\'", userData);
+            //Above line removed, did not always work.  Cannot determine why - looks like it might relate to SQL and/or Java connector version.  MySQL only.
+            tables = utilBean.executeNativeQuery("SELECT * FROM information_schema.TABLES WHERE TABLE_NAME  = 'InventoryUnreservedSummary'", userData);
+
+            if (!tables.isEmpty()) {
+                String deleteSusUnreserved = "TRUNCATE InventoryUnreservedSummary";
+                utilBean.executeNativeUpdate(deleteSusUnreserved, userData);//want this accross company thus no comp selection
+            } else {
+                System.out.println("WARNING: InventoryUnreservedSummary table does not exist in the Database");
+            }
+            //ALWAYS CHECK IF TABLE EXISTS IS DATABASE BEFORE EXECUTING QUERY
+            //tables = utilBean.executeNativeQuery("SHOW TABLES LIKE \'InventoryStockTakeLogger\'", userData);
+            //Above line removed, did not always work.  Cannot determine why - looks like it might relate to SQL and/or Java connector version.  MySQL only.
+            tables = utilBean.executeNativeQuery("SELECT * FROM information_schema.TABLES WHERE TABLE_NAME  = 'InventoryStockTakeLogger'", userData);
+
+            if (!tables.isEmpty()) {
+                EMCQuery stockTake = new EMCQuery(enumQueryTypes.DELETE, InventoryStockTakeLogger.class);
+                stockTake.addAnd("status", 0);
+                utilBean.executeUpdate(stockTake, userData);
+            } else {
+                System.out.println("WARNING: InventoryStockTakeLogger table does not exist in the Database");
+            }
+            //ALWAYS CHECK IF TABLE EXISTS IN DATABASE BEFORE EXECUTING QUERY
+            //tables = utilBean.executeNativeQuery("SHOW TABLES LIKE \'GLTransactionConsolidationTemp\'", userData);
+            //Above line removed, did not always work.  Cannot determine why - looks like it might relate to SQL and/or Java connector version.  MySQL only.
+            tables = utilBean.executeNativeQuery("SELECT * FROM information_schema.TABLES WHERE TABLE_NAME  = 'GLTransactionConsolidationTemp'", userData);
+
+            if (!tables.isEmpty()) {
+                //Rollback changes made to summary tables.   Do for all companies.
+                //EMCQuery does not support creating a query like below, hence the String query.
+                String updateSummaries = "UPDATE GLTransactionConsolidationTemp t, GLTransactionsSummary s, GLTransactionPeriodSummary p, GLTransactionDaySummary d "
+                                         + "SET s.debit = s.debit - t.debit, s.credit = s.credit - t.credit, p.debit = p.debit - t.debit, p.credit = p.credit - t.credit, d.debit = d.debit - t.debit, d.credit = d.credit - t.credit "
+                                         + "WHERE s.recordID = t.transactionSummaryRef "
+                                         + "AND p.recordID = t.periodSummaryRef "
+                                         + "AND d.recordID = t.daySummaryRef";
+
+                utilBean.executeNativeUpdate(updateSummaries, userData);
+
+                //Delete temporary GL consolidation records.
+                String truncateConsolidation = "TRUNCATE GLTransactionConsolidationTemp";
+                utilBean.executeNativeUpdate(truncateConsolidation, userData);
+            } else {
+                System.out.println("WARNING: InventoryStockTakeLogger table does not exist in the Database");
+            }
+
+            tables = utilBean.executeNativeQuery("SELECT * FROM information_schema.TABLES WHERE TABLE_NAME  = 'BaseReportScheduling'", userData);
+
+            if (!tables.isEmpty()) {
+                EMCQuery resetAutoReport = new EMCQuery(enumQueryTypes.UPDATE, BaseReportScheduling.class);
+                resetAutoReport.addSet("executionStatus", EnumReportScheduleStatus.WAITING.toString());
+                resetAutoReport.addAnd("executionStatus", EnumReportScheduleStatus.BUSY.toString());
+                utilBean.executeUpdate(resetAutoReport.toString(), userData);
+            } else {
+                System.out.println("WARNING: BaseReportScheduling table does not exist in the Database");
+            }
+        }
+        ////////////////////////////////////////////
+
+        return lastNumber;
+    }
+
+    private EMCCommandClass emcSessionSetTime(String clientName, EMCUserData userData) {
+        EMCCommandClass ret = null;
+        EMCSession sesAct = (EMCSession) emcSessions.accessSessionMap(OnlineUsersMapAccess.GET, userData.getSessionID(), null);
+        if (sesAct == null) {
+            updateNumberOfUsers();
+            if (numberOfUsers == 0) {
+                numberOfUsers = 1;
+            }
+            String clientIp = "";
+            try {
+                clientIp = InetAddress.getByName(clientName).getHostAddress();
+            } catch (UnknownHostException ex) {
+                if (EMCDebug.getDebug()) {
+                    System.out.println("Unknown host exception occured: " + ex.getMessage());
+                }
+            }
+            sesAct = new EMCSession();
+            sesAct.setSessionNumber(userData.getSessionID());
+            sesAct.setTimeStamp(System.currentTimeMillis());
+            sesAct.setClientIP(clientIp);
+            sesAct.setClientName(clientName);
+            sesAct.setIdleTime(0);
+            sesAct.setUserName(userData.getUserName());
+            sesAct.setLoginDateTime(Calendar.getInstance().getTime());
+
+            if ((Integer) emcSessions.accessSessionMap(OnlineUsersMapAccess.SIZE, 0, null) >= numberOfUsers) {
+                sesAct.setCheckingInactive(true);
+                System.out.println("Unable To Reinstated User Session: User - " + sesAct.getUserName() + "   Session - " + sesAct.getSessionNumber() + " :" + System.currentTimeMillis());
+            } else {
+                System.out.println("Reinstated User Session: User - " + sesAct.getUserName() + "   Session - " + sesAct.getSessionNumber() + " :" + System.currentTimeMillis());
+                emcSessions.accessSessionMap(OnlineUsersMapAccess.PUT, sesAct.getSessionNumber(), sesAct);
+                emcSessionMessages.accessMessageMap(OnlineUsersMapAccess.PUT, sesAct.getSessionNumber(), new EMCSessionMessages(userData));
+            }
+
+            ret = this.constructCommand(sesAct);
+        } else {
+            sesAct.setTimeStamp(System.currentTimeMillis());
+            ret = this.constructCommand(sesAct);
+        }
+        return ret;
+    }
+
+    private synchronized void emcSessionCleanup() {
+        List<Long> keys = (List<Long>) emcSessions.accessSessionMap(OnlineUsersMapAccess.KEY_SET, 0, null);
+        for (Long key : keys) {
+            EMCSession o = (EMCSession) emcSessions.accessSessionMap(OnlineUsersMapAccess.GET, key, null);
+            if ((System.currentTimeMillis() - o.getTimeStamp()) > timeOutCount) {
+                System.out.println("User Failed to check in: User - " + o.getUserName() + "   Session - " + o.getSessionNumber() + " :" + System.currentTimeMillis());
+
+                closeSession(key);
+            }
+        }
+    }
+
+    @Override
+    public void closeSession(long sessionNumber) {
+        emcSessions.accessSessionMap(OnlineUsersMapAccess.REMOVE, sessionNumber, null);
+        emcSessionMessages.accessMessageMap(OnlineUsersMapAccess.REMOVE, sessionNumber, null);
+        websiteMessages.accessMessageMap(OnlineUsersMapAccess.REMOVE, sessionNumber, null);
+    }
+
+    @Override
+    public EMCCommandClass checkIn(String clientName, EMCUserData userData) {
+        EMCCommandClass ret = emcSessionSetTime(clientName, userData);
+        return ret;
+    }
+
+    private EMCCommandClass constructCommand(EMCSession theSession) {
+        EMCCommandClass retCmd = new EMCCommandClass();
+        retCmd.setCommandId(EMCCommands.CLIENT_GENERAL_COMMAND.getId());
+        retCmd.setModuleNumber(enumEMCModules.BASE.getId());
+        retCmd.setMethodId(ClientWorkFlowMethods.GENERAL_METHOD.toString());
+        String adminMessage = theSession.setOrGetAdminMessage(null);
+        if (theSession.isCheckingInactive()) {
+            retCmd.setCommandId(EMCCommands.CHECKIN_INACTIVE.getId());
+        } else if (theSession.isKillSession()) {
+            retCmd.setCommandId(EMCCommands.KILL_CLIENT.getId());
+        } else {
+            if (adminMessage != null) {
+                retCmd.setCommandId(EMCCommands.ADMIN_MSG_FOR_CLIENT.getId());
+                retCmd.setParameter1(adminMessage);
+            }
+        }
+        return retCmd;
+    }
+
+    @Override
+    public List<EMCSession> getSessions() {
+        return (List<EMCSession>) emcSessions.accessSessionMap(OnlineUsersMapAccess.VALUES, 0, null);
+    }
+
+    @Override
+    public EMCSession getSession(long emcSessionNumber) {
+        return (EMCSession) emcSessions.accessSessionMap(OnlineUsersMapAccess.GET, emcSessionNumber, null);
+    }
+
+    @Override
+    public void addMessage(enumLogTypes level, String message, EMCUserData userData) {
+        EMCSessionMessages _emcSessionMessages = null;
+        _emcSessionMessages = (EMCSessionMessages) emcSessionMessages.accessMessageMap(OnlineUsersMapAccess.GET, userData.getSessionID(), null);
+
+        if (_emcSessionMessages == null) {
+            _emcSessionMessages = new EMCSessionMessages(userData);
+            emcSessionMessages.accessMessageMap(OnlineUsersMapAccess.PUT, userData.getSessionID(), _emcSessionMessages);
+        }
+        Logger log = Logger.getLogger("emc");
+
+        switch (level) {
+            case CLIENT_DEBUG:
+                log.log(Level.INFO, "message", userData);
+                break;
+            case ERROR:
+                log.log(Level.SEVERE, "message", userData);
+                break;
+            case WARNING:
+                log.log(Level.SEVERE, "message", userData);
+                break;
+            case INFO:
+                log.log(Level.INFO, "message", userData);
+                break;
+            default:
+                log.log(Level.INFO, "message", userData);
+                break;
+        }
+    }
+
+    @Override
+    public List<EMCLogRecord> getMessages(EMCUserData userData) {
+
+        EMCSessionMessages msgs = (EMCSessionMessages) emcSessionMessages.accessMessageMap(OnlineUsersMapAccess.GET, userData.getSessionID(), null);
+        if (msgs != null) {
+            return msgs.getMessages();
+        }
+        return new ArrayList<EMCLogRecord>();
+    }
+
+    /**
+     * Adds a message list for a website user.
+     */
+    @Override
+    public void addWebsiteUserMessageList(EMCUserData webUserData) {
+        websiteMessages.accessMessageMap(OnlineUsersMapAccess.PUT, webUserData.getSessionID(), new EMCSessionMessages(webUserData));
+    }
+
+    /**
+     * Removes the message list for a website user.
+     */
+    @Override
+    public void removeWebsiteUserMessageList(EMCUserData webUserData) {
+        websiteMessages.accessMessageMap(OnlineUsersMapAccess.REMOVE, webUserData.getSessionID(), null);
+    }
+
+    @Override
+    public void addMessageOnlySession(EMCUserData userData) {
+        lastNumber++;
+        userData.setSessionID(lastNumber);
+        emcSessionMessages.accessMessageMap(OnlineUsersMapAccess.PUT, userData.getSessionID(), new EMCSessionMessages(userData));
+    }
+
+    @Override
+    public void removeMessageOnlyUser(EMCUserData userData) {
+        emcSessionMessages.accessMessageMap(OnlineUsersMapAccess.REMOVE, userData.getSessionID(), null);
+    }
+}

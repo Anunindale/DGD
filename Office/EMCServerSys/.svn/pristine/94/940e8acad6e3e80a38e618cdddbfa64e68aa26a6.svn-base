@@ -1,0 +1,655 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.bus.trec.web;
+
+import emc.bus.debtors.basket.DebtorsBasketLinesLocal;
+import emc.datatypes.EMCDataType;
+import emc.entity.debtors.DebtorsBasketLines;
+import emc.entity.debtors.DebtorsBasketMaster;
+import emc.entity.debtors.DebtorsCustomerInvoiceMaster;
+import emc.entity.trec.TRECPhrases;
+import emc.entity.trec.TRECTrecCardsLines;
+import emc.enums.base.reporttools.EnumReports;
+import emc.enums.enumPersistOptions;
+import emc.enums.enumQueryTypes;
+import emc.framework.EMCBusinessBean;
+import emc.framework.EMCEntityBeanException;
+import emc.framework.EMCQuery;
+import emc.framework.EMCUserData;
+import emc.reports.trec.treccard.TRECTrecCardDS;
+import emc.reports.trec.treccard.TRECTrecCardLocal;
+import emc.reporttools.EMCReportConfig;
+import emc.tables.EMCTable;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.swing.tree.DefaultMutableTreeNode;
+
+/**
+ *
+ * @author stu
+ */
+@Stateless
+public class TRECWebPrinterLogicBean extends EMCBusinessBean implements TRECWebPrinterLogicBeanLocal {
+
+    @EJB
+    private DebtorsBasketLinesLocal basketLinesBean;
+    @EJB
+    private TRECTrecCardLocal trecCardBean;
+
+    @Override
+    public List<Object[]> getInvoiceData(String invoiceId, String key, EMCUserData userData) {
+        String recId = String.valueOf(Integer.parseInt(key, 36));
+        key = "";
+        for (int i = recId.length(); i > 0; i--) {
+            key += recId.charAt(i - 1);
+        }
+
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, DebtorsBasketMaster.class);
+        query.addTableAnd(DebtorsBasketLines.class.getName(), "basketId", DebtorsBasketMaster.class.getName(), "basketId");
+        query.addTableAnd(TRECTrecCardsLines.class.getName(), "trecCardLink", DebtorsBasketLines.class.getName(), "recordID");
+        query.addTableAnd(DebtorsCustomerInvoiceMaster.class.getName(), "invoiceId", DebtorsBasketMaster.class.getName(), "invCNNumber");
+        query.addAnd("invoiceId", invoiceId, DebtorsBasketMaster.class.getName());
+        query.addAnd("recordID", Long.valueOf(key), DebtorsCustomerInvoiceMaster.class.getName());
+        query.addField("lineNumber", DebtorsBasketLines.class.getName());//0
+        query.addField("unNumber", TRECTrecCardsLines.class.getName());//1
+        query.addField("description", DebtorsBasketLines.class.getName());//2
+        query.addField("quantity", DebtorsBasketLines.class.getName());//3
+        query.addField("printQty", DebtorsBasketLines.class.getName());//4
+
+
+        List<Object[]> queryResult = util.executeGeneralSelectQuery(query, userData);
+
+        if (queryResult == null || queryResult.isEmpty()) {
+            query = new EMCQuery(enumQueryTypes.SELECT, DebtorsBasketMaster.class);
+            query.addTableAnd(DebtorsBasketLines.class.getName(), "basketId", DebtorsBasketMaster.class.getName(), "basketId");
+            query.addTableAnd(TRECTrecCardsLines.class.getName(), "trecCardLink", DebtorsBasketLines.class.getName(), "recordID");
+            query.addAnd("basketId", invoiceId, DebtorsBasketMaster.class.getName());
+            query.addAnd("recordID", Long.valueOf(key), DebtorsBasketMaster.class.getName());
+            query.addField("lineNumber", DebtorsBasketLines.class.getName());//0
+            query.addField("unNumber", TRECTrecCardsLines.class.getName());//1
+            query.addField("description", DebtorsBasketLines.class.getName());//2
+            query.addField("quantity", DebtorsBasketLines.class.getName());//3
+            query.addField("printQty", DebtorsBasketLines.class.getName());//4
+
+            queryResult = util.executeGeneralSelectQuery(query, userData);
+        }
+        return queryResult;
+    }
+
+    @Override
+    public String getTrecCardDataset(String invoiceId, String key, int lineNo, boolean redLine, boolean blackLines, EMCUserData userData) {
+        Map<String, Object> parametersMap = new HashMap<>();
+        parametersMap.put("printLines", redLine);
+        parametersMap.put("boldExpDate", true);
+        parametersMap.put("clasPicPath", null);
+        parametersMap.put("printHazardZone", null);
+        parametersMap.put("hazardPic1Path", null);
+        parametersMap.put("hazardPic2Path", null);
+        parametersMap.put("ignoreApproval", true);
+
+        String recId = String.valueOf(Integer.parseInt(key, 36));
+        key = "";
+        for (int i = recId.length(); i > 0; i--) {
+            key += recId.charAt(i - 1);
+        }
+
+        //get record id and master id
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, DebtorsBasketMaster.class);
+        query.addTableAnd(DebtorsBasketLines.class.getName(), "basketId", DebtorsBasketMaster.class.getName(), "basketId");
+        query.addTableAnd(TRECTrecCardsLines.class.getName(), "trecCardLink", DebtorsBasketLines.class.getName(), "recordID");
+        query.addTableAnd(DebtorsCustomerInvoiceMaster.class.getName(), "invoiceId", DebtorsBasketMaster.class.getName(), "invCNNumber");
+        query.addAnd("invoiceId", invoiceId, DebtorsBasketMaster.class.getName());
+        query.addAnd("recordID", Long.valueOf(key), DebtorsCustomerInvoiceMaster.class.getName());
+        query.addAnd("lineNumber", lineNo, DebtorsBasketLines.class.getName());
+        query.addField("masterId", TRECTrecCardsLines.class.getName());//0
+        query.addField("recordID", TRECTrecCardsLines.class.getName());//1
+        query.addField("form", TRECTrecCardsLines.class.getName());//2
+        query.addField("colour", TRECTrecCardsLines.class.getName());//3
+        query.addField("odour", TRECTrecCardsLines.class.getName());//4
+
+        Object[] results;
+        results = (Object[]) util.executeSingleResultQuery(query, userData);
+
+        if (results == null || results.length == 0) {
+            query = new EMCQuery(enumQueryTypes.SELECT, DebtorsBasketMaster.class);
+            query.addTableAnd(DebtorsBasketLines.class.getName(), "basketId", DebtorsBasketMaster.class.getName(), "basketId");
+            query.addTableAnd(TRECTrecCardsLines.class.getName(), "trecCardLink", DebtorsBasketLines.class.getName(), "recordID");
+            query.addAnd("basketId", invoiceId, DebtorsBasketMaster.class.getName());
+            query.addAnd("recordID", Long.valueOf(key), DebtorsBasketMaster.class.getName());
+            query.addAnd("lineNumber", lineNo, DebtorsBasketLines.class.getName());
+            query.addField("masterId", TRECTrecCardsLines.class.getName());//0
+            query.addField("recordID", TRECTrecCardsLines.class.getName());//1
+            query.addField("form", TRECTrecCardsLines.class.getName());//2
+            query.addField("colour", TRECTrecCardsLines.class.getName());//3
+            query.addField("odour", TRECTrecCardsLines.class.getName());//4
+
+            results = (Object[]) util.executeSingleResultQuery(query, userData);
+        }
+
+        TRECTrecWebPrinterDataHelper helper = new TRECTrecWebPrinterDataHelper();
+
+        if (results != null && results.length > 0) {
+            helper.setMasterId((String) results[0]);
+            helper.setRecordId(Long.toString((long) results[1]));
+            helper.setForm((String) results[2]);
+            helper.setColour((String) results[3]);
+            helper.setOdour((String) results[4]);
+        } else {
+            return null;
+        }
+
+        EMCReportConfig config = new EMCReportConfig(EnumReports.TREC_REPORT, EnumReports.FROM_CLIENT, "Custom", parametersMap);
+
+        query = new EMCQuery(enumQueryTypes.SELECT, TRECTrecCardsLines.class);
+        query.addAnd("masterId", helper.getMasterId());
+        query.addAnd("recordID", helper.getRecordId());
+
+        List toSend = new ArrayList();
+        toSend.add(null);
+        toSend.add(query);
+        try {
+            toSend = trecCardBean.getReportResult(toSend, config, userData);
+
+            if (toSend != null && toSend.size() > 0) {
+                TRECTrecCardDS dataSetDS = (TRECTrecCardDS) toSend.get(0);
+                String dataString = buildDataString(dataSetDS, redLine, invoiceId, blackLines, helper, userData);
+                return dataString;
+            }
+        } catch (Exception e) {
+            System.out.println("exception " + e);
+        }
+
+        return null;
+    }
+
+    private String buildDataString(TRECTrecCardDS dataSetDS, boolean redLine, String invoiceId, boolean blackLine, TRECTrecWebPrinterDataHelper helper, EMCUserData userData) {
+        StringBuilder dataSet = new StringBuilder();
+
+        appendLine(dataSet, "<dataSet>");
+
+        //Red Lines
+        if (redLine) {
+            redLine(dataSet, dataSetDS);
+        }
+
+        //Table Info
+        tableInfo(dataSet, dataSetDS);
+
+        //Heading
+        heading(dataSet, dataSetDS);
+
+        //Shipping Name
+        shippingName(dataSet, dataSetDS);
+
+        //Appearance
+        appearance(dataSet, dataSetDS, helper);
+
+        //Danger
+        danger(dataSet, dataSetDS);
+
+        //Personal Equipment
+        personalEquipment(dataSet, dataSetDS);
+
+        //Emergency Equipment
+        emergencyEquipment(dataSet, dataSetDS);
+
+        //Black Line
+        if (blackLine) {
+            blackLine(dataSet, dataSetDS);
+        }
+
+        //Drivers First Actions
+        driverFirstAction(dataSet, dataSetDS);
+
+        //Drivers Special Action
+        driverSpecialAction(dataSet, dataSetDS);
+
+        //Drivers Fire Action
+        driverFireAction(dataSet, dataSetDS);
+
+        //Black Line
+        if (blackLine) {
+            blackLine(dataSet, dataSetDS);
+        }
+
+        //First Aid
+        firstAid(dataSet, dataSetDS);
+
+        //Black line
+        if (blackLine) {
+            blackLine(dataSet, dataSetDS);
+        }
+
+        //Special Info For Emergency Services
+        specialInfoForEmergancy(dataSet, dataSetDS);
+
+        //Black line
+        if (blackLine) {
+            blackLine(dataSet, dataSetDS);
+        }
+
+        //Additional Info
+        additionalInfo(dataSet, dataSetDS);
+
+        if (!isBlank(dataSetDS.getTradeName())) {
+            tradeName(dataSet, dataSetDS);
+        }
+
+        //Emergency Numbers
+        emergencyTelephone(dataSet, dataSetDS);
+
+        //Prepared By
+        preparedBy(dataSet, dataSetDS);
+
+
+        dataSet.append("</dataSet>");
+
+        return dataSet.toString();
+    }
+
+    private void appendLine(StringBuilder dataSet, String toAppend) {
+        dataSet.append(toAppend);
+        dataSet.append("\n");
+    }
+
+    private void redLine(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 1, null, null, false, 12, 40, null, null, null, null, null, true);
+    }
+
+    private void tableInfo(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, "UN No.", 540, 65, 110, true);
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, dataSetDS.getUNNumber() + "/n", null, null, 60, false);
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, "Class", null, null, 110, true);
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, dataSetDS.getChemicalClass() + "/n", null, null, 60, false);
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, "Subsidiary risk", null, null, 110, true);
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, dataSetDS.getSubsudiaryRisk() + " " + "/n", null, null, 60, false);
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, "Packing Group", null, null, 110, true);
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, dataSetDS.getPackingGroup() + "/n", null, null, 60, false);
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, "ERG No.", null, null, 110, true);
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, dataSetDS.getErgNumber() + "/n", null, null, 60, false);
+    }
+
+    private void heading(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 14, true, null, null, null, "TRANSPORT EMERGENCY CARD - Road Transport/n", null, null, null, true);
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, "In accordance with SANS 10232-4/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void blankLine(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, "\n/n", null, null, null, false);
+    }
+
+    private void shippingName(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "PROPER SHIPPING NAME/n", null, null, null, true);
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, dataSetDS.getProperShippingName() + "/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void appearance(StringBuilder dataSet, TRECTrecCardDS dataSetDS, TRECTrecWebPrinterDataHelper helper) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "APPEARANCE/n", null, null, null, true);
+
+        if (dataSetDS.getChemicalClass().equals("S")) {
+            addTale(dataSet, 0, "Arial", 10, false, null, null, null, dataSetDS.getAppearance() + "/n", null, null, null, true);
+        } else {
+            String appearance = "";
+            if (!isBlank(helper.getForm())) {
+                appearance += helper.getForm() + "; ";
+            }
+            if (!isBlank(helper.getColour())) {
+                appearance += helper.getColour() + "; ";
+            }
+            if (!isBlank(helper.getOdour())) {
+                appearance += helper.getOdour() + "; ";
+            }
+            if (isBlank(appearance)) {
+                appearance = "Not Specified";
+            }
+
+            addTale(dataSet, 0, "Arial", 10, false, null, null, null, appearance + "/n", null, null, null, true);
+        }
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void danger(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "POTENTIAL HAZARD (DANGER)/n", null, null, null, true);
+
+        String phrases = dataSetDS.getDanger().replace("&#9679", "<bt>");
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrases + "/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void personalEquipment(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "PERSONAL PROTECTIVE EQUIPMENT/n", null, null, null, true);
+
+        String phrases = dataSetDS.getPersonalProtectiveEquipment().replace("&#9679", "<bt>");
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrases + "/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void emergencyEquipment(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "DRIVER INTERVENTION EQUIPMENT/n", null, null, null, true);
+
+        String phrases = dataSetDS.getEmergencyResponseEquipment().replace("&#9679", "<bt>");
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrases + "/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void blackLine(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, false, null, null, 5, null, null, null, null, true);
+    }
+
+    private void driverFirstAction(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "DRIVER FIRST ACTIONS - Only if it can be carried out without personal risk/n", null, null, null, true);
+
+        String phrases = dataSetDS.getDriverFirstAction().replace("&#9679", "<bt>");
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrases + "/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void driverSpecialAction(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "DRIVER SPECIAL/ADDITIONAL ACTIONS - Only if it can be carried out without personal risk/n", null, null, null, true);
+
+        String phrases = dataSetDS.getDriverAdditionalAction().replace("&#9679", "<bt>");
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrases + "/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void driverFireAction(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "DRIVER ACTIONS IN CASE OF FIRE - Only if it can be carried out without personal risk/n", null, null, null, true);
+
+        String phrases = dataSetDS.getDriverFireAction().replace("&#9679", "<bt>");
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrases + "/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void firstAid(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "FIRST AID/n", null, null, null, true);
+
+        String phrases = dataSetDS.getFirstAid().replace("&#9679", "<bt>");
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrases + "/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void specialInfoForEmergancy(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "SPECIAL INFORMATION FOR EMERGENCY SERVICES/n", null, null, null, true);
+
+        String phrases = dataSetDS.getInfoForEmergencyServices().replace("&#9679", "<bt>");
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrases + "/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void additionalInfo(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "ADDITIONAL INFORMATION/n", null, null, null, true);
+
+        String phrase = dataSetDS.getAdditionalInfo();
+        phrase = phrase.replaceAll("<br />", "\n");
+        phrase = phrase.replaceAll("<b>", "");
+        phrase = phrase.replaceAll("</b>", "");
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrase + "/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void tradeName(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "TRADE NAME/n", null, null, null, true);
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, dataSetDS.getTradeName() + "/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void emergencyTelephone(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "EMERGENCY TELEPHONE NUMBERS/n", null, null, null, true);
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, dataSetDS.getEmergencyPhoneNumber() + "/n", null, null, null, true);
+
+        blankLine(dataSet, dataSetDS);
+    }
+
+    private void preparedBy(StringBuilder dataSet, TRECTrecCardDS dataSetDS) {
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "PREPARED BY " + dataSetDS.getPreparedBy() + "/n", null, null, null, true);
+        addTale(dataSet, 0, "Arial", 10, true, null, null, null, "Using Trec Card (PTY)LTD software.", null, null, null, false);
+
+        String phrase = " From the best knowledge currently available; no guarantee is";
+
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrase + "/n", null, null, null, true);
+        
+        phrase = " provided that the information is sufficient or correct under all circumstances./n";
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrase + "/n", null, null, null, true);
+        
+        phrase = "                                                                                                              Preparation Date: " + dataSetDS.getDatePrinted();
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrase + "/n", null, null, null, false);
+
+        phrase = "                                                                                                              Reference: " + dataSetDS.getChemicalClass() + "-" + dataSetDS.getUNNumber() + "-" + dataSetDS.getReferenceNumber();
+        addTale(dataSet, 0, "Arial", 10, false, null, null, null, phrase + "/n", null, null, null, false);
+    }
+
+    private void addTale(StringBuilder dataSet, int id, String font, Integer fsize, boolean bold, Integer redLineX, Integer redLineY, Integer blackLine, String toWrite, Integer blockX, Integer blockY, Integer blockWidth, boolean fixStr) {
+        appendLine(dataSet, "<table>");
+        appendLine(dataSet, "<id>" + id + "</id>");
+        if (isBlank(font)) {
+            appendLine(dataSet, "<font />");
+        } else {
+            appendLine(dataSet, "<font>Arial</font>");
+        }
+        if (fsize == null) {
+            appendLine(dataSet, "<fsize />");
+        } else {
+            appendLine(dataSet, "<fsize>" + fsize + "</fsize>");
+        }
+        if (bold) {
+            appendLine(dataSet, "<bold>Yes</bold>");
+        } else {
+            appendLine(dataSet, "<bold />");
+        }
+        if (redLineX != null && redLineY != null) {
+            appendLine(dataSet, "<redline>" + redLineX + "," + redLineY + "</redline>");
+        } else {
+            appendLine(dataSet, "<redline />");
+        }
+        if (blackLine != null) {
+            appendLine(dataSet, "<blackline>" + blackLine + "</blackline>");
+        } else {
+            appendLine(dataSet, "<blackline />");
+        }
+        if (isBlank(toWrite)) {
+            appendLine(dataSet, "<string />");
+        } else {
+            if (fixStr) {
+                appendLine(dataSet, "<string>" + fixString(toWrite) + "</string>");
+            } else {
+                appendLine(dataSet, "<string>" + toWrite + "</string>");
+            }
+        }
+        if (blockX != null || blockY != null || blockWidth != null) {
+            appendLine(dataSet, "<block>yes</block>");
+            if (blockX != null || blockY != null) {
+                appendLine(dataSet, "<blockpos>" + blockX + "," + blockY + "</blockpos>");
+            } else {
+                appendLine(dataSet, "<blockpos />");
+            }
+            if (blockWidth != null) {
+                appendLine(dataSet, "<blockwidth>" + blockWidth + "</blockwidth>");
+            } else {
+                appendLine(dataSet, "<blockwidth />");
+            }
+        }
+        appendLine(dataSet, "</table>");
+    }
+
+    private String fixString(String strToFix) {
+        int strLength = 120;
+        
+        StringBuilder newString = new StringBuilder();
+
+        int index;
+        int nextIndex;
+
+        while (strToFix.length() > strLength) {
+            nextIndex = strToFix.indexOf(" ");
+            index = nextIndex;
+
+            while (nextIndex != -1 && nextIndex < strLength) {
+                index = nextIndex;
+                nextIndex = strToFix.indexOf(" ", nextIndex + 1);
+            }
+
+            newString.append(strToFix.substring(0, index).trim()).append("/n");
+            strToFix = strToFix.substring(index);
+        }
+
+        newString.append(strToFix.trim());
+
+        return newString.toString();
+    }
+
+    @Override
+    public boolean updateBasketLinesPrintQty(String invoiceId, String key, int lineNo, int qtyPrinted, EMCUserData userData) {
+        String recId = String.valueOf(Integer.parseInt(key, 36));
+        key = "";
+        for (int i = recId.length(); i > 0; i--) {
+            key += recId.charAt(i - 1);
+        }
+
+        //update printQty on basket lines
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, DebtorsBasketLines.class);
+        query.addTableAnd(DebtorsBasketMaster.class.getName(), "basketId", DebtorsBasketLines.class.getName(), "basketId");
+        query.addTableAnd(TRECTrecCardsLines.class.getName(), "trecCardLink", DebtorsBasketLines.class.getName(), "recordID");
+        query.addTableAnd(DebtorsCustomerInvoiceMaster.class.getName(), "invoiceId", DebtorsBasketMaster.class.getName(), "invCNNumber");
+        query.addAnd("invoiceId", invoiceId, DebtorsBasketMaster.class.getName());
+        query.addAnd("recordID", Long.valueOf(key), DebtorsCustomerInvoiceMaster.class.getName());
+        query.addAnd("lineNumber", lineNo, DebtorsBasketLines.class.getName());
+        DebtorsBasketLines line = (DebtorsBasketLines) util.executeSingleResultQuery(query, userData);
+
+        if (line == null) {
+            query = new EMCQuery(enumQueryTypes.SELECT, DebtorsBasketLines.class);
+            query.addTableAnd(DebtorsBasketMaster.class.getName(), "basketId", DebtorsBasketLines.class.getName(), "basketId");
+            query.addTableAnd(TRECTrecCardsLines.class.getName(), "trecCardLink", DebtorsBasketLines.class.getName(), "recordID");
+            query.addAnd("basketId", invoiceId, DebtorsBasketMaster.class.getName());
+            query.addAnd("recordID", Long.valueOf(key), DebtorsBasketMaster.class.getName());
+            query.addAnd("lineNumber", lineNo, DebtorsBasketLines.class.getName());
+            line = (DebtorsBasketLines) util.executeSingleResultQuery(query, userData);
+        }
+        //update print qty from parameter
+        line.setPrintQty(line.getPrintQty() + qtyPrinted);
+        //update line
+        try {
+            basketLinesBean.update(line, userData);
+        } catch (EMCEntityBeanException ex) {
+            Logger.getLogger(TRECWebOrderProcessLogicBean.class.getName()).log(Level.SEVERE, "Failed to connect to server try again later", ex);
+        }
+
+        return true;
+    }
+
+    @Override
+    public List getPhrasesString(EMCUserData userData) {
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECPhrases.class);
+        query.addField("phraseId");//0 as PhraseID
+        query.addCustomField("CONCAT(parentClass,typeId,sortNumber)", false);//1 as PhraseCode
+        query.addFieldDecrypt("phrase", "tr3ck3y");//2 as Phrase
+        query.addField("typeId");//3 as typeId
+        query.addOrderBy("phraseId");
+
+        List phrasesListString = new ArrayList();
+        Object[] newObj = new Object[4];
+        List phrasesListByte = util.executeNativeQuery(query, userData);
+        for (Object o : phrasesListByte) {
+            Object[] obj = (Object[]) o;
+            //convert phrase byte to string
+            String str = new String((byte[]) obj[2], StandardCharsets.UTF_8);
+
+            newObj[0] = obj[0];
+            newObj[1] = obj[1];
+            newObj[2] = str;
+            newObj[3] = obj[3];
+
+            phrasesListString.add(newObj);
+        }
+
+        return phrasesListString;
+    }
+
+    /**
+     *
+     * @param invoiceId
+     * @param redLine
+     * @param blackLine
+     * @return
+     */
+    @Override
+    public Collection getDataInRange(Class type, EMCUserData emcud, int i, int i1) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Object insert(Object o, EMCUserData emcud) throws EMCEntityBeanException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Object delete(Object o, EMCUserData emcud) throws EMCEntityBeanException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String getNumRows(Class type, EMCUserData emcud) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Object update(Object o, EMCUserData emcud) throws EMCEntityBeanException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Object validateField(String string, Object o, EMCUserData emcud) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public DefaultMutableTreeNode testRelations(enumPersistOptions po, EMCTable emct, EMCUserData emcud) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean populateNumberSequenceField(Object o, String string, EMCDataType emcdt, EMCUserData emcud) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+}

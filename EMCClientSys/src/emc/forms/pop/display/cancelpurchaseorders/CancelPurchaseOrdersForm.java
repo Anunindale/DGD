@@ -1,0 +1,385 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.forms.pop.display.cancelpurchaseorders;
+
+import emc.app.components.documents.EMCDoubleFormDocument;
+import emc.app.components.documents.EMCStringFormDocument;
+import emc.app.components.emcJButton;
+import emc.app.components.emcJLabel;
+import emc.app.components.emcJPanel;
+import emc.app.components.emcJScrollPane;
+import emc.app.components.emcJSplitPane;
+import emc.app.components.emcJTabbedPane;
+import emc.app.components.emcJTextArea;
+import emc.app.components.emcJTextField;
+import emc.app.components.emcSetGridBagConstraints;
+import emc.app.components.emcTablePanelUpdate;
+import emc.app.components.emcpicker.emcdatepicker.EMCDatePickerFormComponent;
+import emc.app.components.emctable.emcDRMViewOnly;
+import emc.app.components.emctable.emcGenericDataSourceUpdate;
+import emc.app.components.emctable.emcJTableUpdate;
+import emc.app.components.emctable.emcTableModelUpdate;
+import emc.app.components.emctable.emcYesNoComponent;
+import emc.app.scrollabledesktop.BaseInternalFrame;
+import emc.entity.pop.cancelledpurchaseorders.POPCancelledPurchaseOrderMaster;
+import emc.entity.pop.cancelledpurchaseorders.datasource.POPCancelledPurchaseOrderLinesDS;
+import emc.enums.modules.enumEMCModules;
+import emc.forms.pop.display.cancelpurchaseorders.resources.PrintButton;
+import emc.framework.EMCUserData;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.JSplitPane;
+
+/**
+ *
+ * @author wikus
+ */
+public class CancelPurchaseOrdersForm extends BaseInternalFrame {
+
+    private emcDRMViewOnly masterDRM;
+    private emcDRMViewOnly linesDRM;
+
+    public CancelPurchaseOrdersForm(EMCUserData userData) {
+        super("Cancelled Purchase Orders", true, true, true, true, userData);
+        super.setBounds(20, 20, 700, 700);
+        try {
+            masterDRM = new emcDRMViewOnly(new emcGenericDataSourceUpdate(enumEMCModules.POP.getId(), new POPCancelledPurchaseOrderMaster(), userData), userData);
+            linesDRM = new emcDRMViewOnly(new emcGenericDataSourceUpdate(enumEMCModules.POP.getId(), new POPCancelledPurchaseOrderLinesDS(), userData), userData);
+            this.setDataManager(masterDRM);
+
+            masterDRM.setHeaderColumnID("purchaseOrderId");
+            masterDRM.setTheForm(this);
+            masterDRM.setFormTextId1("purchaseOrderId");
+            masterDRM.setFormTextId2("supplier");
+            masterDRM.setLinesTable(linesDRM);
+
+            linesDRM.setTheForm(this);
+            linesDRM.setFormTextId1("purchaseOrderId");
+            linesDRM.setFormTextId2("lineNo");
+            linesDRM.setHeaderTable(masterDRM);
+            linesDRM.setRelationColumnToHeader("purchaseOrderId");
+        } catch (Exception ex) {
+
+        }
+        initFrame();
+    }
+
+    private void initFrame() {
+        emcJPanel pnlMaster = new emcJPanel(new BorderLayout());
+        pnlMaster.add(setupMaster(), BorderLayout.CENTER);
+        pnlMaster.add(createMasterButtons(), BorderLayout.EAST);
+        emcJSplitPane topBottomSplit = new emcJSplitPane(JSplitPane.VERTICAL_SPLIT, pnlMaster, setupLines());
+        topBottomSplit.setDividerSize(8);
+        topBottomSplit.setContinuousLayout(true);
+        topBottomSplit.setOneTouchExpandable(false);
+        topBottomSplit.setDividerLocation(300);
+        this.add(topBottomSplit);
+    }
+
+    private emcJTabbedPane setupMaster() {
+        emcJTabbedPane masterTabs = new emcJTabbedPane();
+        masterTabs.add("Purchase Order Master", createMasterMainPanel());
+        masterTabs.add("Additional", createMasterAdditionalPanel());
+        masterTabs.add("Delivery", createMasterDeliveryPanel());
+        masterTabs.add("Payment", createMasterPaymentPanel());
+        masterTabs.add("Quality", createQualityPanel());
+        masterTabs.add("Comments", createMasterCommentsPanel());
+        return masterTabs;
+    }
+    
+    private emcJPanel createMasterButtons() {
+        List<emcJButton> masterButtons = new ArrayList<emcJButton>();
+        masterButtons.add(new PrintButton(masterDRM));
+        
+        return emcSetGridBagConstraints.createButtonPanel(masterButtons);
+    }
+
+    private emcJPanel createMasterMainPanel() {
+        emcJPanel pnlMaster = new emcJPanel();
+        pnlMaster.setLayout(new GridLayout(1, 1));
+        List masterKeys = new ArrayList();
+        masterKeys.add("purchaseOrderId");
+        masterKeys.add("supplier");
+        masterKeys.add("status");
+        masterKeys.add("currency");
+        masterKeys.add("purchaseOrderType");
+        emcTableModelUpdate m = new emcTableModelUpdate(masterDRM, masterKeys);
+        emcJTableUpdate tblMaster = new emcJTableUpdate(m) {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        masterDRM.setMainTableComponent(tblMaster);
+        emcTablePanelUpdate masterScroll = new emcTablePanelUpdate(tblMaster);
+        this.setTablePanel(masterScroll);
+        pnlMaster.add(masterScroll);
+        return pnlMaster;
+    }
+
+    private emcJPanel createMasterAdditionalPanel() {
+        emcJTextField txtContactPerson = new emcJTextField(new EMCStringFormDocument(masterDRM, "contactPerson"));
+        txtContactPerson.setEditable(false);
+        emcJTextField txtContactTelNo = new emcJTextField(new EMCStringFormDocument(masterDRM, "contactNo"));
+        txtContactTelNo.setEditable(false);
+        emcJTextField txtContactEmail = new emcJTextField(new EMCStringFormDocument(masterDRM, "contactEmail"));
+        txtContactEmail.setEditable(false);
+        emcJTextField txtOrderedBy = new emcJTextField(new EMCStringFormDocument(masterDRM, "orderedBy"));
+        txtOrderedBy.setEditable(false);
+        emcJTextField lkpApprovedBy = new emcJTextField(new EMCStringFormDocument(masterDRM, "approvedBy"));
+        lkpApprovedBy.setEditable(false);
+        emcJTextField txtSupplierOrderNumber = new emcJTextField(new EMCStringFormDocument(masterDRM, "supplierOrderNumber"));
+        txtSupplierOrderNumber.setEditable(false);
+        emcJTextField txtExternalRef = new emcJTextField(new EMCStringFormDocument(masterDRM, "externalRef"));
+        txtExternalRef.setEditable(false);
+        emcJTextField txtBlanketOrderRef = new emcJTextField(new EMCStringFormDocument(masterDRM, "blanketOrderRef"));
+        txtBlanketOrderRef.setEditable(false);
+        Component[][] components = {
+            {new emcJLabel("Contact person"), txtContactPerson, new emcJLabel("Ordered By"), txtOrderedBy},
+            {new emcJLabel("Contact No."), txtContactTelNo, new emcJLabel("Approved By"), lkpApprovedBy},
+            {new emcJLabel("Contact Email"), txtContactEmail},
+            {new emcJLabel()},
+            {new emcJLabel("External Ref."), txtExternalRef},
+            {new emcJLabel("Supplier Order No."), txtSupplierOrderNumber},
+            {new emcJLabel("Blanket Order Ref."), txtBlanketOrderRef}};
+        emcJPanel thePanel = emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+        thePanel.setBorder(BorderFactory.createTitledBorder("Additional"));
+        return thePanel;
+    }
+
+    private emcJPanel createMasterDeliveryPanel() {
+        emcJTextField txtAddressLine1 = new emcJTextField(new EMCStringFormDocument(masterDRM, "addressLine1"));
+        txtAddressLine1.setEditable(false);
+        emcJTextField txtAddressLine2 = new emcJTextField(new EMCStringFormDocument(masterDRM, "addressLine2"));
+        txtAddressLine2.setEditable(false);
+        emcJTextField txtAddressLine3 = new emcJTextField(new EMCStringFormDocument(masterDRM, "addressLine3"));
+        txtAddressLine3.setEditable(false);
+        emcJTextField txtAddressLine4 = new emcJTextField(new EMCStringFormDocument(masterDRM, "addressLine4"));
+        txtAddressLine4.setEditable(false);
+        emcJTextField txtAddressLine5 = new emcJTextField(new EMCStringFormDocument(masterDRM, "addressLine5"));
+        txtAddressLine5.setEditable(false);
+        emcJTextField txtWarehouse = new emcJTextField(new EMCStringFormDocument(masterDRM, "warehouse"));
+        txtWarehouse.setEditable(false);
+        emcJTextField txtAddressPostalCode = new emcJTextField(new EMCStringFormDocument(masterDRM, "addressPostalCode"));
+        txtAddressPostalCode.setEditable(false);
+        EMCDatePickerFormComponent requestedDeliveryDate = new EMCDatePickerFormComponent(masterDRM, "requestedDeliveryDate");
+        requestedDeliveryDate.setEnabled(false);
+        EMCDatePickerFormComponent latestDeliveryDate = new EMCDatePickerFormComponent(masterDRM, "latestExpectedDeliveryDate");
+        latestDeliveryDate.setEnabled(false);
+        EMCDatePickerFormComponent confirmedDeliveryDate = new EMCDatePickerFormComponent(masterDRM, "confirmedDeliveryDate");
+        confirmedDeliveryDate.setEnabled(false);
+        EMCDatePickerFormComponent actualDeliveryDate = new EMCDatePickerFormComponent(masterDRM, "actualDeliveryDate");
+        actualDeliveryDate.setEnabled(false);
+        emcJTextField lkpDeliveryMode = new emcJTextField(new EMCStringFormDocument(masterDRM, "modeOfDelivery"));
+        lkpDeliveryMode.setEditable(false);
+        emcJTextField lkpDeliveryTerms = new emcJTextField(new EMCStringFormDocument(masterDRM, "deliveryTerms"));
+        lkpDeliveryTerms.setEditable(false);
+        Component[][] components = {
+            {new emcJLabel(), new emcJLabel("Delivery Address")},
+            {new emcJLabel("Address Line 1"), txtAddressLine1, new emcJLabel("Warehouse"), txtWarehouse},
+            {new emcJLabel("Address Line 2"), txtAddressLine2, new emcJLabel("Requested Delivery Date"), requestedDeliveryDate},
+            {new emcJLabel("Address Line 3"), txtAddressLine3, new emcJLabel("Latest Delivery Date"), latestDeliveryDate},
+            {new emcJLabel("Address Line 4"), txtAddressLine4, new emcJLabel("Confirmed Delivery Date"), confirmedDeliveryDate},
+            {new emcJLabel("Address Line 5"), txtAddressLine5, new emcJLabel("Actual Delivery Date"), actualDeliveryDate},
+            {new emcJLabel("Postal Code"), txtAddressPostalCode, new emcJLabel("Delivery Terms"), lkpDeliveryTerms},
+            {new emcJLabel(), new emcJLabel(), new emcJLabel("Delivery Mode"), lkpDeliveryMode}};
+        emcJPanel thePanel = emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+        thePanel.setBorder(BorderFactory.createTitledBorder("Delivery"));
+
+        return thePanel;
+    }
+
+    private emcJPanel createMasterPaymentPanel() {
+        emcJTextField txtPayment = new emcJTextField(new EMCDoubleFormDocument(masterDRM, "payment"));
+        txtPayment.setEditable(false);
+        EMCDatePickerFormComponent paymentDueDate = new EMCDatePickerFormComponent(masterDRM, "paymentDueDate");
+        paymentDueDate.setEnabled(false);
+        emcJTextField txtMethodOfPayment = new emcJTextField(new EMCStringFormDocument(masterDRM, "methodOfPayment"));
+        txtMethodOfPayment.setEditable(false);
+        emcJTextField txtPriceGroup = new emcJTextField(new EMCStringFormDocument(masterDRM, "priceGroup"));
+        txtPriceGroup.setEditable(false);
+        emcJTextField txtTotalDiscPercentage = new emcJTextField(new EMCDoubleFormDocument(masterDRM, "totalDiscountPercentage"));
+        txtTotalDiscPercentage.setEditable(false);
+        emcJTextField txtLinesDiscount = new emcJTextField(new EMCDoubleFormDocument(masterDRM, "linesDiscount"));
+        txtLinesDiscount.setEditable(false);
+        emcYesNoComponent ysnVatApplicable = new emcYesNoComponent(masterDRM, "vatApplicable");
+        Component[][] components = {
+            {new emcJLabel("Payment"), txtPayment, new emcJLabel("Tot Disc Percentage"), txtTotalDiscPercentage},
+            {new emcJLabel("Payment Due Date"), paymentDueDate},
+            {new emcJLabel("Method of Payment"), txtMethodOfPayment, new emcJLabel("Lines discount"), txtLinesDiscount},
+            {new emcJLabel()},
+            {new emcJLabel("Price Group"), txtPriceGroup},
+            {new emcJLabel(masterDRM.getFieldEmcLabel("vatApplicable")), ysnVatApplicable}};
+        emcJPanel thePanel = emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+        thePanel.setBorder(BorderFactory.createTitledBorder("Payment"));
+        return thePanel;
+    }
+
+    private emcJPanel createQualityPanel() {
+        emcYesNoComponent qualityTestReq = new emcYesNoComponent(masterDRM, "qualityTestReq");
+        emcYesNoComponent qualityReportReq = new emcYesNoComponent(masterDRM, "qualityReportReq");
+        emcJTextField txtQualityTestType = new emcJTextField(new EMCStringFormDocument(masterDRM, "qualityTest"));
+        txtQualityTestType.setEditable(false);
+        Component[][] components = {{new emcJLabel("Test Req."), qualityTestReq},
+                                    {new emcJLabel("Test Report Req."), qualityReportReq},
+                                    {new emcJLabel("Required Test Type"), txtQualityTestType},};
+        emcJPanel thePanel = emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+        thePanel.setBorder(BorderFactory.createTitledBorder("Quality Test"));
+        return thePanel;
+    }
+
+    private emcJPanel createMasterCommentsPanel() {
+        emcJTextArea txaMasterComments = new emcJTextArea(new EMCStringFormDocument(masterDRM, "comments"));
+        txaMasterComments.setEditable(false);
+        Component[][] components = {
+            {txaMasterComments, new emcJLabel("Comments")}};
+        return emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true, "Comments");
+    }
+
+    private emcJTabbedPane setupLines() {
+        emcJTabbedPane linesTabs = new emcJTabbedPane();
+        linesTabs.add("Purchase Order Lines", createLinesMainPanel());
+        linesTabs.add("Dimensions", createLinesDimensionPanel());
+        linesTabs.add("Detail", createLinesDetailPanel());
+        linesTabs.add("Quantity", createLinesQuantityPanel());
+        linesTabs.add("Cost Change", createCostChangePanel());
+        return linesTabs;
+    }
+
+    private emcJPanel createLinesMainPanel() {
+        emcJPanel pnlLines = new emcJPanel();
+        List linesKeys = new ArrayList();
+        linesKeys.add("itemReference");
+        linesKeys.add("itemDescription");
+        linesKeys.add("itemDimension1");
+        linesKeys.add("itemDimension3");
+        linesKeys.add("itemDimension2");
+        linesKeys.add("quantity");
+        linesKeys.add("uom");
+        linesKeys.add("itemPrice");
+        linesKeys.add("discountPercentage");
+        linesKeys.add("netAmount");
+        emcTableModelUpdate m = new emcTableModelUpdate(linesDRM, linesKeys) {
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+        emcJTableUpdate tblLines = tblLines = new emcJTableUpdate(m);
+        tblLines.setColumnEditable("itemDescription", false);
+        tblLines.setColumnEditable("netAmount", false);
+        linesDRM.setMainTableComponent(tblLines);
+        emcTablePanelUpdate linesScroll = new emcTablePanelUpdate(tblLines);
+        pnlLines.setLayout(new BorderLayout());
+        pnlLines.add(linesScroll, BorderLayout.CENTER);
+        return pnlLines;
+    }
+
+    private emcJPanel createLinesDimensionPanel() {
+        emcJTextField txtWarehouse = new emcJTextField(new EMCStringFormDocument(linesDRM, "warehouse"));
+        txtWarehouse.setEditable(false);
+        emcJTextField txtBatch = new emcJTextField();
+        txtBatch.setEditable(false);
+        emcJTextField txtSerial = new emcJTextField();
+        txtSerial.setEditable(false);
+        emcJTextField txtDimension1 = new emcJTextField(new EMCStringFormDocument(linesDRM, "itemDimension1"));
+        txtDimension1.setEditable(false);
+        emcJTextField txtDimension2 = new emcJTextField(new EMCStringFormDocument(linesDRM, "itemDimension2"));
+        txtDimension2.setEditable(false);
+        emcJTextField txtDimension3 = new emcJTextField(new EMCStringFormDocument(linesDRM, "itemDimension3"));
+        txtDimension3.setEditable(false);
+        emcJTextField txtTrans = new emcJTextField(new EMCStringFormDocument(linesDRM, "transactionNumber"));
+        txtTrans.setEditable(false);
+        Component[][] components = {
+            {new emcJLabel("Warehouse"), txtWarehouse, new emcJLabel("Batch No"), txtBatch},
+            {new emcJLabel("Config"), txtDimension1, new emcJLabel("Serial No"), txtSerial},
+            {new emcJLabel("Colour"), txtDimension3},
+            {new emcJLabel("Size"), txtDimension2},
+            {new emcJLabel()},
+            {new emcJLabel("Trans Id"), txtTrans}};
+        emcJPanel thePanel = emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+        thePanel.setBorder(BorderFactory.createTitledBorder("Dimensions"));
+        return thePanel;
+    }
+
+    private emcJPanel createLinesDetailPanel() {
+        emcJTextField txtLinesVatCode = new emcJTextField(new EMCStringFormDocument(linesDRM, "vatCode"));
+        txtLinesVatCode.setEditable(false);
+        EMCDatePickerFormComponent linesDeliveryDate = new EMCDatePickerFormComponent(linesDRM, "deliveryDate");
+        linesDeliveryDate.setEnabled(false);
+        EMCDatePickerFormComponent linesConfirmedDate = new EMCDatePickerFormComponent(linesDRM, "confirmedDate");
+        linesConfirmedDate.setEnabled(false);
+        Component[][] components = {
+            {new emcJLabel("Delivery Date"), linesDeliveryDate, new emcJLabel("VAT Code"), txtLinesVatCode},
+            {new emcJLabel("Confirmed Date"), linesConfirmedDate}};
+        emcJPanel thePanel = emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+        thePanel.setBorder(BorderFactory.createTitledBorder("Detail"));
+        emcJPanel pnlComments = new emcJPanel();
+        pnlComments.setBorder(BorderFactory.createTitledBorder("Comments"));
+        pnlComments.setLayout(new GridLayout(1, 1));
+        emcJTextArea txa = new emcJTextArea(new EMCStringFormDocument(linesDRM, "comments"));
+        txa.setEditable(false);
+        emcJScrollPane commentsPane = new emcJScrollPane(txa);
+        commentsPane.setPreferredSize(new Dimension(70, 70));
+        commentsPane.setEnabled(false);
+        pnlComments.add(commentsPane);
+        int y = components.length;
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = y;
+        gbc.gridwidth = 4;
+        gbc.gridheight = 1;
+        gbc.weightx = 1;
+        gbc.weighty = 1.5;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        thePanel.add(pnlComments, gbc);
+        return thePanel;
+    }
+
+    private emcJPanel createLinesQuantityPanel() {
+        emcJTextField txtLinesQuantity = new emcJTextField(new EMCDoubleFormDocument(linesDRM, "quantity"));
+        txtLinesQuantity.setEditable(false);
+        emcJTextField txtLinesUnitOfMeasure = new emcJTextField(new EMCStringFormDocument(linesDRM, "uom"));
+        txtLinesUnitOfMeasure.setEditable(false);
+        emcJTextField txtLinesItemsInvoiced = new emcJTextField(new EMCDoubleFormDocument(linesDRM, "itemsInvoiced"));
+        txtLinesItemsInvoiced.setEditable(false);
+        emcJTextField txtLinesOverRecQty = new emcJTextField(new EMCDoubleFormDocument(linesDRM, "overReceiveQty"));
+        txtLinesOverRecQty.setEditable(false);
+        emcJTextField txtLinesItemsReceived = new emcJTextField(new EMCDoubleFormDocument(linesDRM, "itemsReceived"));
+        txtLinesItemsReceived.setEditable(false);
+        emcJTextField txtLinesReceiveNow = new emcJTextField(new EMCDoubleFormDocument(linesDRM, "receiveNow"));
+        txtLinesReceiveNow.setEditable(false);
+        Component[][] components = {
+            {new emcJLabel("Quantity"), txtLinesQuantity},
+            {new emcJLabel("Unit of Measure"), txtLinesUnitOfMeasure},
+            {new emcJLabel("Qty Invoiced"), txtLinesItemsInvoiced},
+            {new emcJLabel("Over Receive Qty"), txtLinesOverRecQty},
+            {new emcJLabel("Qty Received"), txtLinesItemsReceived},
+            {new emcJLabel("Receive Now"), txtLinesReceiveNow}};
+        emcJPanel thePanel = emcSetGridBagConstraints.createSimplePanel(components, GridBagConstraints.NONE, true);
+        thePanel.setBorder(BorderFactory.createTitledBorder("Quantity"));
+        return thePanel;
+    }
+
+    private emcJPanel createCostChangePanel() {
+        emcJTextField approvedBy = new emcJTextField(new EMCStringFormDocument(linesDRM, "whoApproved"));
+        approvedBy.setEditable(false);
+        emcJTextField reason = new emcJTextField(new EMCStringFormDocument(linesDRM, "reason"));
+        reason.setEditable(false);
+        Component[][] comp = {{new emcJLabel("Cost  Ch. Reason"), reason}, {new emcJLabel("Approved By"), approvedBy}};
+        emcJPanel thePanel = emcSetGridBagConstraints.createSimplePanel(comp, GridBagConstraints.NONE, true);
+        thePanel.setBorder(BorderFactory.createTitledBorder("Cost Change"));
+        return thePanel;
+    }
+}

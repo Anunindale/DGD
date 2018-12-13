@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Order Schedule" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="3.452271214393295"/>
+	<property name="ireport.x" value="1618"/>
+	<property name="ireport.y" value="228"/>
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="toDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fromDate" class="java.lang.String" isForPrompting="false"/>
+	<field name="customerId" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerId]]></fieldDescription>
+	</field>
+	<field name="customerName" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerName]]></fieldDescription>
+	</field>
+	<field name="itemReference" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemReference]]></fieldDescription>
+	</field>
+	<field name="itemDescription" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemDescription]]></fieldDescription>
+	</field>
+	<field name="dimension1" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension1]]></fieldDescription>
+	</field>
+	<field name="dimension1Description" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension1Description]]></fieldDescription>
+	</field>
+	<field name="period1Description" class="java.lang.String">
+		<fieldDescription><![CDATA[@period1Description]]></fieldDescription>
+	</field>
+	<field name="onHand" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@onHand]]></fieldDescription>
+	</field>
+	<field name="workInProgress" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@workInProgress]]></fieldDescription>
+	</field>
+	<field name="period1Forecast" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period1Forecast]]></fieldDescription>
+	</field>
+	<field name="period1Sold" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period1Sold]]></fieldDescription>
+	</field>
+	<field name="period1Error" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period1Error]]></fieldDescription>
+	</field>
+	<field name="period2Description" class="java.lang.String">
+		<fieldDescription><![CDATA[@period2Description]]></fieldDescription>
+	</field>
+	<field name="period2Forecast" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period2Forecast]]></fieldDescription>
+	</field>
+	<field name="period2Sold" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period2Sold]]></fieldDescription>
+	</field>
+	<field name="period2Error" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period2Error]]></fieldDescription>
+	</field>
+	<field name="period3Description" class="java.lang.String">
+		<fieldDescription><![CDATA[@period3Description]]></fieldDescription>
+	</field>
+	<field name="period3Forecast" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period3Forecast]]></fieldDescription>
+	</field>
+	<field name="period3Sold" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period3Sold]]></fieldDescription>
+	</field>
+	<field name="period3Error" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period3Error]]></fieldDescription>
+	</field>
+	<field name="period4Description" class="java.lang.String">
+		<fieldDescription><![CDATA[@period4Description]]></fieldDescription>
+	</field>
+	<field name="period4Forecast" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period4Forecast]]></fieldDescription>
+	</field>
+	<field name="period4SoldOnOrder" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period4SoldOnOrder]]></fieldDescription>
+	</field>
+	<field name="period4Error" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period4Error]]></fieldDescription>
+	</field>
+	<field name="period5Description" class="java.lang.String">
+		<fieldDescription><![CDATA[@period5Description]]></fieldDescription>
+	</field>
+	<field name="period5Forecast" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period5Forecast]]></fieldDescription>
+	</field>
+	<field name="period5OnOrder" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period5OnOrder]]></fieldDescription>
+	</field>
+	<field name="period5Adjustment" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period5Adjustment]]></fieldDescription>
+	</field>
+	<field name="period6Description" class="java.lang.String">
+		<fieldDescription><![CDATA[@period6Description]]></fieldDescription>
+	</field>
+	<field name="period6Forecast" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period6Forecast]]></fieldDescription>
+	</field>
+	<field name="period6OnOrder" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period6OnOrder]]></fieldDescription>
+	</field>
+	<field name="period6Adjustment" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@period6Adjustment]]></fieldDescription>
+	</field>
+	<group name="CustomerGroup" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{customerId}]]></groupExpression>
+		<groupHeader>
+			<band height="43">
+				<staticText>
+					<reportElement x="453" y="17" width="77" height="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Stock]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="22" y="17" width="43" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Customer:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="257" y="31" width="38" height="12" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sold ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="22" y="31" width="38" height="12"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Item]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="173" y="31" width="43" height="12"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Config]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="65" y="17" width="51" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerId}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="116" y="17" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerName}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" mode="Opaque" x="217" y="17" width="78" height="14" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{period1Description}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="336" y="31" width="38" height="12"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sold]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="217" y="31" width="39" height="12" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Forecast ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="297" y="31" width="38" height="12"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Forecast ]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="297" y="17" width="77" height="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{period2Description}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="569" y="31" width="58" height="12" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sold/On Order ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="414" y="31" width="39" height="12" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sold]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="375" y="31" width="38" height="12" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Forecast ]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" mode="Opaque" x="375" y="17" width="78" height="14" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{period3Description}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="530" y="31" width="38" height="12" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Forecast ]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" mode="Opaque" x="531" y="17" width="96" height="14" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{period4Description}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="745" y="31" width="39" height="12" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[On Order ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="667" y="31" width="38" height="12"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[On Order ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="628" y="31" width="38" height="12"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Forecast ]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="628" y="17" width="77" height="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{period5Description}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="706" y="31" width="38" height="12" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Forecast ]]></text>
+				</staticText>
+				<line>
+					<reportElement positionType="Float" x="20" y="31" width="764" height="1"/>
+				</line>
+				<textField>
+					<reportElement positionType="Float" mode="Opaque" x="706" y="17" width="78" height="14" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{period6Description}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement positionType="Float" x="216" y="17" width="1" height="26"/>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="453" y="17" width="1" height="26"/>
+					<graphicElement>
+						<pen lineWidth="2.0"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="491" y="31" width="1" height="12"/>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="374" y="17" width="1" height="26"/>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="529" y="17" width="1" height="26"/>
+					<graphicElement>
+						<pen lineWidth="2.0"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="744" y="32" width="1" height="11"/>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="705" y="17" width="1" height="26"/>
+				</line>
+				<line>
+					<reportElement x="-63" y="10" width="1" height="12"/>
+				</line>
+				<line>
+					<reportElement x="-244" y="-3" width="1" height="25"/>
+				</line>
+				<line>
+					<reportElement x="-99" y="10" width="1" height="12"/>
+				</line>
+				<line>
+					<reportElement x="-208" y="10" width="1" height="12"/>
+				</line>
+				<line>
+					<reportElement x="-136" y="-3" width="1" height="25"/>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="170" y="32" width="1" height="11"/>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="627" y="17" width="1" height="26"/>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="568" y="31" width="1" height="12"/>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="413" y="31" width="1" height="12"/>
+				</line>
+				<staticText>
+					<reportElement positionType="Float" x="453" y="31" width="38" height="12"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[On Hand ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="492" y="31" width="37" height="12"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[WIP ]]></text>
+				</staticText>
+				<line>
+					<reportElement positionType="Float" x="335" y="31" width="1" height="12"/>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="295" y="17" width="1" height="26"/>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="256" y="31" width="1" height="12"/>
+				</line>
+				<line>
+					<reportElement positionType="Float" x="666" y="32" width="1" height="11"/>
+				</line>
+				<rectangle>
+					<reportElement positionType="Float" mode="Transparent" x="20" y="17" width="764" height="26"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="8"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="29" splitType="Stretch">
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="20" y="28" width="766" height="1"/>
+			</line>
+			<textField hyperlinkType="Reference">
+				<reportElement x="393" y="1" width="392" height="27"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<line>
+				<reportElement key="line" x="20" y="1" width="766" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="20" y="0" width="373" height="28"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forecast Performance]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="530" y="1" width="97" height="18" backcolor="#E6E6E6"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="530" y="0" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period4Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period4Forecast}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Transparent" x="22" y="0" width="71" height="10" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemReference}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Transparent" x="173" y="0" width="43" height="10" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Transparent" x="22" y="9" width="148" height="10" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemDescription}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="297" y="0" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period2Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period2Forecast}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="336" y="0" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period2Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period2Sold}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="569" y="0" width="58" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period4Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period4SoldOnOrder}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="628" y="0" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period5Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period5Forecast}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="667" y="0" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period5Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period5OnOrder}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="568" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="491" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="170" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="666" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="705" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="216" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="453" y="0" width="1" height="19"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="627" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="374" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="335" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="295" y="0" width="1" height="19"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="217" y="0" width="78" height="19" backcolor="#E6E6E6"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="376" y="0" width="76" height="19" backcolor="#E6E6E6"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="706" y="0" width="79" height="19" backcolor="#E6E6E6"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="706" y="9" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period6Adjustment}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="706" y="0" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period6Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period6Forecast}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="414" y="0" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period3Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period3Sold}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="375" y="0" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period3Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period3Forecast}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="257" y="0" width="38" height="19" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period1Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period1Sold}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="217" y="0" width="39" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period1Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period1Forecast}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="256" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="413" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="744" y="0" width="1" height="19"/>
+			</line>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="745" y="0" width="39" height="19" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period6Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period6OnOrder}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="453" y="0" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period4Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{onHand}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="492" y="0" width="37" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period4Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{workInProgress}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement positionType="Float" mode="Transparent" x="217" y="9" width="39" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period1Description} != null && $F{period1Forecast}.compareTo(BigDecimal.ZERO) != 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{period1Error} + "%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement positionType="Float" mode="Transparent" x="297" y="9" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period2Description} != null && $F{period2Forecast}.compareTo(BigDecimal.ZERO) != 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{period2Error} + "%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement positionType="Float" mode="Transparent" x="375" y="9" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period3Description} != null && $F{period3Forecast}.compareTo(BigDecimal.ZERO) != 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{period3Error} + "%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement positionType="Float" mode="Transparent" x="531" y="9" width="37" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period4Description} != null && $F{period4Forecast}.compareTo(BigDecimal.ZERO) != 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{period4Error} + "%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement positionType="Float" mode="Transparent" x="628" y="9" width="38" height="10" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[new Boolean($F{period5Description} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{period5Adjustment}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="529" y="0" width="1" height="19"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement positionType="Float" mode="Transparent" x="20" y="0" width="764" height="19"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="20" y="3" width="765" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="20" y="3" width="126" height="14"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD
+
+
+                ]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="758" y="4" width="25" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="600" y="4" width="156" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line" x="20" y="2" width="765" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

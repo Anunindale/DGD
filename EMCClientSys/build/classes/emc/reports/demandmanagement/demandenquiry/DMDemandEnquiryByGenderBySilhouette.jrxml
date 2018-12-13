@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true">
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="toDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fromDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<field name="column1Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@column1Heading]]></fieldDescription>
+	</field>
+	<field name="column2Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@column2Heading]]></fieldDescription>
+	</field>
+	<field name="column3Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@column3Heading]]></fieldDescription>
+	</field>
+	<field name="column4Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@column4Heading]]></fieldDescription>
+	</field>
+	<field name="column5Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@column5Heading]]></fieldDescription>
+	</field>
+	<field name="column6Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@column6Heading]]></fieldDescription>
+	</field>
+	<field name="column7Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@column7Heading]]></fieldDescription>
+	</field>
+	<field name="column8Heading" class="java.lang.String">
+		<fieldDescription><![CDATA[@column8Heading]]></fieldDescription>
+	</field>
+	<field name="gender" class="java.lang.String">
+		<fieldDescription><![CDATA[@gender]]></fieldDescription>
+	</field>
+	<field name="silhouette" class="java.lang.String">
+		<fieldDescription><![CDATA[@silhouette]]></fieldDescription>
+	</field>
+	<field name="type" class="java.lang.String">
+		<fieldDescription><![CDATA[@type]]></fieldDescription>
+	</field>
+	<field name="column1Quantity" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column1Quantity]]></fieldDescription>
+	</field>
+	<field name="column1Perscentage" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column1Perscentage]]></fieldDescription>
+	</field>
+	<field name="column2Quantity" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column2Quantity]]></fieldDescription>
+	</field>
+	<field name="column2Perscentage" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column2Perscentage]]></fieldDescription>
+	</field>
+	<field name="column3Quantity" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column3Quantity]]></fieldDescription>
+	</field>
+	<field name="column3Perscentage" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column3Perscentage]]></fieldDescription>
+	</field>
+	<field name="column4Quantity" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column4Quantity]]></fieldDescription>
+	</field>
+	<field name="column4Perscentage" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column4Perscentage]]></fieldDescription>
+	</field>
+	<field name="column5Quantity" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column5Quantity]]></fieldDescription>
+	</field>
+	<field name="column5Perscentage" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column5Perscentage]]></fieldDescription>
+	</field>
+	<field name="column6Quantity" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column6Quantity]]></fieldDescription>
+	</field>
+	<field name="column6Perscentage" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column6Perscentage]]></fieldDescription>
+	</field>
+	<field name="column7Quantity" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column7Quantity]]></fieldDescription>
+	</field>
+	<field name="column7Perscentage" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column7Perscentage]]></fieldDescription>
+	</field>
+	<field name="column8Quantity" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column8Quantity]]></fieldDescription>
+	</field>
+	<field name="column8Perscentage" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@column8Perscentage]]></fieldDescription>
+	</field>
+	<field name="totalSales" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@totalSales]]></fieldDescription>
+	</field>
+	<field name="grandTotalSales" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@grandTotalSales]]></fieldDescription>
+	</field>
+	<field name="reportOn" class="java.lang.String">
+		<fieldDescription><![CDATA[@reportOn]]></fieldDescription>
+	</field>
+	<variable name="column1ForecastTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column1ForecastTotal}.add($F{type}.equals("Forecast") ? $F{column1Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column1SoldTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column1SoldTotal}.add($F{type}.equals("Sold") ? $F{column1Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column1TotalPerscentage" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column1ForecastTotal}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{column1SoldTotal}.divide($V{column1ForecastTotal}, new MathContext(4, RoundingMode.HALF_UP)).multiply(new BigDecimal(100))]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column2ForecastTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column2ForecastTotal}.add($F{type}.equals("Forecast") ? $F{column2Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column2SoldTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column2SoldTotal}.add($F{type}.equals("Sold") ? $F{column2Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column2TotalPerscentage" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column2ForecastTotal}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{column2SoldTotal}.divide($V{column2ForecastTotal}, new MathContext(4, RoundingMode.HALF_UP)).multiply(new BigDecimal(100))]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column3ForecastTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column3ForecastTotal}.add($F{type}.equals("Forecast") ? $F{column3Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column3SoldTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column3SoldTotal}.add($F{type}.equals("Sold") ? $F{column3Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column3TotalPerscentage" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column3ForecastTotal}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{column3SoldTotal}.divide($V{column3ForecastTotal}, new MathContext(4, RoundingMode.HALF_UP)).multiply(new BigDecimal(100))]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column4ForecastTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column4ForecastTotal}.add($F{type}.equals("Forecast") ? $F{column4Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column4SoldTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column4SoldTotal}.add($F{type}.equals("Sold") ? $F{column4Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column4TotalPerscentage" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column4ForecastTotal}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{column4SoldTotal}.divide($V{column4ForecastTotal}, new MathContext(4, RoundingMode.HALF_UP)).multiply(new BigDecimal(100))]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column5ForecastTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column5ForecastTotal}.add($F{type}.equals("Forecast") ? $F{column5Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column5SoldTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column5SoldTotal}.add($F{type}.equals("Sold") ? $F{column5Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column5TotalPerscentage" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column5ForecastTotal}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{column5SoldTotal}.divide($V{column5ForecastTotal}, new MathContext(4, RoundingMode.HALF_UP)).multiply(new BigDecimal(100))]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column6ForecastTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column6ForecastTotal}.add($F{type}.equals("Forecast") ? $F{column6Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column6SoldTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column6SoldTotal}.add($F{type}.equals("Sold") ? $F{column6Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column6TotalPerscentage" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column6ForecastTotal}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{column6SoldTotal}.divide($V{column6ForecastTotal}, new MathContext(4, RoundingMode.HALF_UP)).multiply(new BigDecimal(100))]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column7ForecastTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column7ForecastTotal}.add($F{type}.equals("Forecast") ? $F{column7Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column7SoldTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column7SoldTotal}.add($F{type}.equals("Sold") ? $F{column7Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column7TotalPerscentage" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column7ForecastTotal}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{column7SoldTotal}.divide($V{column7ForecastTotal}, new MathContext(4, RoundingMode.HALF_UP)).multiply(new BigDecimal(100))]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column8ForecastTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column8ForecastTotal}.add($F{type}.equals("Forecast") ? $F{column8Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column8SoldTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column8SoldTotal}.add($F{type}.equals("Sold") ? $F{column8Quantity} : BigDecimal.ZERO )]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="column8TotalPerscentage" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{column8ForecastTotal}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{column8SoldTotal}.divide($V{column8ForecastTotal}, new MathContext(4, RoundingMode.HALF_UP)).multiply(new BigDecimal(100))]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalOfSales" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{grandTotalSales}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $F{totalSales}.divide($F{grandTotalSales}, new MathContext(4, RoundingMode.HALF_UP)).multiply(new BigDecimal(100))]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<group name="TotalGroup" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$P{companyName}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement x="551" y="15" width="36" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column5Heading} != null && !$F{column5Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[%]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="41" y="15" width="55" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Silhouette]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="96" y="15" width="46" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Type]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="765" y="1" width="36" height="30"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[% Of Total]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="195" y="15" width="36" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column1Heading} != null && !$F{column1Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[%]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="409" y="15" width="53" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column4Heading} != null && !$F{column4Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{column4Heading}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="462" y="15" width="36" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column4Heading} != null && !$F{column4Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[%]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="320" y="15" width="53" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column3Heading} != null && !$F{column3Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{column3Heading}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="373" y="15" width="36" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column3Heading} != null && !$F{column3Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[%]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="142" y="15" width="53" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column1Heading} != null && !$F{column1Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{column1Heading}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="498" y="15" width="53" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column5Heading} != null && !$F{column5Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{column5Heading}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="231" y="15" width="53" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column2Heading} != null && !$F{column2Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{column2Heading}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="729" y="15" width="36" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column7Heading} != null && !$F{column7Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[%]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="15" width="40" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Gender]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="640" y="15" width="36" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column6Heading} != null && !$F{column6Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[%]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="587" y="15" width="53" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column6Heading} != null && !$F{column6Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{column6Heading}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="284" y="15" width="36" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column2Heading} != null && !$F{column2Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[%]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="676" y="15" width="53" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{column7Heading} != null && !$F{column7Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{column7Heading}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="31" width="802" height="1"/>
+				</line>
+				<textField>
+					<reportElement x="1" y="1" width="123" height="14"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{reportOn}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="31">
+				<staticText>
+					<reportElement x="56" y="2" width="40" height="14"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<textField pattern="###0.00">
+					<reportElement x="462" y="2" width="36" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column4Heading} != null && !$F{column4Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column4TotalPerscentage}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="676" y="2" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column7Heading} != null && !$F{column7Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column7ForecastTotal}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="1" width="802" height="1"/>
+				</line>
+				<textField pattern="###0.00">
+					<reportElement x="729" y="2" width="36" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column7Heading} != null && !$F{column7Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column7TotalPerscentage}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement x="640" y="2" width="36" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column6Heading} != null && !$F{column6Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column6TotalPerscentage}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="96" y="2" width="46" height="14"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Forecast]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="676" y="16" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column7Heading} != null && !$F{column7Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column7SoldTotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="142" y="2" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column1Heading} != null && !$F{column1Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column1ForecastTotal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement x="373" y="2" width="36" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column3Heading} != null && !$F{column3Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column3TotalPerscentage}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="498" y="2" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column5Heading} != null && !$F{column5Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column5ForecastTotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="587" y="16" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column6Heading} != null && !$F{column6Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column6SoldTotal}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="96" y="16" width="46" height="14"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sold]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="498" y="16" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column5Heading} != null && !$F{column5Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column5SoldTotal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement x="195" y="2" width="36" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column1Heading} != null && !$F{column1Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column1TotalPerscentage}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement x="284" y="2" width="36" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column2Heading} != null && !$F{column2Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column2TotalPerscentage}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="587" y="2" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column6Heading} != null && !$F{column6Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column6ForecastTotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="320" y="2" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column3Heading} != null && !$F{column3Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column3ForecastTotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="409" y="2" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column4Heading} != null && !$F{column4Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column4ForecastTotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="231" y="2" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column2Heading} != null && !$F{column2Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column2ForecastTotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="231" y="16" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column2Heading} != null && !$F{column2Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column2SoldTotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="320" y="16" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column3Heading} != null && !$F{column3Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column3SoldTotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="142" y="16" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column1Heading} != null && !$F{column1Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column1SoldTotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="409" y="16" width="53" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column4Heading} != null && !$F{column4Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column4SoldTotal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement x="551" y="2" width="36" height="14">
+						<printWhenExpression><![CDATA[new Boolean($F{column5Heading} != null && !$F{column5Heading}.equals(""))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{column5TotalPerscentage}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="SilhouetteGroup" minHeightToStartNewPage="70">
+		<groupExpression><![CDATA[$F{silhouette}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="27" splitType="Stretch">
+			<line>
+				<reportElement key="line" x="0" y="1" width="802" height="1"/>
+			</line>
+			<line>
+				<reportElement key="line" x="0" y="25" width="802" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="2" width="390" height="23"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forecast vs Sales By Gender By Product Group]]></text>
+			</staticText>
+			<textField hyperlinkType="Reference">
+				<reportElement x="400" y="2" width="392" height="24"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="2" width="40" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{gender}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="2" width="46" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{type}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="2" width="53" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column1Heading} != null && !$F{column1Heading}.equals(""))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column1Quantity}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="195" y="2" width="36" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column1Heading} != null && !$F{column1Heading}.equals("") && $F{type}.equalsIgnoreCase("Sold"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column1Perscentage}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="284" y="2" width="36" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column2Heading} != null && !$F{column2Heading}.equals("") && $F{type}.equals("Sold"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column2Perscentage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="231" y="2" width="53" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column2Heading} != null && !$F{column2Heading}.equals(""))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column2Quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="409" y="2" width="53" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column4Heading} != null && !$F{column4Heading}.equals(""))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column4Quantity}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="373" y="2" width="36" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column3Heading} != null && !$F{column3Heading}.equals("") && $F{type}.equals("Sold"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column3Perscentage}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="462" y="2" width="36" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column4Heading} != null && !$F{column4Heading}.equals("") && $F{type}.equals("Sold"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column4Perscentage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="2" width="53" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column3Heading} != null && !$F{column3Heading}.equals(""))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column3Quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="587" y="2" width="53" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column6Heading} != null && !$F{column6Heading}.equals(""))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column6Quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="676" y="2" width="53" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column7Heading} != null && !$F{column7Heading}.equals(""))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column7Quantity}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="551" y="2" width="36" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column5Heading} != null && !$F{column5Heading}.equals("") && $F{type}.equals("Sold"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column5Perscentage}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="640" y="2" width="36" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column6Heading} != null && !$F{column6Heading}.equals("") && $F{type}.equals("Sold"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column6Perscentage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="498" y="2" width="53" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column5Heading} != null && !$F{column5Heading}.equals(""))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column5Quantity}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="729" y="2" width="36" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{column7Heading} != null && !$F{column7Heading}.equals("") && $F{type}.equals("Sold"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{column7Perscentage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="41" y="2" width="55" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{silhouette}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="765" y="2" width="36" height="14">
+					<printWhenExpression><![CDATA[new Boolean($F{type}.equals("Sold"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalOfSales}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() >= $P{numRows}.intValue())]]></printWhenExpression>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="17" splitType="Stretch">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="756" y="3" width="36" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="10" y="2" width="782" height="1"/>
+			</line>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="10" y="2" width="782" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="10" y="2" width="197" height="14"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="622" y="3" width="134" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

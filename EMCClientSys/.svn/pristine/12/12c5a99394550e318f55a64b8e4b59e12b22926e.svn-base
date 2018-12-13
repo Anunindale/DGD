@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Picking List" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.3310000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="companyName" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<field name="pickingListNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@pickingListNo]]></fieldDescription>
+	</field>
+	<field name="orderNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@orderNo]]></fieldDescription>
+	</field>
+	<field name="customerId" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerId]]></fieldDescription>
+	</field>
+	<field name="deliveryTems" class="java.lang.String">
+		<fieldDescription><![CDATA[@deliveryTems]]></fieldDescription>
+	</field>
+	<field name="deliveryMode" class="java.lang.String">
+		<fieldDescription><![CDATA[@deliveryMode]]></fieldDescription>
+	</field>
+	<field name="pickingDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@pickingDate]]></fieldDescription>
+	</field>
+	<field name="itemReference" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemReference]]></fieldDescription>
+	</field>
+	<field name="itemDesc" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemDesc]]></fieldDescription>
+	</field>
+	<field name="dimension1" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension1]]></fieldDescription>
+	</field>
+	<field name="dimension2" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2]]></fieldDescription>
+	</field>
+	<field name="dimension3" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension3]]></fieldDescription>
+	</field>
+	<field name="qtyToPick" class="java.lang.Double">
+		<fieldDescription><![CDATA[@qtyToPick]]></fieldDescription>
+	</field>
+	<field name="locationId" class="java.lang.String">
+		<fieldDescription><![CDATA[@locationId]]></fieldDescription>
+	</field>
+	<field name="pallet" class="java.lang.String">
+		<fieldDescription><![CDATA[@pallet]]></fieldDescription>
+	</field>
+	<field name="UoM" class="java.lang.String">
+		<fieldDescription><![CDATA[@UoM]]></fieldDescription>
+	</field>
+	<field name="orderType" class="java.lang.String">
+		<fieldDescription><![CDATA[@orderType]]></fieldDescription>
+	</field>
+	<field name="batch" class="java.lang.String">
+		<fieldDescription><![CDATA[@batch]]></fieldDescription>
+	</field>
+	<field name="serialNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@serialNo]]></fieldDescription>
+	</field>
+	<field name="colourDesc" class="java.lang.String">
+		<fieldDescription><![CDATA[@colourDesc]]></fieldDescription>
+	</field>
+	<field name="cut" class="java.lang.String">
+		<fieldDescription><![CDATA[@cut]]></fieldDescription>
+	</field>
+	<field name="width" class="java.lang.Double">
+		<fieldDescription><![CDATA[@width]]></fieldDescription>
+	</field>
+	<field name="additionalValue" class="java.lang.String">
+		<fieldDescription><![CDATA[@additionalValue]]></fieldDescription>
+	</field>
+	<field name="pickType" class="java.lang.String">
+		<fieldDescription><![CDATA[@pickType]]></fieldDescription>
+	</field>
+	<field name="comments" class="java.lang.String">
+		<fieldDescription><![CDATA[@comments]]></fieldDescription>
+	</field>
+	<field name="widthRefTitle" class="java.lang.String">
+		<fieldDescription><![CDATA[@widthRefTitle]]></fieldDescription>
+	</field>
+	<field name="subGroupId" class="java.lang.String">
+		<fieldDescription><![CDATA[@subGroupId]]></fieldDescription>
+	</field>
+	<variable name="totalUnits" class="java.lang.Double" resetType="Group" resetGroup="pickingListSubGroup">
+		<variableExpression><![CDATA[new Double($F{qtyToPick}.doubleValue() + $V{totalUnits}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<group name="pickingListSubGroup" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{pickingListNo}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<staticText>
+					<reportElement x="18" y="0" width="381" height="26"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="18" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Consolidated Picking List]]></text>
+				</staticText>
+				<line>
+					<reportElement key="line" x="0" y="3" width="802" height="1"/>
+				</line>
+				<textField hyperlinkType="Reference">
+					<reportElement x="399" y="0" width="390" height="25"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="18" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+					<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+					<hyperlinkParameter name="url">
+						<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+					</hyperlinkParameter>
+				</textField>
+				<line>
+					<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="25" width="802" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="21">
+				<staticText>
+					<reportElement x="508" y="1" width="99" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Units:]]></text>
+				</staticText>
+				<textField pattern="###0.00;-###0.00">
+					<reportElement x="622" y="1" width="61" height="16">
+						<printWhenExpression><![CDATA[new Boolean($F{qtyToPick}.doubleValue() != 0)]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalUnits}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="subGroup" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{subGroupId}]]></groupExpression>
+		<groupHeader>
+			<band height="63">
+				<staticText>
+					<reportElement x="685" y="45" width="65" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Qty Picked]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="280" y="1" width="100" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pickingDate}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="45" width="71" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Item]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="587" y="45" width="34" height="15"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{widthRefTitle}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="239" y="45" width="59" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Colour]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="118" y="18" width="671" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{comments}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="330" y="45" width="26" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Size]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="622" y="45" width="61" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Qty]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="357" y="45" width="99" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Batch]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="180" y="1" width="100" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Picking Date:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="457" y="45" width="69" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Serial No]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="18" y="18" width="100" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Comments]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="183" y="45" width="55" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Config]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="72" y="45" width="110" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="777" y="45" width="23" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[C]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="752" y="45" width="23" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[UoM]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="18" y="1" width="100" height="15"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pickingListNo}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="61" width="802" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="528" y="45" width="57" height="16"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Location]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="71" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemReference}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="357" y="1" width="99" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{batch}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="777" y="1" width="23" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cut}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="528" y="1" width="57" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{locationId}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="622" y="1" width="61" height="13">
+					<printWhenExpression><![CDATA[new Boolean($F{qtyToPick}.doubleValue() != 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{qtyToPick}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="685" y="1" width="65" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pickType}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement x="587" y="1" width="34" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{width}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="1" width="26" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="752" y="1" width="23" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{UoM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="72" y="1" width="110" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemDesc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="457" y="1" width="69" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{serialNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="1" width="55" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="1" width="59" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension3}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="685" y="1" width="65" height="24"/>
+			</rectangle>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="239" y="15" width="217" height="13">
+					<printWhenExpression><![CDATA[new Boolean($F{dimension3} != null && !$F{dimension3}.equals(""))]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{colourDesc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="4" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText" x="18" y="2" width="186" height="19"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="18" y="2" width="761" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="585" y="2" width="142" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="18" y="1" width="761" height="1"/>
+			</line>
+			<textField evaluationTime="Group" evaluationGroup="pickingListSubGroup" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="727" y="2" width="52" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

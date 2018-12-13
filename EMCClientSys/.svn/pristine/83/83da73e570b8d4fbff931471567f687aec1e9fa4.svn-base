@@ -1,0 +1,80 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.forms.trec.display.treccards.resources;
+
+import emc.app.components.dialogs.EMCDialogFactory;
+import emc.app.components.emctable.emcDataRelationManagerUpdate;
+import emc.app.components.emctable.emcGenericDataSourceUpdate;
+import emc.app.wsmanager.EMCWSManager;
+import emc.commands.EMCCommands;
+import emc.entity.trec.TRECTrecCardsMaster;
+import emc.enums.modules.enumEMCModules;
+import emc.framework.EMCCommandClass;
+import emc.framework.EMCUserData;
+import emc.functions.Functions;
+import emc.methods.trec.ServerTRECMethods;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author wikus
+ */
+public class TRECMasterDRM extends emcDataRelationManagerUpdate {
+
+    private boolean updateEmergencyNumber = false;
+    private boolean updatePreparedBy = false;
+
+    public TRECMasterDRM(emcGenericDataSourceUpdate tableDataSource, EMCUserData userData) {
+        super(tableDataSource, userData);
+    }
+
+    @Override
+    public void setFieldValueAt(int rowIndex, String columnIndex, Object aValue) {
+        if (!Functions.checkBlank(aValue)) {
+            if (columnIndex.equals("emergencyNumber")) {
+                TRECTrecCardsMaster master = (TRECTrecCardsMaster) getRowCache(rowIndex);
+                if (!Functions.checkBlank(master.getEmergencyNumber())) {
+                    if (!master.getEmergencyNumber().equals(aValue)) {
+                        if (EMCDialogFactory.createQuestionDialog(getTheForm(), "Update Lines?", "Do you want to update the lines emergency number field?") == JOptionPane.YES_OPTION) {
+                            updateEmergencyNumber = true;
+                        }
+                    }
+                }
+            } else if (columnIndex.equals("trecCompanyName")) {
+                TRECTrecCardsMaster master = (TRECTrecCardsMaster) getRowCache(rowIndex);
+                if (!Functions.checkBlank(master.getTrecCompanyName())) {
+                    if (!master.getTrecCompanyName().equals(aValue)) {
+                        if (EMCDialogFactory.createQuestionDialog(getTheForm(), "Update Lines?", "Do you want to update the lines prepared by field?") == JOptionPane.YES_OPTION) {
+                            updatePreparedBy = true;
+                        }
+                    }
+                }
+            }
+        }
+        super.setFieldValueAt(rowIndex, columnIndex, aValue);
+    }
+
+    @Override
+    public void updatePersist(int rowIndex) {
+        super.updatePersist(rowIndex);
+        if (getLastUpdateStatus() && (updateEmergencyNumber || updatePreparedBy)) {
+            TRECTrecCardsMaster master = (TRECTrecCardsMaster) getRowCache(rowIndex);
+            EMCCommandClass cmd = new EMCCommandClass(EMCCommands.SERVER_GENERAL_COMMAND.getId(), enumEMCModules.TREC.getId(), ServerTRECMethods.UPDATE_LINE_FIELDS.toString());
+            List toSend = new ArrayList();
+            toSend.add(getLastFieldValueAt("masterId"));
+            toSend.add(updateEmergencyNumber ? master.getEmergencyNumber() : "");
+            toSend.add(updatePreparedBy ? master.getTrecCompanyName() : "");
+            EMCWSManager.executeGenericWS(cmd, toSend, getUserData());
+            getLinesTable().refreshData();
+            Logger.getLogger("emc").log(Level.INFO, "Lines Updated.", getUserData());
+            updateEmergencyNumber = false;
+            updatePreparedBy = false;
+        }
+    }
+}

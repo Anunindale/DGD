@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="toDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fromDate" class="java.lang.String" isForPrompting="false"/>
+	<field name="salesOrder" class="java.lang.String">
+		<fieldDescription><![CDATA[@salesOrder]]></fieldDescription>
+	</field>
+	<field name="customerId" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerId]]></fieldDescription>
+	</field>
+	<field name="customerName" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerName]]></fieldDescription>
+	</field>
+	<field name="itemId" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemId]]></fieldDescription>
+	</field>
+	<field name="itemDescription" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemDescription]]></fieldDescription>
+	</field>
+	<field name="dimension1" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension1]]></fieldDescription>
+	</field>
+	<field name="dimension2" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2]]></fieldDescription>
+	</field>
+	<field name="dimension3" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension3]]></fieldDescription>
+	</field>
+	<field name="quantity" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@quantity]]></fieldDescription>
+	</field>
+	<field name="groupByField" class="java.lang.String">
+		<fieldDescription><![CDATA[@groupByField]]></fieldDescription>
+	</field>
+	<field name="customerInvoiceAddress4" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerInvoiceAddress4]]></fieldDescription>
+	</field>
+	<field name="companyPostalAddressCode" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPostalAddressCode]]></fieldDescription>
+	</field>
+	<field name="companyPhysicalAddress4" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPhysicalAddress4]]></fieldDescription>
+	</field>
+	<field name="companyPostalAddress1" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPostalAddress1]]></fieldDescription>
+	</field>
+	<field name="customerVATNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerVATNo]]></fieldDescription>
+	</field>
+	<field name="salesOrderNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@salesOrderNo]]></fieldDescription>
+	</field>
+	<field name="customerDeliveryAddress3" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerDeliveryAddress3]]></fieldDescription>
+	</field>
+	<field name="companyPostalAddress4" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPostalAddress4]]></fieldDescription>
+	</field>
+	<field name="companyPhysicalAddress5" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPhysicalAddress5]]></fieldDescription>
+	</field>
+	<field name="customerInvoiceAddress5" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerInvoiceAddress5]]></fieldDescription>
+	</field>
+	<field name="deliveryDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@deliveryDate]]></fieldDescription>
+	</field>
+	<field name="companyPhysicalAddressCode" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPhysicalAddressCode]]></fieldDescription>
+	</field>
+	<field name="companyPhysicalAddress2" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPhysicalAddress2]]></fieldDescription>
+	</field>
+	<field name="companyPostalAddress5" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPostalAddress5]]></fieldDescription>
+	</field>
+	<field name="customerInvoiceAddressCode" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerInvoiceAddressCode]]></fieldDescription>
+	</field>
+	<field name="companyPhysicalAddress3" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPhysicalAddress3]]></fieldDescription>
+	</field>
+	<field name="companyRegistration" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyRegistration]]></fieldDescription>
+	</field>
+	<field name="companyPhone" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPhone]]></fieldDescription>
+	</field>
+	<field name="reference" class="java.lang.String">
+		<fieldDescription><![CDATA[@reference]]></fieldDescription>
+	</field>
+	<field name="deliveryMethod" class="java.lang.String">
+		<fieldDescription><![CDATA[@deliveryMethod]]></fieldDescription>
+	</field>
+	<field name="customerDeliveryAddress2" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerDeliveryAddress2]]></fieldDescription>
+	</field>
+	<field name="companyFax" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyFax]]></fieldDescription>
+	</field>
+	<field name="customerDeliveryAddress1" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerDeliveryAddress1]]></fieldDescription>
+	</field>
+	<field name="companyPostalAddress2" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPostalAddress2]]></fieldDescription>
+	</field>
+	<field name="customerInvoiceAddress1" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerInvoiceAddress1]]></fieldDescription>
+	</field>
+	<field name="customerDeliveryAddress4" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerDeliveryAddress4]]></fieldDescription>
+	</field>
+	<field name="companyPostalAddress3" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPostalAddress3]]></fieldDescription>
+	</field>
+	<field name="customerDeliveryAddress5" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerDeliveryAddress5]]></fieldDescription>
+	</field>
+	<field name="customerInvoiceAddress2" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerInvoiceAddress2]]></fieldDescription>
+	</field>
+	<field name="companyPhysicalAddress1" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyPhysicalAddress1]]></fieldDescription>
+	</field>
+	<field name="customerName_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerName_1]]></fieldDescription>
+	</field>
+	<field name="customerOrderNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerOrderNo]]></fieldDescription>
+	</field>
+	<field name="customerInvoiceAddress3" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerInvoiceAddress3]]></fieldDescription>
+	</field>
+	<field name="customerDeliveryAddressCode" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerDeliveryAddressCode]]></fieldDescription>
+	</field>
+	<field name="companyVATNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyVATNumber]]></fieldDescription>
+	</field>
+	<field name="deliveryMethodDescription" class="java.lang.String">
+		<fieldDescription><![CDATA[@deliveryMethodDescription]]></fieldDescription>
+	</field>
+	<field name="salesRepName" class="java.lang.String">
+		<fieldDescription><![CDATA[@salesRepName]]></fieldDescription>
+	</field>
+	<field name="salesRep" class="java.lang.String">
+		<fieldDescription><![CDATA[@salesRep]]></fieldDescription>
+	</field>
+	<field name="dimension1Description" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension1Description]]></fieldDescription>
+	</field>
+	<field name="price" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@price]]></fieldDescription>
+	</field>
+	<field name="comments" class="java.lang.String">
+		<fieldDescription><![CDATA[@comments]]></fieldDescription>
+	</field>
+	<field name="customerNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerNumber]]></fieldDescription>
+	</field>
+	<field name="requiredDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@requiredDate]]></fieldDescription>
+	</field>
+	<field name="originalRequiredDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@originalRequiredDate]]></fieldDescription>
+	</field>
+	<variable name="totalQuantity" class="java.math.BigDecimal" resetType="Group" resetGroup="SalesOrderGroup">
+		<variableExpression><![CDATA[$V{totalQuantity}.add($F{quantity})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalPrice" class="java.math.BigDecimal" resetType="Group" resetGroup="SalesOrderGroup">
+		<variableExpression><![CDATA[$V{totalPrice}.add($F{price})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<group name="SalesOrderGroup" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{salesOrderNo}]]></groupExpression>
+		<groupHeader>
+			<band height="268">
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="394" y="31" width="107" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyPhone}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="394" y="43" width="107" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyFax}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="557" y="132" width="215" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerDeliveryAddress1}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="120" y="79" width="34" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{deliveryMethod}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="35" y="31" width="86" height="13"/>
+					<textElement/>
+					<text><![CDATA[Sales Order:
+                    ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="35" y="181" width="189" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerInvoiceAddress5}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="394" y="67" width="107" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyVATNumber}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="557" y="168" width="215" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerDeliveryAddress4}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="35" y="43" width="86" height="13"/>
+					<textElement/>
+					<text><![CDATA[Cust Order No:
+                    ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="120" y="91" width="34" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{salesRep}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="35" y="117" width="189" height="17"/>
+					<textElement textAlignment="Left">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerName_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="35" y="79" width="86" height="13"/>
+					<textElement/>
+					<text><![CDATA[Delivery Method:
+                    ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="35" y="91" width="86" height="13"/>
+					<textElement/>
+					<text><![CDATA[Sales Rep:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="120" y="67" width="154" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{reference}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="153" y="91" width="121" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{salesRepName}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="35" y="133" width="189" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerInvoiceAddress1}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="592" y="91" width="180" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyPostalAddressCode}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="35" y="67" width="86" height="13"/>
+					<textElement/>
+					<text><![CDATA[Reference:
+                    ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="557" y="192" width="215" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerDeliveryAddressCode}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="322" y="55" width="73" height="13"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Registration:
+                    ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="35" y="169" width="189" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerInvoiceAddress4}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="35" y="157" width="189" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerInvoiceAddress3}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="35" y="193" width="189" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerInvoiceAddressCode}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="592" y="55" width="180" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyPostalAddress3}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="557" y="156" width="215" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerDeliveryAddress3}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="557" y="144" width="215" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerDeliveryAddress2}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="322" y="43" width="73" height="13"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Fax:
+                    ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="557" y="180" width="215" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerDeliveryAddress5}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="153" y="79" width="121" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{deliveryMethodDescription}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="35" y="145" width="189" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerInvoiceAddress2}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="592" y="79" width="180" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyPostalAddress5}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="592" y="43" width="180" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyPostalAddress2}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="394" y="55" width="107" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyRegistration}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="322" y="31" width="73" height="13"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Phone:
+                    ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="322" y="67" width="73" height="13"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[VAT Number:
+                    ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="592" y="67" width="180" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyPostalAddress4}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="120" y="31" width="154" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{salesOrderNo}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="557" y="117" width="215" height="16"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerName}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="120" y="43" width="154" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerOrderNo}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="592" y="31" width="180" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyPostalAddress1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="35" y="253" width="70" height="14"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Item]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="244" y="253" width="78" height="14"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Config]]></text>
+				</staticText>
+				<line>
+					<reportElement x="20" y="267" width="765" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="105" y="253" width="139" height="14"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="322" y="253" width="75" height="14"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Colour]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="605" y="253" width="86" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Quantity]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="536" y="253" width="68" height="14"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Size]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="397" y="253" width="139" height="14"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="691" y="253" width="86" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Price]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="35" y="216" width="111" height="14"/>
+					<textElement verticalAlignment="Top">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Special Instructions:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="145" y="216" width="625" height="34"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{comments}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement key="line" x="0" y="1" width="802" height="1"/>
+				</line>
+				<textField hyperlinkType="Reference">
+					<reportElement x="394" y="1" width="391" height="27"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="18" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+					<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+					<hyperlinkParameter name="url">
+						<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+					</hyperlinkParameter>
+				</textField>
+				<line>
+					<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="28" width="802" height="1"/>
+				</line>
+				<textField hyperlinkType="Reference">
+					<reportElement x="3" y="2" width="391" height="27"/>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font size="18" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Sales Order - " + $F{salesOrderNo}]]></textFieldExpression>
+					<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+					<hyperlinkParameter name="url">
+						<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+					</hyperlinkParameter>
+				</textField>
+				<staticText>
+					<reportElement x="35" y="55" width="86" height="13"/>
+					<textElement/>
+					<text><![CDATA[Customer No:
+                    ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="120" y="55" width="154" height="13"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{customerNumber}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="393" y="103" width="108" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{requiredDate}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement key="textField" x="393" y="92" width="108" height="12"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{originalRequiredDate}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="322" y="103" width="72" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Ext Del. Date:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="322" y="92" width="72" height="12"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Req Del. Date:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="16">
+				<staticText>
+					<reportElement x="518" y="1" width="86" height="14"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="20" y="1" width="765" height="1"/>
+				</line>
+				<textField pattern="###0.00">
+					<reportElement x="691" y="2" width="86" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalPrice}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement x="605" y="2" width="86" height="13"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalQuantity}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="105" y="2" width="139" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemDescription}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="35" y="2" width="70" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="322" y="2" width="75" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="2" width="78" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="605" y="2" width="86" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="536" y="2" width="68" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="397" y="2" width="139" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension1Description}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="691" y="2" width="86" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{price}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean($V{PAGE_NUMBER} == $V{PAGE_COUNT})]]></printWhenExpression>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="20" y="3" width="765" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="20" y="3" width="126" height="14"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD
+
+                ]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="594" y="4" width="156" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line" x="20" y="2" width="765" height="1"/>
+			</line>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="749" y="4" width="36" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

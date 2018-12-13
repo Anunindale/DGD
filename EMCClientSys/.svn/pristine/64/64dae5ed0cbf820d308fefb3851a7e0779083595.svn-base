@@ -1,0 +1,492 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGBUS (0x7) at pc=0x00007f71cba382ff, pid=4061, tid=140123910928128
+#
+# JRE version: 6.0_16-b01
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (14.2-b01 mixed mode linux-amd64 )
+# Problematic frame:
+# C  [libc.so.6+0x14d2ff]
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f711c151000):  JavaThread "SwingWorker-pool-1-thread-1" [_thread_in_native, id=4085, stack(0x00007f7123df7000,0x00007f7123ef8000)]
+
+siginfo:si_signo=SIGBUS: si_errno=0, si_code=2 (BUS_ADRERR), si_addr=0x00007f71c8620000
+
+Registers:
+RAX=0x00007f711803b160, RBX=0x0000000000006f63, RCX=0x0000000000008000, RDX=0x0000000000003fd3
+RSP=0x00007f7123ef4708, RBP=0x00007f71c861311f, RSI=0x00007f71c861ffae, RDI=0x00007f711803dff0
+R8 =0x00007f711803b160, R9 =0x00007f71cba382e0, R10=0x00007f71cb79e828, R11=0x00007f71cba6d350
+R12=0x00007f7118000de0, R13=0x0000000000007061, R14=0x0000000000002f70, R15=0x0000000000006f63
+RIP=0x00007f71cba382ff, EFL=0x0000000000010202, CSGSFS=0x003c000000000033, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f7123ef4708)
+0x00007f7123ef4708:   00007f71c9c471d5 00007f7123ef4730
+0x00007f7123ef4718:   00007f71c4280590 00007f71c427fc90
+0x00007f7123ef4728:   0000000000000000 0000000052ac364c
+0x00007f7123ef4738:   00007f7123ef47a0 0000000000000031
+0x00007f7123ef4748:   00007f71c9c4739d 00007f711c151000
+0x00007f7123ef4758:   00007f7123ef47a0 00007f711c1511b8
+0x00007f7123ef4768:   0000000000000031 00007f7123ef4bf8
+0x00007f7123ef4778:   0000000000000031 0000000000000001
+0x00007f7123ef4788:   00007f71c9c3f837 00007f7123ef47a0
+0x00007f7123ef4798:   00007f71c427fc90 2f7070612f636d65
+0x00007f7123ef47a8:   6e656e6f706d6f63 6f6c6169642f7374
+0x00007f7123ef47b8:   6944434d452f7367 74636146676f6c61
+0x00007f7123ef47c8:   73616c632e79726f 77702f6e6f000073
+0x00007f7123ef47d8:   70756f726779626f 00007f711c0d0430
+0x00007f7123ef47e8:   00007f714019c8a0 00007f714019c8b0
+0x00007f7123ef47f8:   00007f714019cc88 00007f7123ef4830
+0x00007f7123ef4808:   00007f7123ef4850 00007f71400f8218
+0x00007f7123ef4818:   00007f7161e308e0 00007f7123ef4850
+0x00007f7123ef4828:   00007f71400f8218 00007f7123ef4880
+0x00007f7123ef4838:   00007f71cb28695a 702f7374726f7065
+0x00007f7123ef4848:   00007f711c151000 00007f711c151000
+0x00007f7123ef4858:   0000000000000000 6e6f697400000000
+0x00007f7123ef4868:   0000000000000000 00007f711c151000
+0x00007f7123ef4878:   00007f71afb42740 00007f7123ef48d0
+0x00007f7123ef4888:   00007f71cb2e7b68 00007f7123ef48c0
+0x00007f7123ef4898:   00007f71400f8218 00007f711c151000
+0x00007f7123ef48a8:   00007f71cb794630 00007f711c151000
+0x00007f7123ef48b8:   00007f7123ef4bc0 00007f7123ef4968
+0x00007f7123ef48c8:   00007f711c151000 00007f71afb42740
+0x00007f7123ef48d8:   00007f71ca6ac419 0000000000000000
+0x00007f7123ef48e8:   00007f71c1011d84 00007f7123ef4a70
+0x00007f7123ef48f8:   00007f71cb3e0f2f 0000000000000000 
+
+Instructions: (pc=0x00007f71cba382ff)
+0x00007f71cba382ef:   0f 28 5e 12 0f 28 66 22 0f 28 6e 32 0f 28 76 42
+0x00007f71cba382ff:   0f 28 7e 52 44 0f 28 46 62 44 0f 28 4e 72 48 8d 
+
+Stack: [0x00007f7123df7000,0x00007f7123ef8000],  sp=0x00007f7123ef4708,  free space=1013k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libc.so.6+0x14d2ff]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J  java.util.zip.ZipFile.getEntry(JLjava/lang/String;Z)J
+J  sun.misc.URLClassPath$JarLoader.getResource(Ljava/lang/String;Z)Lsun/misc/Resource;
+J  sun.misc.URLClassPath.getResource(Ljava/lang/String;Z)Lsun/misc/Resource;
+j  java.net.URLClassLoader$1.run()Ljava/lang/Object;+26
+v  ~StubRoutines::call_stub
+j  java.security.AccessController.doPrivileged(Ljava/security/PrivilegedExceptionAction;Ljava/security/AccessControlContext;)Ljava/lang/Object;+0
+j  java.net.URLClassLoader.findClass(Ljava/lang/String;)Ljava/lang/Class;+13
+j  java.lang.ClassLoader.loadClass(Ljava/lang/String;Z)Ljava/lang/Class;+43
+j  sun.misc.Launcher$AppClassLoader.loadClass(Ljava/lang/String;Z)Ljava/lang/Class;+41
+j  java.lang.ClassLoader.loadClass(Ljava/lang/String;)Ljava/lang/Class;+3
+j  java.lang.ClassLoader.loadClassInternal(Ljava/lang/String;)Ljava/lang/Class;+2
+v  ~StubRoutines::call_stub
+j  emc.app.frame.EMCDesktopManager.killEMC(Ljava/lang/String;Ljava/lang/String;Z)V+3
+j  emc.forms.base.display.login.resources.UpdateClientTread.doInBackground()Ljava/lang/Object;+175
+j  javax.swing.SwingWorker$1.call()Ljava/lang/Object;+14
+j  java.util.concurrent.FutureTask$Sync.innerRun()V+30
+j  java.util.concurrent.FutureTask.run()V+4
+j  javax.swing.SwingWorker.run()V+4
+j  java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Ljava/lang/Runnable;)V+59
+j  java.util.concurrent.ThreadPoolExecutor$Worker.run()V+28
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f711801f800 JavaThread "Keep-Alive-Timer" daemon [_thread_blocked, id=4098, stack(0x00007f7123950000,0x00007f7123a51000)]
+=>0x00007f711c151000 JavaThread "SwingWorker-pool-1-thread-1" [_thread_in_native, id=4085, stack(0x00007f7123df7000,0x00007f7123ef8000)]
+  0x00007f711c1a9800 JavaThread "TimerQueue" daemon [_thread_blocked, id=4081, stack(0x00007f7123a51000,0x00007f7123b52000)]
+  0x00007f71c4007800 JavaThread "DestroyJavaVM" [_thread_blocked, id=4062, stack(0x00007f71caadd000,0x00007f71cabde000)]
+  0x00007f71c445c000 JavaThread "AWT-EventQueue-0" [_thread_blocked, id=4078, stack(0x00007f71601bc000,0x00007f71602bd000)]
+  0x00007f71c445a800 JavaThread "AWT-Shutdown" [_thread_blocked, id=4077, stack(0x00007f71602bd000,0x00007f71603be000)]
+  0x00007f71c4459800 JavaThread "AWT-XAWT" daemon [_thread_in_native, id=4076, stack(0x00007f71603be000,0x00007f71604bf000)]
+  0x00007f71c4140000 JavaThread "Java2D Disposer" daemon [_thread_blocked, id=4075, stack(0x00007f7160ad9000,0x00007f7160bda000)]
+  0x00007f71c4157000 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=4073, stack(0x00007f71c8899000,0x00007f71c899a000)]
+  0x00007f71c4154000 JavaThread "CompilerThread1" daemon [_thread_blocked, id=4072, stack(0x00007f71c899a000,0x00007f71c8a9b000)]
+  0x00007f71c4152000 JavaThread "CompilerThread0" daemon [_thread_blocked, id=4071, stack(0x00007f71c8a9b000,0x00007f71c8b9c000)]
+  0x00007f71c4150000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=4070, stack(0x00007f71c8b9c000,0x00007f71c8c9d000)]
+  0x00007f71c4133000 JavaThread "Finalizer" daemon [_thread_blocked, id=4069, stack(0x00007f71c8f69000,0x00007f71c906a000)]
+  0x00007f71c4131000 JavaThread "Reference Handler" daemon [_thread_blocked, id=4068, stack(0x00007f71c906a000,0x00007f71c916b000)]
+
+Other Threads:
+  0x00007f71c412a800 VMThread [stack: 0x00007f71c916b000,0x00007f71c926c000] [id=4067]
+  0x00007f71c4159800 WatcherThread [stack: 0x00007f71c8798000,0x00007f71c8899000] [id=4074]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 232896K, used 213768K [0x00007f71a30b0000, 0x00007f71b1f00000, 0x00007f71c1000000)
+  eden space 226176K, 91% used [0x00007f71a30b0000,0x00007f71afb6bc20,0x00007f71b0d90000)
+  from space 6720K, 91% used [0x00007f71b14a0000,0x00007f71b1aa6540,0x00007f71b1b30000)
+  to   space 7232K, 0% used [0x00007f71b0d90000,0x00007f71b0d90000,0x00007f71b14a0000)
+ PSOldGen        total 110912K, used 77672K [0x00007f7167200000, 0x00007f716de50000, 0x00007f71a30b0000)
+  object space 110912K, 70% used [0x00007f7167200000,0x00007f716bdda3e0,0x00007f716de50000)
+ PSPermGen       total 51136K, used 25316K [0x00007f7161e00000, 0x00007f7164ff0000, 0x00007f7167200000)
+  object space 51136K, 49% used [0x00007f7161e00000,0x00007f71636b91e8,0x00007f7164ff0000)
+
+Dynamic libraries:
+40000000-40009000 r-xp 00000000 08:07 11930899                           /home/rico/Java/JRE/bin/java
+40108000-4010a000 rwxp 00008000 08:07 11930899                           /home/rico/Java/JRE/bin/java
+40634000-40655000 rwxp 00000000 00:00 0                                  [heap]
+7f7110000000-7f7110021000 rwxp 00000000 00:00 0 
+7f7110021000-7f7114000000 ---p 00000000 00:00 0 
+7f7114000000-7f7114021000 rwxp 00000000 00:00 0 
+7f7114021000-7f7118000000 ---p 00000000 00:00 0 
+7f7118000000-7f711804a000 rwxp 00000000 00:00 0 
+7f711804a000-7f711c000000 ---p 00000000 00:00 0 
+7f711c000000-7f711c317000 rwxp 00000000 00:00 0 
+7f711c317000-7f7120000000 ---p 00000000 00:00 0 
+7f7123950000-7f7123953000 ---p 00000000 00:00 0 
+7f7123953000-7f7123a51000 rwxp 00000000 00:00 0 
+7f7123a51000-7f7123a54000 ---p 00000000 00:00 0 
+7f7123a54000-7f7123b52000 rwxp 00000000 00:00 0 
+7f7123b52000-7f7123b59000 r-xs 00111000 08:07 11931659                   /home/rico/Java/JRE/lib/resources.jar
+7f7123b59000-7f7123bdf000 rwxp 00000000 00:00 0 
+7f7123cc5000-7f7123cf1000 r-xp 00000000 08:07 11931559                   /home/rico/Java/JRE/lib/amd64/libjpeg.so
+7f7123cf1000-7f7123df1000 ---p 0002c000 08:07 11931559                   /home/rico/Java/JRE/lib/amd64/libjpeg.so
+7f7123df1000-7f7123df7000 rwxp 0002c000 08:07 11931559                   /home/rico/Java/JRE/lib/amd64/libjpeg.so
+7f7123df7000-7f7123dfa000 ---p 00000000 00:00 0 
+7f7123dfa000-7f7123ef8000 rwxp 00000000 00:00 0 
+7f7123ef8000-7f7123eff000 r-xp 00000000 08:07 11931531                   /home/rico/Java/JRE/lib/amd64/libnio.so
+7f7123eff000-7f7123ffe000 ---p 00007000 08:07 11931531                   /home/rico/Java/JRE/lib/amd64/libnio.so
+7f7123ffe000-7f7124000000 rwxp 00006000 08:07 11931531                   /home/rico/Java/JRE/lib/amd64/libnio.so
+7f7124000000-7f7124021000 rwxp 00000000 00:00 0 
+7f7124021000-7f7128000000 ---p 00000000 00:00 0 
+7f7128000000-7f7128021000 rwxp 00000000 00:00 0 
+7f7128021000-7f712c000000 ---p 00000000 00:00 0 
+7f712c000000-7f712c021000 rwxp 00000000 00:00 0 
+7f712c021000-7f7130000000 ---p 00000000 00:00 0 
+7f7130000000-7f7130021000 rwxp 00000000 00:00 0 
+7f7130021000-7f7134000000 ---p 00000000 00:00 0 
+7f7134000000-7f71345cb000 rwxp 00000000 00:00 0 
+7f71345cb000-7f7138000000 ---p 00000000 00:00 0 
+7f7138000000-7f7138021000 rwxp 00000000 00:00 0 
+7f7138021000-7f713c000000 ---p 00000000 00:00 0 
+7f713c000000-7f713c021000 rwxp 00000000 00:00 0 
+7f713c021000-7f7140000000 ---p 00000000 00:00 0 
+7f7140000000-7f7140641000 rwxp 00000000 00:00 0 
+7f7140641000-7f7144000000 ---p 00000000 00:00 0 
+7f7144000000-7f7144021000 rwxp 00000000 00:00 0 
+7f7144021000-7f7148000000 ---p 00000000 00:00 0 
+7f7148000000-7f7148021000 rwxp 00000000 00:00 0 
+7f7148021000-7f714c000000 ---p 00000000 00:00 0 
+7f714c000000-7f714c021000 rwxp 00000000 00:00 0 
+7f714c021000-7f7150000000 ---p 00000000 00:00 0 
+7f7150000000-7f7150029000 rwxp 00000000 00:00 0 
+7f7150029000-7f7154000000 ---p 00000000 00:00 0 
+7f7154000000-7f7154021000 rwxp 00000000 00:00 0 
+7f7154021000-7f7158000000 ---p 00000000 00:00 0 
+7f7158000000-7f7158021000 rwxp 00000000 00:00 0 
+7f7158021000-7f715c000000 ---p 00000000 00:00 0 
+7f715c000000-7f715c021000 rwxp 00000000 00:00 0 
+7f715c021000-7f7160000000 ---p 00000000 00:00 0 
+7f716003b000-7f716003f000 rwxs 00000000 00:04 6029324                    /SYSV00000000 (deleted)
+7f716003f000-7f7160046000 r-xs 00091000 08:07 11931645                   /home/rico/Java/JRE/lib/jsse.jar
+7f7160054000-7f7160055000 r-xs 00000000 08:07 133965                     /var/cache/fontconfig/c05880de57d1f5e948fdfacc138775d9-le64.cache-3
+7f7160055000-7f716005e000 r-xs 00000000 08:07 133959                     /var/cache/fontconfig/945677eb7aeaf62f1d50efc3fb3ec7d8-le64.cache-3
+7f716005e000-7f7160060000 r-xs 00000000 08:07 133907                     /var/cache/fontconfig/99e8ed0e538f840c565b6ed5dad60d56-le64.cache-3
+7f7160060000-7f7160063000 r-xs 00000000 08:07 133759                     /var/cache/fontconfig/f24b2111ab8703b4e963115a8cf14259-le64.cache-3
+7f7160063000-7f716006b000 r-xs 00000000 08:07 133748                     /var/cache/fontconfig/a6d8cf8e4ec09cdbc8633c31745a07dd-le64.cache-3
+7f716006b000-7f716006f000 r-xs 00000000 08:07 133661                     /var/cache/fontconfig/2cd17615ca594fa2959ae173292e504c-le64.cache-3
+7f716006f000-7f7160070000 r-xs 00000000 08:07 133586                     /var/cache/fontconfig/e7071f4a29fa870f4323321c154eba04-le64.cache-3
+7f7160070000-7f7160071000 r-xs 00000000 08:07 133541                     /var/cache/fontconfig/0d8c3b2ac0904cb8a57a757ad11a4a08-le64.cache-3
+7f7160071000-7f7160077000 r-xs 00000000 08:07 133382                     /var/cache/fontconfig/a755afe4a08bf5b97852ceb7400b47bc-le64.cache-3
+7f7160077000-7f71600a5000 r-xs 00000000 08:07 133208                     /var/cache/fontconfig/365b55f210c0a22e9a19e35191240f32-le64.cache-3
+7f71600a5000-7f71600b8000 r-xp 00000000 08:07 11931530                   /home/rico/Java/JRE/lib/amd64/libnet.so
+7f71600b8000-7f71601b9000 ---p 00013000 08:07 11931530                   /home/rico/Java/JRE/lib/amd64/libnet.so
+7f71601b9000-7f71601bc000 rwxp 00014000 08:07 11931530                   /home/rico/Java/JRE/lib/amd64/libnet.so
+7f71601bc000-7f71601bf000 ---p 00000000 00:00 0 
+7f71601bf000-7f71602bd000 rwxp 00000000 00:00 0 
+7f71602bd000-7f71602c0000 ---p 00000000 00:00 0 
+7f71602c0000-7f71603be000 rwxp 00000000 00:00 0 
+7f71603be000-7f71603c1000 ---p 00000000 00:00 0 
+7f71603c1000-7f71604bf000 rwxp 00000000 00:00 0 
+7f71604bf000-7f71604c4000 r-xp 00000000 08:07 5904705                    /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+7f71604c4000-7f71606c3000 ---p 00005000 08:07 5904705                    /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+7f71606c3000-7f71606c4000 r-xp 00004000 08:07 5904705                    /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+7f71606c4000-7f71606c5000 rwxp 00005000 08:07 5904705                    /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+7f71606c5000-7f71606ce000 r-xp 00000000 08:07 5900763                    /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f71606ce000-7f71608cd000 ---p 00009000 08:07 5900763                    /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f71608cd000-7f71608ce000 r-xp 00008000 08:07 5900763                    /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f71608ce000-7f71608cf000 rwxp 00009000 08:07 5900763                    /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+7f71608cf000-7f71608d8000 r-xp 00000000 08:07 5905523                    /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+7f71608d8000-7f7160ad7000 ---p 00009000 08:07 5905523                    /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+7f7160ad7000-7f7160ad8000 r-xp 00008000 08:07 5905523                    /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+7f7160ad8000-7f7160ad9000 rwxp 00009000 08:07 5905523                    /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+7f7160ad9000-7f7160adc000 ---p 00000000 00:00 0 
+7f7160adc000-7f7160bda000 rwxp 00000000 00:00 0 
+7f7160bda000-7f7160c58000 r-xp 00000000 08:07 11931539                   /home/rico/Java/JRE/lib/amd64/libfontmanager.so
+7f7160c58000-7f7160d57000 ---p 0007e000 08:07 11931539                   /home/rico/Java/JRE/lib/amd64/libfontmanager.so
+7f7160d57000-7f7160d6d000 rwxp 0007d000 08:07 11931539                   /home/rico/Java/JRE/lib/amd64/libfontmanager.so
+7f7160d6d000-7f7160d7e000 rwxp 00000000 00:00 0 
+7f7160d7e000-7f7160d83000 r-xp 00000000 08:07 5900747                    /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f7160d83000-7f7160f82000 ---p 00005000 08:07 5900747                    /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f7160f82000-7f7160f83000 r-xp 00004000 08:07 5900747                    /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f7160f83000-7f7160f84000 rwxp 00005000 08:07 5900747                    /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+7f7160f84000-7f7160f86000 r-xp 00000000 08:07 5900743                    /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f7160f86000-7f7161185000 ---p 00002000 08:07 5900743                    /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f7161185000-7f7161186000 r-xp 00001000 08:07 5900743                    /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f7161186000-7f7161187000 rwxp 00002000 08:07 5900743                    /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+7f7161187000-7f71611a4000 r-xp 00000000 08:07 5900749                    /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f71611a4000-7f71613a3000 ---p 0001d000 08:07 5900749                    /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f71613a3000-7f71613a4000 r-xp 0001c000 08:07 5900749                    /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f71613a4000-7f71613a5000 rwxp 0001d000 08:07 5900749                    /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+7f71613a5000-7f71613b3000 r-xp 00000000 08:07 5899846                    /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f71613b3000-7f71615b2000 ---p 0000e000 08:07 5899846                    /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f71615b2000-7f71615b3000 r-xp 0000d000 08:07 5899846                    /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f71615b3000-7f71615b4000 rwxp 0000e000 08:07 5899846                    /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+7f71615b4000-7f71615b9000 r-xp 00000000 08:07 5904265                    /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f71615b9000-7f71617b8000 ---p 00005000 08:07 5904265                    /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f71617b8000-7f71617b9000 r-xp 00004000 08:07 5904265                    /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f71617b9000-7f71617ba000 rwxp 00005000 08:07 5904265                    /usr/lib/x86_64-linux-gnu/libXtst.so.6.1.0
+7f71617ba000-7f71618e9000 r-xp 00000000 08:07 5907413                    /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f71618e9000-7f7161ae9000 ---p 0012f000 08:07 5907413                    /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f7161ae9000-7f7161aea000 r-xp 0012f000 08:07 5907413                    /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f7161aea000-7f7161aee000 rwxp 00130000 08:07 5907413                    /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+7f7161aee000-7f7161afe000 r-xp 00000000 08:07 5904263                    /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f7161afe000-7f7161cfd000 ---p 00010000 08:07 5904263                    /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f7161cfd000-7f7161cfe000 r-xp 0000f000 08:07 5904263                    /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f7161cfe000-7f7161cff000 rwxp 00010000 08:07 5904263                    /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+7f7161cff000-7f7161d00000 ---p 00000000 00:00 0 
+7f7161d00000-7f7164ff0000 rwxp 00000000 00:00 0 
+7f7164ff0000-7f7167200000 rwxp 00000000 00:00 0 
+7f7167200000-7f716de50000 rwxp 00000000 00:00 0 
+7f716de50000-7f71a30b0000 rwxp 00000000 00:00 0 
+7f71a30b0000-7f71b1f00000 rwxp 00000000 00:00 0 
+7f71b1f00000-7f71c1000000 rwxp 00000000 00:00 0 
+7f71c1000000-7f71c1270000 rwxp 00000000 00:00 0 
+7f71c1270000-7f71c445e000 rwxp 00000000 00:00 0 
+7f71c445e000-7f71c8000000 ---p 00000000 00:00 0 
+7f71c8000000-7f71c8002000 r-xs 01394000 08:07 11410116                   /home/rico/EMC Temp/emc_client_latest.zip
+7f71c8002000-7f71c800b000 r-xs 00000000 08:07 133313                     /var/cache/fontconfig/6d41288fd70b0be22e8c3a91e032eec0-le64.cache-3
+7f71c800b000-7f71c800e000 r-xs 00000000 08:07 133285                     /var/cache/fontconfig/de156ccd2eddbdc19d37a45b8b2aac9c-le64.cache-3
+7f71c800e000-7f71c801e000 r-xs 00000000 08:07 133279                     /var/cache/fontconfig/04aabc0a78ac019cf9454389977116d2-le64.cache-3
+7f71c801e000-7f71c8021000 r-xs 00000000 08:07 133264                     /var/cache/fontconfig/385c0604a188198f04d133e54aba7fe7-le64.cache-3
+7f71c8021000-7f71c8026000 r-xs 00000000 08:07 133033                     /var/cache/fontconfig/3047814df9a2f067bd2d96a2b9c36e5a-le64.cache-3
+7f71c8026000-7f71c802b000 r-xs 00000000 08:07 132987                     /var/cache/fontconfig/b47c4e1ecd0709278f4910c18777a504-le64.cache-3
+7f71c802b000-7f71c8033000 r-xs 00000000 08:07 132983                     /var/cache/fontconfig/52f7bdb7ce746bfd7eaa1985bd9cfa93-le64.cache-3
+7f71c8033000-7f71c8043000 r-xs 00000000 08:07 132974                     /var/cache/fontconfig/d52a8644073d54c13679302ca1180695-le64.cache-3
+7f71c8043000-7f71c8049000 r-xs 00000000 08:07 132972                     /var/cache/fontconfig/3f7329c5293ffd510edef78f73874cfd-le64.cache-3
+7f71c8049000-7f71c8054000 r-xs 00000000 08:07 132937                     /var/cache/fontconfig/e13b20fdb08344e0e664864cc2ede53d-le64.cache-3
+7f71c8054000-7f71c8058000 r-xs 00000000 08:07 132547                     /var/cache/fontconfig/7ef2298fde41cc6eeb7af42e48b7d293-le64.cache-3
+7f71c8058000-7f71c809a000 r-xs 00328000 08:07 13765553                   /home/rico/SandBox/EMCClientSys/dist/lib/webservices-tools.jar
+7f71c809a000-7f71c8152000 r-xs 009d2000 08:07 13765547                   /home/rico/SandBox/EMCClientSys/dist/lib/webservices-rt.jar
+7f71c8152000-7f71c8158000 r-xs 00025000 08:07 13765546                   /home/rico/SandBox/EMCClientSys/dist/lib/webservices-api.jar
+7f71c8158000-7f71c819a000 r-xp 00000000 08:07 12061490                   /home/rico/Java/JRE/lib/amd64/xawt/libmawt.so
+7f71c819a000-7f71c8299000 ---p 00042000 08:07 12061490                   /home/rico/Java/JRE/lib/amd64/xawt/libmawt.so
+7f71c8299000-7f71c82a4000 rwxp 00041000 08:07 12061490                   /home/rico/Java/JRE/lib/amd64/xawt/libmawt.so
+7f71c82a4000-7f71c82a6000 rwxp 00000000 00:00 0 
+7f71c82a6000-7f71c8338000 r-xp 00000000 08:07 11931584                   /home/rico/Java/JRE/lib/amd64/libawt.so
+7f71c8338000-7f71c8437000 ---p 00092000 08:07 11931584                   /home/rico/Java/JRE/lib/amd64/libawt.so
+7f71c8437000-7f71c8450000 rwxp 00091000 08:07 11931584                   /home/rico/Java/JRE/lib/amd64/libawt.so
+7f71c8450000-7f71c8475000 rwxp 00000000 00:00 0 
+7f71c8475000-7f71c8479000 r-xs 00044000 08:07 13765540                   /home/rico/SandBox/EMCClientSys/dist/lib/EMCGenLibCore.jar
+7f71c8479000-7f71c8507000 r-xs 00689000 08:07 13765529                   /home/rico/SandBox/EMCClientSys/dist/lib/EMCGenLibSys.jar
+7f71c8507000-7f71c851b000 r-xs 001a0000 08:07 13765524                   /home/rico/SandBox/EMCClientSys/dist/lib/xalan.jar
+7f71c851b000-7f71c8523000 r-xs 00028000 08:07 13765513                   /home/rico/SandBox/EMCClientSys/dist/lib/xml-apis.jar
+7f71c8523000-7f71c853a000 r-xs 00114000 08:07 13765509                   /home/rico/SandBox/EMCClientSys/dist/lib/xercesImpl.jar
+7f71c853a000-7f71c8555000 r-xs 00142000 08:07 13765499                   /home/rico/SandBox/EMCClientSys/dist/lib/poi-3.2-FINAL-20081019.jar
+7f71c8555000-7f71c8556000 r-xs 00002000 08:07 13765495                   /home/rico/SandBox/EMCClientSys/dist/lib/png-encoder-1.5.jar
+7f71c8556000-7f71c8561000 r-xs 00097000 08:07 13765485                   /home/rico/SandBox/EMCClientSys/dist/lib/jxl-2.6.jar
+7f71c8561000-7f71c8564000 r-xs 00009000 08:07 13765480                   /home/rico/SandBox/EMCClientSys/dist/lib/jpa.jar
+7f71c8564000-7f71c8574000 r-xs 0013f000 08:07 13765469                   /home/rico/SandBox/EMCClientSys/dist/lib/jfreechart-1.0.12.jar
+7f71c8574000-7f71c857e000 r-xs 0011e000 08:07 13765458                   /home/rico/SandBox/EMCClientSys/dist/lib/jdt-compiler-3.1.1.jar
+7f71c857e000-7f71c8584000 r-xs 00046000 08:07 13765440                   /home/rico/SandBox/EMCClientSys/dist/lib/jcommon-1.0.15.jar
+7f71c8584000-7f71c858a000 r-xs 00032000 08:07 13765430                   /home/rico/SandBox/EMCClientSys/dist/lib/jaxen-1.1.1.jar
+7f71c858a000-7f71c85b4000 r-xs 00230000 08:07 13765427                   /home/rico/SandBox/EMCClientSys/dist/lib/jasperreports-3.5.2.jar
+7f71c85b4000-7f71c85be000 r-xs 00079000 08:07 13765416                   /home/rico/SandBox/EMCClientSys/dist/lib/jakarta-bcel-20050813.jar
+7f71c85be000-7f71c85c9000 r-xs 000f6000 08:07 13765410                   /home/rico/SandBox/EMCClientSys/dist/lib/iText-2.1.0.jar
+7f71c85c9000-7f71c85f1000 r-xs 0028e000 08:07 13765406                   /home/rico/SandBox/EMCClientSys/dist/lib/groovy-all-1.5.5.jar
+7f71c85f1000-7f71c85f2000 r-xs 0000c000 08:07 13765398                   /home/rico/SandBox/EMCClientSys/dist/lib/commons-logging-1.1.jar
+7f71c85f2000-7f71c85f6000 r-xs 0001f000 08:07 13765394                   /home/rico/SandBox/EMCClientSys/dist/lib/commons-digester-1.7.jar
+7f71c85f6000-7f71c8604000 r-xs 0007f000 08:07 13765384                   /home/rico/SandBox/EMCClientSys/dist/lib/commons-collections-3.2.1.jar
+7f71c8604000-7f71c8609000 r-xs 00034000 08:07 13765381                   /home/rico/SandBox/EMCClientSys/dist/lib/commons-beanutils-1.8.0.jar
+7f71c8609000-7f71c860a000 r-xs 00002000 08:07 13765380                   /home/rico/SandBox/EMCClientSys/dist/lib/EMCLicenseLib.jar
+7f71c860a000-7f71c860c000 r-xs 0001f000 08:07 13765379                   /home/rico/SandBox/EMCClientSys/dist/lib/emcimages.jar
+7f71c860c000-7f71c860e000 r-xs 00007000 08:07 13765378                   /home/rico/SandBox/EMCClientSys/dist/lib/GenericWSClient.jar
+7f71c860e000-7f71c860f000 r-xs 00001000 08:07 13765377                   /home/rico/SandBox/EMCClientSys/dist/lib/EMCModulesSys.jar
+7f71c860f000-7f71c8623000 r-xs 001d3000 08:07 13765376                   /home/rico/SandBox/EMCClientSys/dist/lib/EMCClientCore.jar
+7f71c8623000-7f71c8628000 r-xs 00034000 08:07 11931682                   /home/rico/Java/JRE/lib/ext/commons-beanutils-1.8.0.jar
+7f71c8628000-7f71c8629000 r-xs 0000c000 08:07 11931685                   /home/rico/Java/JRE/lib/ext/commons-logging-1.1.jar
+7f71c8629000-7f71c862c000 r-xs 00009000 08:07 11931694                   /home/rico/Java/JRE/lib/ext/jpa.jar
+7f71c862c000-7f71c8632000 r-xs 00046000 08:07 11931691                   /home/rico/Java/JRE/lib/ext/jcommon-1.0.15.jar
+7f71c8632000-7f71c8642000 r-xs 0013f000 08:07 11931693                   /home/rico/Java/JRE/lib/ext/jfreechart-1.0.12.jar
+7f71c8642000-7f71c864d000 r-xs 00097000 08:07 11931695                   /home/rico/Java/JRE/lib/ext/jxl-2.6.jar
+7f71c864d000-7f71c8675000 r-xs 0028e000 08:07 11931686                   /home/rico/Java/JRE/lib/ext/groovy-all-1.5.5.jar
+7f71c8675000-7f71c867f000 r-xs 00079000 08:07 11931688                   /home/rico/Java/JRE/lib/ext/jakarta-bcel-20050813.jar
+7f71c867f000-7f71c868d000 r-xs 0007f000 08:07 11931683                   /home/rico/Java/JRE/lib/ext/commons-collections-3.2.1.jar
+7f71c868d000-7f71c86b7000 r-xs 00230000 08:07 11931689                   /home/rico/Java/JRE/lib/ext/jasperreports-3.5.2.jar
+7f71c86b7000-7f71c86bf000 r-xs 00028000 08:07 11931700                   /home/rico/Java/JRE/lib/ext/xml-apis.jar
+7f71c86bf000-7f71c86d3000 r-xs 001a0000 08:07 11931698                   /home/rico/Java/JRE/lib/ext/xalan.jar
+7f71c86d3000-7f71c86ee000 r-xs 00142000 08:07 11931697                   /home/rico/Java/JRE/lib/ext/poi-3.2-FINAL-20081019.jar
+7f71c86ee000-7f71c8705000 r-xs 00114000 08:07 11931699                   /home/rico/Java/JRE/lib/ext/xercesImpl.jar
+7f71c8705000-7f71c8798000 r-xs 00f72000 08:07 13374263                   /home/rico/SandBox/EMCClientSys/dist/EMCClientSys.jar
+7f71c8798000-7f71c8799000 ---p 00000000 00:00 0 
+7f71c8799000-7f71c8899000 rwxp 00000000 00:00 0 
+7f71c8899000-7f71c889c000 ---p 00000000 00:00 0 
+7f71c889c000-7f71c899a000 rwxp 00000000 00:00 0 
+7f71c899a000-7f71c899d000 ---p 00000000 00:00 0 
+7f71c899d000-7f71c8a9b000 rwxp 00000000 00:00 0 
+7f71c8a9b000-7f71c8a9e000 ---p 00000000 00:00 0 
+7f71c8a9e000-7f71c8b9c000 rwxp 00000000 00:00 0 
+7f71c8b9c000-7f71c8b9f000 ---p 00000000 00:00 0 
+7f71c8b9f000-7f71c8c9d000 rwxp 00000000 00:00 0 
+7f71c8c9d000-7f71c8f69000 r-xp 00000000 08:07 5899603                    /usr/lib/locale/locale-archive
+7f71c8f69000-7f71c8f6c000 ---p 00000000 00:00 0 
+7f71c8f6c000-7f71c906a000 rwxp 00000000 00:00 0 
+7f71c906a000-7f71c906d000 ---p 00000000 00:00 0 
+7f71c906d000-7f71c916b000 rwxp 00000000 00:00 0 
+7f71c916b000-7f71c916c000 ---p 00000000 00:00 0 
+7f71c916c000-7f71c929f000 rwxp 00000000 00:00 0 
+7f71c929f000-7f71c9435000 r-xs 02fb3000 08:07 11930955                   /home/rico/Java/JRE/lib/rt.jar
+7f71c9435000-7f71c9436000 ---p 00000000 00:00 0 
+7f71c9436000-7f71c9536000 rwxp 00000000 00:00 0 
+7f71c9536000-7f71c9537000 ---p 00000000 00:00 0 
+7f71c9537000-7f71c9637000 rwxp 00000000 00:00 0 
+7f71c9637000-7f71c9638000 ---p 00000000 00:00 0 
+7f71c9638000-7f71c9751000 rwxp 00000000 00:00 0 
+7f71c9751000-7f71c9762000 rwxp 00000000 00:00 0 
+7f71c9762000-7f71c9799000 rwxp 00000000 00:00 0 
+7f71c9799000-7f71c9942000 rwxp 00000000 00:00 0 
+7f71c9942000-7f71c995b000 rwxp 00000000 00:00 0 
+7f71c995b000-7f71c996c000 rwxp 00000000 00:00 0 
+7f71c996c000-7f71c99a3000 rwxp 00000000 00:00 0 
+7f71c99a3000-7f71c9b4b000 rwxp 00000000 00:00 0 
+7f71c9b4b000-7f71c9bc3000 rwxp 00000000 00:00 0 
+7f71c9bc3000-7f71c9c3b000 rwxp 00000000 00:00 0 
+7f71c9c3b000-7f71c9c3c000 rwxp 00000000 00:00 0 
+7f71c9c3c000-7f71c9c4a000 r-xp 00000000 08:07 11931541                   /home/rico/Java/JRE/lib/amd64/libzip.so
+7f71c9c4a000-7f71c9d4c000 ---p 0000e000 08:07 11931541                   /home/rico/Java/JRE/lib/amd64/libzip.so
+7f71c9d4c000-7f71c9d4f000 rwxp 00010000 08:07 11931541                   /home/rico/Java/JRE/lib/amd64/libzip.so
+7f71c9d4f000-7f71c9d50000 rwxp 00000000 00:00 0 
+7f71c9d50000-7f71c9d5c000 r-xp 00000000 08:07 13632188                   /lib/x86_64-linux-gnu/libnss_files-2.15.so
+7f71c9d5c000-7f71c9f5b000 ---p 0000c000 08:07 13632188                   /lib/x86_64-linux-gnu/libnss_files-2.15.so
+7f71c9f5b000-7f71c9f5c000 r-xp 0000b000 08:07 13632188                   /lib/x86_64-linux-gnu/libnss_files-2.15.so
+7f71c9f5c000-7f71c9f5d000 rwxp 0000c000 08:07 13632188                   /lib/x86_64-linux-gnu/libnss_files-2.15.so
+7f71c9f5d000-7f71c9f67000 r-xp 00000000 08:07 13632189                   /lib/x86_64-linux-gnu/libnss_nis-2.15.so
+7f71c9f67000-7f71ca167000 ---p 0000a000 08:07 13632189                   /lib/x86_64-linux-gnu/libnss_nis-2.15.so
+7f71ca167000-7f71ca168000 r-xp 0000a000 08:07 13632189                   /lib/x86_64-linux-gnu/libnss_nis-2.15.so
+7f71ca168000-7f71ca169000 rwxp 0000b000 08:07 13632189                   /lib/x86_64-linux-gnu/libnss_nis-2.15.so
+7f71ca169000-7f71ca171000 r-xp 00000000 08:07 13632191                   /lib/x86_64-linux-gnu/libnss_compat-2.15.so
+7f71ca171000-7f71ca370000 ---p 00008000 08:07 13632191                   /lib/x86_64-linux-gnu/libnss_compat-2.15.so
+7f71ca370000-7f71ca371000 r-xp 00007000 08:07 13632191                   /lib/x86_64-linux-gnu/libnss_compat-2.15.so
+7f71ca371000-7f71ca372000 rwxp 00008000 08:07 13632191                   /lib/x86_64-linux-gnu/libnss_compat-2.15.so
+7f71ca372000-7f71ca379000 r-xp 00000000 08:07 12061492                   /home/rico/Java/JRE/lib/amd64/native_threads/libhpi.so
+7f71ca379000-7f71ca47a000 ---p 00007000 08:07 12061492                   /home/rico/Java/JRE/lib/amd64/native_threads/libhpi.so
+7f71ca47a000-7f71ca47c000 rwxp 00008000 08:07 12061492                   /home/rico/Java/JRE/lib/amd64/native_threads/libhpi.so
+7f71ca47c000-7f71ca47d000 rwxp 00000000 00:00 0 
+7f71ca47d000-7f71ca494000 r-xp 00000000 08:07 13632183                   /lib/x86_64-linux-gnu/libnsl-2.15.so
+7f71ca494000-7f71ca693000 ---p 00017000 08:07 13632183                   /lib/x86_64-linux-gnu/libnsl-2.15.so
+7f71ca693000-7f71ca694000 r-xp 00016000 08:07 13632183                   /lib/x86_64-linux-gnu/libnsl-2.15.so
+7f71ca694000-7f71ca695000 rwxp 00017000 08:07 13632183                   /lib/x86_64-linux-gnu/libnsl-2.15.so
+7f71ca695000-7f71ca697000 rwxp 00000000 00:00 0 
+7f71ca697000-7f71ca6c0000 r-xp 00000000 08:07 11931550                   /home/rico/Java/JRE/lib/amd64/libjava.so
+7f71ca6c0000-7f71ca7bf000 ---p 00029000 08:07 11931550                   /home/rico/Java/JRE/lib/amd64/libjava.so
+7f71ca7bf000-7f71ca7c6000 rwxp 00028000 08:07 11931550                   /home/rico/Java/JRE/lib/amd64/libjava.so
+7f71ca7c6000-7f71ca7d3000 r-xp 00000000 08:07 11931536                   /home/rico/Java/JRE/lib/amd64/libverify.so
+7f71ca7d3000-7f71ca8d2000 ---p 0000d000 08:07 11931536                   /home/rico/Java/JRE/lib/amd64/libverify.so
+7f71ca8d2000-7f71ca8d5000 rwxp 0000c000 08:07 11931536                   /home/rico/Java/JRE/lib/amd64/libverify.so
+7f71ca8d5000-7f71ca8dc000 r-xp 00000000 08:07 13632185                   /lib/x86_64-linux-gnu/librt-2.15.so
+7f71ca8dc000-7f71caadb000 ---p 00007000 08:07 13632185                   /lib/x86_64-linux-gnu/librt-2.15.so
+7f71caadb000-7f71caadc000 r-xp 00006000 08:07 13632185                   /lib/x86_64-linux-gnu/librt-2.15.so
+7f71caadc000-7f71caadd000 rwxp 00007000 08:07 13632185                   /lib/x86_64-linux-gnu/librt-2.15.so
+7f71caadd000-7f71caae0000 ---p 00000000 00:00 0 
+7f71caae0000-7f71cabde000 rwxp 00000000 00:00 0 
+7f71cabde000-7f71cacd7000 r-xp 00000000 08:07 13632150                   /lib/x86_64-linux-gnu/libm-2.15.so
+7f71cacd7000-7f71caed6000 ---p 000f9000 08:07 13632150                   /lib/x86_64-linux-gnu/libm-2.15.so
+7f71caed6000-7f71caed7000 r-xp 000f8000 08:07 13632150                   /lib/x86_64-linux-gnu/libm-2.15.so
+7f71caed7000-7f71caed8000 rwxp 000f9000 08:07 13632150                   /lib/x86_64-linux-gnu/libm-2.15.so
+7f71caed8000-7f71cb636000 r-xp 00000000 08:07 12061496                   /home/rico/Java/JRE/lib/amd64/server/libjvm.so
+7f71cb636000-7f71cb735000 ---p 0075e000 08:07 12061496                   /home/rico/Java/JRE/lib/amd64/server/libjvm.so
+7f71cb735000-7f71cb8ad000 rwxp 0075d000 08:07 12061496                   /home/rico/Java/JRE/lib/amd64/server/libjvm.so
+7f71cb8ad000-7f71cb8eb000 rwxp 00000000 00:00 0 
+7f71cb8eb000-7f71cba9e000 r-xp 00000000 08:07 13632177                   /lib/x86_64-linux-gnu/libc-2.15.so
+7f71cba9e000-7f71cbc9d000 ---p 001b3000 08:07 13632177                   /lib/x86_64-linux-gnu/libc-2.15.so
+7f71cbc9d000-7f71cbca1000 r-xp 001b2000 08:07 13632177                   /lib/x86_64-linux-gnu/libc-2.15.so
+7f71cbca1000-7f71cbca3000 rwxp 001b6000 08:07 13632177                   /lib/x86_64-linux-gnu/libc-2.15.so
+7f71cbca3000-7f71cbca8000 rwxp 00000000 00:00 0 
+7f71cbca8000-7f71cbcaa000 r-xp 00000000 08:07 13632195                   /lib/x86_64-linux-gnu/libdl-2.15.so
+7f71cbcaa000-7f71cbeaa000 ---p 00002000 08:07 13632195                   /lib/x86_64-linux-gnu/libdl-2.15.so
+7f71cbeaa000-7f71cbeab000 r-xp 00002000 08:07 13632195                   /lib/x86_64-linux-gnu/libdl-2.15.so
+7f71cbeab000-7f71cbeac000 rwxp 00003000 08:07 13632195                   /lib/x86_64-linux-gnu/libdl-2.15.so
+7f71cbeac000-7f71cbec4000 r-xp 00000000 08:07 13632199                   /lib/x86_64-linux-gnu/libpthread-2.15.so
+7f71cbec4000-7f71cc0c3000 ---p 00018000 08:07 13632199                   /lib/x86_64-linux-gnu/libpthread-2.15.so
+7f71cc0c3000-7f71cc0c4000 r-xp 00017000 08:07 13632199                   /lib/x86_64-linux-gnu/libpthread-2.15.so
+7f71cc0c4000-7f71cc0c5000 rwxp 00018000 08:07 13632199                   /lib/x86_64-linux-gnu/libpthread-2.15.so
+7f71cc0c5000-7f71cc0c9000 rwxp 00000000 00:00 0 
+7f71cc0c9000-7f71cc0eb000 r-xp 00000000 08:07 13632181                   /lib/x86_64-linux-gnu/ld-2.15.so
+7f71cc0eb000-7f71cc0ee000 r-xs 00000000 08:07 133214                     /var/cache/fontconfig/8801497958630a81b71ace7c5f9b32a8-le64.cache-3
+7f71cc0ee000-7f71cc0f4000 r-xs 00032000 08:07 11931690                   /home/rico/Java/JRE/lib/ext/jaxen-1.1.1.jar
+7f71cc0f4000-7f71cc0ff000 r-xs 000f6000 08:07 11931687                   /home/rico/Java/JRE/lib/ext/iText-2.1.0.jar
+7f71cc0ff000-7f71cc109000 rwxp 00000000 00:00 0 
+7f71cc109000-7f71cc1bf000 rwxp 00000000 00:00 0 
+7f71cc1bf000-7f71cc1c2000 rwxp 00000000 00:00 0 
+7f71cc1c2000-7f71cc1c9000 r-xp 00000000 08:07 11931528                   /home/rico/Java/JRE/lib/amd64/jli/libjli.so
+7f71cc1c9000-7f71cc2ca000 ---p 00007000 08:07 11931528                   /home/rico/Java/JRE/lib/amd64/jli/libjli.so
+7f71cc2ca000-7f71cc2cc000 rwxp 00008000 08:07 11931528                   /home/rico/Java/JRE/lib/amd64/jli/libjli.so
+7f71cc2cc000-7f71cc2cd000 rwxp 00000000 00:00 0 
+7f71cc2cd000-7f71cc2ce000 r-xs 00000000 08:07 133239                     /var/cache/fontconfig/4794a0821666d79190d59a36cb4f44b5-le64.cache-3
+7f71cc2ce000-7f71cc2cf000 r-xs 00000000 08:07 133004                     /var/cache/fontconfig/56cf4f4769d0f4abc89a4895d7bd3ae1-le64.cache-3
+7f71cc2cf000-7f71cc2d0000 r-xs 00000000 08:07 132996                     /var/cache/fontconfig/b9d506c9ac06c20b433354fa67a72993-le64.cache-3
+7f71cc2d0000-7f71cc2d1000 r-xs 00002000 08:07 11931696                   /home/rico/Java/JRE/lib/ext/png-encoder-1.5.jar
+7f71cc2d1000-7f71cc2d5000 r-xs 0001f000 08:07 11931684                   /home/rico/Java/JRE/lib/ext/commons-digester-1.7.jar
+7f71cc2d5000-7f71cc2df000 r-xs 0011e000 08:07 11931692                   /home/rico/Java/JRE/lib/ext/jdt-compiler-3.1.1.jar
+7f71cc2df000-7f71cc2e7000 rwxs 00000000 08:07 1449299                    /tmp/hsperfdata_rico/4061
+7f71cc2e7000-7f71cc2e8000 rwxp 00000000 00:00 0 
+7f71cc2e8000-7f71cc2e9000 r-xp 00000000 00:00 0 
+7f71cc2e9000-7f71cc2eb000 rwxp 00000000 00:00 0 
+7f71cc2eb000-7f71cc2ec000 r-xp 00022000 08:07 13632181                   /lib/x86_64-linux-gnu/ld-2.15.so
+7f71cc2ec000-7f71cc2ee000 rwxp 00023000 08:07 13632181                   /lib/x86_64-linux-gnu/ld-2.15.so
+7ffff19a1000-7ffff19c2000 rwxp 00000000 00:00 0                          [stack]
+7ffff19ff000-7ffff1a00000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+java_command: /home/rico/SandBox/EMCClientSys/dist/EMCClientSys.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+LD_LIBRARY_PATH=/home/rico/Java/JRE/lib/amd64/server:/home/rico/Java/JRE/lib/amd64:/home/rico/Java/JRE/../lib/amd64
+SHELL=/bin/bash
+DISPLAY=:0.0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x6bddc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x6bddc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x594f90], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x594f90], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x594f90], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x594f90], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x597750], sa_mask[0]=0x00000000, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x5974a0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x5974a0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x5974a0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x5974a0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:wheezy/sid
+
+uname:Linux 3.2.0-30-generic #48-Ubuntu SMP Fri Aug 24 16:52:48 UTC 2012 x86_64
+libc:glibc 2.15 NPTL 2.15 
+rlimit: STACK 8192k, CORE 0k, NPROC 45854, NOFILE 4096, AS infinity
+load average:0.48 0.31 0.37
+
+CPU:total 4 (8 cores per cpu, 2 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, ht
+
+Memory: 4k page, physical 5886980k(152820k free), swap 3964924k(3948372k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (14.2-b01) for linux-amd64 JRE (1.6.0_16-b01), built on Jul 31 2009 05:52:33 by "java_re" with gcc 3.2.2 (SuSE Linux)
+
+time: Tue Oct 16 10:30:19 2012
+elapsed time: 24 seconds
+

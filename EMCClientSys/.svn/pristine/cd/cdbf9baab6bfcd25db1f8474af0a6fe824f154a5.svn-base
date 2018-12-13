@@ -1,0 +1,47 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.menus.trec;
+
+import emc.framework.EMCMenu;
+import emc.menus.developertools.trec.TRECChemicalsMenu;
+import emc.menus.developertools.trec.TRECClassesMenu;
+import emc.menus.trec.menuitems.display.TRECColoursMenu;
+import emc.menus.trec.menuitems.display.TRECFormsMenu;
+import emc.menus.trec.menuitems.display.TRECOdoursMenu;
+import emc.menus.trec.menuitems.display.TRECParametersMenu;
+import emc.menus.developertools.trec.TRECPhraseCombMenu;
+import emc.menus.developertools.trec.TRECPhrasesMenu;
+import emc.menus.developertools.trec.TRECTrecTypesMenu;
+import emc.menus.trec.menuitems.display.TRECCustomerChemicalsMenu;
+import emc.menus.trec.menuitems.display.TRECErgMenu;
+import emc.menus.trec.menuitems.display.TRECLoadCompMenu;
+import emc.menus.trec.menuitems.display.TRECNumberSequenceMenu;
+import emc.menus.trec.menuitems.display.TRECPrefShipNameMI;
+
+/**
+ *
+ * @author wikus
+ */
+public class TRECSetup extends EMCMenu {
+
+    /** Creates a new instance of TRECSetup*/
+    public TRECSetup() {
+        this.setMenuName("Setup");
+        this.setMenuList(new TRECChemicalsMenu());
+        this.setMenuList(new TRECCustomerChemicalsMenu());
+        this.setMenuList(new TRECClassesMenu());
+        this.setMenuList(new TRECColoursMenu());
+        this.setMenuList(new TRECErgMenu());
+        this.setMenuList(new TRECFormsMenu());
+        this.setMenuList(new TRECLoadCompMenu());
+        this.setMenuList(new TRECNumberSequenceMenu());
+        this.setMenuList(new TRECPrefShipNameMI());
+        this.setMenuList(new TRECOdoursMenu());
+        this.setMenuList(new TRECParametersMenu());
+        this.setMenuList(new TRECPhrasesMenu());
+        this.setMenuList(new TRECPhraseCombMenu());
+        this.setMenuList(new TRECTrecTypesMenu());
+    }
+}

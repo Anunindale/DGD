@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="Labels" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<field name="grnNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@grnNumber]]></fieldDescription>
+	</field>
+	<field name="itemReference" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemReference]]></fieldDescription>
+	</field>
+	<field name="itemDesc" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemDesc]]></fieldDescription>
+	</field>
+	<field name="itemWidth" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemWidth]]></fieldDescription>
+	</field>
+	<field name="itemPrice" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemPrice]]></fieldDescription>
+	</field>
+	<field name="suppCode" class="java.lang.String">
+		<fieldDescription><![CDATA[@suppCode]]></fieldDescription>
+	</field>
+	<field name="suppDesc" class="java.lang.String">
+		<fieldDescription><![CDATA[@suppDesc]]></fieldDescription>
+	</field>
+	<field name="dateReceived" class="java.lang.String">
+		<fieldDescription><![CDATA[@dateReceived]]></fieldDescription>
+	</field>
+	<field name="dimension1" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension1]]></fieldDescription>
+	</field>
+	<field name="dimension2" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2]]></fieldDescription>
+	</field>
+	<field name="dimension3" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension3]]></fieldDescription>
+	</field>
+	<field name="dim3Desc" class="java.lang.String">
+		<fieldDescription><![CDATA[@dim3Desc]]></fieldDescription>
+	</field>
+	<field name="serial" class="java.lang.String">
+		<fieldDescription><![CDATA[@serial]]></fieldDescription>
+	</field>
+	<field name="batch" class="java.lang.String">
+		<fieldDescription><![CDATA[@batch]]></fieldDescription>
+	</field>
+	<field name="uom" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemUOM]]></fieldDescription>
+	</field>
+	<field name="quantity" class="java.lang.Double">
+		<fieldDescription><![CDATA[@quantity]]></fieldDescription>
+	</field>
+	<field name="grnNumber_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@grnNumber_2]]></fieldDescription>
+	</field>
+	<field name="itemReference_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemReference_2]]></fieldDescription>
+	</field>
+	<field name="itemDesc_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemDesc_2]]></fieldDescription>
+	</field>
+	<field name="itemWidth_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemWidth_2]]></fieldDescription>
+	</field>
+	<field name="itemPrice_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemPrice_2]]></fieldDescription>
+	</field>
+	<field name="suppCode_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@suppCode_2]]></fieldDescription>
+	</field>
+	<field name="suppDesc_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@suppDesc_2]]></fieldDescription>
+	</field>
+	<field name="dateReceived_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@dateReceived_2]]></fieldDescription>
+	</field>
+	<field name="dimension1_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension1_2]]></fieldDescription>
+	</field>
+	<field name="dimension2_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension2_2]]></fieldDescription>
+	</field>
+	<field name="dimension3_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@dimension3_2]]></fieldDescription>
+	</field>
+	<field name="dim3Desc_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@dim3Desc_2]]></fieldDescription>
+	</field>
+	<field name="serial_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@serial_2]]></fieldDescription>
+	</field>
+	<field name="batch_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@batch_2]]></fieldDescription>
+	</field>
+	<field name="uom_1" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemUOM_2]]></fieldDescription>
+	</field>
+	<field name="quantity_1" class="java.lang.Double">
+		<fieldDescription><![CDATA[@quantity_2]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="184">
+			<staticText>
+				<reportElement x="0" y="0" width="68" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[GRN NUMBER:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="13" width="68" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[ITEM:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="91" width="68" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[ITEM WIDTH:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="130" width="68" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SUPPLIER:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="143" width="68" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[DATE RECVD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="39" width="68" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[CONFIG:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="52" width="68" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[COLOUR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="78" width="68" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SIZE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="104" width="68" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SERIAL NO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="117" width="68" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[BATCH NO:]]></text>
+			</staticText>
+			<textField hyperlinkType="None">
+				<reportElement x="71" y="0" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{grnNumber}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="71" y="13" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemReference}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="71" y="26" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemDesc}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="71" y="91" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemWidth}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="71" y="130" width="49" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{suppCode}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="120" y="130" width="93" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{suppDesc}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="71" y="143" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dateReceived}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="71" y="39" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="71" y="52" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension3}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="71" y="78" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="71" y="104" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{serial}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="71" y="117" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{batch}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="227" y="0" width="68" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null && !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[GRN NUMBER:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="91" width="68" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null && !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[ITEM WIDTH:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="130" width="68" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null && !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SUPPLIER:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="143" width="68" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null && !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[DATE RECVD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="39" width="68" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null && !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[CONFIG:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="52" width="68" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null && !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[COLOUR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="78" width="68" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null && !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SIZE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="104" width="68" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null && !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[SERIAL NO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="117" width="68" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null && !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[BATCH NO:]]></text>
+			</staticText>
+			<textField hyperlinkType="None">
+				<reportElement x="298" y="0" width="142" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{grnNumber_1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="298" y="13" width="142" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemReference_1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="298" y="26" width="142" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemDesc_1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="298" y="91" width="142" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemWidth_1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="298" y="130" width="49" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{suppCode_1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="347" y="130" width="93" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{suppDesc_1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="298" y="143" width="142" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dateReceived_1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="298" y="39" width="142" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension1_1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="298" y="52" width="142" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension3_1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="298" y="78" width="142" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dimension2_1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="298" y="104" width="142" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{serial_1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="298" y="117" width="142" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{batch_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="227" y="13" width="68" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null && !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[ITEM:]]></text>
+			</staticText>
+			<textField hyperlinkType="None">
+				<reportElement x="298" y="65" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dim3Desc_1}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="None">
+				<reportElement x="71" y="65" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dim3Desc}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="156" width="68" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[QUANTITY:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="156" width="68" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null && !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[QUANTITY:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true" hyperlinkType="None">
+				<reportElement x="298" y="157" width="142" height="13">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{quantity_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" hyperlinkType="None">
+				<reportElement x="71" y="156" width="142" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="71" y="168" width="142" height="1"/>
+			</line>
+			<line>
+				<reportElement x="298" y="169" width="142" height="1">
+					<printWhenExpression><![CDATA[Boolean.valueOf(($F{itemReference_1} != null || !$F{itemReference_1}.trim().equals("")))]]></printWhenExpression>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

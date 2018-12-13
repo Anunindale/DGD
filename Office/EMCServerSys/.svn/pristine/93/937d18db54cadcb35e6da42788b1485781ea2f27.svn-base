@@ -1,0 +1,162 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.reports.trec.customerselection;
+
+import emc.reports.trec.treccard.*;
+
+/**
+ *
+ * @author wikus
+ */
+public class TRECProducedCardTemplateDS {
+    
+    private String companyName;
+    private String UNNumber;
+    private String ergNumber;
+    private boolean danger;
+    private boolean personalProtectiveEquipment;
+    private boolean emergencyResponseEquipment;
+    private boolean driverFirstAction;
+    private boolean driverAdditionalAction;
+    private boolean driverFireAction;
+    private boolean firstAid;
+    private boolean infoForEmergencyServices;
+    private String infoHeading;
+    private String shippingName;
+    private String preferredShippingName;
+    boolean printHeading = false;
+    boolean mandatory = false;
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getUNNumber() {
+        return UNNumber;
+    }
+
+    public void setUNNumber(String UNNumber) {
+        this.UNNumber = UNNumber;
+    }
+
+    public String getErgNumber() {
+        return ergNumber;
+    }
+
+    public void setErgNumber(String ergNumber) {
+        this.ergNumber = ergNumber;
+    }
+
+   
+    public boolean isDanger() {
+        return danger;
+    }
+
+    public void setDanger(boolean danger) {
+        this.danger = danger;
+    }
+
+    public boolean isPersonalProtectiveEquipment() {
+        return personalProtectiveEquipment;
+    }
+
+    public void setPersonalProtectiveEquipment(boolean personalProtectiveEquipment) {
+        this.personalProtectiveEquipment = personalProtectiveEquipment;
+    }
+
+    public boolean isEmergencyResponseEquipment() {
+        return emergencyResponseEquipment;
+    }
+
+    public void setEmergencyResponseEquipment(boolean emergencyResponseEquipment) {
+        this.emergencyResponseEquipment = emergencyResponseEquipment;
+    }
+
+    public boolean isDriverFirstAction() {
+        return driverFirstAction;
+    }
+
+    public void setDriverFirstAction(boolean driverFirstAction) {
+        this.driverFirstAction = driverFirstAction;
+    }
+
+    public boolean isDriverAdditionalAction() {
+        return driverAdditionalAction;
+    }
+
+    public void setDriverAdditionalAction(boolean driverAdditionalAction) {
+        this.driverAdditionalAction = driverAdditionalAction;
+    }
+
+    public boolean isDriverFireAction() {
+        return driverFireAction;
+    }
+
+    public void setDriverFireAction(boolean driverFireAction) {
+        this.driverFireAction = driverFireAction;
+    }
+
+    public boolean isFirstAid() {
+        return firstAid;
+    }
+
+    public void setFirstAid(boolean firstAid) {
+        this.firstAid = firstAid;
+    }
+
+    public boolean isInfoForEmergencyServices() {
+        return infoForEmergencyServices;
+    }
+
+    public void setInfoForEmergencyServices(boolean infoForEmergencyServices) {
+        this.infoForEmergencyServices = infoForEmergencyServices;
+    }
+
+    public String getInfoHeading() {
+        return infoHeading;
+    }
+
+    public void setInfoHeading(String infoHeading) {
+        this.infoHeading = infoHeading;
+    }
+
+    public String getShippingName() {
+        return shippingName;
+    }
+
+    public void setShippingName(String shippingName) {
+        this.shippingName = shippingName;
+    }
+
+    public String getPreferredShippingName() {
+        return preferredShippingName;
+    }
+
+    public void setPreferredShippingName(String preferredShippingName) {
+        this.preferredShippingName = preferredShippingName;
+    }
+
+    public boolean isPrintHeading() {
+        return printHeading;
+    }
+
+    public void setPrintHeading(boolean printHeading) {
+        this.printHeading = printHeading;
+    }
+
+    public boolean isMandatory() {
+        return mandatory;
+    }
+
+    public void setMandatory(boolean mandatory) {
+        this.mandatory = mandatory;
+    }
+    
+   
+}

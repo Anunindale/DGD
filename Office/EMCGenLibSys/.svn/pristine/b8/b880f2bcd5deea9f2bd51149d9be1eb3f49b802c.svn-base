@@ -1,0 +1,310 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.entity.debtors;
+
+import emc.datatypes.EMCDataType;
+import emc.datatypes.debtors.basket.DiscountAmount;
+import emc.datatypes.debtors.basket.LineNumber;
+import emc.datatypes.debtors.basket.OperatorTelNo;
+import emc.datatypes.debtors.basket.Price;
+import emc.datatypes.debtors.basket.PrintExtraQty;
+import emc.datatypes.debtors.basket.PrintQty;
+import emc.datatypes.debtors.basket.Quantity;
+import emc.datatypes.debtors.basket.SpecialistTelNo;
+import emc.datatypes.debtors.basket.TotalPrice;
+import emc.datatypes.debtors.basket.Vat;
+import emc.datatypes.debtors.basket.foreignkeys.BasketIdFK;
+import emc.datatypes.debtors.basket.foreignkeys.ColourFK;
+import emc.datatypes.debtors.basket.foreignkeys.ConfigurationFK;
+import emc.datatypes.debtors.basket.foreignkeys.ItemIdFK;
+import emc.datatypes.debtors.basket.foreignkeys.SizeFK;
+import emc.datatypes.debtors.customerinvoice.DiscountPercentage;
+import emc.datatypes.inventory.dimensions.foreignkeys.Dimension1FK;
+import emc.datatypes.inventory.dimensions.foreignkeys.Dimension1FKNotMandatory;
+import emc.datatypes.inventory.dimensions.foreignkeys.Dimension2FK;
+import emc.datatypes.inventory.dimensions.foreignkeys.Dimension2FKNotMandatory;
+import emc.datatypes.inventory.dimensions.foreignkeys.Dimension3FK;
+import emc.datatypes.inventory.dimensions.foreignkeys.Dimension3FKNotMandatory;
+import emc.datatypes.trec.chemicals.foreignkey.UNNumberFK;
+import emc.datatypes.trec.chemicals.foreignkey.UNNumberFKNM;
+import emc.framework.EMCEntityClass;
+import emc.framework.EMCQuery;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+/**
+ *
+ * @author stuart
+ */
+@Entity
+@Table(name = "DebtorsBasketLines", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"basketId", "lineNumber"})})
+public class DebtorsBasketLines extends EMCEntityClass {
+
+    private String basketId;
+    private int lineNumber;
+    private String itemId;
+    //equal to null for now as its currently just a service
+    private String configuration = null;
+    private String colour = null;
+    private String itemSize = null;
+    private String description = null;
+    private BigDecimal quantity;
+    private BigDecimal price;
+    private BigDecimal vat;
+    private BigDecimal totalPrice;
+    private Long trecCardLink;
+    private int printQty;
+    private String dimension1;
+    private String dimension2;
+    private String dimension3;
+    private BigDecimal discountPercentage;
+    private BigDecimal discountAmount;
+    private int printExtraQty;
+    private String placardUNNumber;
+    @Column(length = 2000)
+    private String operatorTlNo;
+    @Column(length = 2000)
+    private String specialistTelNo; 
+    private String printOption;
+
+    public void setBasketId(String basketId) {
+        this.basketId = basketId;
+    }
+
+    public String getBasketId() {
+        return this.basketId;
+    }
+
+    public int getLineNumber() {
+        return lineNumber;
+    }
+
+    public void setLineNumber(int lineNumber) {
+        this.lineNumber = lineNumber;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getItemId() {
+        return this.itemId;
+    }
+
+    public void setConfiguration(String configuration) {
+        this.configuration = configuration;
+    }
+
+    public String getConfiguration() {
+        return this.configuration;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    public String getColour() {
+        return this.colour;
+    }
+
+    public void setItemSize(String itemSize) {
+        this.itemSize = itemSize;
+    }
+
+    public String getItemSize() {
+        return this.itemSize;
+    }
+
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getQuantity() {
+        return this.quantity;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getPrice() {
+        return this.price;
+    }
+
+    public void setVat(BigDecimal vat) {
+        this.vat = vat;
+    }
+
+    public BigDecimal getVat() {
+        return this.vat;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return this.totalPrice;
+    }
+
+    public Long getTrecCardLink() {
+        return trecCardLink;
+    }
+
+    public void setTrecCardLink(Long trecCardLink) {
+        this.trecCardLink = trecCardLink;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getPrintQty() {
+        return printQty;
+    }
+
+    public void setPrintQty(int printQty) {
+        this.printQty = printQty;
+    }
+
+    public String getDimension1() {
+        return dimension1;
+    }
+
+    public void setDimension1(String Dimension1) {
+        this.dimension1 = Dimension1;
+    }
+
+    public String getDimension2() {
+        return dimension2;
+    }
+
+    public void setDimension2(String dimension2) {
+        this.dimension2 = dimension2;
+    }
+
+    public String getDimension3() {
+        return dimension3;
+    }
+
+    public void setDimension3(String dimension3) {
+        this.dimension3 = dimension3;
+    }
+
+    public BigDecimal getDiscountPercentage() {
+        return discountPercentage;
+    }
+
+    public void setDiscountPercentage(BigDecimal discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
+
+    public BigDecimal getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(BigDecimal discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
+    public int getPrintExtraQty() {
+        return printExtraQty;
+    }
+
+    public void setPrintExtraQty(int printExtraQty) {
+        this.printExtraQty = printExtraQty;
+    }
+
+    public String getPlacardUNNumber() {
+        return placardUNNumber;
+    }
+
+    public void setPlacardUNNumber(String placardUNNumber) {
+        this.placardUNNumber = placardUNNumber;
+    }
+
+    public String getOperatorTlNo() {
+        return operatorTlNo;
+    }
+
+    public void setOperatorTlNo(String operatorTlNo) {
+        this.operatorTlNo = operatorTlNo;
+    }
+
+    public String getSpecialistTelNo() {
+        return specialistTelNo;
+    }
+
+    public void setSpecialistTelNo(String specialistTelNo) {
+        this.specialistTelNo = specialistTelNo;
+    }
+
+    public String getPrintOption() {
+        return printOption;
+    }
+
+    public void setPrintOption(String printOption) {
+        this.printOption = printOption;
+    }
+    
+    
+    
+    
+
+    @Override
+    public EMCQuery buildQuery() {
+        EMCQuery query = super.buildQuery();
+
+        query.addOrderBy("lineNumber");
+
+        return query;
+    }
+
+    @Override
+    public List<String> getDefaultLookupFields() {
+        List<String> fields = new ArrayList<String>();
+        fields.add("itemId");
+        fields.add("basketId");
+        return fields;
+    }
+
+    @Override
+    protected HashMap<String, EMCDataType> buildFieldList() {
+        HashMap ret = super.buildFieldList();
+        ret.put("basketId", new BasketIdFK());
+        ret.put("lineNumber", new LineNumber());
+        ret.put("itemId", new ItemIdFK());
+        ret.put("configuration", new ConfigurationFK());
+        ret.put("colour", new ColourFK());
+        ret.put("itemSize", new SizeFK());
+        ret.put("quantity", new Quantity());
+        ret.put("price", new Price());
+        ret.put("vat", new Vat());
+        ret.put("totalPrice", new TotalPrice());
+        ret.put("printQty", new PrintQty());
+        ret.put("dimension1", new Dimension1FKNotMandatory());
+        ret.put("dimension2", new Dimension2FKNotMandatory());
+        ret.put("dimension3", new Dimension3FKNotMandatory());
+        ret.put("discountAmount", new DiscountAmount());
+        ret.put("discountPercentage", new DiscountPercentage());
+        ret.put("printExtraQty", new PrintExtraQty());
+        ret.put("placardUNNumber", new UNNumberFKNM());
+        ret.put("operatorTlNo", new OperatorTelNo());
+        ret.put("specialistTelNo", new SpecialistTelNo());
+        
+        return ret;
+    }
+}

@@ -1,0 +1,30 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.bus.trec.phrases;
+
+import emc.entity.trec.TRECPhrases;
+import emc.framework.EMCEntityBeanLocalInterface;
+import emc.framework.EMCUserData;
+import javax.ejb.Local;
+
+/**
+ *
+ * @author wikus
+ */
+@Local
+public interface TRECPhrasesLocal extends EMCEntityBeanLocalInterface {
+
+    /**
+     * Special method to help with encryption
+     *
+     * @param phrase
+     * @param userData
+     */
+    public void updateEncryptedFields(TRECPhrases ph, EMCUserData userData);
+
+    public java.util.List<emc.helpers.trec.TRECPhraseHelper> getPhrases(java.lang.String UNNumber, java.lang.String stringType, emc.framework.EMCUserData userData);
+
+    public java.util.Map<java.lang.String, java.util.List<emc.helpers.trec.TRECPhraseHelper>> getEPhrases(emc.entity.trec.TRECCustomerChemicals custChemical, emc.framework.EMCUserData userData);
+}

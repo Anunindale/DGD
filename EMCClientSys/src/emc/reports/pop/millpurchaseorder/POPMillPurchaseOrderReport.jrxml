@@ -1,0 +1,1781 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true">
+	<field name="orderNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@orderNo]]></fieldDescription>
+	</field>
+	<field name="fabricColour1" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColour1]]></fieldDescription>
+	</field>
+	<field name="catagory1" class="java.lang.String">
+		<fieldDescription><![CDATA[@catagory1]]></fieldDescription>
+	</field>
+	<field name="fabricColourNumber1" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColourNumber1]]></fieldDescription>
+	</field>
+	<field name="designCode1" class="java.lang.String">
+		<fieldDescription><![CDATA[@designCode1]]></fieldDescription>
+	</field>
+	<field name="printColour1" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColour1]]></fieldDescription>
+	</field>
+	<field name="printColourNumber1" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColourNumber1]]></fieldDescription>
+	</field>
+	<field name="quantity1" class="java.lang.String">
+		<fieldDescription><![CDATA[@quantity1]]></fieldDescription>
+	</field>
+	<field name="fabricPrice1" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricPrice1]]></fieldDescription>
+	</field>
+	<field name="printPrice1" class="java.lang.String">
+		<fieldDescription><![CDATA[@printPrice1]]></fieldDescription>
+	</field>
+	<field name="totalPrice1" class="java.lang.String">
+		<fieldDescription><![CDATA[@totalPrice1]]></fieldDescription>
+	</field>
+	<field name="fabricColour2" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColour2]]></fieldDescription>
+	</field>
+	<field name="catagory2" class="java.lang.String">
+		<fieldDescription><![CDATA[@catagory2]]></fieldDescription>
+	</field>
+	<field name="fabricColourNumber2" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColourNumber2]]></fieldDescription>
+	</field>
+	<field name="designCode2" class="java.lang.String">
+		<fieldDescription><![CDATA[@designCode2]]></fieldDescription>
+	</field>
+	<field name="printColour2" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColour2]]></fieldDescription>
+	</field>
+	<field name="printColourNumber2" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColourNumber2]]></fieldDescription>
+	</field>
+	<field name="quantity2" class="java.lang.String">
+		<fieldDescription><![CDATA[@quantity2]]></fieldDescription>
+	</field>
+	<field name="fabricPrice2" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricPrice2]]></fieldDescription>
+	</field>
+	<field name="printPrice2" class="java.lang.String">
+		<fieldDescription><![CDATA[@printPrice2]]></fieldDescription>
+	</field>
+	<field name="totalPrice2" class="java.lang.String">
+		<fieldDescription><![CDATA[@totalPrice2]]></fieldDescription>
+	</field>
+	<field name="fabricColour3" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColour3]]></fieldDescription>
+	</field>
+	<field name="catagory3" class="java.lang.String">
+		<fieldDescription><![CDATA[@catagory3]]></fieldDescription>
+	</field>
+	<field name="fabricColourNumber3" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColourNumber3]]></fieldDescription>
+	</field>
+	<field name="designCode3" class="java.lang.String">
+		<fieldDescription><![CDATA[@designCode3]]></fieldDescription>
+	</field>
+	<field name="printColour3" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColour3]]></fieldDescription>
+	</field>
+	<field name="printColourNumber3" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColourNumber3]]></fieldDescription>
+	</field>
+	<field name="quantity3" class="java.lang.String">
+		<fieldDescription><![CDATA[@quantity3]]></fieldDescription>
+	</field>
+	<field name="fabricPrice3" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricPrice3]]></fieldDescription>
+	</field>
+	<field name="printPrice3" class="java.lang.String">
+		<fieldDescription><![CDATA[@printPrice3]]></fieldDescription>
+	</field>
+	<field name="totalPrice3" class="java.lang.String">
+		<fieldDescription><![CDATA[@totalPrice3]]></fieldDescription>
+	</field>
+	<field name="fabricColour4" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColour4]]></fieldDescription>
+	</field>
+	<field name="catagory4" class="java.lang.String">
+		<fieldDescription><![CDATA[@catagory4]]></fieldDescription>
+	</field>
+	<field name="fabricColourNumber4" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColourNumber4]]></fieldDescription>
+	</field>
+	<field name="designCode4" class="java.lang.String">
+		<fieldDescription><![CDATA[@designCode4]]></fieldDescription>
+	</field>
+	<field name="printColour4" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColour4]]></fieldDescription>
+	</field>
+	<field name="printColourNumber4" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColourNumber4]]></fieldDescription>
+	</field>
+	<field name="quantity4" class="java.lang.String">
+		<fieldDescription><![CDATA[@quantity4]]></fieldDescription>
+	</field>
+	<field name="fabricPrice4" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricPrice4]]></fieldDescription>
+	</field>
+	<field name="printPrice4" class="java.lang.String">
+		<fieldDescription><![CDATA[@printPrice4]]></fieldDescription>
+	</field>
+	<field name="totalPrice4" class="java.lang.String">
+		<fieldDescription><![CDATA[@totalPrice4]]></fieldDescription>
+	</field>
+	<field name="fabricColour5" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColour5]]></fieldDescription>
+	</field>
+	<field name="catagory5" class="java.lang.String">
+		<fieldDescription><![CDATA[@catagory5]]></fieldDescription>
+	</field>
+	<field name="fabricColourNumber5" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColourNumber5]]></fieldDescription>
+	</field>
+	<field name="designCode5" class="java.lang.String">
+		<fieldDescription><![CDATA[@designCode5]]></fieldDescription>
+	</field>
+	<field name="printColour5" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColour5]]></fieldDescription>
+	</field>
+	<field name="printColourNumber5" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColourNumber5]]></fieldDescription>
+	</field>
+	<field name="quantity5" class="java.lang.String">
+		<fieldDescription><![CDATA[@quantity5]]></fieldDescription>
+	</field>
+	<field name="fabricPrice5" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricPrice5]]></fieldDescription>
+	</field>
+	<field name="printPrice5" class="java.lang.String">
+		<fieldDescription><![CDATA[@printPrice5]]></fieldDescription>
+	</field>
+	<field name="totalPrice5" class="java.lang.String">
+		<fieldDescription><![CDATA[@totalPrice5]]></fieldDescription>
+	</field>
+	<field name="fabricColour6" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColour6]]></fieldDescription>
+	</field>
+	<field name="catagory6" class="java.lang.String">
+		<fieldDescription><![CDATA[@catagory6]]></fieldDescription>
+	</field>
+	<field name="fabricColourNumber6" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColourNumber6]]></fieldDescription>
+	</field>
+	<field name="designCode6" class="java.lang.String">
+		<fieldDescription><![CDATA[@designCode6]]></fieldDescription>
+	</field>
+	<field name="printColour6" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColour6]]></fieldDescription>
+	</field>
+	<field name="printColourNumber6" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColourNumber6]]></fieldDescription>
+	</field>
+	<field name="quantity6" class="java.lang.String">
+		<fieldDescription><![CDATA[@quantity6]]></fieldDescription>
+	</field>
+	<field name="fabricPrice6" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricPrice6]]></fieldDescription>
+	</field>
+	<field name="printPrice6" class="java.lang.String">
+		<fieldDescription><![CDATA[@printPrice6]]></fieldDescription>
+	</field>
+	<field name="totalPrice6" class="java.lang.String">
+		<fieldDescription><![CDATA[@totalPrice6]]></fieldDescription>
+	</field>
+	<field name="fabricColour7" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColour7]]></fieldDescription>
+	</field>
+	<field name="catagory7" class="java.lang.String">
+		<fieldDescription><![CDATA[@catagory7]]></fieldDescription>
+	</field>
+	<field name="fabricColourNumber7" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColourNumber7]]></fieldDescription>
+	</field>
+	<field name="designCode7" class="java.lang.String">
+		<fieldDescription><![CDATA[@designCode7]]></fieldDescription>
+	</field>
+	<field name="printColour7" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColour7]]></fieldDescription>
+	</field>
+	<field name="printColourNumber7" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColourNumber7]]></fieldDescription>
+	</field>
+	<field name="quantity7" class="java.lang.String">
+		<fieldDescription><![CDATA[@quantity7]]></fieldDescription>
+	</field>
+	<field name="fabricPrice7" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricPrice7]]></fieldDescription>
+	</field>
+	<field name="printPrice7" class="java.lang.String">
+		<fieldDescription><![CDATA[@printPrice7]]></fieldDescription>
+	</field>
+	<field name="totalPrice7" class="java.lang.String">
+		<fieldDescription><![CDATA[@totalPrice7]]></fieldDescription>
+	</field>
+	<field name="fabricColour8" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColour8]]></fieldDescription>
+	</field>
+	<field name="catagory8" class="java.lang.String">
+		<fieldDescription><![CDATA[@catagory8]]></fieldDescription>
+	</field>
+	<field name="fabricColourNumber8" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricColourNumber8]]></fieldDescription>
+	</field>
+	<field name="designCode8" class="java.lang.String">
+		<fieldDescription><![CDATA[@designCode8]]></fieldDescription>
+	</field>
+	<field name="printColour8" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColour8]]></fieldDescription>
+	</field>
+	<field name="printColourNumber8" class="java.lang.String">
+		<fieldDescription><![CDATA[@printColourNumber8]]></fieldDescription>
+	</field>
+	<field name="quantity8" class="java.lang.String">
+		<fieldDescription><![CDATA[@quantity8]]></fieldDescription>
+	</field>
+	<field name="fabricPrice8" class="java.lang.String">
+		<fieldDescription><![CDATA[@fabricPrice8]]></fieldDescription>
+	</field>
+	<field name="printPrice8" class="java.lang.String">
+		<fieldDescription><![CDATA[@printPrice8]]></fieldDescription>
+	</field>
+	<field name="totalPrice8" class="java.lang.String">
+		<fieldDescription><![CDATA[@totalPrice8]]></fieldDescription>
+	</field>
+	<field name="totalQuantity" class="java.lang.String">
+		<fieldDescription><![CDATA[@totalquantity]]></fieldDescription>
+	</field>
+	<field name="companyName" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyName]]></fieldDescription>
+	</field>
+	<field name="requiredDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@requiredDate]]></fieldDescription>
+	</field>
+	<field name="customerOrderNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@customerOrderNo]]></fieldDescription>
+	</field>
+	<field name="agentCode" class="java.lang.String">
+		<fieldDescription><![CDATA[@agentCode]]></fieldDescription>
+	</field>
+	<field name="deliveryAddress" class="java.lang.String">
+		<fieldDescription><![CDATA[@deliveryAddress]]></fieldDescription>
+	</field>
+	<field name="itemReference" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemReference]]></fieldDescription>
+	</field>
+	<field name="itemDescription" class="java.lang.String">
+		<fieldDescription><![CDATA[@itemDescription]]></fieldDescription>
+	</field>
+	<field name="designNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@designNo]]></fieldDescription>
+	</field>
+	<field name="softex" class="java.lang.String">
+		<fieldDescription><![CDATA[@softex]]></fieldDescription>
+	</field>
+	<field name="softexOther" class="java.lang.String">
+		<fieldDescription><![CDATA[@softexOther]]></fieldDescription>
+	</field>
+	<field name="existingDesign" class="java.lang.String">
+		<fieldDescription><![CDATA[@existingDesign]]></fieldDescription>
+	</field>
+	<field name="bulkedDesign" class="java.lang.String">
+		<fieldDescription><![CDATA[@bulkedDesign]]></fieldDescription>
+	</field>
+	<field name="widthPlain" class="java.lang.String">
+		<fieldDescription><![CDATA[@widthPlain]]></fieldDescription>
+	</field>
+	<field name="widthPrinted" class="java.lang.String">
+		<fieldDescription><![CDATA[@widthPrinted]]></fieldDescription>
+	</field>
+	<field name="weightPlain" class="java.lang.String">
+		<fieldDescription><![CDATA[@weightPlain]]></fieldDescription>
+	</field>
+	<field name="weightPrinted" class="java.lang.String">
+		<fieldDescription><![CDATA[@weightPrinted]]></fieldDescription>
+	</field>
+	<field name="consignment" class="java.lang.String">
+		<fieldDescription><![CDATA[@consignment]]></fieldDescription>
+	</field>
+	<field name="terms" class="java.lang.String">
+		<fieldDescription><![CDATA[@terms]]></fieldDescription>
+	</field>
+	<field name="withOrder" class="java.lang.String">
+		<fieldDescription><![CDATA[@withOrder]]></fieldDescription>
+	</field>
+	<field name="matchOrder" class="java.lang.String">
+		<fieldDescription><![CDATA[@matchOrder]]></fieldDescription>
+	</field>
+	<field name="printAfter" class="java.lang.String">
+		<fieldDescription><![CDATA[@printAfter]]></fieldDescription>
+	</field>
+	<field name="printAfterType" class="java.lang.String">
+		<fieldDescription><![CDATA[@printAfterType]]></fieldDescription>
+	</field>
+	<field name="processAfter" class="java.lang.String">
+		<fieldDescription><![CDATA[@processAfter]]></fieldDescription>
+	</field>
+	<field name="afterProcessType" class="java.lang.String">
+		<fieldDescription><![CDATA[@afterProcessType]]></fieldDescription>
+	</field>
+	<field name="replacement" class="java.lang.String">
+		<fieldDescription><![CDATA[@replacement]]></fieldDescription>
+	</field>
+	<field name="replacementReason" class="java.lang.String">
+		<fieldDescription><![CDATA[@replacementReason]]></fieldDescription>
+	</field>
+	<field name="cuttingReceived" class="java.lang.String">
+		<fieldDescription><![CDATA[@cuttingReceived]]></fieldDescription>
+	</field>
+	<field name="proformaNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@proformaNo]]></fieldDescription>
+	</field>
+	<field name="labDye" class="java.lang.String">
+		<fieldDescription><![CDATA[@labDye]]></fieldDescription>
+	</field>
+	<field name="strikeOff" class="java.lang.String">
+		<fieldDescription><![CDATA[@strikeOff]]></fieldDescription>
+	</field>
+	<field name="remarks" class="java.lang.String">
+		<fieldDescription><![CDATA[@remarks]]></fieldDescription>
+	</field>
+	<field name="correspondence" class="java.lang.String">
+		<fieldDescription><![CDATA[@correspondence]]></fieldDescription>
+	</field>
+	<field name="exStock" class="java.lang.String">
+		<fieldDescription><![CDATA[@exStock]]></fieldDescription>
+	</field>
+	<field name="labInfo" class="java.lang.String">
+		<fieldDescription><![CDATA[@labInfo]]></fieldDescription>
+	</field>
+	<field name="retailer" class="java.lang.String">
+		<fieldDescription><![CDATA[@retailer]]></fieldDescription>
+	</field>
+	<field name="colourBlocked" class="java.lang.String">
+		<fieldDescription><![CDATA[@colourBlocked]]></fieldDescription>
+	</field>
+	<field name="endUser" class="java.lang.String">
+		<fieldDescription><![CDATA[@endUser]]></fieldDescription>
+	</field>
+	<field name="perPreviousOrder" class="java.lang.String">
+		<fieldDescription><![CDATA[@previosOrder]]></fieldDescription>
+	</field>
+	<field name="orderDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@orderDate]]></fieldDescription>
+	</field>
+	<field name="uom" class="java.lang.String">
+		<fieldDescription><![CDATA[@uom]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="298" height="44"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NINIAN & LESTER (PTY) LTD TEXTILE DIVISION
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="20" width="100" height="24"/>
+				<textElement/>
+				<text><![CDATA[P.O. Box 10282 ASHWOOD 3605
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="19" width="117" height="25"/>
+				<textElement verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BULK ORDER
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="19" width="29" height="25"/>
+				<textElement verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No:
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="444" y="19" width="111" height="25"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{orderNo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="47" width="555" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="444" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="61" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="61" y="16" width="209" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="35" width="270" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="298" y="3" width="34" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="21" width="115" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Order No:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="39" width="94" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agent Order No:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="56" width="40" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agent:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="73" width="70" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agent Code:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="90" width="94" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer: Code:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="449" y="90" width="43" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[A/C No:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="332" y="15" width="223" height="1"/>
+			</line>
+			<line>
+				<reportElement x="413" y="34" width="142" height="1"/>
+			</line>
+			<line>
+				<reportElement x="392" y="52" width="163" height="1"/>
+			</line>
+			<line>
+				<reportElement x="338" y="69" width="217" height="1"/>
+			</line>
+			<line>
+				<reportElement x="368" y="86" width="187" height="1"/>
+			</line>
+			<line>
+				<reportElement x="392" y="103" width="55" height="1"/>
+			</line>
+			<line>
+				<reportElement x="492" y="102" width="63" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="108" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="112" width="102" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Delivery Address:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="129" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="133" width="72" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quality No:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="150" width="72" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="167" width="72" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Design No:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="184" width="142" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Existing Design:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="189" y="167" width="150" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Softex:                   OTHER:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="184" width="250" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Has this design been bulked before:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="201" width="38" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Width:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="218" width="45" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Weight:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="201" width="38" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plain:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="218" width="38" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plain:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="201" width="47" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Printed:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="218" width="47" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Printed:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="235" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="72" y="146" width="147" height="1"/>
+			</line>
+			<line>
+				<reportElement x="72" y="163" width="320" height="1"/>
+			</line>
+			<line>
+				<reportElement x="72" y="180" width="111" height="1"/>
+			</line>
+			<line>
+				<reportElement x="339" y="179" width="53" height="1"/>
+			</line>
+			<line>
+				<reportElement x="400" y="129" width="1" height="107"/>
+			</line>
+			<staticText>
+				<reportElement x="401" y="130" width="77" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Consignment
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="478" y="130" width="77" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Terms
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="401" y="143" width="154" height="1"/>
+			</line>
+			<line>
+				<reportElement x="478" y="129" width="1" height="107"/>
+			</line>
+			<line>
+				<reportElement x="554" y="130" width="1" height="105"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="240" width="98" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fabric Colour
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="240" width="21" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cat
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="121" y="240" width="62" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fabric Colour Number
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="240" width="38" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[% Cover]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="240" width="33" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Print Col
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="240" width="30" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Print Col Num]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="240" width="44" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Quantity
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="240" width="39" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fabric Price
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="240" width="40" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Print Price
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="240" width="37" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Art work/ Screen Price
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="240" width="33" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Surch Code
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="481" y="240" width="33" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Surch Price
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="515" y="240" width="40" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Total excl VAT
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="281" width="97" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColour1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="281" width="21" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{catagory1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="281" width="62" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColourNumber1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="281" width="38" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{designCode1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="281" width="33" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColour1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="281" width="30" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColourNumber1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="285" y="281" width="44" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{quantity1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="330" y="281" width="39" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricPrice1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="370" y="281" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printPrice1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="515" y="281" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{totalPrice1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="285" y="298" width="44" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{quantity2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="515" y="298" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{totalPrice2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="298" width="62" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColourNumber2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="370" y="298" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printPrice2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="298" width="97" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColour2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="298" width="30" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColourNumber2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="298" width="21" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{catagory2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="298" width="33" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColour2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="298" width="38" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{designCode2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="330" y="298" width="39" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricPrice2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="515" y="315" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{totalPrice3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="285" y="315" width="44" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{quantity3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="315" width="62" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColourNumber3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="285" y="332" width="44" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{quantity4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="370" y="315" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printPrice3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="315" width="97" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColour3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="315" width="30" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColourNumber3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="315" width="21" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{catagory3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="332" width="21" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{catagory4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="332" width="97" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColour4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="332" width="33" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColour4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="315" width="33" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColour3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="330" y="332" width="39" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricPrice4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="515" y="332" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{totalPrice4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="332" width="62" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColourNumber4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="315" width="38" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{designCode3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="330" y="315" width="39" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricPrice3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="332" width="38" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{designCode4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="370" y="332" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printPrice4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="332" width="30" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColourNumber4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="349" width="33" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColour5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="330" y="349" width="39" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricPrice5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="370" y="349" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printPrice5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="349" width="38" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{designCode5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="349" width="21" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{catagory5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="349" width="30" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColourNumber5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="285" y="349" width="44" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{quantity5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5" y="350" width="97" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColour5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="515" y="349" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{totalPrice5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="515" y="366" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{totalPrice6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="515" y="383" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{totalPrice7}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="515" y="400" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{totalPrice8}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="370" y="366" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printPrice6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="330" y="400" width="39" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricPrice8}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="370" y="400" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printPrice8}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="330" y="383" width="39" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricPrice7}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="370" y="383" width="40" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printPrice7}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="330" y="366" width="39" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printPrice6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="285" y="366" width="44" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{quantity6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="285" y="383" width="44" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{quantity7}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="285" y="400" width="44" height="16" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{quantity8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="349" width="62" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColourNumber5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="383" width="33" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColour7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="400" width="33" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColour8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="366" width="30" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColourNumber6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="366" width="33" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColour6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="383" width="30" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColourNumber7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="400" width="30" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printColourNumber8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="366" width="62" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColourNumber6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="383" width="38" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{designCode7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="400" width="62" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColourNumber8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="366" width="38" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{designCode6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="400" width="38" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{designCode8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="383" width="62" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColourNumber7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="400" width="97" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColour8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="366" width="97" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColour6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="366" width="21" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{catagory6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="383" width="21" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{catagory7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="400" width="21" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{catagory8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="383" width="97" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fabricColour7}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="241" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="280" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="297" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="331" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="314" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="365" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="399" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="348" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="382" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="416" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="242" width="1" height="174"/>
+			</line>
+			<line>
+				<reportElement x="98" y="242" width="1" height="174"/>
+			</line>
+			<line>
+				<reportElement x="120" y="242" width="1" height="174"/>
+			</line>
+			<line>
+				<reportElement x="183" y="242" width="1" height="174"/>
+			</line>
+			<line>
+				<reportElement x="221" y="242" width="1" height="174"/>
+			</line>
+			<line>
+				<reportElement x="254" y="242" width="1" height="174"/>
+			</line>
+			<line>
+				<reportElement x="284" y="242" width="1" height="190"/>
+			</line>
+			<line>
+				<reportElement x="329" y="242" width="1" height="190"/>
+			</line>
+			<line>
+				<reportElement x="369" y="242" width="1" height="174"/>
+			</line>
+			<line>
+				<reportElement x="410" y="242" width="1" height="174"/>
+			</line>
+			<line>
+				<reportElement x="447" y="242" width="1" height="174"/>
+			</line>
+			<line>
+				<reportElement x="480" y="242" width="1" height="174"/>
+			</line>
+			<line>
+				<reportElement x="514" y="242" width="1" height="174"/>
+			</line>
+			<line>
+				<reportElement x="554" y="242" width="1" height="174"/>
+			</line>
+			<textField pattern="###0.00">
+				<reportElement x="285" y="417" width="44" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{totalQuantity}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="285" y="431" width="45" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="184" y="417" width="101" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<text><![CDATA[Total Quantity
+                ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="61" y="3" width="208" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{companyName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="3" width="221" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{orderDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="413" y="21" width="141" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{customerOrderNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="73" width="186" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{agentCode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="112" width="452" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{deliveryAddress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="133" width="146" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemReference}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="150" width="319" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{itemDescription}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="167" width="110" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{designNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="233" y="167" width="57" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{softex}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="167" width="52" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{softexOther}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="184" width="48" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{existingDesign}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="347" y="184" width="45" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bulkedDesign}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="127" y="201" width="95" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{widthPlain}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="218" width="95" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{weightPlain}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="269" y="201" width="123" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{widthPrinted}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="269" y="218" width="123" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{weightPrinted}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="403" y="146" width="73" height="86"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{consignment}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="480" y="147" width="73" height="86"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{terms}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="133" width="129" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{uom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="228" y="133" width="35" height="14"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UOM:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="262" y="146" width="131" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="299" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="5" width="252" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Delivery Date Requested By Customer:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="17" width="252" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Delivery Date Confirmed By Planning:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="36" width="252" height="21"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Delivery is based on the following minimum lead times, subject to factory loading:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="57" width="252" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Prints:     Positives     4 Weeks;  Screens      + 2 Weeks
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="45" y="69" width="210" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[S/Offs      + 2 Weeks;  Bulk Print   + 4 Weeks
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="83" width="252" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Plians:     New Colour establishment: 2 - 3 Weeks;
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="45" y="95" width="210" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Bulk + 6 Weeks;   Rib + 2 Weeks
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="31" width="278" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="110" width="278" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="3" y="115" width="252" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Reservation: YES/NO      Charge for Screens: YES/NO
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="127" width="252" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Total Cost:  Artwork                       Screen
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="142" width="252" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Confined Design:  YES/NO + PERIOD
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="160" width="186" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[This Order must be Delivered with O/No:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="156" width="278" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="3" y="175" width="155" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[This Order must Match with O/No:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="190" width="278" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="3" y="197" width="216" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Will this fabric be printed after delivery by N&L:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="209" width="116" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[If yes, state type of print:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="223" width="278" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="3" y="227" width="252" height="21"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Will futher processes(incl embroidery) be applied to this fabric after delivery by N&L:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="248" width="83" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[If yes, state what:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="265" width="150" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Replacement Reservation/Order:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="280" width="117" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Reason for Replacement:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="295" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="278" y="2" width="1" height="293"/>
+			</line>
+			<line>
+				<reportElement x="0" y="2" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="555" y="2" width="1" height="294"/>
+			</line>
+			<line>
+				<reportElement x="0" y="3" width="1" height="293"/>
+			</line>
+			<staticText>
+				<reportElement x="282" y="5" width="83" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Cutting Received:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="278" y="20" width="278" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="282" y="24" width="210" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[This Order specifies Reservation/Proforma No:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="278" y="38" width="278" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="281" y="42" width="86" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Lab Dyes required:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="57" width="94" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Strike Offs Required:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="278" y="71" width="278" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="282" y="75" width="252" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Remarks/Special Conditions:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="143" width="133" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Correspondence References:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="278" y="172" width="278" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="282" y="176" width="45" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[EX Stock:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="278" y="190" width="278" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="281" y="193" width="252" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Additional Laboratory Information:
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="278" y="247" width="278" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="282" y="251" width="39" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Retailer:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="266" width="83" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Styling/End User:
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="280" width="71" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Colour Blocked:
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="181" y="5" width="93" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{requiredDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="160" width="85" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{withOrder}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="175" width="116" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{matchOrder}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="219" y="197" width="55" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printAfter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="209" width="155" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{printAfterType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="236" width="123" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{processAfter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="248" width="188" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{afterProcessType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="265" width="121" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{replacement}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="280" width="154" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{replacementReason}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="5" width="188" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cuttingReceived}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="492" y="24" width="61" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{proformaNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="367" y="42" width="186" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{labDye}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="57" width="178" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{strikeOff}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="87" width="271" height="55"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{remarks}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="413" y="143" width="140" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{correspondence}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="176" width="226" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{exStock}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="205" width="272" height="40"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{labInfo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="322" y="251" width="231" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{retailer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="280" width="199" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{colourBlocked}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="266" width="188" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{endUser}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="157" width="178" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{perPreviousOrder}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="282" y="157" width="93" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Per Previous Order:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

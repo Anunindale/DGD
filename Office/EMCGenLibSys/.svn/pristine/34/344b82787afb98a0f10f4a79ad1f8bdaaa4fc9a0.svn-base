@@ -1,0 +1,17 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package emc.inventory;
+
+/**
+ *
+ * @author riaan
+ */
+public interface ItemRoutingInterface {
+    public void setItemId(String itemId);
+    public String getItemId();
+    public void setRoutingId(String routingId);
+    public String getRoutingId();
+}

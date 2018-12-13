@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="companyName" class="java.lang.String"/>
+	<field name="reportSection" class="java.lang.String">
+		<fieldDescription><![CDATA[@reportSection]]></fieldDescription>
+	</field>
+	<field name="CourseRepHeading" class="java.lang.String">
+		<fieldDescription><![CDATA[@CourseRepHeading]]></fieldDescription>
+	</field>
+	<field name="columnHeading1" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading1]]></fieldDescription>
+	</field>
+	<field name="columnHeading2" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading2]]></fieldDescription>
+	</field>
+	<field name="columnHeading3" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading3]]></fieldDescription>
+	</field>
+	<field name="columnHeading4" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading4]]></fieldDescription>
+	</field>
+	<field name="columnHeading5" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading5]]></fieldDescription>
+	</field>
+	<field name="columnHeading6" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading6]]></fieldDescription>
+	</field>
+	<field name="columnHeading7" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading7]]></fieldDescription>
+	</field>
+	<field name="columnHeading8" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading8]]></fieldDescription>
+	</field>
+	<field name="columnHeading9" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading9]]></fieldDescription>
+	</field>
+	<field name="columnHeading10" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading10]]></fieldDescription>
+	</field>
+	<field name="columnHeading11" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading11]]></fieldDescription>
+	</field>
+	<field name="columnHeading12" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading12]]></fieldDescription>
+	</field>
+	<field name="course" class="java.lang.String">
+		<fieldDescription><![CDATA[@course]]></fieldDescription>
+	</field>
+	<field name="columnValue1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnValue1]]></fieldDescription>
+	</field>
+	<field name="columnValue2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnValue2]]></fieldDescription>
+	</field>
+	<field name="columnValue3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnValue3]]></fieldDescription>
+	</field>
+	<field name="columnValue4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnValue4]]></fieldDescription>
+	</field>
+	<field name="columnValue5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnValue5]]></fieldDescription>
+	</field>
+	<field name="columnValue6" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnValue6]]></fieldDescription>
+	</field>
+	<field name="columnValue7" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnValue7]]></fieldDescription>
+	</field>
+	<field name="columnValue8" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnValue8]]></fieldDescription>
+	</field>
+	<field name="columnValue9" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnValue9]]></fieldDescription>
+	</field>
+	<field name="columnValue10" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnValue10]]></fieldDescription>
+	</field>
+	<field name="columnValue11" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnValue11]]></fieldDescription>
+	</field>
+	<field name="columnValue12" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnValue12]]></fieldDescription>
+	</field>
+	<variable name="rowTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{columnValue1}.add($F{columnValue2}).add($F{columnValue3}).add($F{columnValue4}).add($F{columnValue5}).add($F{columnValue6}).add($F{columnValue7}).add($F{columnValue8}).add($F{columnValue9}).add($F{columnValue10}).add($F{columnValue11}).add($F{columnValue12})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="columnTotal1" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{columnTotal1}.add($F{columnValue1})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="columnTotal2" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{columnTotal2}.add($F{columnValue2})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="columnTotal3" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{columnTotal3}.add($F{columnValue3})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="columnTotal4" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{columnTotal4}.add($F{columnValue4})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="columnTotal5" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{columnTotal5}.add($F{columnValue5})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="columnTotal6" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{columnTotal6}.add($F{columnValue6})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="columnTotal7" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{columnTotal7}.add($F{columnValue7})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="columnTotal8" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{columnTotal8}.add($F{columnValue8})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="columnTotal9" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{columnTotal9}.add($F{columnValue9})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="columnTotal10" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{columnTotal10}.add($F{columnValue10})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="columnTotal11" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{columnTotal11}.add($F{columnValue11})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="columnTotal12" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{columnTotal12}.add($F{columnValue12})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="grandTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="ReportSection">
+		<variableExpression><![CDATA[$V{grandTotal}.add($V{rowTotal})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<group name="ReportSection">
+		<groupExpression><![CDATA[$F{reportSection}]]></groupExpression>
+		<groupHeader>
+			<band height="41">
+				<textField>
+					<reportElement x="0" y="0" width="150" height="20"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{reportSection}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="150" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="200" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="300" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading4}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="250" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="450" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading7}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="400" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading6}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="500" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading8}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="350" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading5}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="650" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading11}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="600" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading10}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="700" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading12}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="550" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading9}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="750" y="20" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="40" width="802" height="1"/>
+				</line>
+				<textField>
+					<reportElement x="0" y="20" width="150" height="20"/>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{CourseRepHeading}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="41">
+				<line>
+					<reportElement x="0" y="0" width="802" height="1"/>
+				</line>
+				<textField pattern="###0">
+					<reportElement x="450" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{columnTotal7}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="650" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{columnTotal11}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="200" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{columnTotal2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="350" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{columnTotal5}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="150" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{columnTotal1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="250" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{columnTotal3}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="400" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{columnTotal6}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="500" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{columnTotal8}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="700" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{columnTotal12}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="550" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{columnTotal9}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="300" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{columnTotal4}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="600" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{columnTotal10}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="750" y="1" width="50" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Top"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{grandTotal}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="1" width="150" height="20"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="0" width="390" height="25"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="16" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Enquiry And Registration Dashboard]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="700" y="30" width="100" height="14"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="802" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="24" width="802" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="400" y="0" width="390" height="25"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="150" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{course}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="150" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnValue1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="200" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnValue2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="300" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnValue4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="250" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnValue3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="450" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnValue7}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="400" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnValue6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="350" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnValue5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="500" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnValue8}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="650" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnValue11}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="600" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnValue10}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="550" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnValue9}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="700" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnValue12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="750" y="0" width="50" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{rowTotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="12" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="10" y="0" width="780" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="620" y="0" width="134" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="802" height="1"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText" x="10" y="0" width="186" height="12"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="754" y="0" width="36" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

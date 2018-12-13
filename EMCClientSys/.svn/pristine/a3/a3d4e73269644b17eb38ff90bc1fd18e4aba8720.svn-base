@@ -1,0 +1,1762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true">
+	<parameter name="logoPath" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="companyName" class="java.lang.String"/>
+	<field name="uniqueHeader" class="java.lang.String">
+		<fieldDescription><![CDATA[@uniqueHeader]]></fieldDescription>
+	</field>
+	<field name="realPageBreak" class="java.lang.String">
+		<fieldDescription><![CDATA[@realPageBreak]]></fieldDescription>
+	</field>
+	<field name="reportTitleLine1" class="java.lang.String">
+		<fieldDescription><![CDATA[@reportTitleLine1]]></fieldDescription>
+	</field>
+	<field name="reportTitleLine2" class="java.lang.String">
+		<fieldDescription><![CDATA[@reportTitleLine2]]></fieldDescription>
+	</field>
+	<field name="printColumn1" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn1]]></fieldDescription>
+	</field>
+	<field name="printColumn2" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn2]]></fieldDescription>
+	</field>
+	<field name="printColumn3" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn3]]></fieldDescription>
+	</field>
+	<field name="printColumn4" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn4]]></fieldDescription>
+	</field>
+	<field name="printColumn5" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn5]]></fieldDescription>
+	</field>
+	<field name="printColumn6" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn6]]></fieldDescription>
+	</field>
+	<field name="printColumn7" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn7]]></fieldDescription>
+	</field>
+	<field name="printColumn8" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn8]]></fieldDescription>
+	</field>
+	<field name="printColumn9" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn9]]></fieldDescription>
+	</field>
+	<field name="printColumn10" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn10]]></fieldDescription>
+	</field>
+	<field name="printColumn11" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn11]]></fieldDescription>
+	</field>
+	<field name="printColumn12" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn12]]></fieldDescription>
+	</field>
+	<field name="printColumn13" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn13]]></fieldDescription>
+	</field>
+	<field name="printColumn14" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printColumn14]]></fieldDescription>
+	</field>
+	<field name="columnHeading1" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading1]]></fieldDescription>
+	</field>
+	<field name="columnHeading2" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading2]]></fieldDescription>
+	</field>
+	<field name="columnHeading3" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading3]]></fieldDescription>
+	</field>
+	<field name="columnHeading4" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading4]]></fieldDescription>
+	</field>
+	<field name="columnHeading5" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading5]]></fieldDescription>
+	</field>
+	<field name="columnHeading6" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading6]]></fieldDescription>
+	</field>
+	<field name="columnHeading7" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading7]]></fieldDescription>
+	</field>
+	<field name="columnHeading8" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading8]]></fieldDescription>
+	</field>
+	<field name="columnHeading9" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading9]]></fieldDescription>
+	</field>
+	<field name="columnHeading10" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading10]]></fieldDescription>
+	</field>
+	<field name="columnHeading11" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading11]]></fieldDescription>
+	</field>
+	<field name="columnHeading12" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading12]]></fieldDescription>
+	</field>
+	<field name="columnHeading13" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading13]]></fieldDescription>
+	</field>
+	<field name="columnHeading14" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnHeading14]]></fieldDescription>
+	</field>
+	<field name="columnAvg1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg1]]></fieldDescription>
+	</field>
+	<field name="columnAvg2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg2]]></fieldDescription>
+	</field>
+	<field name="columnAvg3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg3]]></fieldDescription>
+	</field>
+	<field name="columnAvg4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg4]]></fieldDescription>
+	</field>
+	<field name="columnAvg5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg5]]></fieldDescription>
+	</field>
+	<field name="columnAvg6" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg6]]></fieldDescription>
+	</field>
+	<field name="columnAvg7" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg7]]></fieldDescription>
+	</field>
+	<field name="columnAvg8" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg8]]></fieldDescription>
+	</field>
+	<field name="columnAvg9" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg9]]></fieldDescription>
+	</field>
+	<field name="columnAvg10" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg10]]></fieldDescription>
+	</field>
+	<field name="columnAvg11" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg11]]></fieldDescription>
+	</field>
+	<field name="columnAvg12" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg12]]></fieldDescription>
+	</field>
+	<field name="columnAvg13" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg13]]></fieldDescription>
+	</field>
+	<field name="columnAvg14" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnAvg14]]></fieldDescription>
+	</field>
+	<field name="columnWeight1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight1]]></fieldDescription>
+	</field>
+	<field name="columnWeight2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight2]]></fieldDescription>
+	</field>
+	<field name="columnWeight3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight3]]></fieldDescription>
+	</field>
+	<field name="columnWeight4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight4]]></fieldDescription>
+	</field>
+	<field name="columnWeight5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight5]]></fieldDescription>
+	</field>
+	<field name="columnWeight6" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight6]]></fieldDescription>
+	</field>
+	<field name="columnWeight7" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight7]]></fieldDescription>
+	</field>
+	<field name="columnWeight8" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight8]]></fieldDescription>
+	</field>
+	<field name="columnWeight9" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight9]]></fieldDescription>
+	</field>
+	<field name="columnWeight10" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight10]]></fieldDescription>
+	</field>
+	<field name="columnWeight11" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight11]]></fieldDescription>
+	</field>
+	<field name="columnWeight12" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight12]]></fieldDescription>
+	</field>
+	<field name="columnWeight13" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight13]]></fieldDescription>
+	</field>
+	<field name="columnWeight14" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@columnWeight14]]></fieldDescription>
+	</field>
+	<field name="studentSurnameName" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentSurnameName]]></fieldDescription>
+	</field>
+	<field name="studentNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentNumber]]></fieldDescription>
+	</field>
+	<field name="studentMark1" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark1]]></fieldDescription>
+	</field>
+	<field name="studentMark2" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark2]]></fieldDescription>
+	</field>
+	<field name="studentMark3" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark3]]></fieldDescription>
+	</field>
+	<field name="studentMark4" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark4]]></fieldDescription>
+	</field>
+	<field name="studentMark5" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark5]]></fieldDescription>
+	</field>
+	<field name="studentMark6" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark6]]></fieldDescription>
+	</field>
+	<field name="studentMark7" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark7]]></fieldDescription>
+	</field>
+	<field name="studentMark8" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark8]]></fieldDescription>
+	</field>
+	<field name="studentMark9" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark9]]></fieldDescription>
+	</field>
+	<field name="studentMark10" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark10]]></fieldDescription>
+	</field>
+	<field name="studentMark11" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark11]]></fieldDescription>
+	</field>
+	<field name="studentMark12" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark12]]></fieldDescription>
+	</field>
+	<field name="studentMark13" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark13]]></fieldDescription>
+	</field>
+	<field name="studentMark14" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentMark14]]></fieldDescription>
+	</field>
+	<field name="columnDesc1" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc1]]></fieldDescription>
+	</field>
+	<field name="columnDesc2" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc2]]></fieldDescription>
+	</field>
+	<field name="columnDesc3" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc3]]></fieldDescription>
+	</field>
+	<field name="columnDesc4" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc4]]></fieldDescription>
+	</field>
+	<field name="columnDesc5" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc5]]></fieldDescription>
+	</field>
+	<field name="columnDesc6" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc6]]></fieldDescription>
+	</field>
+	<field name="columnDesc7" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc7]]></fieldDescription>
+	</field>
+	<field name="columnDesc8" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc8]]></fieldDescription>
+	</field>
+	<field name="columnDesc9" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc9]]></fieldDescription>
+	</field>
+	<field name="columnDesc10" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc10]]></fieldDescription>
+	</field>
+	<field name="columnDesc11" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc11]]></fieldDescription>
+	</field>
+	<field name="columnDesc12" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc12]]></fieldDescription>
+	</field>
+	<field name="columnDesc13" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc13]]></fieldDescription>
+	</field>
+	<field name="columnDesc14" class="java.lang.String">
+		<fieldDescription><![CDATA[@columnDesc14]]></fieldDescription>
+	</field>
+	<group name="CoursePageBreak" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{realPageBreak}]]></groupExpression>
+		<groupHeader>
+			<band height="234">
+				<staticText>
+					<reportElement mode="Opaque" x="204" y="170" width="45" height="64" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="170" width="159" height="63" backcolor="#BFBFBF"/>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="159" y="170" width="44" height="64" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="250" y="170" width="45" height="63" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="296" y="170" width="45" height="63" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="342" y="170" width="45" height="63" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="388" y="170" width="45" height="63" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="434" y="170" width="45" height="63" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="480" y="170" width="45" height="63" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="618" y="170" width="45" height="63" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="572" y="170" width="45" height="63" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="664" y="170" width="45" height="63" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="526" y="170" width="45" height="63" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="756" y="170" width="45" height="63" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="710" y="170" width="45" height="63" backcolor="#BFBFBF">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<line>
+					<reportElement x="755" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="709" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="249" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="0" y="217" width="159" height="1"/>
+				</line>
+				<line>
+					<reportElement x="0" y="185" width="159" height="1"/>
+				</line>
+				<line>
+					<reportElement x="0" y="233" width="159" height="1"/>
+				</line>
+				<line>
+					<reportElement x="479" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="0" y="169" width="159" height="1"/>
+				</line>
+				<line>
+					<reportElement x="433" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="341" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="111" y="170" width="1" height="63"/>
+				</line>
+				<line>
+					<reportElement x="617" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="158" y="170" width="1" height="63"/>
+				</line>
+				<line>
+					<reportElement x="663" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="571" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="295" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="801" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="0" y="170" width="1" height="63"/>
+				</line>
+				<line>
+					<reportElement x="203" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="525" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="387" y="170" width="1" height="63">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="159" y="169" width="45" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="159" y="185" width="45" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="159" y="217" width="45" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="159" y="233" width="45" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="204" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="204" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="204" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="204" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="250" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="250" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="250" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="250" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="296" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="296" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="296" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="296" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="342" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="342" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="342" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="342" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="388" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="388" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="388" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="388" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="434" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="434" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="434" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="434" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="480" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="480" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="480" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="480" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="526" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="526" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="526" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="526" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="572" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="572" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="572" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="572" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="618" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="618" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="618" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="618" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="664" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="664" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="664" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="664" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="710" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="710" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="710" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="710" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="756" y="233" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="756" y="185" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="756" y="169" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="756" y="217" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement x="1" y="218" width="111" height="15"/>
+					<textElement/>
+					<text><![CDATA[Surname & Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="170" width="111" height="15"/>
+					<textElement/>
+					<text><![CDATA[Checklist Code]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="202" width="111" height="15"/>
+					<textElement/>
+					<text><![CDATA[Avg. For Test]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="112" y="218" width="46" height="15"/>
+					<textElement/>
+					<text><![CDATA[Stud. Nr.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="11" y="86" width="781" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Subject Result Overview]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="710" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading13}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="250" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="526" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading9}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="572" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg10}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="434" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading7}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="204" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="296" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg4}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="756" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading14}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="572" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading10}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="710" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg13}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="664" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading12}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="480" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading8}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="618" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg11}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="342" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading5}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="250" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="296" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading4}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="756" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg14}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="159" y="170" width="44" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="388" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg6}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="204" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="434" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg7}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="388" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading6}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="664" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg12}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="526" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg9}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="159" y="202" width="44" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="342" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg5}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="11" y="113" width="781" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="18" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{reportTitleLine1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="11" y="140" width="781" height="28"/>
+					<textElement textAlignment="Center">
+						<font size="18" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{reportTitleLine2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="618" y="170" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnHeading11}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0">
+					<reportElement x="480" y="202" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnAvg8}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="11" y="1" width="781" height="27"/>
+					<textElement textAlignment="Center">
+						<font size="20" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="11" y="28" width="781" height="58"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{uniqueHeader}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="434" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight7}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="618" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight11}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="434" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="618" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="526" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight9}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="388" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="664" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight12}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="710" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="342" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight5}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="572" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="664" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="250" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="159" y="186" width="44" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="480" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight8}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="756" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="159" y="201" width="45" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="480" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="296" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight4}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="526" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="296" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="204" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="710" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight13}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="201" width="159" height="1"/>
+				</line>
+				<textField>
+					<reportElement x="756" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight14}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="388" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight6}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="250" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement x="1" y="186" width="111" height="15"/>
+					<textElement/>
+					<text><![CDATA[Weight]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="204" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight2}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="342" y="201" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="572" y="186" width="46" height="15">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{columnWeight10}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="104">
+				<line>
+					<reportElement x="801" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="709" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="618" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc11}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="710" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc13}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="388" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc6}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="158" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="663" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="434" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc7}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="664" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc12}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="203" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="387" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="204" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="526" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc9}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="571" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="756" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc14}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="159" y="0" width="44" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="250" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc3}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="341" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="433" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="295" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="572" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc10}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="342" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc5}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="249" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="525" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="479" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="755" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="617" y="0" width="1" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="480" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc8}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="296" y="0" width="46" height="100">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+					<textElement rotation="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{columnDesc4}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="526" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="204" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="710" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="250" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="664" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="388" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="618" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="480" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="572" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="296" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="159" y="99" width="45" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="342" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="434" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="756" y="99" width="46" height="1">
+						<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+					</reportElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="14" width="159" height="1"/>
+			</line>
+			<line>
+				<reportElement x="111" y="0" width="1" height="14"/>
+			</line>
+			<line>
+				<reportElement x="158" y="0" width="1" height="14"/>
+			</line>
+			<line>
+				<reportElement x="249" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="203" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="387" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="341" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="295" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="525" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="479" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="663" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="617" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="571" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="755" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="709" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="801" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="14"/>
+			</line>
+			<line>
+				<reportElement x="433" y="0" width="1" height="14">
+					<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="0" y="0" width="111" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentSurnameName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="0" width="46" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentNumber}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="159" y="0" width="44" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="204" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="250" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="296" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="342" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="388" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="434" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark7}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="480" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark8}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="526" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark9}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="572" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark10}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="618" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark11}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="664" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="710" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark13}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="756" y="0" width="46" height="15">
+					<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studentMark14}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="159" y="14" width="45" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn1}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="204" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn2}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="250" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn3}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="296" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn4}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="342" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn5}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="388" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn6}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="434" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn7}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="480" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn8}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="526" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn9}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="756" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn14}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="618" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn11}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="710" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn13}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="572" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn10}]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="664" y="14" width="46" height="1">
+					<printWhenExpression><![CDATA[$F{printColumn12}]]></printWhenExpression>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="15" splitType="Stretch">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="756" y="3" width="36" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="11" y="2" width="781" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="621" y="3" width="134" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="11" y="1" width="781" height="1"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText" x="11" y="2" width="186" height="12"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>
