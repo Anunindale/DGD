@@ -1,2 +1,35 @@
-16:53:21	INFO	Timed Operations Started.
-08:33:30	INFO	Timed Operations Started.
+09:48:20	INFO	Timed Operations Started.
+10:10:49	SEVERE	The value entered for Postal Code does not exist. Please reselect.
+10:12:01	SEVERE	Number too small
+10:12:01	SEVERE	Number too small
+10:12:01	SEVERE	Number too small
+10:12:05	SEVERE	Number too small
+10:12:12	SEVERE	Failed to INSERT_CreditorsCreditNoteInvoiceMasterDS, Reason: Insert failed:Insert validation failed
+10:12:12	SEVERE	Credit Note/Invoice is a required field. Please enter data.
+10:12:12	SEVERE	Could not get a number from number sequence for Credit Note/Invoice
+10:12:14	SEVERE	Number too small
+10:12:17	SEVERE	Number too small
+10:12:17	SEVERE	Number too small
+10:12:17	SEVERE	Number too small
+10:12:32	SEVERE	Failed to INSERT_CreditorsCreditNoteInvoiceMasterDS, Reason: Insert failed:Insert validation failed
+10:12:32	SEVERE	Postal Street is a required field. Please enter data.
+10:12:33	SEVERE	Number too small
+10:18:43	SEVERE	Number too small
+10:18:43	SEVERE	Number too small
+10:18:43	SEVERE	Number too small
+10:18:44	SEVERE	Number too small
+10:18:44	SEVERE	Number too small
+10:18:44	SEVERE	Number too small
+10:18:48	SEVERE	Number too small
+10:18:55	SEVERE	Number too small
+10:18:55	SEVERE	Failed to INSERT_CreditorsCreditNoteInvoiceMasterDS, Reason: Insert failed:Insert validation failed
+10:18:55	SEVERE	Postal Street is a required field. Please enter data.
+10:18:55	SEVERE	Number too small
+10:19:04	SEVERE	Number too small
+10:19:06	SEVERE	Failed to INSERT_CreditorsCreditNoteInvoiceMasterDS, Reason: Insert failed:Insert validation failed
+10:19:06	SEVERE	Postal Street is a required field. Please enter data.
+10:19:08	SEVERE	Number too small
+10:19:56	SEVERE	Failed to INSERT_SOPCustomers, Reason: Insert failed:Insert validation failed
+10:19:56	SEVERE	Delivery Mode is a required field. Please enter data.
+10:20:32	SEVERE	Failed to INSERT_InventoryItemMasterDS, Reason: Insert failed:Insert validation failed
+10:20:31	SEVERE	Dimension Group is a required field. Please enter data.

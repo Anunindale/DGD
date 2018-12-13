@@ -24,5 +24,6 @@ public class DGMainMenu extends EMCMenu {
         this.setMenuList(new DGCargoCheckMenu());
         this.setMenuList(new DGDContactsMI());
         this.setMenuList(new DGDVehiclesMI());
+        this.setMenuList(new DGSetupMenu());
     }
 }

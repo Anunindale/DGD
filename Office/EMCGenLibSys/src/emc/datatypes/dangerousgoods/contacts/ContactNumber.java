@@ -14,7 +14,7 @@ public class ContactNumber extends EMCString {
 
     public ContactNumber()
     {
-        this.setEmcLabel("Customer Number");
+        this.setEmcLabel("Contact Number");
         this.setMandatory(true);
         this.setNumberSeqAllowed(true);
     }

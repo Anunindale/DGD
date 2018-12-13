@@ -96,6 +96,10 @@ public class DGDContactsForm extends BaseInternalFrame{
         customerlkp.setPopup(new EMCLookupPopup(new SOPCustomers(), "customerId", getUserData()));
         table.setLookupToColumn("customer", customerlkp);
         
+        EMCLookupJTableComponent companylkp = new EMCLookupJTableComponent(new SOPCustomersMenu());
+        companylkp.setPopup(new EMCLookupPopup(new SOPCustomers(), "customerName", getUserData()));
+        table.setLookupToColumn("company", companylkp);
+        
         table.setComboBoxLookupToColumn("type", new emcJComboBox(ContactType.values()));
         
         return panel;
