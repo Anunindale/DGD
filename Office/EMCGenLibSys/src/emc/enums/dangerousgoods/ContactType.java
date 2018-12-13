@@ -10,8 +10,12 @@ package emc.enums.dangerousgoods;
  */
 public enum ContactType {
     OPERATOR(0, "Operator"),
-    CONSIGNER(1, "Consigner"),
-    CONSIGNEE(2, "Consignee");
+    CONSIGNOR(1, "Consignor"),
+    CONSIGNEE(2, "Consignee"),
+    PRODUCT_MANUFACTURER(3, "Product manufacturer"),
+    PRODUCT_OWNER(4, "Product owner"),
+    PRODUCT_CUSTODIAN(5, "Product custodian"),
+    PARTY_CONTRACTING_THE_OPERATOR(6, "Party contracting the operator");
 
     final int id;
     final String label;
