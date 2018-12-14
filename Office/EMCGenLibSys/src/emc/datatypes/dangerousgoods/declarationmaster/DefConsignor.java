@@ -15,6 +15,7 @@ public class DefConsignor extends EMCString{
     public DefConsignor()
     {
         this.setEmcLabel("Default Consignor");
+        this.setLowerCaseAllowed(true);
     }
     
 }

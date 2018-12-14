@@ -13,6 +13,7 @@ import emc.datatypes.dangerousgoods.declarationlines.Operator;
 import emc.datatypes.dangerousgoods.declarationlines.ProductCustodian;
 import emc.datatypes.dangerousgoods.declarationlines.ProductManufacturer;
 import emc.datatypes.dangerousgoods.declarationlines.ProductOwner;
+import emc.datatypes.dangerousgoods.declarationlines.foreignkeys.CustomerFK;
 import emc.datatypes.dangerousgoods.declarationlines.foreignkeys.DecNumberFK;
 import emc.framework.EMCEntityClass;
 import emc.framework.EMCQuery;
@@ -40,6 +41,7 @@ public class DGDeclarationLines extends EMCEntityClass{
     private String contractingParty;
     private String productCustodian;
     private String decNumber;
+    private String customer;
     
     public DGDeclarationLines()
     {
@@ -126,14 +128,14 @@ public class DGDeclarationLines extends EMCEntityClass{
         this.productCustodian = productCustodian;
     }
     
-    public String getDecNumber()
+    public String getCustomer()
     {
-        return decNumber;
+        return customer;
     }
     
-    public void setDecNumber(String decNumber)
+    public void setCustomer(String customer)
     {
-        this.decNumber = decNumber;
+        this.customer = customer;
     }
     
     //In case we want to add to the query
@@ -171,6 +173,7 @@ public class DGDeclarationLines extends EMCEntityClass{
         ret.put("productOwner", new ProductOwner());
         ret.put("contractingParty", new ContractingParty());
         ret.put("productCustodian", new ProductCustodian());
+        ret.put("customer", new CustomerFK());
         ret.put("decNumber", new DecNumberFK());
         return ret;
     }

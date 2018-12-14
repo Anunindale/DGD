@@ -1,1 +1,10 @@
-16:39:51	INFO	Timed Operations Started.
+15:33:22	INFO	Timed Operations Started.
+15:33:34	SEVERE	Failed to GETNUMROWS_DGDContacts, Reason: could not resolve property: consignor of: emc.entity.dangerousgoods.DGDContacts [SELECT COUNT(*) FROM emc.entity.dangerousgoods.DGDeclarationLines table1, emc.entity.dangerousgoods.DGDContacts table0 WHERE table0.customer = table1.customer AND table0.customer is null AND table0.consignor = 'Consignor' AND table0.closed is null AND table1.companyId = 'TREC' AND table0.companyId = 'TREC' ]
+15:33:35	SEVERE	Failed to GETDATA_DGDContacts, Reason: could not resolve property: consignor of: emc.entity.dangerousgoods.DGDContacts [SELECT table0 FROM emc.entity.dangerousgoods.DGDeclarationLines table1, emc.entity.dangerousgoods.DGDContacts table0 WHERE table0.customer = table1.customer AND table0.customer is null AND table0.consignor = 'Consignor' AND table0.closed is null AND table1.companyId = 'TREC' AND table0.companyId = 'TREC' ]
+15:33:42	SEVERE	Failed to INSERT_DGDeclarationLines, Reason: Insert failed:Insert validation failed
+15:33:42	SEVERE	emc.datatypes.dangerousgoods.declarationlines.foreignkeys.CustomerFK is a required field. Please enter data.
+15:33:49	SEVERE	Failed to INSERT_DGDeclarationLines, Reason: Insert failed:Insert validation failed
+15:33:49	SEVERE	emc.datatypes.dangerousgoods.declarationlines.foreignkeys.CustomerFK is a required field. Please enter data.
+15:39:35	INFO	Timed Operations Started.
+15:39:46	SEVERE	Failed to GETNUMROWS_DGDContacts, Reason: could not resolve property: consignor of: emc.entity.dangerousgoods.DGDContacts [SELECT COUNT(*) FROM emc.entity.dangerousgoods.DGDeclarationLines table1, emc.entity.dangerousgoods.DGDContacts table0 WHERE table0.customer = table1.customer AND table0.customer is null AND table0.consignor = 'Consignor' AND table0.closed is null AND table1.companyId = 'TREC' AND table0.companyId = 'TREC' ]
+15:39:47	SEVERE	Failed to GETDATA_DGDContacts, Reason: could not resolve property: consignor of: emc.entity.dangerousgoods.DGDContacts [SELECT table0 FROM emc.entity.dangerousgoods.DGDeclarationLines table1, emc.entity.dangerousgoods.DGDContacts table0 WHERE table0.customer = table1.customer AND table0.customer is null AND table0.consignor = 'Consignor' AND table0.closed is null AND table1.companyId = 'TREC' AND table0.companyId = 'TREC' ]

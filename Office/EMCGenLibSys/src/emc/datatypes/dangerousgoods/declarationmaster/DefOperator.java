@@ -15,6 +15,7 @@ public class DefOperator extends EMCString{
     public DefOperator()
     {
         this.setEmcLabel("Default Operator");
+        this.setLowerCaseAllowed(true);
     }
     
 }

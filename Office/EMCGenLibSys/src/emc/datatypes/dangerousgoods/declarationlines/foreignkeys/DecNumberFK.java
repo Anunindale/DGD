@@ -20,6 +20,9 @@ public class DecNumberFK extends DecNumber{
         this.setRelatedField("decNumber");
         this.setDeleteAction(enumDeleteUpdateOptions.CASCADE);
         this.setUpdateAction(enumDeleteUpdateOptions.CASCADE);
+        this.setNumberSeqAllowed(false);
+        this.setMandatory(true);
+        this.setEmcLabel("Number");
     }
     
 }

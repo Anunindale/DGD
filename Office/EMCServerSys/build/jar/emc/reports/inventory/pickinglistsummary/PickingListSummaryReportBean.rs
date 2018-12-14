@@ -1,0 +1,2 @@
+emc.reports.inventory.pickinglistsummary.MapComparator
+emc.reports.inventory.pickinglistsummary.PickingListSummaryReportBean
