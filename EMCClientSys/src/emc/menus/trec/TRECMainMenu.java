@@ -7,7 +7,7 @@ package emc.menus.trec;
 import emc.enums.modules.enumEMCModules;
 import emc.framework.EMCMenu;
 import emc.menus.dangerousgoods.menuitems.display.DGCargoCheckMenu;
-import emc.menus.trec.menuitems.display.TRECEditTRECMI;
+import emc.menus.dangerousgoods.menuitems.display.DGDContactsMI;
 import emc.menus.trec.menuitems.display.TRECTrecCardsMenu;
 
 /**
@@ -23,6 +23,7 @@ public class TRECMainMenu extends EMCMenu {
         this.setEmcModule(enumEMCModules.TREC);
         this.setMenuName(this.getEmcModule().toString());
         this.setMenuList(new TRECTrecCardsMenu());
+        this.setMenuList(new DGDContactsMI());
         this.setMenuList(new DGCargoCheckMenu());
         this.setMenuList(new TRECReports());
         this.setMenuList(new TRECSetup());

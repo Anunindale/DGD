@@ -8,13 +8,16 @@ package emc.server.commandmanager.dangerousgoods;
 import emc.bus.dangerousgoods.cargolines.DGCargoLinesLocal;
 import emc.bus.dangerousgoods.cargomaster.DGCargoMasterLocal;
 import emc.bus.dangerousgoods.contacts.DGDContactsLocal;
+import emc.bus.dangerousgoods.declarationlines.DGDeclarationLinesLocal;
+import emc.bus.dangerousgoods.declarationmaster.DGDeclarationMasterLocal;
 import emc.bus.dangerousgoods.vehicles.DGDVehiclesLocal;
 import emc.bus.dangerousgoods.vehicles.datasource.VehiclesDSLocal;
 import emc.commands.EMCCommands;
-import emc.entity.creditors.CreditorsInvoiceRegister;
 import emc.entity.dangerousgoods.DGCargoCheckLines;
 import emc.entity.dangerousgoods.DGCargoCheckMaster;
 import emc.entity.dangerousgoods.DGDContacts;
+import emc.entity.dangerousgoods.DGDeclarationLines;
+import emc.entity.dangerousgoods.DGDeclarationMaster;
 import emc.entity.dangerousgoods.datasource.VehiclesDS;
 import emc.enums.modules.enumEMCModules;
 import emc.framework.EMCCommandClass;
@@ -46,7 +49,10 @@ public class DGMethodMapperBean implements DGMethodMapperBeanLocal{
     private DGDVehiclesLocal vehiclesBean;
     @EJB
     private VehiclesDSLocal vehiclesDSBean;
-
+    @EJB
+    private DGDeclarationMasterLocal declarationMasterBean;
+    @EJB
+    private DGDeclarationLinesLocal declarationLinesBean;
             
     public DGMethodMapperBean() {
     }
@@ -128,7 +134,47 @@ public class DGMethodMapperBean implements DGMethodMapperBeanLocal{
             case VALIDATEFIELD_VEHICLESDS:
                 theDataList.add(vehiclesDSBean.validateField(dataList.get(1).toString(), (VehiclesDS) dataList.get(2), userData));
                 break;
-
+            //DGDeclarationMaster
+            case INSERT_DGDECLARATIONMASTER:
+                theDataList.add(declarationMasterBean.insert((DGDeclarationMaster) dataList.get(1), userData));
+                break;
+            case UPDATE_DGDECLARATIONMASTER:
+                theDataList.add(declarationMasterBean.update((DGDeclarationMaster) dataList.get(1), userData));
+                break;
+            case DELETE_DGDECLARATIONMASTER:
+                theDataList.add(declarationMasterBean.delete((DGDeclarationMaster) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_DGDECLARATIONMASTER:
+                theDataList.add(declarationMasterBean.getNumRows(DGDeclarationMaster.class, userData));
+                break;
+            case GETDATA_DGDECLARATIONMASTER:
+                theDataList = (List<Object>) declarationMasterBean.getDataInRange(DGDeclarationMaster.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_DGDECLARATIONMASTER:
+                theDataList.add(declarationMasterBean.validateField(dataList.get(1).toString(), (DGDeclarationMaster) dataList.get(2), userData));
+                break;
+            //DGDeclarationLines
+            case INSERT_DGDECLARATIONLINES:
+                theDataList.add(declarationLinesBean.insert((DGDeclarationLines) dataList.get(1), userData));
+                break;
+            case UPDATE_DGDECLARATIONLINES:
+                theDataList.add(declarationLinesBean.update((DGDeclarationLines) dataList.get(1), userData));
+                break;
+            case DELETE_DGDECLARATIONLINES:
+                theDataList.add(declarationLinesBean.delete((DGDeclarationLines) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_DGDECLARATIONLINES:
+                theDataList.add(declarationLinesBean.getNumRows(DGDeclarationLines.class, userData));
+                break;
+            case GETDATA_DGDECLARATIONLINES:
+                theDataList = (List<Object>) declarationLinesBean.getDataInRange(DGDeclarationLines.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_DGDECLARATIONLINES:
+                theDataList.add(declarationLinesBean.validateField(dataList.get(1).toString(), (DGDeclarationLines) dataList.get(2), userData));
+                break;
+                
             default:
                 if (EMCDebug.getDebug()) {
                     Logger.getLogger("emc").log(Level.SEVERE, "Mapper: Method not found", userData);

@@ -34,18 +34,18 @@ import javax.persistence.UniqueConstraint;
 @Table(name="DGDContacts", uniqueConstraints={@UniqueConstraint(columnNames={"contactNumber", "customer", "postalCode"})})
 public class DGDContacts extends EMCEntityClass {
     
-    private String contactNumber;
-    private String customer;
-    private String type;
-    private String contactName;
-    private String company;
-    private String physicalAddress1;
+    private String contactNumber;     //NumberSequence-controlled number
+    private String customer;          //From SOPCustomers
+    private String type;              //ContactType enum
+    private String contactName;         
+    private String company;           //Company the contact works for
+    private String physicalAddress1;  //Company(contact) address
     private String physicalAddress2;
     private String physicalAddress3;
     private String physicalAddress4;
     private String physicalAddress5;
     private String postalCode;
-    private String telephone;
+    private String telephone;         //Contact telephone number
     
     public DGDContacts()
     {
@@ -170,6 +170,7 @@ public class DGDContacts extends EMCEntityClass {
         this.telephone = telephone;
     }
     
+    //In case we ever want to add anything to the query
     @Override
     public EMCQuery buildQuery()
     {
