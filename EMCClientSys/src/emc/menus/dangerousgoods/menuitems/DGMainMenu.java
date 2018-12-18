@@ -9,9 +9,9 @@ import emc.enums.modules.enumEMCModules;
 import emc.framework.EMCMenu;
 import emc.menus.dangerousgoods.menuitems.display.DGCargoCheckMenu;
 import emc.menus.dangerousgoods.menuitems.display.DGDContactsMI;
+import emc.menus.dangerousgoods.menuitems.display.DGDUNMI;
 import emc.menus.dangerousgoods.menuitems.display.DGDVehiclesMI;
 import emc.menus.dangerousgoods.menuitems.display.DGDeclarationLinesMI;
-import emc.menus.dangerousgoods.menuitems.display.DGDeclarationMasterMI;
 
 /**
  *
@@ -27,6 +27,7 @@ public class DGMainMenu extends EMCMenu {
         this.setMenuList(new DGDContactsMI());
         this.setMenuList(new DGDVehiclesMI());
         this.setMenuList(new DGDeclarationLinesMI());
+        this.setMenuList(new DGDUNMI());
         this.setMenuList(new DGSetupMenu());
     }
 }

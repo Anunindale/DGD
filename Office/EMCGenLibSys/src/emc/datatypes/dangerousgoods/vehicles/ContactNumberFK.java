@@ -21,7 +21,7 @@ public class ContactNumberFK extends ContactNumber{
         this.setNumberSeqAllowed(true);
         this.setMandatory(true);
         this.setUpdateAction(enumDeleteUpdateOptions.CASCADE);
-        this.setDeleteAction(enumDeleteUpdateOptions.CLEARFIELD);
+        this.setDeleteAction(enumDeleteUpdateOptions.CASCADE);
     }
     
 }

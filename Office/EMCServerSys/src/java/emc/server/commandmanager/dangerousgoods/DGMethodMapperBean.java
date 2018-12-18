@@ -10,14 +10,18 @@ import emc.bus.dangerousgoods.cargomaster.DGCargoMasterLocal;
 import emc.bus.dangerousgoods.contacts.DGDContactsLocal;
 import emc.bus.dangerousgoods.declarationlines.DGDeclarationLinesLocal;
 import emc.bus.dangerousgoods.declarationmaster.DGDeclarationMasterLocal;
+import emc.bus.dangerousgoods.un.DGDUNLocal;
 import emc.bus.dangerousgoods.vehicles.DGDVehiclesLocal;
+import emc.bus.dangerousgoods.un.datasource.UNDSLocal;
 import emc.bus.dangerousgoods.vehicles.datasource.VehiclesDSLocal;
 import emc.commands.EMCCommands;
 import emc.entity.dangerousgoods.DGCargoCheckLines;
 import emc.entity.dangerousgoods.DGCargoCheckMaster;
 import emc.entity.dangerousgoods.DGDContacts;
+import emc.entity.dangerousgoods.DGDUN;
 import emc.entity.dangerousgoods.DGDeclarationLines;
 import emc.entity.dangerousgoods.DGDeclarationMaster;
+import emc.entity.dangerousgoods.datasource.UNDS;
 import emc.entity.dangerousgoods.datasource.VehiclesDS;
 import emc.enums.modules.enumEMCModules;
 import emc.framework.EMCCommandClass;
@@ -46,13 +50,13 @@ public class DGMethodMapperBean implements DGMethodMapperBeanLocal{
     @EJB
     private DGDContactsLocal contactsBean;
     @EJB
-    private DGDVehiclesLocal vehiclesBean;
-    @EJB
     private VehiclesDSLocal vehiclesDSBean;
     @EJB
     private DGDeclarationMasterLocal declarationMasterBean;
     @EJB
     private DGDeclarationLinesLocal declarationLinesBean;
+    @EJB
+    private UNDSLocal unDSBean;
             
     public DGMethodMapperBean() {
     }
@@ -173,6 +177,26 @@ public class DGMethodMapperBean implements DGMethodMapperBeanLocal{
                 break;
             case VALIDATEFIELD_DGDECLARATIONLINES:
                 theDataList.add(declarationLinesBean.validateField(dataList.get(1).toString(), (DGDeclarationLines) dataList.get(2), userData));
+                break;
+            //UNDS
+            case INSERT_UNDS:
+                theDataList.add(unDSBean.insert((UNDS) dataList.get(1), userData));
+                break;
+            case UPDATE_UNDS:
+                theDataList.add(unDSBean.update((UNDS) dataList.get(1), userData));
+                break;
+            case DELETE_UNDS:
+                theDataList.add(unDSBean.delete((UNDS) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_UNDS:
+                theDataList.add(unDSBean.getNumRows(UNDS.class, userData));
+                break;
+            case GETDATA_UNDS:
+                theDataList = (List<Object>) unDSBean.getDataInRange(UNDS.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_UNDS:
+                theDataList.add(unDSBean.validateField(dataList.get(1).toString(), (UNDS) dataList.get(2), userData));
                 break;
                 
             default:

@@ -33,6 +33,9 @@ public String findCompanyByNumber(String numberSeq, EMCUserData userData)
        
        DGDContacts result = (DGDContacts) util.executeSingleResultQuery(query, userData);
        
-       return result.getCompany(); 
+       if(result != null)
+           return result.getCompany(); 
+       else
+           return "";
     }
 }

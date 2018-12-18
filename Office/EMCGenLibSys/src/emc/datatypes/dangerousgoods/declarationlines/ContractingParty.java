@@ -14,6 +14,7 @@ public class ContractingParty extends EMCString{
     public ContractingParty()
     {
         this.setEmcLabel("Party contracting the operator");
+        this.setColumnWidth(37);
     }
     
 }

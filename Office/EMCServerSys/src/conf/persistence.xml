@@ -92,6 +92,7 @@
         <class>emc.entity.dangerousgoods.DGDVehicles</class>
         <class>emc.entity.dangerousgoods.DGDeclarationMaster</class>
         <class>emc.entity.dangerousgoods.DGDeclarationLines</class>
+        <class>emc.entity.dangerousgoods.DGDUN</class>
         <class>emc.entity.debtors.allocationimport.DebtorsAllocationImport</class>
         <class>emc.entity.debtors.allocationimport.DebtorsAllocationImportFailLog</class>
         <class>emc.entity.debtors.allocationimport.DebtorsAllocationImportSetupLines</class>

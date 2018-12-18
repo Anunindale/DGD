@@ -13,8 +13,8 @@ import emc.datatypes.dangerousgoods.declarationlines.Operator;
 import emc.datatypes.dangerousgoods.declarationlines.ProductCustodian;
 import emc.datatypes.dangerousgoods.declarationlines.ProductManufacturer;
 import emc.datatypes.dangerousgoods.declarationlines.ProductOwner;
-import emc.datatypes.dangerousgoods.declarationlines.foreignkeys.CustomerFK;
 import emc.datatypes.dangerousgoods.declarationlines.foreignkeys.DecNumberFK;
+import emc.datatypes.systemwide.Description;
 import emc.framework.EMCEntityClass;
 import emc.framework.EMCQuery;
 import java.util.ArrayList;
@@ -40,8 +40,8 @@ public class DGDeclarationLines extends EMCEntityClass{
     private String productOwner;
     private String contractingParty;
     private String productCustodian;
-    private String decNumber;
-    private String customer;
+    private String decNumber;   //FK
+    private String description;
     
     public DGDeclarationLines()
     {
@@ -128,14 +128,24 @@ public class DGDeclarationLines extends EMCEntityClass{
         this.productCustodian = productCustodian;
     }
     
-    public String getCustomer()
+    public String getDecNumber()
     {
-        return customer;
+        return decNumber;
     }
     
-    public void setCustomer(String customer)
+    public void setDecNumber(String decNumber)
     {
-        this.customer = customer;
+        this.decNumber = decNumber;
+    }
+    
+    public String getDescription()
+    {
+        return description;
+    }
+    
+    public void setDescription(String description)
+    {
+        this.description = description;
     }
     
     //In case we want to add to the query
@@ -151,13 +161,7 @@ public class DGDeclarationLines extends EMCEntityClass{
     {
         List<String> fields = new ArrayList<>();
         fields.add("lineNumber");
-        fields.add("consignor");
-        fields.add("consignee");
-        fields.add("operator");
-        fields.add("productManufacturer");
-        fields.add("productOwner");
-        fields.add("contractingParty");
-        fields.add("productCustodian");
+        fields.add("description");
         return fields;
     }
     
@@ -173,8 +177,8 @@ public class DGDeclarationLines extends EMCEntityClass{
         ret.put("productOwner", new ProductOwner());
         ret.put("contractingParty", new ContractingParty());
         ret.put("productCustodian", new ProductCustodian());
-        ret.put("customer", new CustomerFK());
         ret.put("decNumber", new DecNumberFK());
+        ret.put("description", new Description());
         return ret;
     }
 }

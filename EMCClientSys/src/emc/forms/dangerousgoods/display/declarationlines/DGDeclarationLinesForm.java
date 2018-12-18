@@ -82,14 +82,6 @@ public class DGDeclarationLinesForm extends BaseInternalFrame{
                     lrmLines.doRowChanged(linesDRM);
                 }
             }
-
-            @Override
-            public void setFieldValueAt(int rowIndex, String columnIndex, Object aValue) {
-                super.setFieldValueAt(rowIndex, columnIndex, aValue);
-                if (columnIndex.equals("customer") && lrmLines != null) {
-                    lrmLines.doRowChanged(linesDRM);
-                }
-            }
         };
         linesDRM.setTheForm(this);
         linesDRM.setFormTextId1("consignee");
@@ -105,12 +97,12 @@ public class DGDeclarationLinesForm extends BaseInternalFrame{
 
     private void initFrame() {
         emcJTabbedPane masterTableTab = new emcJTabbedPane();
-        masterTableTab.add("Overview", masterTablePane());
+        masterTableTab.add("Customer", masterTablePane());
 
         emcJPanel contentPane = new emcJPanel(new BorderLayout());
         
         emcJTabbedPane linesTableTab = new emcJTabbedPane();
-        linesTableTab.add("Overview", linestablePane());
+        linesTableTab.add("Contacts", linestablePane());
        
         emcJSplitPane topBottomSplit = new emcJSplitPane(JSplitPane.VERTICAL_SPLIT, masterTableTab, linesTableTab);
         topBottomSplit.setDividerLocation(350);
@@ -177,6 +169,7 @@ public class DGDeclarationLinesForm extends BaseInternalFrame{
     private emcTablePanelUpdate linestablePane() {
         List<String> keys = new ArrayList<String>();
         keys.add("lineNumber");
+        keys.add("description");
         keys.add("consignor");
         keys.add("consignee");
         keys.add("operator");
@@ -189,20 +182,50 @@ public class DGDeclarationLinesForm extends BaseInternalFrame{
         emcJTableUpdate table = new emcJTableUpdate(model);
         
         /*Lookups*/
-        EMCLookupJTableComponent customer = new EMCLookupJTableComponent(new DGDContactsMI());
 
+        List<String> lkpKeys = new ArrayList<>();
+        lkpKeys.add("contactName");
+        lkpKeys.add("company");
+        
         EMCLookupJTableComponent consignorlkp = new EMCLookupJTableComponent(new DGDContactsMI());
-        List<String> consignorKeys = new ArrayList<>();
-        consignorKeys.add("contactName");
-        consignorKeys.add("company");
-        consignorlkp.setPopup(new EMCLookupPopup(new DGDContacts(), "contactName", consignorKeys, linesUD));
+        consignorlkp.setPopup(new EMCLookupPopup(new DGDContacts(), "contactName", lkpKeys, linesUD));
+        
+        EMCLookupJTableComponent consigneelkp = new EMCLookupJTableComponent(new DGDContactsMI());
+        consigneelkp.setPopup(new EMCLookupPopup(new DGDContacts(), "contactName", lkpKeys, linesUD));
+        
+        EMCLookupJTableComponent operatorlkp = new EMCLookupJTableComponent(new DGDContactsMI());
+        operatorlkp.setPopup(new EMCLookupPopup(new DGDContacts(), "contactName", lkpKeys, linesUD));
+        
+        EMCLookupJTableComponent productownerlkp = new EMCLookupJTableComponent(new DGDContactsMI());
+        productownerlkp.setPopup(new EMCLookupPopup(new DGDContacts(), "contactName", lkpKeys, linesUD));
+        
+        EMCLookupJTableComponent productcustodianlkp = new EMCLookupJTableComponent(new DGDContactsMI());
+        productcustodianlkp.setPopup(new EMCLookupPopup(new DGDContacts(), "contactName", lkpKeys, linesUD));
+        
+        EMCLookupJTableComponent productmanufacturerlkp = new EMCLookupJTableComponent(new DGDContactsMI());
+        productmanufacturerlkp.setPopup(new EMCLookupPopup(new DGDContacts(), "contactName", lkpKeys, linesUD));
+        
+        EMCLookupJTableComponent contractingpartylkp = new EMCLookupJTableComponent(new DGDContactsMI());
+        contractingpartylkp.setPopup(new EMCLookupPopup(new DGDContacts(), "contactName", lkpKeys, linesUD));
                 
         lrmLines = new DGDLRMLines();
         lrmLines.addLookup(consignorlkp, "consignor");
+        lrmLines.addLookup(consigneelkp, "consignee");
+        lrmLines.addLookup(operatorlkp, "operator");
+        lrmLines.addLookup(productownerlkp, "productowner");
+        lrmLines.addLookup(productcustodianlkp, "productcustodian");
+        lrmLines.addLookup(productmanufacturerlkp, "productmanufacturer");
+        lrmLines.addLookup(contractingpartylkp, "contractingparty");
         
         lrmLines.initializeLookups();
         
         table.setLookupToColumn("consignor", consignorlkp);
+        table.setLookupToColumn("consignee", consigneelkp);
+        table.setLookupToColumn("operator", operatorlkp);
+        table.setLookupToColumn("productOwner", productownerlkp);
+        table.setLookupToColumn("productCustodian", productcustodianlkp);
+        table.setLookupToColumn("productManufacturer", productmanufacturerlkp);
+        table.setLookupToColumn("contractingParty", contractingpartylkp);
         
         linesDRM.setMainTableComponent(table);
         emcTablePanelUpdate tableScroll = new emcTablePanelUpdate(table);
