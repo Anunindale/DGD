@@ -5,6 +5,7 @@
 package emc.entity.dangerousgoods;
 
 import emc.datatypes.EMCDataType;
+import emc.datatypes.dangerousgoods.declarationlines.foreignkeys.DecNumberFK;
 import emc.datatypes.dangerousgoods.un.GrossMass;
 import emc.datatypes.dangerousgoods.un.NetMass;
 import emc.datatypes.dangerousgoods.un.Packaging;

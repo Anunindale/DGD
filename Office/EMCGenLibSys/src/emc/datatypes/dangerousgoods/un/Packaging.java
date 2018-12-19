@@ -14,6 +14,7 @@ public class Packaging extends EMCString {
     public Packaging()
     {
         this.setEmcLabel("Quantity and packaging type");
+        this.setStringSize(100);
         this.setLowerCaseAllowed(true);
     }
 }

@@ -20,16 +20,18 @@ import emc.app.components.lookup.EMCLookupRelationManager;
 import emc.app.components.lookup.popup.EMCLookupPopup;
 import emc.app.scrollabledesktop.BaseInternalFrame;
 import emc.entity.dangerousgoods.DGDContacts;
+import emc.entity.dangerousgoods.DGDUN;
 import emc.entity.dangerousgoods.DGDeclarationLines;
 import emc.entity.dangerousgoods.DGDeclarationMaster;
 import emc.entity.sop.SOPCustomers;
+import emc.enums.enumQueryTypes;
 import emc.enums.modules.enumEMCModules;
 import emc.forms.dangerousgoods.display.resources.DGDLRMLines;
 import emc.forms.dangerousgoods.display.resources.DGDLRMMaster;
+import emc.framework.EMCQuery;
 import emc.framework.EMCUserData;
 import emc.menus.dangerousgoods.menuitems.display.DGDContactsMI;
 import emc.menus.dangerousgoods.menuitems.display.DGDUNMI;
-import emc.menus.dangerousgoods.menuitems.display.DGDVehiclesMI;
 import emc.menus.sop.menuitems.display.SOPCustomersMenu;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
@@ -55,7 +57,31 @@ public class DGDeclarationLinesForm extends BaseInternalFrame{
         //Master
         masterUD = userData.copyUserDataAndDataList();
         masterDRM = new emcDataRelationManagerUpdate(new emcGenericDataSourceUpdate(enumEMCModules.DG.getId(), new DGDeclarationMaster(), masterUD), masterUD)
-        {
+        {               
+            @Override
+            public EMCUserData generateRelatedFormUserData(EMCUserData formUserData, int Index)
+            {
+                formUserData = super.generateRelatedFormUserData(formUserData, Index);
+                
+                switch(Index)
+                {
+                    case 0: 
+                        Object decNum = super.getLastFieldValueAt("decNumber");
+                        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, DGDeclarationLines.class);
+                        if(decNum != null) query.addAnd("decNumber", decNum);
+                        
+                        EMCQuery query2 = new EMCQuery(enumQueryTypes.SELECT, DGDUN.class);
+                        query2.addAnd("lineNumber", null);
+                        
+                        formUserData.setUserData(0, query2);
+                        formUserData.setUserData(9, query);
+                    break;
+                    default:
+                    break;
+                }
+                return formUserData;
+            }
+        
             @Override
             public void doRelation(int rowIndex) {
                 super.doRelation(rowIndex);
@@ -244,7 +270,7 @@ public class DGDeclarationLinesForm extends BaseInternalFrame{
         List<emcJButton> buttons = new ArrayList<>();
         
         DGDUNMI unForm = new DGDUNMI();
-        buttons.add(new emcMenuButton("UN", unForm, this, 1, false));
+        buttons.add(0, new emcMenuButton("UN", unForm, this, 0, false));
        
         return emcSetGridBagConstraints.createButtonPanel(buttons);
     }

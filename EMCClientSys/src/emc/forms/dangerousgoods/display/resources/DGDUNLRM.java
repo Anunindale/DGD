@@ -8,6 +8,7 @@ import emc.app.components.emctable.emcDataRelationManagerUpdate;
 import emc.app.components.lookup.EMCLookup;
 import emc.app.components.lookup.EMCLookupRelationManager;
 import emc.entity.dangerousgoods.DGDeclarationLines;
+import emc.entity.dangerousgoods.DGDeclarationMaster;
 import emc.enums.enumQueryTypes;
 import emc.framework.EMCQuery;
 

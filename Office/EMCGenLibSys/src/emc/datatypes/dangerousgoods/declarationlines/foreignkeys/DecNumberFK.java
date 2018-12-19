@@ -5,7 +5,7 @@
 package emc.datatypes.dangerousgoods.declarationlines.foreignkeys;
 
 import emc.datatypes.dangerousgoods.declarationmaster.DecNumber;
-import emc.entity.dangerousgoods.DGDeclarationMaster;
+import emc.entity.dangerousgoods.DGDeclarationLines;
 import emc.enums.datatypes.enumDeleteUpdateOptions;
 
 /**
@@ -16,7 +16,7 @@ public class DecNumberFK extends DecNumber{
     
     public DecNumberFK()
     {
-        this.setRelatedTable(DGDeclarationMaster.class.getName());
+        this.setRelatedTable(DGDeclarationLines.class.getName());
         this.setRelatedField("decNumber");
         this.setDeleteAction(enumDeleteUpdateOptions.CASCADE);
         this.setUpdateAction(enumDeleteUpdateOptions.CASCADE);

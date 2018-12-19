@@ -4,13 +4,11 @@
  */
 package emc.forms.dangerousgoods.display.un;
 
-import emc.app.components.emcJButton;
 import emc.app.components.emcJComboBox;
 import emc.app.components.emcJLabel;
 import emc.app.components.emcJPanel;
 import emc.app.components.emcJTabbedPane;
 import emc.app.components.emcJTextField;
-import emc.app.components.emcMenuButton;
 import emc.app.components.emcSetGridBagConstraints;
 import emc.app.components.emcTablePanelUpdate;
 import emc.app.components.emctable.emcGenericDataSourceUpdate;
@@ -28,10 +26,9 @@ import emc.entity.dangerousgoods.datasource.UNDS;
 import emc.entity.trec.TRECChemicals;
 import emc.forms.dangerousgoods.display.resources.DGDUNLRM;
 import emc.framework.EMCCommandClass;
+import emc.framework.EMCQuery;
 import emc.framework.EMCUserData;
 import emc.functions.Functions;
-import emc.menus.dangerousgoods.menuitems.display.DGDUNMI;
-import emc.menus.dangerousgoods.menuitems.display.DGDVehiclesMI;
 import emc.menus.dangerousgoods.menuitems.display.DGDeclarationLinesMI;
 import emc.menus.developertools.trec.TRECChemicalsMenu;
 import emc.methods.trec.ServerTRECMethods;
@@ -58,6 +55,8 @@ public class DGDUNForm extends BaseInternalFrame {
         super("UN", true, true, true, true, userData);
         this.setBounds(20, 20, 650, 290);
         
+        EMCQuery lkpquery = checkUserData(userData);
+        
         this.userData = userData.copyUserDataAndDataList();
         
         drm = new EMCControlLookupComponentDRM(new emcGenericDataSourceUpdate(new UNDS(), userData), userData)
@@ -66,11 +65,10 @@ public class DGDUNForm extends BaseInternalFrame {
             public void doRelation(int rowIndex) {
                 super.doRelation(rowIndex);
                 if (lrm != null) {
-                    //lrm.doRowChanged(drm);
-                    updatePackingGroups(rowIndex);
+                    lrm.doRowChanged(drm);
                 }
 
-                //updatePackingGroups(rowIndex);
+                updatePackingGroups(rowIndex);
             }
 
             @Override
@@ -79,11 +77,9 @@ public class DGDUNForm extends BaseInternalFrame {
 
                 if (columnIndex.equals("unNumber")) {
                     if (lrm != null) {
-                        //lrm.doRowChanged(drm);
-                        updatePackingGroups(rowIndex);
+                        lrm.doRowChanged(drm);
                     }
-
-                    //updatePackingGroups(rowIndex);
+                updatePackingGroups(rowIndex);
                 }
             }
 
@@ -131,11 +127,15 @@ public class DGDUNForm extends BaseInternalFrame {
         };
         
         drm.setTheForm(this);
-        drm.setFormTextId1("lineNumber");
-        drm.setFormTextId2("description");
+        drm.setFormTextId1("packaging");
+        drm.setFormTextId2("grossMass");
+        drm.setRelationColumnToHeader("decNumber");
         this.setDataManager(drm);
         
         initFrame();
+        
+        if(lkpquery != null)
+                lineNumlkp.setTheQuery(lkpquery);
     }
 
     private void initFrame() {
@@ -190,6 +190,31 @@ public class DGDUNForm extends BaseInternalFrame {
         drm.setTablePanel(tableScroll);
         panel.add(tableScroll);
         return panel;
+    }
+
+    @Override
+    public void setUserData(EMCUserData userData) {
+        checkUserData(userData);
+        
+        super.setUserData(userData);
+    }
+    
+    private EMCQuery checkUserData(EMCUserData userData)
+    {
+        if(userData.getUserData(9) != null && userData.getUserData(9) instanceof EMCQuery)
+        {
+            EMCQuery lkpquery = (EMCQuery) userData.getUserData().remove(9);
+            if(lkpquery != null)
+            {
+                
+                if(lineNumlkp != null)
+                    lineNumlkp.setTheQuery(lkpquery);
+            }
+            
+            return lkpquery;
+        }
+        
+        return null;
     }
     
 }
