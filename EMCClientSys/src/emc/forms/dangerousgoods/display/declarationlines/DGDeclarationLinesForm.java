@@ -4,9 +4,12 @@
  */
 package emc.forms.dangerousgoods.display.declarationlines;
 
+import emc.app.components.emcJButton;
 import emc.app.components.emcJPanel;
 import emc.app.components.emcJSplitPane;
 import emc.app.components.emcJTabbedPane;
+import emc.app.components.emcMenuButton;
+import emc.app.components.emcSetGridBagConstraints;
 import emc.app.components.emcTablePanelUpdate;
 import emc.app.components.emctable.emcDataRelationManagerUpdate;
 import emc.app.components.emctable.emcGenericDataSourceUpdate;
@@ -25,6 +28,8 @@ import emc.forms.dangerousgoods.display.resources.DGDLRMLines;
 import emc.forms.dangerousgoods.display.resources.DGDLRMMaster;
 import emc.framework.EMCUserData;
 import emc.menus.dangerousgoods.menuitems.display.DGDContactsMI;
+import emc.menus.dangerousgoods.menuitems.display.DGDUNMI;
+import emc.menus.dangerousgoods.menuitems.display.DGDVehiclesMI;
 import emc.menus.sop.menuitems.display.SOPCustomersMenu;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
@@ -46,7 +51,7 @@ public class DGDeclarationLinesForm extends BaseInternalFrame{
 
     public DGDeclarationLinesForm(EMCUserData userData) {
         super("Dangerous Goods Declarations", true, true, true, true, userData);
-        this.setBounds(20, 20, 850, 600);
+        this.setBounds(20, 20, 1000, 600);
         //Master
         masterUD = userData.copyUserDataAndDataList();
         masterDRM = new emcDataRelationManagerUpdate(new emcGenericDataSourceUpdate(enumEMCModules.DG.getId(), new DGDeclarationMaster(), masterUD), masterUD)
@@ -108,6 +113,7 @@ public class DGDeclarationLinesForm extends BaseInternalFrame{
         topBottomSplit.setDividerLocation(350);
        
         contentPane.add(topBottomSplit);
+        contentPane.add(createButtons(), BorderLayout.EAST);
         this.setContentPane(contentPane);
     }
 
@@ -233,42 +239,14 @@ public class DGDeclarationLinesForm extends BaseInternalFrame{
         return tableScroll;
     }
 
-//    private emcJPanel buttonPane() {
-//
-//        emcMenuButtonList btnCargoCheckReport = new emcMenuButtonList("Print Report", this){
-//
-//            EMCQuery query = masterDRM.getOriginalQuery().copyQuery();
-//
-//                 @Override
-//                public void executeCmd(String theCmd) {
-//                     if(theCmd.equals("This Record")){
-//                                if (EMCDialogFactory.createQuestionDialog(utilFunctions.findEMCDesktop(this), "Print", "Are you sure you want to print ?") == JOptionPane.YES_OPTION) {
-//                                    EMCCommandClass cmd = new EMCCommandClass(EMCCommands.REPORT_COMAND.getId(), enumEMCModules.TREC.getId(), ServerTRECMethods.PRINT_CARGO_CHECK_REPORT.toString());
-//
-//                                    JasperInformation jasperInfo = new JasperInformation();
-//
-//                                    jasperInfo.setJasperTemplate("/emc/reports/trec/cargocheck/CargoCheckReport.jrxml");
-//                                    jasperInfo.setXmlNodePath("/emcmsg/emc.reports.trec.cargocheck.CargoCheckReportDS");
-//                                    jasperInfo.setReportTitle("CARGO CHECK REPORT");
-//
-//                                    query = new EMCQuery(enumQueryTypes.SELECT, TRECCargoCheckMaster.class);
-//                                    query.addAnd("cargoCheckNumber", masterDRM.getLastFieldValueAt("cargoCheckNumber"));
-//                                    query.addTableAnd(TRECCargoCheckLines.class.getName(), "cargoCheckNumber", TRECCargoCheckMaster.class.getName(), "cargoCheckNumber");
-//
-//                                    List toSend = new ArrayList();
-//                                    toSend.add(query);
-//
-//
-//                                    EMCReportWSManager.generateReport(cmd, jasperInfo, EnumReports.PRINT_CARGO_CHECK_REPORT, toSend, masterDRM.getUserData());
-//                                }
-//                     }
-//                     }
-//        };
-//        btnCargoCheckReport.addMenuItem("This Record", null, 1, false);
-//        List<emcJButton> buttonList = new ArrayList<emcJButton>();
-//        buttonList.add(btnCargoCheckReport);
-//
-//        return emcSetGridBagConstraints.createButtonPanel(buttonList);
-//    }
+    private emcJPanel createButtons()
+    {
+        List<emcJButton> buttons = new ArrayList<>();
+        
+        DGDUNMI unForm = new DGDUNMI();
+        buttons.add(new emcMenuButton("UN", unForm, this, 1, false));
+       
+        return emcSetGridBagConstraints.createButtonPanel(buttons);
+    }
     
 }
