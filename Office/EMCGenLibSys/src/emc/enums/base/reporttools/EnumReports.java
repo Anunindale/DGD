@@ -12,6 +12,7 @@ import emc.entity.developertools.bugtracking.DevBugsTable;
 import emc.entity.inventory.InventoryItemMaster;
 import emc.entity.inventory.dimensions.InventoryItemDimensionCombinations;
 import emc.entity.base.journals.BaseJournalDefinitionTable;
+import emc.entity.dangerousgoods.DGDeclarationLines;
 import emc.entity.debtors.DebtorsBasketMaster;
 import emc.entity.debtors.DebtorsCreditNoteMaster;
 import emc.entity.debtors.DebtorsCustomerInvoiceLines;
@@ -163,6 +164,8 @@ public enum EnumReports implements ReportEnumInterface {
     //GL
     GL_CHART_OF_ACCOUNTS(3200, "GL CHART OF ACCOUNTS", GLChartOfAccounts.class.getName(), null),
     GL_JOURNAL_REPORT(3201, "GL_JOURNAL_REPORT", GLJournalMaster.class.getName(), null),
+    //DG
+    DG_DECLARATION(3400, "DG_DECLARATION", DGDeclarationLines.class.getName(), null),
     
     PRINTINTSRUCTIONREPORT(3221, "PRINTINSTRUCTIONREPORT",DebtorsBasketMaster.class.getName(), null );
     //Enum variables

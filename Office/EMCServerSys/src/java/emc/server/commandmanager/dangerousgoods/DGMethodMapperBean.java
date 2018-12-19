@@ -10,15 +10,12 @@ import emc.bus.dangerousgoods.cargomaster.DGCargoMasterLocal;
 import emc.bus.dangerousgoods.contacts.DGDContactsLocal;
 import emc.bus.dangerousgoods.declarationlines.DGDeclarationLinesLocal;
 import emc.bus.dangerousgoods.declarationmaster.DGDeclarationMasterLocal;
-import emc.bus.dangerousgoods.un.DGDUNLocal;
-import emc.bus.dangerousgoods.vehicles.DGDVehiclesLocal;
 import emc.bus.dangerousgoods.un.datasource.UNDSLocal;
 import emc.bus.dangerousgoods.vehicles.datasource.VehiclesDSLocal;
 import emc.commands.EMCCommands;
 import emc.entity.dangerousgoods.DGCargoCheckLines;
 import emc.entity.dangerousgoods.DGCargoCheckMaster;
 import emc.entity.dangerousgoods.DGDContacts;
-import emc.entity.dangerousgoods.DGDUN;
 import emc.entity.dangerousgoods.DGDeclarationLines;
 import emc.entity.dangerousgoods.DGDeclarationMaster;
 import emc.entity.dangerousgoods.datasource.UNDS;
@@ -30,6 +27,7 @@ import emc.framework.EMCEntityBeanException;
 import emc.framework.EMCUserData;
 import emc.methods.dangerousgoods.ClientDGMethods;
 import emc.methods.dangerousgoods.ServerDGMethods;
+import emc.reports.dangerousgoods.DeclarationReportLocal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -57,6 +55,8 @@ public class DGMethodMapperBean implements DGMethodMapperBeanLocal{
     private DGDeclarationLinesLocal declarationLinesBean;
     @EJB
     private UNDSLocal unDSBean;
+    @EJB
+    private DeclarationReportLocal declarationReportBean;
             
     public DGMethodMapperBean() {
     }
@@ -177,6 +177,9 @@ public class DGMethodMapperBean implements DGMethodMapperBeanLocal{
                 break;
             case VALIDATEFIELD_DGDECLARATIONLINES:
                 theDataList.add(declarationLinesBean.validateField(dataList.get(1).toString(), (DGDeclarationLines) dataList.get(2), userData));
+                break;
+            case PRINT_DECLARATION:
+                theDataList = declarationReportBean.getReportResult(dataList, userData);
                 break;
             //UNDS
             case INSERT_UNDS:
