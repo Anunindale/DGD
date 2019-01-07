@@ -5,6 +5,7 @@
 package emc.bus.dangerousgoods.declarationlines;
 
 import emc.entity.dangerousgoods.DGDContacts;
+import emc.entity.dangerousgoods.DGDVehicles;
 import emc.entity.dangerousgoods.DGDeclarationLines;
 import emc.enums.enumQueryTypes;
 import emc.framework.EMCEntityBean;
@@ -42,6 +43,22 @@ public class DGDeclarationLinesBean extends EMCEntityBean implements DGDeclarati
            return result.getDescription(); 
        else
            return "";
+    }
+
+    @Override
+    public Object validateField(String fieldNameToValidate, Object theRecord, EMCUserData userData) 
+    {
+        boolean result =  super.validateField(fieldNameToValidate, theRecord, userData);
+        if(result)
+        {
+            if(fieldNameToValidate.equals("operator"))
+            {
+                DGDeclarationLines record = (DGDeclarationLines) theRecord;
+                
+                EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, DGDVehicles.class);
+                    query.addAnd("contactNumber", record.getOperator());
+            }
+        }
     }
     
 }

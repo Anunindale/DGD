@@ -31,7 +31,7 @@ import javax.persistence.UniqueConstraint;
  * @author pj
  */
 @Entity
-@Table(name="DGDContacts", uniqueConstraints={@UniqueConstraint(columnNames={"contactNumber", "customer", "postalCode"})})
+@Table(name="DGDContacts", uniqueConstraints={@UniqueConstraint(columnNames={"contactNumber", "companyId"})})
 public class DGDContacts extends EMCEntityClass {
     
     private String contactNumber;     //NumberSequence-controlled number

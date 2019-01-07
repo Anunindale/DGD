@@ -5,6 +5,7 @@
 package emc.entity.dangerousgoods;
 
 import emc.datatypes.EMCDataType;
+import emc.datatypes.base.companies.RegistrationNumber;
 import emc.datatypes.dangerousgoods.declarationlines.Consignee;
 import emc.datatypes.dangerousgoods.declarationlines.Consignor;
 import emc.datatypes.dangerousgoods.declarationlines.ContractingParty;
@@ -15,6 +16,7 @@ import emc.datatypes.dangerousgoods.declarationlines.ProductManufacturer;
 import emc.datatypes.dangerousgoods.declarationlines.ProductOwner;
 import emc.datatypes.dangerousgoods.declarationlines.foreignkeys.DecNumberFK;
 import emc.datatypes.systemwide.Description;
+import emc.datatypes.trec.treccards.AdditionalInfo;
 import emc.framework.EMCEntityClass;
 import emc.framework.EMCQuery;
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ import javax.persistence.UniqueConstraint;
  * @author pj
  */
 @Entity
-@Table(name="DGDeclarationLines", uniqueConstraints={@UniqueConstraint(columnNames={"lineNumber"})})
+@Table(name="DGDeclarationLines", uniqueConstraints={@UniqueConstraint(columnNames={"companyId", "lineNumber"})})
 public class DGDeclarationLines extends EMCEntityClass{
     
     private String lineNumber;  //NumberSequence-controlled
@@ -42,6 +44,8 @@ public class DGDeclarationLines extends EMCEntityClass{
     private String productCustodian;
     private String decNumber;   //FK
     private String description;
+    private String additionalInfo;
+    private String registrationNumber;
     
     public DGDeclarationLines()
     {
@@ -148,6 +152,26 @@ public class DGDeclarationLines extends EMCEntityClass{
         this.description = description;
     }
     
+    public String getAdditionalInfo()
+    {
+        return additionalInfo;
+    }
+    
+    public void setAdditionalInfo(String additionalInfo)
+    {
+        this.additionalInfo = additionalInfo;
+    }
+    
+    public String getRegistrationNumber()
+    {
+        return registrationNumber;
+    }
+    
+    public void setRegistrationNumber(String registrationNumber)
+    {
+        this.registrationNumber = registrationNumber;
+    }
+    
     //In case we want to add to the query
     @Override
     public EMCQuery buildQuery()
@@ -179,6 +203,8 @@ public class DGDeclarationLines extends EMCEntityClass{
         ret.put("productCustodian", new ProductCustodian());
         ret.put("decNumber", new DecNumberFK());
         ret.put("description", new Description());
+        ret.put("additionalInfo", new AdditionalInfo());
+        ret.put("registrationNumber", new RegistrationNumber());
         return ret;
     }
 }

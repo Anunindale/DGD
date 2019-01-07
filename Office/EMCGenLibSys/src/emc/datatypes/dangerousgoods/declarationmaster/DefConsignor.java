@@ -5,6 +5,8 @@
 package emc.datatypes.dangerousgoods.declarationmaster;
 
 import emc.datatypes.EMCString;
+import emc.entity.dangerousgoods.DGDContacts;
+import emc.enums.datatypes.enumDeleteUpdateOptions;
 
 /**
  *
@@ -16,6 +18,10 @@ public class DefConsignor extends EMCString{
     {
         this.setEmcLabel("Default Consignor");
         this.setLowerCaseAllowed(true);
+        this.setRelatedTable(DGDContacts.class.getName());
+        this.setRelatedField("contactNumber");
+        this.setDeleteAction(enumDeleteUpdateOptions.RESTRICT);
+        this.setUpdateAction(enumDeleteUpdateOptions.CASCADE);
     }
     
 }

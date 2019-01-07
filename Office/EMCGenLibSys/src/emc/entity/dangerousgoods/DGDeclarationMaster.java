@@ -23,7 +23,7 @@ import javax.persistence.UniqueConstraint;
  * @author pj
  */
 @Entity
-@Table(name="DGDeclarationMaster", uniqueConstraints={@UniqueConstraint(columnNames={"customer", "decNumber"})})
+@Table(name="DGDeclarationMaster", uniqueConstraints={@UniqueConstraint(columnNames={"companyId", "customer", "decNumber"})})
 public class DGDeclarationMaster extends EMCEntityClass
 {
     private String decNumber;          //NumberSequence-controlled declaration master number

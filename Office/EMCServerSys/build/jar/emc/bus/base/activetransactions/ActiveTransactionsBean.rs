@@ -1,2 +1,0 @@
-emc.bus.base.activetransactions.ActiveTransactionsBean
-emc.bus.base.activetransactions.StreamGobbler

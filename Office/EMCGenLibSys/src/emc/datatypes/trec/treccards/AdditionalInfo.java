@@ -13,7 +13,7 @@ import emc.datatypes.EMCString;
 public class AdditionalInfo extends EMCString {
 
     public AdditionalInfo() {
-        this.setEmcLabel("additional Info");
+        this.setEmcLabel("Additional Info");
         this.setStringSize(2000);
         this.setLowerCaseAllowed(true);
     }

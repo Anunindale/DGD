@@ -13,7 +13,7 @@ import emc.datatypes.EMCString;
 public class LineNumber extends EMCString{
     public LineNumber()
     {
-        this.setEmcLabel("Number");
+        this.setEmcLabel("Line Number");
         this.setMandatory(true);
         this.setNumberSeqAllowed(true);
     }

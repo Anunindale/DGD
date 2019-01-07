@@ -7,6 +7,7 @@ package emc.menus.dangerousgoods.menuitems;
 import emc.enums.modules.enumEMCModules;
 import emc.framework.EMCMenu;
 import emc.menus.dangerousgoods.menuitems.display.numbersequence.DGDNumberSequenceMI;
+import emc.menus.dangerousgoods.menuitems.output.DeclarationReportMI;
 
 /**
  *

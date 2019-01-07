@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *

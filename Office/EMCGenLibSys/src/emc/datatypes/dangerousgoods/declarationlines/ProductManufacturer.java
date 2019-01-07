@@ -5,6 +5,8 @@
 package emc.datatypes.dangerousgoods.declarationlines;
 
 import emc.datatypes.EMCString;
+import emc.entity.dangerousgoods.DGDContacts;
+import emc.enums.datatypes.enumDeleteUpdateOptions;
 
 /**
  *
@@ -14,5 +16,9 @@ public class ProductManufacturer extends EMCString{
     public ProductManufacturer()
     {
         this.setEmcLabel("Product manufacturer");
+        this.setRelatedTable(DGDContacts.class.getName());
+        this.setRelatedField("contactNumber");
+        this.setDeleteAction(enumDeleteUpdateOptions.RESTRICT);
+        this.setUpdateAction(enumDeleteUpdateOptions.CASCADE);
     }
 }
