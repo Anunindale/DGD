@@ -4,12 +4,14 @@
  */
 package emc.forms.dangerousgoods.display.vehicles;
 
+import emc.app.components.documents.EMCStringFormDocument;
 import emc.app.components.emcJLabel;
 import emc.app.components.emcJPanel;
 import emc.app.components.emcJTabbedPane;
 import emc.app.components.emcJTextField;
 import emc.app.components.emcSetGridBagConstraints;
 import emc.app.components.emcTablePanelUpdate;
+import emc.app.components.emctable.emcDataRelationManagerUpdate;
 import emc.app.components.emctable.emcGenericDataSourceUpdate;
 import emc.app.components.emctable.emcJTableUpdate;
 import emc.app.components.emctable.emcTableModelUpdate;
@@ -20,6 +22,9 @@ import emc.app.scrollabledesktop.BaseInternalFrame;
 import emc.entity.dangerousgoods.DGDContacts;
 import emc.entity.dangerousgoods.DGDVehicles;
 import emc.entity.dangerousgoods.datasource.VehiclesDS;
+import emc.enums.dangerousgoods.ContactType;
+import emc.enums.enumQueryTypes;
+import emc.framework.EMCQuery;
 import emc.framework.EMCUserData;
 import emc.menus.dangerousgoods.menuitems.display.DGDContactsMI;
 import java.awt.BorderLayout;
@@ -64,12 +69,16 @@ public class DGDVehiclesForm extends BaseInternalFrame {
     }
 
     private emcJPanel selectionPane() {
-        emcJTextField txtDescription = new emcJTextField();
+        emcJTextField txtDescription = new emcJTextField(new EMCStringFormDocument(drm, "companyId"));
         txtDescription.setEditable(false);
-       
+        
         contactNumlkp = new EMCControlLookupComponent(new DGDContactsMI(), drm, "contactNumber",
                 txtDescription, "company", DGDVehicles.class.getName());
         contactNumlkp.setPopup(new EMCLookupPopup(new DGDContacts(), "contactNumber", userData));
+        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, DGDContacts.class);
+            query.addAnd("type", ContactType.OPERATOR.toString());
+        contactNumlkp.setTheQuery(query);
+        
         drm.setLookup(contactNumlkp);
         Component[][] comp = {{new emcJLabel("Contact Number"), contactNumlkp, new emcJLabel("Company"), txtDescription}};
         return emcSetGridBagConstraints.createSimplePanel(comp, GridBagConstraints.NONE, true, "Contact Details");

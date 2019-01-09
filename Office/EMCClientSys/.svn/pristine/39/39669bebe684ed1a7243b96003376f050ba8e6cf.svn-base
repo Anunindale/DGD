@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="companyName" class="java.lang.String"/>
+	<field name="courseId" class="java.lang.String">
+		<fieldDescription><![CDATA[@courseId]]></fieldDescription>
+	</field>
+	<field name="courseDescription" class="java.lang.String">
+		<fieldDescription><![CDATA[@courseDescription]]></fieldDescription>
+	</field>
+	<field name="courseDifficulty" class="java.lang.String">
+		<fieldDescription><![CDATA[@courseDifficulty]]></fieldDescription>
+	</field>
+	<field name="courseDuration" class="java.lang.String">
+		<fieldDescription><![CDATA[@courseDuration]]></fieldDescription>
+	</field>
+	<field name="courseGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[@courseGroup]]></fieldDescription>
+	</field>
+	<field name="subjectId" class="java.lang.String">
+		<fieldDescription><![CDATA[@subjectId]]></fieldDescription>
+	</field>
+	<field name="subjectDescription" class="java.lang.String">
+		<fieldDescription><![CDATA[@subjectDescription]]></fieldDescription>
+	</field>
+	<field name="subjectCredits" class="java.lang.Integer">
+		<fieldDescription><![CDATA[@subjectCredits]]></fieldDescription>
+	</field>
+	<field name="subjectDepartment" class="java.lang.String">
+		<fieldDescription><![CDATA[@subjectDepartment]]></fieldDescription>
+	</field>
+	<field name="subjectLevel" class="java.lang.String">
+		<fieldDescription><![CDATA[@subjectLevel]]></fieldDescription>
+	</field>
+	<field name="subjectYear" class="java.lang.String">
+		<fieldDescription><![CDATA[@subjectYear]]></fieldDescription>
+	</field>
+	<field name="subjectPrice" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@subjectPrice]]></fieldDescription>
+	</field>
+	<variable name="totalCredit" class="java.lang.Integer" resetType="Group" resetGroup="CourseYear">
+		<variableExpression><![CDATA[Integer.valueOf($V{totalCredit}.intValue() + $F{subjectCredits}.intValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[Integer.valueOf(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalPrice" class="java.math.BigDecimal" resetType="Group" resetGroup="CourseYear">
+		<variableExpression><![CDATA[$V{totalPrice}.add($F{subjectPrice})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<group name="Course">
+		<groupExpression><![CDATA[$F{courseId}]]></groupExpression>
+		<groupHeader>
+			<band height="102">
+				<staticText>
+					<reportElement x="10" y="0" width="68" height="20"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Course:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="249" y="0" width="67" height="20"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="20" width="68" height="20"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Duration:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="40" width="68" height="20"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Difficulty:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="60" width="68" height="20"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Group:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="78" y="0" width="171" height="20"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{courseId}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="316" y="0" width="229" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{courseDescription}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="78" y="40" width="467" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{courseDifficulty}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="78" y="20" width="467" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{courseDuration}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="78" y="60" width="467" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{courseGroup}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="81" width="68" height="20"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Subject]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="78" y="81" width="171" height="20"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="385" y="81" width="54" height="20"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Level]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="249" y="81" width="55" height="20"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Credits]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="304" y="81" width="81" height="20"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Department]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="101" width="555" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="439" y="81" width="37" height="20"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Year]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="476" y="81" width="69" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Price]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="15"/>
+		</groupFooter>
+	</group>
+	<group name="CourseYear">
+		<groupExpression><![CDATA[$F{subjectYear}]]></groupExpression>
+		<groupFooter>
+			<band height="28">
+				<textField>
+					<reportElement x="476" y="1" width="69" height="14"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalPrice}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="249" y="1" width="55" height="14"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{totalCredit}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="181" y="1" width="68" height="14"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="0" width="276" height="25"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="16" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Course Overview]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="445" y="31" width="100" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="25" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="286" y="1" width="259" height="25"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="68" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{subjectId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="0" width="171" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{subjectDescription}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="0" width="55" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{subjectCredits}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="0" width="54" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{subjectLevel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="0" width="81" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{subjectDepartment}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="0" width="37" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{subjectYear}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="476" y="0" width="69" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{subjectPrice}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="12" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="10" y="0" width="535" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="509" y="0" width="36" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="555" height="1"/>
+			</line>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="375" y="0" width="134" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="10" y="0" width="186" height="12"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

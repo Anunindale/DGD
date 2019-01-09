@@ -1,0 +1,31 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package emc.menus.debtors;
+
+import emc.framework.EMCMenu;
+import emc.menus.debtors.menuitems.action.DebtorsEdconStatementMI;
+import emc.menus.debtors.menuitems.action.DebtorsTransactionSettlement;
+import emc.menus.debtors.menuitems.display.DebtorsAllocationImport;
+import emc.menus.debtors.menuitems.display.DebtorsBasketMI;
+import emc.menus.debtors.menuitems.display.DebtorsRealeseTrecCardsMI;
+
+
+/**
+ *
+ * @author riaan
+ */
+public class DebtorsFrequentlyMenu extends EMCMenu {
+
+    /** Creates a new instance of DebtorsFrequentlyMenu */
+    public DebtorsFrequentlyMenu() {
+        this.setMenuName("Frequently");
+        this.setMenuList(new DebtorsTransactionSettlement());
+        this.setMenuList(new DebtorsAllocationImport());
+        this.setMenuList(new DebtorsEdconStatementMI());
+        this.setMenuList(new DebtorsBasketMI());
+        this.setMenuList(new DebtorsRealeseTrecCardsMI());
+    }
+}

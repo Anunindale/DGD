@@ -8,6 +8,8 @@ package emc.server.commandmanager.dangerousgoods;
 import emc.bus.dangerousgoods.cargolines.DGCargoLinesLocal;
 import emc.bus.dangerousgoods.cargomaster.DGCargoMasterLocal;
 import emc.bus.dangerousgoods.contacts.DGDContactsLocal;
+import emc.bus.dangerousgoods.datasource.declarationlines.DGDeclarationLinesDSLocal;
+import emc.bus.dangerousgoods.datasource.declarationmaster.DGDeclarationMasterDSLocal;
 import emc.bus.dangerousgoods.declarationlines.DGDeclarationLinesLocal;
 import emc.bus.dangerousgoods.declarationmaster.DGDeclarationMasterLocal;
 import emc.bus.dangerousgoods.un.datasource.UNDSLocal;
@@ -18,6 +20,8 @@ import emc.entity.dangerousgoods.DGCargoCheckMaster;
 import emc.entity.dangerousgoods.DGDContacts;
 import emc.entity.dangerousgoods.DGDeclarationLines;
 import emc.entity.dangerousgoods.DGDeclarationMaster;
+import emc.entity.dangerousgoods.datasource.DGDeclarationLinesDS;
+import emc.entity.dangerousgoods.datasource.DGDeclarationMasterDS;
 import emc.entity.dangerousgoods.datasource.UNDS;
 import emc.entity.dangerousgoods.datasource.VehiclesDS;
 import emc.enums.modules.enumEMCModules;
@@ -57,6 +61,10 @@ public class DGMethodMapperBean implements DGMethodMapperBeanLocal{
     private UNDSLocal unDSBean;
     @EJB
     private DeclarationReportLocal declarationReportBean;
+    @EJB
+    private DGDeclarationLinesDSLocal declarationLinesDSBean;
+    @EJB
+    private DGDeclarationMasterDSLocal declarationMasterDSBean;
             
     public DGMethodMapperBean() {
     }
@@ -181,6 +189,9 @@ public class DGMethodMapperBean implements DGMethodMapperBeanLocal{
             case PRINT_DECLARATION:
                 theDataList = declarationReportBean.getReportResult(dataList, userData);
                 break;
+            case GET_REGISTRATION_NUMBERS:
+                theDataList = declarationLinesBean.getRegistrationNumbers(dataList.get(1).toString(), userData);
+                break;
             //UNDS
             case INSERT_UNDS:
                 theDataList.add(unDSBean.insert((UNDS) dataList.get(1), userData));
@@ -200,6 +211,46 @@ public class DGMethodMapperBean implements DGMethodMapperBeanLocal{
                 break;
             case VALIDATEFIELD_UNDS:
                 theDataList.add(unDSBean.validateField(dataList.get(1).toString(), (UNDS) dataList.get(2), userData));
+                break;
+            //DGDeclarationLinesDS
+            case INSERT_DGDECLARATIONLINESDS:
+                theDataList.add(declarationLinesDSBean.insert((DGDeclarationLinesDS) dataList.get(1), userData));
+                break;
+            case UPDATE_DGDECLARATIONLINESDS:
+                theDataList.add(declarationLinesDSBean.update((DGDeclarationLinesDS) dataList.get(1), userData));
+                break;
+            case DELETE_DGDECLARATIONLINESDS:
+                theDataList.add(declarationLinesDSBean.delete((DGDeclarationLinesDS) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_DGDECLARATIONLINESDS:
+                theDataList.add(declarationLinesDSBean.getNumRows(DGDeclarationLinesDS.class, userData));
+                break;
+            case GETDATA_DGDECLARATIONLINESDS:
+                theDataList = (List<Object>) declarationLinesDSBean.getDataInRange(DGDeclarationLinesDS.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_DGDECLARATIONLINESDS:
+                theDataList.add(declarationLinesDSBean.validateField(dataList.get(1).toString(), (DGDeclarationLinesDS) dataList.get(2), userData));
+                break;
+            //DGDeclarationMasterDS
+            case INSERT_DGDECLARATIONMASTERDS:
+            theDataList.add(declarationMasterDSBean.insert((DGDeclarationMasterDS) dataList.get(1), userData));
+            break;
+            case UPDATE_DGDECLARATIONMASTERDS:
+                theDataList.add(declarationMasterDSBean.update((DGDeclarationMasterDS) dataList.get(1), userData));
+                break;
+            case DELETE_DGDECLARATIONMASTERDS:
+                theDataList.add(declarationMasterDSBean.delete((DGDeclarationMasterDS) dataList.get(1), userData));
+                break;
+            case GETNUMROWS_DGDECLARATIONMASTERDS:
+                theDataList.add(declarationMasterDSBean.getNumRows(DGDeclarationMasterDS.class, userData));
+                break;
+            case GETDATA_DGDECLARATIONMASTERDS:
+                theDataList = (List<Object>) declarationMasterDSBean.getDataInRange(DGDeclarationMasterDS.class, userData,
+                        Integer.parseInt(dataList.get(1).toString()), Integer.parseInt(dataList.get(2).toString()));
+                break;
+            case VALIDATEFIELD_DGDECLARATIONMASTERDS:
+                theDataList.add(declarationMasterDSBean.validateField(dataList.get(1).toString(), (DGDeclarationMasterDS) dataList.get(2), userData));
                 break;
                 
             default:

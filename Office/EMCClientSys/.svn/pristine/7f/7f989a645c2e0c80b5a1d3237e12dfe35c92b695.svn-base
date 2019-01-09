@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="logoPath" class="java.lang.String"/>
+	<field name="companyName" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyName]]></fieldDescription>
+	</field>
+	<field name="companyEmail" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyEmail]]></fieldDescription>
+	</field>
+	<field name="companyTelephone" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyTelephone]]></fieldDescription>
+	</field>
+	<field name="companyFax" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyFax]]></fieldDescription>
+	</field>
+	<field name="companyContactEmail" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyContactEmail]]></fieldDescription>
+	</field>
+	<field name="companyAddress" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyAddress]]></fieldDescription>
+	</field>
+	<field name="companyLogo" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyLogo]]></fieldDescription>
+	</field>
+	<field name="studentName" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentName]]></fieldDescription>
+	</field>
+	<field name="studentAddress1" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentAddress1]]></fieldDescription>
+	</field>
+	<field name="studentAddress2" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentAddress2]]></fieldDescription>
+	</field>
+	<field name="studentAddress3" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentAddress3]]></fieldDescription>
+	</field>
+	<field name="studentPostalCode" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentPostalCode]]></fieldDescription>
+	</field>
+	<field name="studentNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentNumber]]></fieldDescription>
+	</field>
+	<field name="statementDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@statementDate]]></fieldDescription>
+	</field>
+	<field name="studentFullName" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentFullName]]></fieldDescription>
+	</field>
+	<field name="studentCourse" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentCourse]]></fieldDescription>
+	</field>
+	<field name="samester" class="java.lang.String">
+		<fieldDescription><![CDATA[@samester]]></fieldDescription>
+	</field>
+	<field name="subject" class="java.lang.String">
+		<fieldDescription><![CDATA[@subject]]></fieldDescription>
+	</field>
+	<field name="semesterMark" class="java.lang.Double">
+		<fieldDescription><![CDATA[@semesterMark]]></fieldDescription>
+	</field>
+	<field name="examinationMark" class="java.lang.Double">
+		<fieldDescription><![CDATA[@examinationMark]]></fieldDescription>
+	</field>
+	<field name="finalMark" class="java.lang.Double">
+		<fieldDescription><![CDATA[@finalMark]]></fieldDescription>
+	</field>
+	<field name="subjectStatus" class="java.lang.String">
+		<fieldDescription><![CDATA[@subjectStatus]]></fieldDescription>
+	</field>
+	<group name="StudentNumber" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{studentNumber}]]></groupExpression>
+		<groupHeader>
+			<band height="303">
+				<line>
+					<reportElement x="18" y="236" width="520" height="1"/>
+				</line>
+				<line>
+					<reportElement x="18" y="276" width="520" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="252" y="276" width="120" height="13"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Marks]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="17" y="236" width="355" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Name: " + $F{studentFullName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="292" y="289" width="40" height="13"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[EM]]></text>
+				</staticText>
+				<line>
+					<reportElement x="371" y="237" width="1" height="65"/>
+				</line>
+				<staticText>
+					<reportElement x="17" y="276" width="235" height="26"/>
+					<textElement/>
+					<text><![CDATA[Subject(s)]]></text>
+				</staticText>
+				<line>
+					<reportElement x="251" y="277" width="1" height="25"/>
+				</line>
+				<line>
+					<reportElement x="251" y="288" width="120" height="1"/>
+				</line>
+				<line>
+					<reportElement x="332" y="289" width="1" height="13"/>
+				</line>
+				<textField>
+					<reportElement x="17" y="256" width="355" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Degree: " + $F{studentCourse}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="332" y="289" width="40" height="13"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[FM]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="372" y="276" width="165" height="26"/>
+					<textElement/>
+					<text><![CDATA[Results And Remarks]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="372" y="256" width="165" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Semester: " + $F{samester}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="537" y="236" width="1" height="67"/>
+				</line>
+				<line>
+					<reportElement x="17" y="255" width="520" height="1"/>
+				</line>
+				<textField>
+					<reportElement x="372" y="236" width="165" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Student Number: " + $F{studentNumber}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="251" y="289" width="41" height="13"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[SM]]></text>
+				</staticText>
+				<line>
+					<reportElement x="291" y="289" width="1" height="13"/>
+				</line>
+				<line>
+					<reportElement x="17" y="236" width="1" height="67"/>
+				</line>
+				<textField>
+					<reportElement x="18" y="107" width="237" height="15"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{studentAddress1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="18" y="122" width="237" height="15"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{studentAddress2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="18" y="152" width="237" height="15"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{studentPostalCode}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="18" y="189" width="520" height="18"/>
+					<textElement textAlignment="Center">
+						<font size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[STATEMENT OF RESULTS]]></text>
+				</staticText>
+				<textField pattern="dd MMMMM yyyy">
+					<reportElement x="19" y="174" width="96" height="15"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="18" y="137" width="237" height="15"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{studentAddress3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="18" y="207" width="520" height="20"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{statementDate}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="18" y="92" width="237" height="15"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{studentName}]]></textFieldExpression>
+				</textField>
+				<image scaleImage="FillFrame" hAlign="Center">
+					<reportElement x="17" y="0" width="237" height="84"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{logoPath}]]></imageExpression>
+				</image>
+				<textField>
+					<reportElement x="305" y="0" width="232" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyName}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="305" y="56" width="232" height="14"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Email: " + $F{companyContactEmail}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="305" y="70" width="232" height="14"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyAddress}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="305" y="42" width="232" height="14"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Fax: " + $F{companyFax}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="305" y="14" width="232" height="14"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyEmail}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="305" y="28" width="232" height="14"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Tel: " + $F{companyTelephone}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="18" y="302" width="520" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="18" y="0" width="234" height="19"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{subject}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="251" y="0" width="41" height="19"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{semesterMark}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="292" y="0" width="40" height="19"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{examinationMark}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="332" y="0" width="40" height="19"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{finalMark}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="371" y="0" width="167" height="19"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{subjectStatus}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="537" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="371" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="332" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="291" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="251" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="17" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="18" y="18" width="520" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="156" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="11" width="42" height="10"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CODES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="11" width="191" height="10"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEFINITION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="21" width="42" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="21" width="191" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SEMESTER MARK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="31" width="42" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[EM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="31" width="191" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[EXAMINATION MARK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="41" width="42" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="41" width="191" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FINAL MARK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="51" width="42" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[*]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="51" width="191" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ADMISSION TO SUPPLEMENTARY EXAMINATION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="70" width="489" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[The minimum requirement for admission is a semester mark of 40%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="80" width="489" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[The minimum requirement to pass an examination is a mark of 50%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="90" width="489" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[The minimum requirement to pass a subject is an examination mark of 50% and a final mark of 50%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="100" width="489" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[The minimum requirement for admission to a supplementary examination is an examination mark of 45%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="110" width="489" height="10"/>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[The minimum requirement for a distinction is a mark of 75%]]></text>
+			</staticText>
+			<line>
+				<reportElement x="17" y="129" width="519" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="30" y="132" width="489" height="10"/>
+				<textElement textAlignment="Center">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[The Institute of Christian Psycology is a site of delivery of Die Afrikaanse Protestante Akademie (Association incorporated under Section 21),]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="142" width="489" height="10"/>
+				<textElement textAlignment="Center">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[a registered private higher education institution (DoE Registration Certificate Nr 1999/HE08/001) for the BA and BPsych degrees.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

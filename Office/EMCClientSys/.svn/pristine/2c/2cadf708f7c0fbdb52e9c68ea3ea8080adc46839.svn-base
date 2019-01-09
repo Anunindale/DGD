@@ -1,0 +1,182 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.forms.trec.display.trecPhrases;
+
+import emc.app.components.documents.EMCStringFormDocument;
+import emc.app.components.emcJButton;
+import emc.app.components.emcJComboBox;
+import emc.app.components.emcJLabel;
+import emc.app.components.emcJPanel;
+import emc.app.components.emcJTabbedPane;
+import emc.app.components.emcJTextArea;
+import emc.app.components.emcMenuButton;
+import emc.app.components.emcSetGridBagConstraints;
+import emc.app.components.emcTablePanelUpdate;
+import emc.app.components.emctable.emcDataRelationManagerUpdate;
+import emc.app.components.emctable.emcGenericDataSourceUpdate;
+import emc.app.components.emctable.emcJTableUpdate;
+import emc.app.components.emctable.emcTableModelUpdate;
+import emc.app.components.jtablelookup.EMCLookupJTableComponent;
+import emc.app.components.lookup.popup.EMCLookupPopup;
+import emc.app.scrollabledesktop.BaseInternalFrame;
+import emc.app.util.utilFunctions;
+import emc.entity.trec.TRECChemicals;
+import emc.entity.trec.TRECClasses;
+import emc.entity.trec.TRECPhrases;
+import emc.enums.enumQueryTypes;
+import emc.enums.modules.enumEMCModules;
+import emc.enums.trec.TRECTypeEnum;
+import emc.forms.trec.display.chemicals.resources.TRECEncDRM;
+import emc.forms.trec.display.trecPhrases.resources.TRECPhrasesEditERGDialog;
+import emc.framework.EMCQuery;
+import emc.framework.EMCUserData;
+import emc.functions.Functions;
+import emc.menus.developertools.trec.TRECChemicalsMenu;
+import emc.menus.developertools.trec.TRECClassesMenu;
+import emc.methods.trec.ServerTRECMethods;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JTable;
+
+/**
+ *
+ * @author rico
+ */
+public class TrecPhrasesForm extends BaseInternalFrame {
+    
+    private emcDataRelationManagerUpdate dataManager;
+    
+    public TrecPhrasesForm(EMCUserData userData) {
+        super("Phrases", true, true, true, true, userData);
+        this.setBounds(20, 20, 900, 400);
+        dataManager = new TRECEncDRM(new emcGenericDataSourceUpdate(enumEMCModules.TREC.getId(), new TRECPhrases(), userData), ServerTRECMethods.UPDATE_ENC_PHRASES, userData) {
+            @Override
+            public EMCUserData generateRelatedFormUserData(EMCUserData formUserData, int Index) {
+                EMCUserData generatedUD = super.generateRelatedFormUserData(formUserData, Index);
+                
+                switch (Index) {
+                    case 1: {
+                        String erg = (String) getLastFieldValueAt("ergNumber");
+                        
+                        EMCQuery query = new EMCQuery(enumQueryTypes.SELECT, TRECChemicals.class);
+                        
+                        
+                        if (!Functions.checkBlank(erg)) {
+                            String[] ergSplit = erg.split(";");
+                            
+                            query.openAndConditionBracket();
+                            
+                            for (String e : ergSplit) {
+                                query.addOr("erg", e.trim());
+                            }
+                            
+                            query.closeConditionBracket();
+                        }
+                        
+                        generatedUD.setUserData(0, query);
+                        break;
+                    }
+                }
+                
+                return generatedUD;
+            }
+        };
+        this.setDataManager(dataManager);
+        dataManager.setTheForm(this);
+        dataManager.setFormTextId1("phraseId");
+        dataManager.setFormTextId2("phrase");
+        initFrame();
+    }
+    
+    private void initFrame() {
+        emcJPanel contentPane = new emcJPanel(new BorderLayout());
+        
+        emcJTabbedPane tabbedPane = new emcJTabbedPane();
+        tabbedPane.add("Forms", tablePane());
+        tabbedPane.add("Erg", ergPane());
+        
+        contentPane.add(tabbedPane, BorderLayout.CENTER);
+        contentPane.add(buttonPane(), BorderLayout.EAST);
+        
+        this.setContentPane(contentPane);
+    }
+    
+    private emcTablePanelUpdate tablePane() {
+        List keys = new ArrayList();
+        keys.add("phraseId");
+        keys.add("sortNumber");
+        keys.add("phrase");
+        keys.add("parentClass");
+        keys.add("typeId");
+        keys.add("classSpecific");
+        keys.add("standardPhrases");
+        keys.add("addedPhrases");
+        emcTableModelUpdate model = new emcTableModelUpdate(dataManager, keys);
+        emcJTableUpdate table = new emcJTableUpdate(model) {
+
+            @Override
+            public void setColumnSizesFromDataTypes() {
+                System.out.println("Columns Resized!");
+                this.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+                for (int j = 0; j < this.getColumnCount(); j++) {
+                    if (this.tableModel.getColumnWidth(j) != 0) {
+                        System.out.println("Column: " + j + " - " + this.tableModel.getColumnWidth(j));
+                        
+                        this.getColumnModel().getColumn(j).setPreferredWidth(this.tableModel.getColumnWidth(j));
+                    }
+                }
+            }
+            
+        };
+        
+        table.setComboBoxLookupToColumn("typeId", new emcJComboBox(TRECTypeEnum.values()));
+        
+        EMCLookupJTableComponent lkpClass = new EMCLookupJTableComponent(new TRECClassesMenu());
+        lkpClass.setPopup(new EMCLookupPopup(new TRECClasses(), "classId", getUserData()));
+        table.setLookupToColumn("parentClass", lkpClass);
+        
+        dataManager.setMainTableComponent(table);
+        emcTablePanelUpdate tableScroll = new emcTablePanelUpdate(table);
+        dataManager.setTablePanel(tableScroll);
+        
+        return tableScroll;
+    }
+    
+    private emcJPanel ergPane() {
+        emcJTextArea txtErg = new emcJTextArea(new EMCStringFormDocument(dataManager, "ergNumber"));
+
+        Component[][] comp = {{txtErg, new emcJLabel("Erg Number")}};
+
+        return emcSetGridBagConstraints.createSimplePanel(comp, GridBagConstraints.NONE, true, "Erg");
+    }
+    
+    private emcJPanel buttonPane() {
+        emcMenuButton btnChemicals = new emcMenuButton("Chemicals", new TRECChemicalsMenu(), this, 1, false);
+        emcJButton btnEdit = new emcJButton("Edit ERG") {
+
+            @Override
+            public void doActionPerformed(ActionEvent evt) {
+                super.doActionPerformed(evt);
+                
+                TRECPhrasesEditERGDialog dialog = new TRECPhrasesEditERGDialog(utilFunctions.findEMCDesktop(this), dataManager);
+                
+                if (dialog.isRefresh()) {
+                    dataManager.refreshRecordIgnoreFocus(dataManager.getLastRowAccessed());
+                }
+            }
+            
+        };
+        
+        List<emcJButton> buttonList = new ArrayList<>();
+        buttonList.add(btnEdit);
+        buttonList.add(btnChemicals);
+        
+        return emcSetGridBagConstraints.createButtonPanel(buttonList);
+    }
+}

@@ -36,6 +36,8 @@ public class DeclarationReportBean extends EMCReportBean implements DeclarationR
         query.addField("contractingParty", DGDeclarationLines.class.getName());        //5
         query.addField("productCustodian", DGDeclarationLines.class.getName());        //6
         query.addField("lineNumber", DGDeclarationLines.class.getName());        //7
+        query.addField("registrationNumber", DGDeclarationLines.class.getName());        //8
+        query.addField("additionalInfo", DGDeclarationLines.class.getName());        //9
         return query;
     }
 
@@ -162,10 +164,17 @@ public class DeclarationReportBean extends EMCReportBean implements DeclarationR
                 ds.setProductCust(productCustContact.getContactName());
             }
             
-//            query = new EMCQuery(enumQueryTypes.SELECT, DGDUN.class);
-//            query.addAnd("lineNumber", declarationInfo[7]);
-//            List<DGDUN> unItems = new ArrayList<>();
-//            unItems = util.executeGeneralSelectQuery(query, userData);
+            ds.setLineNumber((String) declarationInfo[7]);
+            
+            if(declarationInfo[8] != null)
+            {
+                ds.setRegistrationNumber((String) declarationInfo[8]);
+            }
+            
+            if(declarationInfo[9] != null)
+            {
+                ds.setAdditionalInfo((String) declarationInfo[9]);
+            }
             
             ret.add(ds);
         }

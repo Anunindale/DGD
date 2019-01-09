@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.3310000000000062"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="44"/>
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="toDate" class="java.lang.String"/>
+	<parameter name="fromDate" class="java.lang.String"/>
+	<parameter name="Overview" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="Measurement_1" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="Measurement_2" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="Measurement_3" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="Measurement_4" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="Measurement_5" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="Measurement_6" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="logo_path" class="java.lang.String"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="subjectName" class="java.lang.String">
+		<fieldDescription><![CDATA[@subjectName]]></fieldDescription>
+	</field>
+	<field name="subjectSurname" class="java.lang.String">
+		<fieldDescription><![CDATA[@subjectSurname]]></fieldDescription>
+	</field>
+	<field name="subjectId" class="java.lang.String">
+		<fieldDescription><![CDATA[@subjectId]]></fieldDescription>
+	</field>
+	<field name="comments" class="java.lang.String">
+		<fieldDescription><![CDATA[@comments]]></fieldDescription>
+	</field>
+	<field name="bioName" class="java.lang.String">
+		<fieldDescription><![CDATA[@bioName]]></fieldDescription>
+	</field>
+	<field name="bioPractice" class="java.lang.String">
+		<fieldDescription><![CDATA[@bioPractice]]></fieldDescription>
+	</field>
+	<field name="icd10Code" class="java.lang.String">
+		<fieldDescription><![CDATA[@icd10Code]]></fieldDescription>
+	</field>
+	<field name="printPatientFields" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[@printPatientFields]]></fieldDescription>
+	</field>
+	<field name="practitioner" class="java.lang.String">
+		<fieldDescription><![CDATA[@practitioner]]></fieldDescription>
+	</field>
+	<group name="subject">
+		<groupExpression><![CDATA[$F{subjectId}]]></groupExpression>
+		<groupHeader>
+			<band height="705">
+				<rectangle>
+					<reportElement x="132" y="71" width="139" height="15"/>
+				</rectangle>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement key="textField" x="388" y="71" width="138" height="15"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{subjectId}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="86" width="105" height="15" forecolor="#010101" backcolor="#FEFEFE"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Client Surname:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="27" y="161" width="115" height="15" forecolor="#010101" backcolor="#FEFEFE"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Comments:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="26" y="139" width="105" height="13" backcolor="#C6C6C6"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[To:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="26" y="126" width="105" height="13" backcolor="#C6C6C6"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[From:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="133" y="139" width="138" height="13"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{toDate}]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement key="textField" x="27" y="176" width="500" height="52"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{comments}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement x="132" y="86" width="139" height="15"/>
+				</rectangle>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="71" width="105" height="15" forecolor="#010101" backcolor="#FEFEFE"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Client Name:]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement mode="Transparent" x="387" y="71" width="138" height="15"/>
+				</rectangle>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement key="textField" mode="Transparent" x="133" y="71" width="139" height="15"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{subjectName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="314" y="71" width="73" height="15" forecolor="#010101" backcolor="#FEFEFE"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Client ID:]]></text>
+				</staticText>
+				<image>
+					<reportElement x="27" y="238" width="500" height="250"/>
+					<imageExpression class="java.awt.Image"><![CDATA[$P{Overview}]]></imageExpression>
+				</image>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="133" y="126" width="138" height="13"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{fromDate}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Transparent" x="26" y="175" width="499" height="53"/>
+				</rectangle>
+				<line>
+					<reportElement x="132" y="139" width="138" height="1"/>
+				</line>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement key="textField" mode="Transparent" x="133" y="86" width="138" height="15"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{subjectSurname}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Transparent" x="132" y="126" width="139" height="26"/>
+				</rectangle>
+				<image hAlign="Center">
+					<reportElement x="27" y="9" width="500" height="50"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{logo_path}]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="26" y="501" width="250" height="200"/>
+					<imageExpression class="java.awt.Image"><![CDATA[$P{Measurement_1}]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="277" y="501" width="250" height="200"/>
+					<imageExpression class="java.awt.Image"><![CDATA[$P{Measurement_2}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement mode="Transparent" x="314" y="106" width="73" height="15" forecolor="#010101" backcolor="#FEFEFE">
+						<printWhenExpression><![CDATA[$F{printPatientFields}]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ICD10 Code:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="315" y="126" width="73" height="13" forecolor="#010101" backcolor="#FEFEFE">
+						<printWhenExpression><![CDATA[$F{printPatientFields}]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Bio Name:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="315" y="139" width="73" height="13" forecolor="#010101" backcolor="#FEFEFE">
+						<printWhenExpression><![CDATA[$F{printPatientFields}]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Bio Practice:]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement key="textField" x="388" y="106" width="138" height="15">
+						<printWhenExpression><![CDATA[$F{printPatientFields}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{icd10Code}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Transparent" x="387" y="106" width="138" height="15">
+						<printWhenExpression><![CDATA[$F{printPatientFields}]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement key="textField" x="387" y="126" width="138" height="13">
+						<printWhenExpression><![CDATA[$F{printPatientFields}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{bioName}]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement key="textField" x="388" y="139" width="138" height="13">
+						<printWhenExpression><![CDATA[$F{printPatientFields}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{bioPractice}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Transparent" x="386" y="126" width="139" height="26">
+						<printWhenExpression><![CDATA[$F{printPatientFields}]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+				<line>
+					<reportElement x="387" y="139" width="138" height="1">
+						<printWhenExpression><![CDATA[$F{printPatientFields}]]></printWhenExpression>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="106" width="105" height="15" forecolor="#010101" backcolor="#FEFEFE">
+						<printWhenExpression><![CDATA[$F{printPatientFields}]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Practitioner:]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement key="textField" x="132" y="106" width="138" height="15">
+						<printWhenExpression><![CDATA[$F{printPatientFields}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{practitioner}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Transparent" x="131" y="106" width="139" height="15">
+						<printWhenExpression><![CDATA[$F{printPatientFields}]]></printWhenExpression>
+					</reportElement>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="564">
+				<image>
+					<reportElement x="25" y="10" width="250" height="200"/>
+					<imageExpression class="java.awt.Image"><![CDATA[$P{Measurement_3}]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="277" y="10" width="250" height="200"/>
+					<imageExpression class="java.awt.Image"><![CDATA[$P{Measurement_4}]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="277" y="220" width="250" height="200"/>
+					<imageExpression class="java.awt.Image"><![CDATA[$P{Measurement_6}]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="25" y="220" width="250" height="200"/>
+					<imageExpression class="java.awt.Image"><![CDATA[$P{Measurement_5}]]></imageExpression>
+				</image>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="33" splitType="Stretch">
+			<line>
+				<reportElement key="line" x="0" y="2" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="-1" y="32" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="27" y="3" width="246" height="30"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Client Analysis]]></text>
+			</staticText>
+			<textField hyperlinkType="Reference">
+				<reportElement x="280" y="3" width="246" height="30"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<pageFooter>
+		<band height="36" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="329" y="4" width="171" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="19" y="3" width="186" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD
+                ]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="502" y="4" width="32" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line" x="0" y="2" width="554" height="1"/>
+			</line>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="19" y="4" width="516" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

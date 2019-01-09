@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true">
+	<property name="ireport.zoom" value="1.948717100000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="website" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="numRows" class="java.lang.Integer"/>
+	<parameter name="userName" class="java.lang.String"/>
+	<parameter name="toDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fromDate" class="java.lang.String" isForPrompting="false"/>
+	<field name="fromDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@fromDate]]></fieldDescription>
+	</field>
+	<field name="toDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@toDate]]></fieldDescription>
+	</field>
+	<field name="planningGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[@planningGroup]]></fieldDescription>
+	</field>
+	<field name="inCuttingUnits" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@inCuttingUnits]]></fieldDescription>
+	</field>
+	<field name="inCuttingAvg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@inCuttingAvg]]></fieldDescription>
+	</field>
+	<field name="inSewingUnits" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@inSewingUnits]]></fieldDescription>
+	</field>
+	<field name="inSewingAvg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@inSewingAvg]]></fieldDescription>
+	</field>
+	<field name="cageUnits" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@cageUnits]]></fieldDescription>
+	</field>
+	<field name="cageAvg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@cageAvg]]></fieldDescription>
+	</field>
+	<field name="toPickUnits" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@toPickUnits]]></fieldDescription>
+	</field>
+	<field name="toPickAvg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@toPickAvg]]></fieldDescription>
+	</field>
+	<field name="inPackingUnits" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@inPackingUnits]]></fieldDescription>
+	</field>
+	<field name="inPackingAvg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@inPackingAvg]]></fieldDescription>
+	</field>
+	<field name="finishedGoodsUnits" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@finishedGoodsUnits]]></fieldDescription>
+	</field>
+	<field name="finishedGoodsAvg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@finishedGoodsAvg]]></fieldDescription>
+	</field>
+	<field name="totalUnits" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@totalUnits]]></fieldDescription>
+	</field>
+	<field name="totalAvg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@totalAvg]]></fieldDescription>
+	</field>
+	<field name="avaregeDaySales" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@avaregeDaySales]]></fieldDescription>
+	</field>
+	<field name="capasity" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@capasity]]></fieldDescription>
+	</field>
+	<field name="forecastPerDay" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@forecastPerDay]]></fieldDescription>
+	</field>
+	<field name="forecastFrom" class="java.lang.String">
+		<fieldDescription><![CDATA[@forecastFrom]]></fieldDescription>
+	</field>
+	<field name="forecastTo" class="java.lang.String">
+		<fieldDescription><![CDATA[@forecastTo]]></fieldDescription>
+	</field>
+	<variable name="totalSalesPerDay" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalSalesPerDay}.add($F{avaregeDaySales})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalInCuttingUnits" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalInCuttingUnits}.add($F{inCuttingUnits})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalInCuttingAvg" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalSalesPerDay}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{totalInCuttingUnits}.divide($V{totalSalesPerDay}, 2, RoundingMode.HALF_UP)]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalInSewingUnits" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalInSewingUnits}.add($F{inSewingUnits})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalInSewingAvg" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalSalesPerDay}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{totalInSewingUnits}.divide($V{totalSalesPerDay}, 2, RoundingMode.HALF_UP)]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalCageUnits" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalCageUnits}.add($F{cageUnits})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalCageAvg" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalSalesPerDay}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{totalCageUnits}.divide($V{totalSalesPerDay}, 2, RoundingMode.HALF_UP)]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalToPickUnits" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalToPickUnits}.add($F{toPickUnits})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalToPickAvg" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalSalesPerDay}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{totalToPickUnits}.divide($V{totalSalesPerDay}, 2, RoundingMode.HALF_UP)]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalInPackingUnits" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalInPackingUnits}.add($F{inPackingUnits})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalInPackingAvg" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalSalesPerDay}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{totalInPackingUnits}.divide($V{totalSalesPerDay}, 2, RoundingMode.HALF_UP)]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalFinishedGoodsUnits" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalFinishedGoodsUnits}.add($F{finishedGoodsUnits})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalFinishedGoodsAvg" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalSalesPerDay}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{totalFinishedGoodsUnits}.divide($V{totalSalesPerDay}, 2, RoundingMode.HALF_UP)]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalTotalUnits" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalTotalUnits}.add($F{totalUnits})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalTotalAvg" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalSalesPerDay}.compareTo(BigDecimal.ZERO) == 0 ? BigDecimal.ZERO : $V{totalTotalUnits}.divide($V{totalSalesPerDay}, 2, RoundingMode.HALF_UP)]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalCapasity" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalCapasity}.add($F{capasity})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<variable name="totalForecastPerDay" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalForecastPerDay}.add($F{forecastPerDay})]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<textField hyperlinkType="Reference">
+				<reportElement x="396" y="2" width="385" height="27"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="28" width="802" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="20" y="2" width="376" height="26"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Stock By Average Day Sales
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line" x="0" y="1" width="802" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="138" y="24" width="81" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[In Cutting]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="24" width="81" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[In Sewing]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="302" y="24" width="87" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cage]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="474" y="24" width="81" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[In Packing]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="557" y="24" width="82" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Finished Goods]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="56" width="780" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="24" width="44" height="32"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plan Group
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="40" width="44" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Units
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="40" width="37" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="40" width="44" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Units
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="40" width="37" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="302" y="40" width="50" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Units
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="40" width="37" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="40" width="37" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="40" width="44" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Units
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="557" y="40" width="45" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Units
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="602" y="40" width="37" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Days]]></text>
+			</staticText>
+			<line>
+				<reportElement x="139" y="40" width="588" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="97" y="24" width="40" height="32"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sales/ Day]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="24" width="81" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[To Pick]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="518" y="40" width="37" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Days ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="474" y="40" width="44" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Units
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="641" y="40" width="45" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Units
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="686" y="40" width="39" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="641" y="24" width="84" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="3" width="63" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sales From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="3" width="24" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="64" y="3" width="80" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fromDate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="168" y="3" width="80" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{toDate}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="24" width="779" height="1"/>
+			</line>
+			<line>
+				<reportElement x="640" y="24" width="1" height="32"/>
+			</line>
+			<line>
+				<reportElement x="556" y="25" width="1" height="32"/>
+			</line>
+			<line>
+				<reportElement x="473" y="25" width="1" height="32"/>
+			</line>
+			<line>
+				<reportElement x="390" y="25" width="1" height="32"/>
+			</line>
+			<line>
+				<reportElement x="301" y="25" width="1" height="32"/>
+			</line>
+			<line>
+				<reportElement x="220" y="25" width="1" height="32"/>
+			</line>
+			<line>
+				<reportElement x="138" y="24" width="1" height="32"/>
+			</line>
+			<staticText>
+				<reportElement x="48" y="24" width="47" height="32"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Capacity]]></text>
+			</staticText>
+			<line>
+				<reportElement x="96" y="24" width="1" height="32"/>
+			</line>
+			<line>
+				<reportElement x="47" y="24" width="1" height="32"/>
+			</line>
+			<staticText>
+				<reportElement x="733" y="25" width="45" height="31"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forecast/Day]]></text>
+			</staticText>
+			<line>
+				<reportElement x="726" y="25" width="1" height="32"/>
+			</line>
+			<line>
+				<reportElement x="779" y="24" width="1" height="32"/>
+			</line>
+			<staticText>
+				<reportElement x="395" y="3" width="80" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forecast From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="555" y="3" width="22" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="577" y="3" width="80" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{forecastTo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="475" y="3" width="80" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{forecastFrom}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="25" width="1" height="32"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="2" width="44" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{planningGroup}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="138" y="2" width="44" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{inCuttingUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="264" y="2" width="37" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{inSewingAvg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="220" y="2" width="44" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{inSewingUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="352" y="2" width="37" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cageAvg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="302" y="2" width="50" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cageUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="518" y="2" width="37" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{inPackingAvg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="474" y="2" width="44" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{inPackingUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="602" y="2" width="37" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{finishedGoodsAvg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="557" y="2" width="45" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{finishedGoodsUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="97" y="2" width="40" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{avaregeDaySales}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="435" y="2" width="37" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{toPickAvg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="391" y="2" width="44" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{toPickUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="686" y="2" width="39" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{totalAvg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="641" y="2" width="45" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{totalUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="182" y="2" width="37" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{inCuttingAvg}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="138" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="220" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="301" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="390" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="473" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="556" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="640" y="0" width="1" height="19"/>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="48" y="2" width="47" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{capasity}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="96" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="47" y="0" width="1" height="19"/>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="726" y="2" width="52" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{forecastPerDay}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="726" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="779" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="19"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="19" splitType="Stretch">
+			<textField pattern="###0">
+				<reportElement x="557" y="1" width="45" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalFinishedGoodsUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="182" y="1" width="37" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalInCuttingAvg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="518" y="1" width="37" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalInPackingAvg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="352" y="1" width="37" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalCageAvg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="474" y="1" width="44" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalInPackingUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="138" y="1" width="44" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalInCuttingUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="602" y="1" width="37" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalFinishedGoodsAvg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="302" y="1" width="50" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalCageUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="220" y="1" width="44" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalInSewingUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="264" y="1" width="37" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalInSewingAvg}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="780" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="1" width="44" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total
+                ]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="391" y="1" width="44" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalToPickUnits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="435" y="1" width="37" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalToPickAvg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="686" y="1" width="39" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalTotalAvg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="641" y="1" width="45" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalTotalUnits}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="301" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="390" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="473" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="556" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="640" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="220" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="138" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="0" y="17" width="780" height="1"/>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="97" y="1" width="40" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalSalesPerDay}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="96" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="47" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="726" y="1" width="1" height="16"/>
+			</line>
+			<line>
+				<reportElement x="779" y="1" width="1" height="16"/>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="48" y="1" width="47" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalCapasity}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="727" y="1" width="51" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalForecastPerDay}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="1" height="16"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="743" y="4" width="36" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="19" y="3" width="126" height="14"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD
+
+
+                ]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="586" y="3" width="156" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line" x="19" y="2" width="760" height="1"/>
+			</line>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="19" y="3" width="760" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

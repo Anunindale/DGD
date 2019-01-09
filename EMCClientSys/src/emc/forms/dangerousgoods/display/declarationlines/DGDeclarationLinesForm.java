@@ -20,7 +20,6 @@ import emc.app.components.emctable.emcDataRelationManagerUpdate;
 import emc.app.components.emctable.emcGenericDataSourceUpdate;
 import emc.app.components.emctable.emcJTableUpdate;
 import emc.app.components.emctable.emcTableModelUpdate;
-import emc.app.components.formlookup.controllookup.EMCControlLookupComponent;
 import emc.app.components.jtablelookup.EMCLookupJTableComponent;
 import emc.app.components.lookup.EMCLookupRelationManager;
 import emc.app.components.lookup.popup.EMCLookupPopup;
@@ -33,11 +32,13 @@ import emc.commands.EMCCommands;
 import emc.entity.dangerousgoods.DGDContacts;
 import emc.entity.dangerousgoods.DGDUN;
 import emc.entity.dangerousgoods.DGDeclarationLines;
-import emc.entity.dangerousgoods.DGDeclarationMaster;
+import emc.entity.dangerousgoods.datasource.DGDeclarationLinesDS;
+import emc.entity.dangerousgoods.datasource.DGDeclarationMasterDS;
 import emc.entity.sop.SOPCustomers;
 import emc.enums.base.reporttools.EnumReports;
 import emc.enums.enumQueryTypes;
 import emc.enums.modules.enumEMCModules;
+import emc.forms.dangerousgoods.display.declarationlines.resources.DGSelectRegDialog;
 import emc.forms.dangerousgoods.display.resources.DGDLRMLines;
 import emc.forms.dangerousgoods.display.resources.DGDLRMMaster;
 import emc.framework.EMCCommandClass;
@@ -45,12 +46,12 @@ import emc.framework.EMCQuery;
 import emc.framework.EMCUserData;
 import emc.menus.dangerousgoods.menuitems.display.DGDContactsMI;
 import emc.menus.dangerousgoods.menuitems.display.DGDUNMI;
-import emc.menus.dangerousgoods.menuitems.display.DGDeclarationLinesMI;
 import emc.menus.sop.menuitems.display.SOPCustomersMenu;
 import emc.methods.dangerousgoods.ServerDGMethods;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -76,7 +77,7 @@ public class DGDeclarationLinesForm extends BaseInternalFrame {
         this.setBounds(20, 20, 1000, 600);
         //Master
         masterUD = userData.copyUserDataAndDataList();
-        masterDRM = new emcDataRelationManagerUpdate(new emcGenericDataSourceUpdate(enumEMCModules.DG.getId(), new DGDeclarationMaster(), masterUD), masterUD) {
+        masterDRM = new emcDataRelationManagerUpdate(new emcGenericDataSourceUpdate(enumEMCModules.DG.getId(), new DGDeclarationMasterDS(), masterUD), masterUD) {
             @Override
             public EMCUserData generateRelatedFormUserData(EMCUserData formUserData, int Index) {
                 formUserData = super.generateRelatedFormUserData(formUserData, Index);
@@ -123,7 +124,7 @@ public class DGDeclarationLinesForm extends BaseInternalFrame {
         masterDRM.setFormTextId2("defOperator");
         //Lines
         linesUD = userData.copyUserData();
-        linesDRM = new emcDataRelationManagerUpdate(new emcGenericDataSourceUpdate(enumEMCModules.DG.getId(), new DGDeclarationLines(), linesUD), linesUD) {
+        linesDRM = new emcDataRelationManagerUpdate(new emcGenericDataSourceUpdate(enumEMCModules.DG.getId(), new DGDeclarationLinesDS(), linesUD), linesUD) {
             @Override
             public void doRelation(int rowIndex) {
                 super.doRelation(rowIndex);
@@ -131,6 +132,21 @@ public class DGDeclarationLinesForm extends BaseInternalFrame {
                     lrmLines.doRowChanged(linesDRM);
                 }
             }
+            
+            @Override
+            public void setFieldValueAt(int rowIndex, String columnIndex, Object aValue) 
+             {
+                super.setFieldValueAt(rowIndex, columnIndex, aValue);
+                if(this.getFieldValueAt(getLastRowAccessed(), "registrationNumber") != null)
+                {
+                    if(this.getFieldValueAt(getLastRowAccessed(), "registrationNumber").equals("~"))
+                    {
+                        //pop dialog
+                        new DGSelectRegDialog(utilFunctions.findEMCDesktop(DGDeclarationLinesForm.this), linesDRM, this.getFieldValueAt(getLastRowAccessed(), "operator").toString());
+                        //setFieldValueAt(rowIndex, columnIndex, aValue);
+                    }
+                }
+             }
         };
         linesDRM.setTheForm(this);
         linesDRM.setFormTextId1("consignee");
@@ -147,25 +163,56 @@ public class DGDeclarationLinesForm extends BaseInternalFrame {
     }
 
     private void initFrame() {
-        emcJTabbedPane masterTableTab = new emcJTabbedPane();
-        masterTableTab.add("Customer", masterTablePane());
+//        emcJTabbedPane masterTableTab = new emcJTabbedPane();
+//        masterTableTab.add("Customer", masterTablePane());
+//
+//        emcJPanel contentPane = new emcJPanel(new BorderLayout());
+//
+//        emcJTabbedPane linesTableTab = new emcJTabbedPane();
+//        linesTableTab.add("Contacts", linestablePane());
+//        linesTableTab.add("Additional Info", AdditionalInfoPane());
+//        linesTableTab.add("Vehicle Registration Number", VehicleRegPane());
+//
+//        emcJSplitPane topBottomSplit = new emcJSplitPane(JSplitPane.VERTICAL_SPLIT, masterTableTab, linesTableTab);
+//        topBottomSplit.setDividerLocation(350);
+//
+//        contentPane.add(topBottomSplit);
+////        contentPane.add(createButtons(), BorderLayout.EAST);
+//        this.setContentPane(contentPane);
+        
+        emcJTabbedPane masterTabs = masterTablePane();
+        masterTabs.setRelationManager(masterDRM);
+        emcJPanel pnlMaster = new emcJPanel();
+        pnlMaster.setLayout(new BorderLayout());
+        pnlMaster.add(masterTabs, BorderLayout.CENTER);
 
-        emcJPanel contentPane = new emcJPanel(new BorderLayout());
+        emcJTabbedPane linesTabs = linestablePane();
+        linesTabs.setRelationManager(linesDRM);
+        emcJPanel pnlLines = new emcJPanel(new BorderLayout());
+        pnlLines.add(linesTabs, BorderLayout.CENTER);
+        pnlLines.add(createButtons(), BorderLayout.EAST);
 
-        emcJTabbedPane linesTableTab = new emcJTabbedPane();
-        linesTableTab.add("Contacts", linestablePane());
-        linesTableTab.add("Additional Info", AdditionalInfoPane());
-        linesTableTab.add("Vehicle Registration Number", VehicleRegPane());
+        this.setLayout(new GridLayout(1, 1));
 
-        emcJSplitPane topBottomSplit = new emcJSplitPane(JSplitPane.VERTICAL_SPLIT, masterTableTab, linesTableTab);
-        topBottomSplit.setDividerLocation(350);
+        this.add(pnlMaster);
+        this.add(pnlLines);
 
-        contentPane.add(topBottomSplit);
-        contentPane.add(createButtons(), BorderLayout.EAST);
-        this.setContentPane(contentPane);
+        emcJSplitPane topBottomSplit;
+        topBottomSplit = new emcJSplitPane(JSplitPane.VERTICAL_SPLIT, pnlMaster, pnlLines);
+        topBottomSplit.setDividerSize(8);
+        topBottomSplit.setContinuousLayout(true);
+        topBottomSplit.setOneTouchExpandable(false);
+        topBottomSplit.setDividerLocation(300);
+
+        this.add(topBottomSplit);
     }
 
-    private emcTablePanelUpdate masterTablePane() {
+    private emcJTabbedPane masterTablePane() {
+        emcJTabbedPane masterTabs = new emcJTabbedPane();
+
+        emcJPanel pnlMaster = new emcJPanel();
+        pnlMaster.setLayout(new GridLayout(1, 1));
+        
         List<String> keys = new ArrayList<String>();
         keys.add("decNumber");
         keys.add("customer");
@@ -177,10 +224,6 @@ public class DGDeclarationLinesForm extends BaseInternalFrame {
         //Customer lookup
         EMCLookupJTableComponent customerlkp = new EMCLookupJTableComponent(new SOPCustomersMenu());
         customerlkp.setPopup(new EMCLookupPopup(new SOPCustomers(), "customerId", masterUD));
-//        List<String> customerLkpKeys = new ArrayList<>();
-//        customerLkpKeys.add("customer");
-//        EMCLookupJTableComponent customerlkp = new EMCLookupJTableComponent(new DGDContactsMI());
-//        customerlkp.setPopup(new EMCLookupPopup(new DGDContacts(), "customer", customerLkpKeys, masterUD));
         table.setLookupToColumn("customer", customerlkp);
 
        //Default Consignor and Operator Lookups
@@ -212,11 +255,20 @@ public class DGDeclarationLinesForm extends BaseInternalFrame {
         masterDRM.setMainTableComponent(table);
         emcTablePanelUpdate tableScroll = new emcTablePanelUpdate(table);
         masterDRM.setTablePanel(tableScroll);
-        return tableScroll;
-
+        
+        pnlMaster.setLayout(new BorderLayout());
+        pnlMaster.add(tableScroll, BorderLayout.CENTER);
+        
+        masterTabs.add("Declaration Master", pnlMaster);
+       
+        return masterTabs;
     }
 
-    private emcTablePanelUpdate linestablePane() {
+    private emcJTabbedPane linestablePane() {
+        emcJTabbedPane linesTabs = new emcJTabbedPane();
+
+        emcJPanel pnlLines = new emcJPanel();
+        
         List<String> keys = new ArrayList<String>();
         keys.add("lineNumber");
         keys.add("description");
@@ -281,7 +333,15 @@ public class DGDeclarationLinesForm extends BaseInternalFrame {
         linesDRM.setMainTableComponent(table);
         emcTablePanelUpdate tableScroll = new emcTablePanelUpdate(table);
         linesDRM.setTablePanel(tableScroll);
-        return tableScroll;
+        
+        pnlLines.setLayout(new BorderLayout());
+        pnlLines.add(tableScroll, BorderLayout.CENTER);
+
+        linesTabs.add("Declaration Lines", pnlLines);
+        linesTabs.add("Additional Info", AdditionalInfoPane());
+        linesTabs.add("Vehicle Registration Number", VehicleRegPane());
+
+        return linesTabs;
     }
     
     private emcJPanel AdditionalInfoPane() 
@@ -298,11 +358,8 @@ public class DGDeclarationLinesForm extends BaseInternalFrame {
     }
     
     private emcJPanel VehicleRegPane() {
-        emcJTextField txtDescription = new emcJTextField();
+        emcJTextField txtDescription = new emcJTextField(new EMCStringFormDocument(linesDRM, "registrationNumber"));
         txtDescription.setEditable(false);
-       
-        EMCControlLookupComponent lineNumlkp = new EMCControlLookupComponent(new DGDeclarationLinesMI(), linesDRM, "registrationNumber",
-                txtDescription, "registrationNumber", DGDeclarationLines.class.getName());
         
         Component[][] comp = {{new emcJLabel("Registration Number"), txtDescription}};
         return emcSetGridBagConstraints.createSimplePanel(comp, GridBagConstraints.NONE, true, "Vehicle Registration Number");
@@ -313,7 +370,7 @@ public class DGDeclarationLinesForm extends BaseInternalFrame {
 
         buttons.add(0, new emcMenuButton("UN", new DGDUNMI(), this, 0, false));
 
-        emcMenuButtonList btnCargoCheckReport = new emcMenuButtonList("Print Report", this) {
+        emcMenuButtonList btnDeclarationReport = new emcMenuButtonList("Print Report", this) {
             EMCQuery query = linesDRM.getOriginalQuery().copyQuery();
 
             @Override
@@ -329,8 +386,8 @@ public class DGDeclarationLinesForm extends BaseInternalFrame {
                         jasperInfo.setReportTitle("Dangerous Goods Declaration");
 
                         query = new EMCQuery(enumQueryTypes.SELECT, DGDeclarationLines.class);
-                        query.addAnd("decNumber", linesDRM.getLastFieldValueAt("decNumber"));
-                        query.addTableAnd(DGDeclarationMaster.class.getName(), "decNumber", DGDeclarationLines.class.getName(), "decNumber");
+                            query.addAnd("decNumber", linesDRM.getLastFieldValueAt("decNumber"));
+//                            query.addTableAnd(DGDeclarationMaster.class.getName(), "decNumber", DGDeclarationLines.class.getName(), "decNumber");
 
                         List toSend = new ArrayList();
                         toSend.add(query);
@@ -341,9 +398,10 @@ public class DGDeclarationLinesForm extends BaseInternalFrame {
                 }
             }
         };
-        btnCargoCheckReport.addMenuItem("This Record", null, 1, false);
-        buttons.add(btnCargoCheckReport);
+        btnDeclarationReport.addMenuItem("This Record", null, 1, false);
+        buttons.add(btnDeclarationReport);
 
         return emcSetGridBagConstraints.createButtonPanel(buttons);
     }
 }
+

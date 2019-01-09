@@ -65,7 +65,7 @@ public class DGDVehicles extends EMCEntityClass {
     public List<String> getDefaultLookupFields()
     {
         List<String> fields = new ArrayList<>();
-        fields.add("contactNumber");
+//        fields.add("contactNumber");
         fields.add("registrationNumber");
         return fields;
     }

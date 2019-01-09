@@ -5,7 +5,7 @@
 package emc.entity.dangerousgoods.datasource;
 
 import emc.datatypes.EMCDataType;
-import emc.datatypes.dangerousgoods.contacts.Company;
+import emc.datatypes.dangerousgoods.vehicles.datasource.CompanyName;
 import emc.entity.dangerousgoods.DGDVehicles;
 import java.util.HashMap;
 
@@ -15,27 +15,27 @@ import java.util.HashMap;
  */
 public class VehiclesDS extends DGDVehicles {
     
-    private String company;
+    private String companyName;
     
     public VehiclesDS()
     {
         this.setDataSource(true);
     }
     
-    public String getCompany()
+    public String getCompanyName()
     {
-        return company;
+        return companyName;
     }
     
-    public void setCompany(String s)
+    public void setCompanyName(String s)
     {
-        company = s;
+        companyName = s;
     }
     
     @Override
     public HashMap<String, EMCDataType> buildFieldList() {
         HashMap<String, EMCDataType> toBuild = super.buildFieldList();
-        toBuild.put("company", new Company());
+        toBuild.put("companyName", new CompanyName());
         return toBuild;
     }
     

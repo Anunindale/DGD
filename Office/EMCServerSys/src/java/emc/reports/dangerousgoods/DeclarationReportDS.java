@@ -69,6 +69,8 @@ public class DeclarationReportDS {
     
     private String lineNumber;
     
+    private String registrationNumber;
+    
     public DeclarationReportDS()
     {
         
@@ -126,6 +128,7 @@ public class DeclarationReportDS {
     public String getNetMass(){return netMass;}
     public String getAdditionalInfo(){return additionalInfo;}
     public String getLineNumber(){return lineNumber;}
+    public String getRegistrationNumber(){return registrationNumber;}
 
     /*Setters*/
     
@@ -179,4 +182,5 @@ public class DeclarationReportDS {
     public void setNetMass(String netMass){this.netMass = netMass;}
     public void setAdditionalInfo(String additionalInfo){this.additionalInfo = additionalInfo;}
     public void setLineNumber(String lineNumber){this.lineNumber = lineNumber;}
+    public void setRegistrationNumber(String registrationNumber){this.registrationNumber = registrationNumber;}
 }

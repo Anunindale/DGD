@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Operations Print" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="companyName" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="website" class="java.lang.String"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/emcmsg/emc.reports.workstudy.OperationsPrintDataSource]]>
+	</queryString>
+	<field name="createdBy" class="java.lang.String">
+		<fieldDescription><![CDATA[@createdBy]]></fieldDescription>
+	</field>
+	<field name="createdDate" class="java.lang.String">
+		<fieldDescription><![CDATA[@createdDate]]></fieldDescription>
+	</field>
+	<field name="attachments" class="java.lang.String">
+		<fieldDescription><![CDATA[@attachments]]></fieldDescription>
+	</field>
+	<field name="comments" class="java.lang.String">
+		<fieldDescription><![CDATA[@comments]]></fieldDescription>
+	</field>
+	<field name="contingencies" class="java.lang.Double">
+		<fieldDescription><![CDATA[@contingencies]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[@description]]></fieldDescription>
+	</field>
+	<field name="frequency" class="java.lang.Double">
+		<fieldDescription><![CDATA[@frequency]]></fieldDescription>
+	</field>
+	<field name="garmentType" class="java.lang.String">
+		<fieldDescription><![CDATA[@garmentType]]></fieldDescription>
+	</field>
+	<field name="machineAllocationPercentage" class="java.lang.Double">
+		<fieldDescription><![CDATA[@machineAllocationPercentage]]></fieldDescription>
+	</field>
+	<field name="machineOutputPer" class="java.lang.Double">
+		<fieldDescription><![CDATA[@machineOutputPer]]></fieldDescription>
+	</field>
+	<field name="machineRpm" class="java.lang.Integer">
+		<fieldDescription><![CDATA[@machineRpm]]></fieldDescription>
+	</field>
+	<field name="machineType" class="java.lang.String">
+		<fieldDescription><![CDATA[@machineType]]></fieldDescription>
+	</field>
+	<field name="operationId" class="java.lang.String">
+		<fieldDescription><![CDATA[@operationId]]></fieldDescription>
+	</field>
+	<field name="studyNo" class="java.lang.String">
+		<fieldDescription><![CDATA[@studyNo]]></fieldDescription>
+	</field>
+	<field name="timingType" class="java.lang.String">
+		<fieldDescription><![CDATA[@timingType]]></fieldDescription>
+	</field>
+	<field name="extendedTime" class="java.lang.Double">
+		<fieldDescription><![CDATA[@extendedTime]]></fieldDescription>
+	</field>
+	<field name="lineNo" class="java.lang.Double">
+		<fieldDescription><![CDATA[@lineNo]]></fieldDescription>
+	</field>
+	<field name="lineType" class="java.lang.String">
+		<fieldDescription><![CDATA[@lineType]]></fieldDescription>
+	</field>
+	<field name="quantity" class="java.lang.Double">
+		<fieldDescription><![CDATA[@quantity]]></fieldDescription>
+	</field>
+	<field name="timing" class="java.lang.String">
+		<fieldDescription><![CDATA[@timing]]></fieldDescription>
+	</field>
+	<field name="description1" class="java.lang.String">
+		<fieldDescription><![CDATA[@description1]]></fieldDescription>
+	</field>
+	<field name="subTotals" class="java.lang.Double">
+		<fieldDescription><![CDATA[@subTotals]]></fieldDescription>
+	</field>
+	<field name="totalSMV" class="java.lang.Double">
+		<fieldDescription><![CDATA[@totalSMV]]></fieldDescription>
+	</field>
+	<variable name="StdTime" class="java.lang.Double" resetType="Group" resetGroup="operationId">
+		<variableExpression><![CDATA[$F{lineType}.equals("S") ? $V{StdTime} : new Double($V{StdTime}.doubleValue() + $F{extendedTime}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable name="GrandStdTime" class="java.lang.Double" resetType="Group" resetGroup="operationId">
+		<variableExpression><![CDATA[new Double(($V{StdTime}.doubleValue()-$V{calcTime}.doubleValue())*($F{contingencies}.doubleValue()*0.01 + 1) + ($V{calcTime}.doubleValue()*($F{machineAllocationPercentage}.doubleValue()*0.01 +1))*($F{contingencies}.doubleValue()*0.01+1))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable name="calcTime" class="java.lang.Double" resetType="Group" resetGroup="operationId">
+		<variableExpression><![CDATA[$F{lineType}.equals("C") ? $V{calcTime} : new Double($V{calcTime}.doubleValue() + $F{extendedTime}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<group name="operationId" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{operationId}]]></groupExpression>
+		<groupHeader>
+			<band height="152" splitType="Stretch">
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" mode="Opaque" x="15" y="2" width="520" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{operationId}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" mode="Opaque" x="1" y="136" width="59" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Line No]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Opaque" x="60" y="135" width="48" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Code]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Opaque" x="365" y="136" width="32" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[x]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" mode="Transparent" x="90" y="23" width="413" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{description}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="0" y="23" width="91" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="91" y="37" width="185" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{timingType}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" mode="Opaque" x="108" y="136" width="242" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Opaque" x="397" y="136" width="74" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[c/min]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="0" y="38" width="89" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Type]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="0" y="52" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Machine Type]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="91" y="52" width="185" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{machineType}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="0" y="66" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[RPM]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="0" y="80" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Stitches/cm]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="0" y="94" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Attachments]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="0" y="108" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Comments]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="0" y="122" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="277" y="38" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Analyst]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="277" y="52" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Study Number]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="277" y="66" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Machine All.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="277" y="80" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Contingencies]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="277" y="94" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Freq/Garment]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="277" y="108" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Garment Type]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" mode="Transparent" x="277" y="122" width="90" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[STD. TIME]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="89" y="66" width="187" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{machineRpm}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="88" y="80" width="188" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{machineOutputPer}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="367" y="108" width="187" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{garmentType}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="367" y="52" width="187" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{studyNo}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="367" y="66" width="187" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{machineAllocationPercentage}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="88" y="94" width="188" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{attachments}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="88" y="108" width="188" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{comments}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="88" y="122" width="188" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{createdDate}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="367" y="80" width="186" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{contingencies}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="367" y="94" width="186" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{frequency}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="367" y="37" width="186" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{createdBy}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" mode="Opaque" x="471" y="136" width="75" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Totals]]></text>
+				</staticText>
+				<textField pattern="###0.00">
+					<reportElement x="367" y="122" width="100" height="14"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalSMV}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="22" width="555" height="1"/>
+				</line>
+				<line>
+					<reportElement x="0" y="150" width="555" height="1"/>
+				</line>
+				<line>
+					<reportElement x="0" y="135" width="555" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="39" splitType="Stretch">
+				<line direction="BottomUp">
+					<reportElement key="line" x="1" y="2" width="554" height="1"/>
+				</line>
+				<staticText>
+					<reportElement key="staticText" x="349" y="3" width="121" height="20"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Basic Time]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="349" y="23" width="121" height="15"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[STD. TIME]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="operationId" pattern="###0.00" isBlankWhenNull="true">
+					<reportElement key="textField" x="470" y="3" width="83" height="20"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{StdTime}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00">
+					<reportElement x="470" y="23" width="83" height="15"/>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalSMV}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="29" splitType="Stretch">
+			<line>
+				<reportElement key="line" x="0" y="1" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="27" width="555" height="1"/>
+			</line>
+			<textField hyperlinkType="Reference">
+				<reportElement x="277" y="2" width="258" height="25"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{website}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" mode="Transparent" x="15" y="2" width="261" height="25" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Operation Analysis]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField pattern="###0" isBlankWhenNull="false">
+				<reportElement key="textField" x="0" y="0" width="59" height="13">
+					<printWhenExpression><![CDATA[new Boolean(!$F{lineNo}.equals(new Double(0.0)))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{lineNo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0;-###0" isBlankWhenNull="true">
+				<reportElement key="textField" x="364" y="0" width="32" height="13">
+					<printWhenExpression><![CDATA[new Boolean(!$F{quantity}.equals(new Double(0.0)))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0" isBlankWhenNull="true">
+				<reportElement key="textField" x="396" y="0" width="74" height="13">
+					<printWhenExpression><![CDATA[new Boolean(!$F{extendedTime}.equals(new Double(0.0)))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{extendedTime}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="107" y="0" width="242" height="13"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{description1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement x="470" y="0" width="76" height="13">
+					<printWhenExpression><![CDATA[new Boolean(!$F{subTotals}.equals(new Double(0.0)))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{subTotals}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="60" y="0" width="48" height="13"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{timing}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="15" y="2" width="521" height="1"/>
+			</line>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="15" y="2" width="521" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="500" y="3" width="36" height="17" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="15" y="2" width="186" height="18"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="365" y="2" width="134" height="17" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

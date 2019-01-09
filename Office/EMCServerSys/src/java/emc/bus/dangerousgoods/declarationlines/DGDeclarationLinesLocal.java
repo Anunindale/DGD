@@ -6,6 +6,7 @@ package emc.bus.dangerousgoods.declarationlines;
 
 import emc.framework.EMCEntityBeanLocalInterface;
 import emc.framework.EMCUserData;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -17,5 +18,7 @@ import javax.ejb.Local;
 public interface DGDeclarationLinesLocal extends EMCEntityBeanLocalInterface {
     
     public String findDescriptionByNumber(String lineNumber, EMCUserData userData);
+    
+    public List<Object> getRegistrationNumbers(String contactNum, EMCUserData userData);
     
 }

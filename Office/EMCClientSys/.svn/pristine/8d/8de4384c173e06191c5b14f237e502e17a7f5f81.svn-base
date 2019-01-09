@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="companyName" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="userName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="fromDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="toDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="FatPerc" class="java.lang.Object"/>
+	<parameter name="BMI" class="java.lang.Object"/>
+	<parameter name="HR" class="java.lang.Object"/>
+	<field name="firstName" class="java.lang.String">
+		<fieldDescription><![CDATA[@firstName]]></fieldDescription>
+	</field>
+	<field name="surname" class="java.lang.String">
+		<fieldDescription><![CDATA[@surname]]></fieldDescription>
+	</field>
+	<field name="userId" class="java.lang.String">
+		<fieldDescription><![CDATA[@userId]]></fieldDescription>
+	</field>
+	<field name="workTelephone" class="java.lang.String">
+		<fieldDescription><![CDATA[@workTelephone]]></fieldDescription>
+	</field>
+	<field name="homeTelephone" class="java.lang.String">
+		<fieldDescription><![CDATA[@homeTelephone]]></fieldDescription>
+	</field>
+	<field name="cellphone" class="java.lang.String">
+		<fieldDescription><![CDATA[@cellphone]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[@email]]></fieldDescription>
+	</field>
+	<field name="dateOfBirth" class="java.lang.String">
+		<fieldDescription><![CDATA[@dateOfBirth]]></fieldDescription>
+	</field>
+	<field name="fatPerc" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@fatPerc]]></fieldDescription>
+	</field>
+	<field name="BMI" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@BMI]]></fieldDescription>
+	</field>
+	<field name="restHR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@restHR]]></fieldDescription>
+	</field>
+	<field name="minHR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@minHR]]></fieldDescription>
+	</field>
+	<field name="maxHR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@maxHeartRate]]></fieldDescription>
+	</field>
+	<field name="groupField" class="java.lang.String">
+		<fieldDescription><![CDATA[@groupField]]></fieldDescription>
+	</field>
+	<field name="height" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@height]]></fieldDescription>
+	</field>
+	<field name="weight" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@weight]]></fieldDescription>
+	</field>
+	<field name="idealBodyWeight" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@idealBodyWeight]]></fieldDescription>
+	</field>
+	<field name="pulse" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@pulse]]></fieldDescription>
+	</field>
+	<field name="leanBodyWeight" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@leanBodyWeight]]></fieldDescription>
+	</field>
+	<field name="leanBodyPerc" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@leanBodyPerc]]></fieldDescription>
+	</field>
+	<field name="bodyFatDiff" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@bodyFatDiff]]></fieldDescription>
+	</field>
+	<field name="bloodPressureSys" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@bloodPressureSys]]></fieldDescription>
+	</field>
+	<field name="bloodPressureDias" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@bloodPressureDias]]></fieldDescription>
+	</field>
+	<field name="maxHeartRate" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@maxHeartRate]]></fieldDescription>
+	</field>
+	<field name="upperLimit" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@upperLimit]]></fieldDescription>
+	</field>
+	<field name="lowerLimit" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@lowerLimit]]></fieldDescription>
+	</field>
+	<field name="fatPercAnth" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@fatPercAnth]]></fieldDescription>
+	</field>
+	<field name="idealFatPerc" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@idealFat]]></fieldDescription>
+	</field>
+	<field name="fatWeight" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@fatWeight]]></fieldDescription>
+	</field>
+	<field name="idealFatWeight" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[@idealFatWeight]]></fieldDescription>
+	</field>
+	<field name="age" class="java.lang.Integer">
+		<fieldDescription><![CDATA[@age]]></fieldDescription>
+	</field>
+	<field name="gender" class="java.lang.String">
+		<fieldDescription><![CDATA[@gender]]></fieldDescription>
+	</field>
+	<group name="ReportGroup1">
+		<groupExpression><![CDATA[$F{groupField}]]></groupExpression>
+		<groupHeader>
+			<band height="688">
+				<image>
+					<reportElement x="14" y="69" width="522" height="199"/>
+					<imageExpression class="java.awt.Image"><![CDATA[$P{FatPerc}]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="14" y="485" width="522" height="199"/>
+					<imageExpression class="java.awt.Image"><![CDATA[$P{BMI}]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="14" y="276" width="522" height="199"/>
+					<imageExpression class="java.awt.Image"><![CDATA[$P{HR}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="13" y="0" width="56" height="14"/>
+					<textElement>
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Height:
+
+
+                    ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="70" y="0" width="58" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{height}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="13" y="39" width="56" height="28"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ideal Body Weight (kg):]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="70" y="26" width="58" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{pulse}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00">
+					<reportElement x="70" y="39" width="58" height="23"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{idealBodyWeight}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="13" y="13" width="56" height="14"/>
+					<textElement>
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Weight:
+
+
+                    ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="13" y="26" width="56" height="14"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pulse:
+
+
+                    ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="70" y="13" width="58" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{weight}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="480" y="26" width="58" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{maxHR}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="390" y="39" width="89" height="14"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Upper Limit 85%:
+
+
+                    ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="480" y="13" width="58" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{bloodPressureDias}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="259" y="40" width="64" height="28"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Body fat to lose/gain:
+
+
+                    ]]></text>
+				</staticText>
+				<textField pattern="###0.00;-###0.00">
+					<reportElement x="324" y="40" width="57" height="23"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{bodyFatDiff}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="390" y="0" width="89" height="14"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[BP - Systolic:
+
+
+                    ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="390" y="26" width="89" height="14"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Max Heart Rate:
+
+
+                    ]]></text>
+				</staticText>
+				<textField pattern="###0">
+					<reportElement x="480" y="52" width="58" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{lowerLimit}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="324" y="1" width="57" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{leanBodyPerc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="259" y="1" width="64" height="14"/>
+					<textElement>
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Lean Body %:
+
+
+                    ]]></text>
+				</staticText>
+				<textField pattern="###0">
+					<reportElement x="480" y="39" width="58" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{upperLimit}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="480" y="0" width="58" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{bloodPressureSys}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="390" y="13" width="89" height="14"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[BP - Diastolic:
+
+
+                    ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="390" y="52" width="89" height="15"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Lower Limit 60%:
+
+
+                    ]]></text>
+				</staticText>
+				<textField pattern="###0.00;-###0.00">
+					<reportElement x="193" y="26" width="57" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fatWeight}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="193" y="0" width="57" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fatPercAnth}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="137" y="26" width="55" height="14"/>
+					<textElement>
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Fat Weight:
+
+
+                    ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="137" y="0" width="55" height="14"/>
+					<textElement>
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Fat %:
+
+
+                    ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="137" y="13" width="55" height="14"/>
+					<textElement>
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Ideal Fat %:
+
+
+                    ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="137" y="39" width="55" height="28"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ideal Fat Weight:
+
+
+                    ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="193" y="13" width="57" height="14"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{idealFatPerc}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00">
+					<reportElement x="193" y="39" width="57" height="23"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{idealFatWeight}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-1" y="0" width="1" height="69"/>
+				</line>
+				<line>
+					<reportElement x="0" y="0" width="554" height="1"/>
+				</line>
+				<line>
+					<reportElement x="-1" y="68" width="556" height="1"/>
+				</line>
+				<line>
+					<reportElement x="554" y="0" width="1" height="69"/>
+				</line>
+				<staticText>
+					<reportElement x="259" y="14" width="64" height="27"/>
+					<textElement>
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Lean Body Weight:
+
+
+                    ]]></text>
+				</staticText>
+				<textField pattern="###0.00;-###0.00">
+					<reportElement x="324" y="14" width="57" height="23"/>
+					<textElement verticalAlignment="Bottom">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{leanBodyWeight}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="27" splitType="Stretch">
+			<line>
+				<reportElement key="line" x="-1" y="26" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="11" y="1" width="278" height="25"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Client Anthropometric Report
+
+
+
+
+
+
+                ]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line" x="-1" y="0" width="555" height="1"/>
+			</line>
+			<textField hyperlinkType="Reference">
+				<reportElement x="275" y="1" width="279" height="25"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{companyName}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["website"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="url">
+					<hyperlinkParameterExpression><![CDATA[$P{companyName}]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement x="13" y="15" width="68" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Client:
+
+
+
+
+
+
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="16" width="68" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cellphone:
+
+
+
+
+
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="28" width="68" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Surname:
+
+
+
+
+
+
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="29" width="68" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email:
+
+
+
+
+
+
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="431" y="16" width="124" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cellphone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="2" width="124" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{userId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="29" width="124" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="15" width="124" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{firstName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="41" width="68" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOB:
+
+
+
+
+
+
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="2" width="68" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID:
+
+
+
+
+
+
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="41" width="124" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{dateOfBirth}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="28" width="124" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{surname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="2" width="124" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{workTelephone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="364" y="2" width="68" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telephone:
+
+
+
+
+
+
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="54" width="68" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Age:
+
+
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="54" width="124" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{age}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="364" y="42" width="68" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gender:
+
+
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="431" y="42" width="124" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{gender}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-1" y="0" width="1" height="72"/>
+			</line>
+			<line>
+				<reportElement x="554" y="0" width="1" height="72"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="15" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="11" y="2" width="530" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{userName} + " - " + new Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="1" width="555" height="1"/>
+			</line>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="371" y="2" width="134" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="11" y="2" width="186" height="11"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Printed with EMC by ASD
+
+
+
+
+                ]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="505" y="2" width="36" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+	<noData>
+		<band/>
+	</noData>
+</jasperReport>

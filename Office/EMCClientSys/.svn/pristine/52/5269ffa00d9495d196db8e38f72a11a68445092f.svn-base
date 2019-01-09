@@ -1,0 +1,121 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package emc.forms.trec.display.treccards.resources;
+
+import emc.app.components.emcJButton;
+import emc.app.components.emcJCheckBox;
+import emc.app.components.emcJComboBox;
+import emc.app.components.emcJDialog;
+import emc.app.components.emcJPanel;
+import emc.app.components.emcJTabbedPane;
+import emc.app.components.emcSetGridBagConstraints;
+import emc.app.frame.EMCDesktop;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ *
+ * @author asd_admin
+ */
+public class TRECEditDialog extends emcJDialog{
+
+    private Map<String, String> phrasesMap;
+    private List<emcJCheckBox> selectionCompList;
+    private List selectedPhrases;
+    private List<String> activePhrases;
+    
+    public TRECEditDialog(EMCDesktop owner, String title, Map<String, String> phrasesMap, List<String> activePhrases) {
+        super(owner, "Edit Trec " + title, true);
+        
+        this.phrasesMap = phrasesMap;
+        this.activePhrases = activePhrases;
+        
+        initDialog();
+        
+        pack();
+        
+        setVisible(true);
+    }
+
+    private void initDialog() {
+        emcJTabbedPane tabbed = new emcJTabbedPane();
+        tabbed.add("Edit", phrasesPane());
+        
+        setLayout(new BorderLayout());
+        add(tabbed, BorderLayout.CENTER);
+        add(buttonPane(), BorderLayout.EAST);
+    }
+
+    private emcJPanel phrasesPane() {
+        Component[][] comp = new Component[phrasesMap.size()][1];
+        
+        emcJCheckBox selectionComp;
+        int i = 0;
+        this.selectionCompList = new ArrayList<>();
+        
+        for (Map.Entry<String, String> phraseEntry : phrasesMap.entrySet()) {
+            selectionComp = new emcJCheckBox(phraseEntry.getKey());
+
+            comp[i][0] = selectionComp;
+            
+            if (activePhrases.contains(phraseEntry.getValue())) {
+                selectionComp.setSelected(true);
+            }
+            
+            selectionCompList.add(selectionComp);
+            
+            i++;
+        }
+        
+        return emcSetGridBagConstraints.createSimplePanel(comp, GridBagConstraints.NONE, true);
+    }
+
+    private emcJPanel buttonPane() {
+        emcJButton btnOK = new emcJButton("OK") {
+            @Override
+            public void doActionPerformed(ActionEvent evt) {
+                super.doActionPerformed(evt);
+
+                List tempList = new ArrayList<>();
+                
+                for (emcJCheckBox select : selectionCompList) {
+                    if (select.isSelected()) {
+                        tempList.add(phrasesMap.get(select.getText()));
+                    }
+                }
+                
+                selectedPhrases = tempList;
+                
+                TRECEditDialog.this.dispose();
+            }
+        };
+
+        emcJButton btnCancel = new emcJButton("Cancel") {
+            @Override
+            public void doActionPerformed(ActionEvent evt) {
+                super.doActionPerformed(evt);
+
+                TRECEditDialog.this.dispose();
+            }
+        };
+
+        List<emcJButton> buttonList = new ArrayList<>();
+        buttonList.add(btnOK);
+        buttonList.add(btnCancel);
+
+        return emcSetGridBagConstraints.createButtonPanel(buttonList);
+    }
+
+    public List getSelectedPhrases() {
+        return selectedPhrases;
+    }
+    
+}

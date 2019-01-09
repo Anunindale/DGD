@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UMStudyMaterial" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true">
+	<parameter name="logoPath" class="java.lang.String"/>
+	<field name="companyName" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyName]]></fieldDescription>
+	</field>
+	<field name="companyEmail" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyEmail]]></fieldDescription>
+	</field>
+	<field name="companyTelephone" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyTelephone]]></fieldDescription>
+	</field>
+	<field name="companyFax" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyFax]]></fieldDescription>
+	</field>
+	<field name="companyContactEmail" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyContactEmail]]></fieldDescription>
+	</field>
+	<field name="companyAddress" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyAddress]]></fieldDescription>
+	</field>
+	<field name="companyLogo" class="java.lang.String">
+		<fieldDescription><![CDATA[@companyLogo]]></fieldDescription>
+	</field>
+	<field name="studentName" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentName]]></fieldDescription>
+	</field>
+	<field name="studentNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[@studentNumber]]></fieldDescription>
+	</field>
+	<field name="semester" class="java.lang.String">
+		<fieldDescription><![CDATA[@semester]]></fieldDescription>
+	</field>
+	<field name="academicYear" class="java.lang.String">
+		<fieldDescription><![CDATA[@academicYear]]></fieldDescription>
+	</field>
+	<field name="course" class="java.lang.String">
+		<fieldDescription><![CDATA[@course]]></fieldDescription>
+	</field>
+	<field name="studyMaterial" class="java.lang.String">
+		<fieldDescription><![CDATA[@studyMaterial]]></fieldDescription>
+	</field>
+	<field name="studyMaterialStatus" class="java.lang.String">
+		<fieldDescription><![CDATA[@studyMaterialStatus]]></fieldDescription>
+	</field>
+	<field name="courseDesc" class="java.lang.String">
+		<fieldDescription><![CDATA[@courseDesc]]></fieldDescription>
+	</field>
+	<field name="studyMaterialDesc" class="java.lang.String">
+		<fieldDescription><![CDATA[@studyMaterialDesc]]></fieldDescription>
+	</field>
+	<field name="deliveryMode" class="java.lang.String">
+		<fieldDescription><![CDATA[@deliveryMode]]></fieldDescription>
+	</field>
+	<group name="StudentNumber" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{studentNumber}]]></groupExpression>
+		<groupHeader>
+			<band height="183">
+				<textField>
+					<reportElement x="18" y="161" width="520" height="15"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA["The following is a list of study material that you should receive during the " + $F{semester} + " semester " + $F{academicYear} + ":"]]></textFieldExpression>
+				</textField>
+				<textField pattern="">
+					<reportElement x="18" y="97" width="237" height="15"/>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Dear " + $F{studentName} + " (" + $F{studentNumber} + ")"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="18" y="142" width="237" height="14"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Inventory Letter]]></text>
+				</staticText>
+				<textField pattern="dd MMMMM yyyy">
+					<reportElement x="306" y="97" width="232" height="15"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<image scaleImage="FillFrame" hAlign="Center">
+					<reportElement x="18" y="0" width="237" height="84"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{logoPath}]]></imageExpression>
+				</image>
+				<textField>
+					<reportElement x="306" y="14" width="232" height="14"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyEmail}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="306" y="0" width="232" height="14"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyName}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="306" y="56" width="232" height="14"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Email: " + $F{companyContactEmail}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="306" y="28" width="232" height="14"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Tel: " + $F{companyTelephone}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="306" y="42" width="232" height="14"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Fax: " + $F{companyFax}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="306" y="70" width="232" height="14"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{companyAddress}]]></textFieldExpression>
+				</textField>
+				<textField pattern="">
+					<reportElement x="18" y="119" width="237" height="15"/>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Delivery Mode: " + $F{deliveryMode}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="139">
+				<staticText>
+					<reportElement x="18" y="5" width="520" height="132"/>
+					<textElement markup="html"/>
+					<text><![CDATA[Items listed as <I>out of stock</I> will be sent to you as soon as they become available. Please check that you have received the study material as listed above. If you find any discrepancies please contact the ICP immediately. The responsibility of ensuring that all the necessary study material has been received lies with each student. If you have not contacted us one month before the semester's examination commences the ICP will assume that your study material has been received in good order.<br />
+<br />
+If you receive a DVD that appears to be faulty, please report it to the ICP offices immediately and post it back or deliver it to us for inspection. If it is indeed faulty the ICP will replace it promptly; if it is not faulty it will  be posted back to you and you will be responsible for postage cost.<br />
+<br />
+The ICP cannot be held responsible if received DSDs are incompatible with you DVD player.<br />
+<br />
+<B>NOTE:</B> All DVDs undergo quality testing before they are included in study material packages.]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="courseGroup">
+		<groupExpression><![CDATA[$F{course}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<textField>
+					<reportElement x="18" y="2" width="132" height="20"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{course}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="150" y="2" width="276" height="20"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{courseDesc}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="26" y="1" width="134" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["-" + $F{studyMaterial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="438" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studyMaterialStatus}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="1" width="266" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{studyMaterialDesc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
